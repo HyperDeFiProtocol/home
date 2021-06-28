@@ -6,6 +6,14 @@ const githubToRepo = function(repoName) {
   return 'https://github.com/' + process.env.githubUsername + '/' + repoName
 }
 
+const twitter = function(username=process.env.twitterUsername) {
+  return 'https://twitter.com/' + username
+}
+
+const telegram = function(username=process.env.telegramUsername) {
+  return 'https://t.me/' + username
+}
+
 const exploreBlock = function(blockNumber) {
   return process.env.explorerBaseUrl + '/block/' + blockNumber
 }
@@ -30,9 +38,12 @@ const pancakeSwapTo = function(outputCurrency = process.env.tokenAddress) {
   return process.env.pancakeBaseUrl + '/#/swap?outputCurrency=' + outputCurrency
 }
 
+
 export default {
   github: github,
   githubToRepo: githubToRepo,
+  twitter: twitter,
+  telegram: telegram,
 
   exploreBlock: exploreBlock,
   exploreTx: exploreTx,

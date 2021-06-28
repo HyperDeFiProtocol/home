@@ -2,6 +2,8 @@ export default {
   env: {
     dev: process.env.mode !== 'production',
     githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
+    twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
+    telegramUsername: process.env.telegramUsername || 'HyperDeFi',
     tokenAddress: process.env.tokenAddress,
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com/',
     pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://bscscan.com/',

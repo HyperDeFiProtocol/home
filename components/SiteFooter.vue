@@ -22,30 +22,35 @@
         </div>
       </nav>
       <div class="mt-8 flex justify-center space-x-6">
-        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Facebook</span>
-          <IconFacebook class="h-6 w-6" />
+<!--        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">-->
+<!--          <span class="sr-only">Facebook</span>-->
+<!--          <IconFacebook class="h-6 w-6" />-->
+<!--        </a>-->
+
+<!--        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">-->
+<!--          <span class="sr-only">Instagram</span>-->
+<!--          <IconInstagram class="h-6 w-6" />-->
+<!--        </a>-->
+
+        <a target='_blank' :href='hdfLink.telegram()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Twitter</span>
+          <IconTelegram class="h-6 w-6" />
         </a>
 
-        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Instagram</span>
-          <IconInstagram class="h-6 w-6" />
-        </a>
-
-        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hdfLink.twitter()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Twitter</span>
           <IconTwitter class="h-6 w-6" />
         </a>
 
-        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hdfLink.github()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">GitHub</span>
           <IconGithub class="h-6 w-6" />
         </a>
 
-        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Dribble</span>
-          <IconDribble class="h-6 w-6" />
-        </a>
+<!--        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">-->
+<!--          <span class="sr-only">Dribble</span>-->
+<!--          <IconDribble class="h-6 w-6" />-->
+<!--        </a>-->
       </div>
       <p class="mt-8 text-center text-base text-gray-400">
         &copy; 2020 HyperDeFi team, All rights reserved.
@@ -56,8 +61,15 @@
 </template>
 
 <script>
+import hdfLink from '~/utils/hdfLink'
+
 export default {
   name: 'SiteFooter',
+  computed: {
+    hdfLink() {
+      return hdfLink
+    },
+  }
   // mounted() {
   //   console.log('::: process.env.tokenAddress:', process.env.tokenAddress)
   // }
