@@ -258,8 +258,8 @@ export const mutations = {
     state.global.autoSwapNumeratorMin = data.i16[3]
     state.global.autoSwapNumeratorMax = data.i16[4]
     state.global.autoSwapDenominator = data.i16[5]
-    state.global.autoSwapAmountMin = data.i256[5]
-    state.global.autoSwapAmountMax = data.i256[6]
+    state.global.autoSwapAmountMin = data.i256[6]
+    state.global.autoSwapAmountMax = data.i256[7]
 
     // launch timestamp
     state.global.launchTimestamp = data.i256[0]
@@ -268,16 +268,16 @@ export const mutations = {
     state.global.airdropMax = data.i256[1]
 
     // thresholds
-    state.global.lottoThreshold = data.i256[1]
-    state.global.whaleThreshold = data.i256[3]
-    state.global.robberThreshold = data.i256[4]
+    state.global.lottoThreshold = data.i256[2]
+    state.global.whaleThreshold = data.i256[4]
+    state.global.robberThreshold = data.i256[5]
 
     // fomo
     state.fomo.next = data.fomoNext
-    state.fomo.amount = data.i256[7]
-    state.fomo.threshold = data.i256[2]
-    state.fomo.timestamp = data.i256[8]
-    state.fomo.timestampStep = data.i256[9]
+    state.fomo.amount = data.i256[8]
+    state.fomo.threshold = data.i256[3]
+    state.fomo.timestamp = data.i256[9]
+    state.fomo.timestampStep = data.i256[10]
     state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerFee

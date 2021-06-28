@@ -2,7 +2,7 @@
   <div>
     <LAutoWidth class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        A better crypto to HOLD
+        A better crypto for HOLDING
 
         <template #tag>
           Features

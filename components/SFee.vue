@@ -9,7 +9,8 @@
           RULES
         </template>
         <template #desc>
-          Fees will be taken from each transaction: Lotto, FOMO, LP Acquisition, Burn, Dev, and Tax to all holders.
+          Fees will be taken from each transaction:
+          Lotto, FOMO, LP Acquisition, Burn, Dev, and Tax share to every holders.
         </template>
       </CH2>
 

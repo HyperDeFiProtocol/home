@@ -14,12 +14,14 @@
 
       <div class="mt-8 flex justify-center">
         <div class="inline-flex rounded-md shadow">
-          <a href="#" class="text-white bg-violet-600 hover:bg-violet-700">
+          <a target='_blank' :href='hdfLink.githubToRepo("contracts")'
+             class="text-white bg-violet-600 hover:bg-violet-700">
             Documentation
           </a>
         </div>
         <div class="ml-3 inline-flex">
-          <a href="#" class="text-violet-700 bg-violet-100 hover:bg-violet-200">
+          <a target='_blank' :href='hdfLink.githubToRepo("contracts")'
+             class="text-violet-700 bg-violet-100 hover:bg-violet-200">
             GitHub Code
           </a>
         </div>
@@ -29,8 +31,15 @@
 </template>
 
 <script>
+import hdfLink from '~/utils/hdfLink'
+
 export default {
-  name: 'SReadyForDApps'
+  name: 'SReadyForDApps',
+  computed: {
+    hdfLink() {
+      return hdfLink
+    },
+  }
 }
 </script>
 

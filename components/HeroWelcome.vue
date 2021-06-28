@@ -33,7 +33,8 @@
             </h1>
             <p class='mt-3 leading-loose lg:leading-extra-loose xl:leading-extra-loose text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl'>
               The Open-sourced HyperDeFi Protocol is a community driven, fair launched DeFi Token.
-              Some functions occur during each trade: Lotto, FOMO, LP Acquisition, Burn, Dev, and Tax to all holders.
+              Some functions occur during each trade:
+              Lotto, FOMO, LP Acquisition, Burn, Dev, and Tax share to every holders.
             </p>
             <div class='mt-10 sm:mt-12'>
               <form action='#' class='sm:max-w-xl sm:mx-auto lg:mx-0'>

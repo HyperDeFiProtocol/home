@@ -45,7 +45,7 @@
           </p>
 
           <p>
-            New LP Tokens will be sent to the black-hold address, nobody can remove the global liquidity.
+            New LP Tokens will be sent to the black-hole address, nobody can remove the global liquidity.
           </p>
         </div>
       </main>

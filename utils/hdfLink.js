@@ -2,6 +2,10 @@ const github = function() {
   return 'https://github.com/' + process.env.githubUsername
 }
 
+const githubToRepo = function(repoName) {
+  return 'https://github.com/' + process.env.githubUsername + '/' + repoName
+}
+
 const exploreBlock = function(blockNumber) {
   return process.env.explorerBaseUrl + '/block/' + blockNumber
 }
@@ -28,6 +32,7 @@ const pancakeSwapTo = function(outputCurrency = process.env.tokenAddress) {
 
 export default {
   github: github,
+  githubToRepo: githubToRepo,
 
   exploreBlock: exploreBlock,
   exploreTx: exploreTx,
