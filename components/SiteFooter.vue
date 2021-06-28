@@ -48,7 +48,7 @@
         </a>
       </div>
       <p class="mt-8 text-center text-base text-gray-400">
-        &copy; 2020 HyperDeFi team. All rights reserved.
+        &copy; 2020 HyperDeFi team, All rights reserved.
       </p>
     </LAutoWidth>
   </footer>

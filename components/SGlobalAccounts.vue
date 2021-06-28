@@ -23,7 +23,9 @@
           </div>
           <div class="mt-8">
             <h3 class="text-lg font-bold">
-              <a href="#" class=" focus:outline-none">
+              <a target='_blank'
+                 :href='explorer.exploreAddress($store.state.bsc.globalAccounts.zero)'
+                 class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
                 LP Token Holder, black-hole

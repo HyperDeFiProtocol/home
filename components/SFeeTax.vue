@@ -36,7 +36,7 @@
             then deposit to the Tax pool;
             Each HyperDeFi holder can share them on a pro-rata basis,
             that means you can earn more HyperDeFi just by holding it in your wallet,
-            watch your balance grow... everyday.
+            get your harvest weekly, or even daily.
           </p>
 
           <div v-if='$store.state.bsc.supply.tax > "0"' class="mt-5 inline-flex rounded-md shadow">

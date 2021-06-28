@@ -12,7 +12,7 @@
 
         <div class='header1'>
           <h2 class='text-cool-gray-400'>
-            Dev
+            Fund
           </h2>
           <p>
             For the promotion of HyperDeFi.

@@ -5,7 +5,7 @@
         Ready for DApps
 
         <template #tag>
-          Slots
+          Slot
         </template>
         <template #desc>
           Interface is provided, for building DApps with HyperDeFi functions.

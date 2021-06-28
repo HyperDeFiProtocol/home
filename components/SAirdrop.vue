@@ -29,7 +29,7 @@
       <dl class="dl-stat grid grid-cols-1 sm:grid-cols-2 lg:max-w-3xl">
         <div>
           <dt>
-            Remains
+            Remaining
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.airdrop)' :token='true' />

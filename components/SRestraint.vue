@@ -41,7 +41,8 @@
               </p>
             </dt>
             <dd class="mt-2 text-base text-gray-500">
-              The LP Token is held by the black-hole, not any private address, there is no possibility of cheating and the liquidity cannot be removed.
+              The global LP Token is held by the black-hole address, not any private address,
+              there is no possibility of cheating and the liquidity cannot be removed.
             </dd>
           </div>
 

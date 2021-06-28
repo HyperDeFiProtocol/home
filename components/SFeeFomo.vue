@@ -38,7 +38,7 @@
             <span v-if='timerStep.h > "0"'>{{ timerStep.h }} hours,</span>
             <span v-if='timerStep.m > "0"'>{{ timerStep.m }} minutes,</span>
             <span v-if='timerStep.s > "0"'>{{ timerStep.s }} seconds,</span>
-            if no other user buy more than <CBN :value='fomo.threshold' :token='true' /> HyperDeFi on PancakeSwap,
+            if no other user buy more than <CBN :value='fomo.threshold' :token='true' /> HyperDeFi from PancakeSwap,
             the last buyer will win this prize.
           </p>
 

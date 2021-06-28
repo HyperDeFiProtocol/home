@@ -42,7 +42,7 @@
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
               Latest price
-            </span>
+            </span>,
             provided by
             <CPancakeTo class='font-medium text-violet-300'>PancakeSwap Finance</CPancakeTo>
           </span>
@@ -55,8 +55,10 @@
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
               Current Total Supply
-            </span>
-            with a cap of <CBN :value='String($store.state.bsc.supply.cap)' :token='true' /> releases during the number of holders grows.
+            </span>,
+            releases during the number of holders grows
+            with a cap (decreasing) of
+            <CBN :value='String($store.state.bsc.supply.cap)' :token='true' />
           </span>
         </p>
 
@@ -67,8 +69,8 @@
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
               Circulating Market Cap
-            </span>
-            for current total supply.
+            </span>,
+            of current total supply.
           </span>
         </p>
 
@@ -79,7 +81,7 @@
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
               Holders
-            </span>
+            </span>,
             are holding HyperDeFi in their wallets.
           </span>
         </p>

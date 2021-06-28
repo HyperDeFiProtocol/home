@@ -10,7 +10,7 @@
         </template>
         <template #desc>
           Fees will be taken from each transaction:
-          Lotto, FOMO, LP Acquisition, Burn, Dev, and Tax share to every holders.
+          Lotto, FOMO, LP Acquisition, Burn, Fund, and Tax share to every holders.
         </template>
       </CH2>
 
@@ -172,7 +172,7 @@
           </tr>
 
           <tr>
-            <th class='th-item' scope='row'>Dev</th>
+            <th class='th-item' scope='row'>Fund</th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.dev > "0"'>
                 {{ $store.state.bsc.takerFee.dev }}%
@@ -277,7 +277,7 @@
                 <span v-else>
                   a large amount of HyperDeFi
                 </span>
-                (dynamic value,
+                (dynamic amount value,
                 {{ $store.state.bsc.global.whaleFractionA }}/<CBN :value='$store.state.bsc.global.whaleFractionB' />
                 of the liquidity)
               </dd>
@@ -309,7 +309,8 @@
           <p class='mt-3 md:mt-6 px-4 md:px-8 leading-loose tracking-wide'>
             Scripts are not welcomed in HyperDeFi ecology, especially in the very beginning phases.
             If someone uses scripts to make a big-trade that takes or puts
-            more than {{ $store.state.bsc.global.robberPercentage }}% of the liquidity,
+            more than {{ $store.state.bsc.global.robberPercentage }}% of the liquidity
+            (which can't be done manually),
             he will be treat as a ROBBER and be charged up to {{ $store.state.bsc.robberFee.total }}% of the fee
             ({{ $store.state.bsc.robberFee.tax }}% for tax,
             {{ $store.state.bsc.robberFee.lotto }}% for lotto,
