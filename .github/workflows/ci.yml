@@ -45,6 +45,17 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
-      - name: Run linter 👀
-        run: yarn lint
+      - name: Use `.env.testnet` 🛠
+        run: cp .env.testnet .env
 
+      - name: Nuxt generate 🚀
+        run: yarn generate
+
+      - name: Deploy for Testnet 👀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          repository-name: HyperDeFiProtocol/testnet
+          commit-message: "${{ github.repository }}@${{ github.sha }}"
+          branch: testnet
+          folder: dist
