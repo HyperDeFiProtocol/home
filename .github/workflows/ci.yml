@@ -51,7 +51,10 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
-      - name: Deploy for Testnet 👀
+      - name: Add CNAME for `testnet.hyperdefi.org` 🚀🚀
+        run: echo "testnet.hyperdefi.org" > ./dist/CNAME
+
+      - name: Deploy for Testnet 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           token: ${{ secrets.CI_TOKEN }}
