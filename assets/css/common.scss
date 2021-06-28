@@ -1,0 +1,118 @@
+.a-track {
+  @apply inline-flex items-center justify-center px-5 py-3 border border-transparent rounded-md;
+  @apply font-medium text-base text-white;
+}
+
+.dl-stat {
+  @apply mt-10 text-center lg:mt-20 lg:mx-auto gap-y-10 lg:gap-x-4;
+
+  div {
+    @apply flex flex-col;
+
+    dt {
+      @apply order-2 mt-1 text-base leading-6 font-medium text-gray-300;
+    }
+
+    dd {
+      @apply order-1 text-3xl font-extrabold text-white;
+    }
+
+  }
+}
+
+
+.hdf-ch2 {
+  @apply lg:text-center;
+
+  header {
+    @apply mb-2 font-semibold tracking-wide text-base text-violet-400 uppercase;
+  }
+
+  h2 {
+    @apply leading-8 tracking-tight font-extrabold text-4xl sm:text-5xl md:text-6xl;
+    @apply text-gray-200;
+  }
+
+  main {
+    @apply mt-6 md:mt-10 lg:mx-auto;
+    @apply max-w-md md:max-w-5xl;
+    @apply text-lg md:text-xl;
+    @apply text-gray-400;
+  }
+}
+
+.hdf-ch3 {
+  @apply lg:text-center;
+
+  header {
+    @apply mb-2 font-semibold tracking-wide text-base text-violet-400 uppercase;
+  }
+
+  h3 {
+    @apply leading-8 tracking-tight font-extrabold text-3xl sm:text-4xl;
+    @apply text-gray-200;
+  }
+
+  main {
+    @apply mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto
+  }
+}
+
+
+.section-fee {
+  .span-icon {
+    @apply -mt-8 rounded-lg inline-flex p-2 ring-4 ring-white;
+  }
+
+  .auto-layout {
+    @apply pt-12 pb-20 px-4 lg:pb-28 lg:px-8;
+
+    main {
+      @apply lg:flex space-y-6 lg:space-y-0;
+    }
+  }
+
+  .header1 {
+    @apply text-center lg:w-2/5 lg:text-left lg:order-1;
+
+    p {
+      @apply mt-3 mx-auto md:mt-6 md:mx-0 md:max-w-5xl;
+      @apply leading-loose md:leading-extra-loose text-gray-400 text-base sm:text-lg md:text-xl;
+    }
+  }
+
+  .header2 {
+    @apply text-center lg:w-2/5 lg:text-left lg:order-2 lg:ml-14;
+
+    p {
+      @apply mt-3 mx-auto md:mt-6 md:mx-0 md:max-w-5xl;
+      @apply leading-loose md:leading-extra-loose text-gray-400 text-base sm:text-lg md:text-xl;
+    }
+  }
+
+  h2 {
+    @apply text-4xl tracking-tight font-bold sm:text-5xl md:text-6xl;
+  }
+
+  .body1 {
+    @apply bg-gradient-to-r rounded-2xl p-8 text-base lg:col-span-2 lg:w-3/5 lg:order-1;
+
+    p {
+      @apply mt-2 lg:mt-3;
+      @apply leading-loose md:leading-extra-loose sm:text-lg md:text-xl;
+    }
+  }
+
+  .body2 {
+    @apply bg-gradient-to-r rounded-2xl p-8 text-base lg:col-span-2 lg:w-3/5 lg:order-2 lg:ml-8;
+
+    p {
+      @apply mt-2 lg:mt-3;
+      @apply leading-loose md:leading-extra-loose sm:text-lg md:text-xl;
+    }
+  }
+
+  h3 {
+    @apply font-semibold tracking-wide uppercase;
+  }
+}

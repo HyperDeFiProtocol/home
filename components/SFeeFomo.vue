@@ -1,0 +1,338 @@
+<template>
+  <div class='section-fee'>
+    <div class='text-center'>
+      <span class="span-icon bg-orange-50 text-orange-700">
+        <HeroIconOutlineClock class="h-8 w-8" />
+      </span>
+    </div>
+
+    <LAutoWidth class='auto-layout'>
+      <main>
+        <div class='header1'>
+          <h2 class='text-orange-400'>
+            FOMO
+          </h2>
+          <p>
+            For the user who buy more than <CBN :value='fomo.threshold' :token='true' /> HyperDeFi on PancakeSwap.
+          </p>
+        </div>
+
+        <div class='body2 to-orange-900 from-yellow-800 text-orange-300'>
+          <h3>
+            For each transaction:
+          </h3>
+
+          <p>
+            Take
+            <span v-if='$store.state.bsc.takerFee.fomo > "0"'>
+              {{ $store.state.bsc.takerFee.fomo }}% from taker,
+            </span>
+            <span v-if='$store.state.bsc.makerFee.fomo > "0"'>
+              {{ $store.state.bsc.makerFee.fomo }}% from maker,
+            </span>
+            <span v-if='$store.state.bsc.whaleFee.fomo > "0"'>
+              {{ $store.state.bsc.whaleFee.fomo }}% from whale,
+            </span>
+            then deposit to the FOMO pool;
+            after
+            <span v-if='timerStep.h > "0"'>{{ timerStep.h }} hours,</span>
+            <span v-if='timerStep.m > "0"'>{{ timerStep.m }} minutes,</span>
+            <span v-if='timerStep.s > "0"'>{{ timerStep.s }} seconds,</span>
+            if no other user buy more than <CBN :value='fomo.threshold' :token='true' /> HyperDeFi on PancakeSwap,
+            the last buyer will win this prize.
+          </p>
+
+          <div v-if='$store.state.bsc.supply.fomo > "0"' class="mt-5 inline-flex rounded-md shadow">
+            <a target='_blank'
+               :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.fomo)'
+               class="a-track bg-yellow-700 hover:bg-yellow-600 space-x-2">
+              <HeroIconSolidCursorClick class="h-5 w-5" />
+              <span>
+                Track all FOMO transfers
+              </span>
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <dl v-if='iAmount > "0"' class='dl-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-3'>
+        <div>
+          <dt>
+            Next FOMO Prize
+          </dt>
+          <dd>
+            <CBN :value='fomo.amount' :token='true' />
+          </dd>
+        </div>
+
+        <div>
+          <dt>
+            FOMO countdown timer
+          </dt>
+          <dd>
+            <span v-if='!fomo.countdown.finished'>
+              <span v-if='fomo.countdown.hh > "00"'>{{ fomo.countdown.hh }}:</span>{{ fomo.countdown.mm }}:{{ fomo.countdown.ss }}
+            </span>
+            <span v-else-if='this.isZero(fomo.next)'>
+              Finished
+            </span>
+            <span v-else>
+              Finishing
+            </span>
+          </dd>
+        </div>
+
+        <div class="flex flex-col mt-10 lg:mt-0">
+          <dt class="order-2 mt-1 text-base leading-6 font-medium text-yellow-100">
+            FOMO Transfers
+          </dt>
+          <dd class="order-1 text-3xl font-extrabold text-white">
+            <CBN :value='oCounter' />
+          </dd>
+        </div>
+      </dl>
+
+
+      <div class='mt-10 md:mt-12'>
+        <h6 class="ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase">
+          <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>
+            FOMO Prize Winner
+          </span>
+          <span v-else>
+            Next Winner
+          </span>
+        </h6>
+
+        <div class='mt-4'>
+          <div class="mx-auto max-w-2xl flex rounded-md shadow-sm">
+            <span class="inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600">
+              Address
+            </span>
+            <div class="flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate">
+              <span v-if='!this.isZero(fomo.next)' class='font-bold text-orange-700'>
+                {{ fomo.next }}
+              </span>
+              <span v-else class='font-normal text-gray-400'>
+                Next Buyer 0x...
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div v-if='oTransactions.length'>
+        <h6 class="mt-12 md:mt-16 ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase">
+          Latest {{ oTransactions.length }} FOMO Prize
+        </h6>
+
+        <!-- md:hidden -->
+        <div class='md:hidden mt-4'>
+          <ul class='divide-y divide-gray-700'>
+            <li v-for='tx in oTransactions' class='py-4 flex space-x-3'>
+              <span class='h-6 w-6'>
+                <HeroIconSolidBadgeCheck />
+              </span>
+              <div class="flex-1 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class='font-medium text-base'>
+                    <CBN :value='tx.amount' /> HyperDeFi
+                  </h4>
+                  <p class="text-sm text-gray-500">
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 10) }}...</a>
+                  </p>
+                </div>
+                <p class="text-sm text-gray-500">
+                  <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- md: -->
+        <div class="hidden mt-4 overflow-x-auto md:block">
+          <div class="align-middle inline-block min-w-full">
+            <div class="shadow overflow-hidden border-b border-gray-700">
+              <table class="min-w-full divide-y divide-gray-700">
+                <thead>
+                <tr>
+                  <th scope="col">
+                    Tx Hash
+                  </th>
+                  <th scope="col">
+                    Address
+                  </th>
+                  <th scope="col">
+                    Amount
+                  </th>
+                </tr>
+                </thead>
+                <tbody class='divide-y divide-gray-700'>
+                <tr v-for='tx in oTransactions'>
+                  <td>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 6) }}...</a>
+                  </td>
+                  <td>
+                    <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+                  </td>
+                  <td>
+                    <CBN :value='tx.amount' :token='true' :padding='2' /> HyperDeFi
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </LAutoWidth>
+  </div>
+</template>
+
+<script>
+import Web3 from 'web3'
+import moment from 'moment'
+import hdfLink from '~/utils/hdfLink'
+
+
+const BN = Web3.utils.BN
+
+export default {
+  name: 'SFeeFomo',
+  data() {
+    return {
+      oCounter: 0,
+      oAmount: '0',
+      oMarketValue: '0',
+
+      oTransactions: [],
+
+      iCounter: 0,
+      iAmount: '0',
+      iMarketValue: '0',
+
+      timerStep: {
+        h: '0',
+        m: '0',
+        s: '0',
+      }
+    }
+  },
+  computed: {
+    explorer() {
+      return hdfLink
+    },
+    next() {
+      if (this.isZero(this.$store.state.bsc.fomo.next)) return '0x...'
+
+      return this.$store.state.bsc.fomo.next
+    },
+    fomo() {
+      return this.$store.state.bsc.fomo
+    }
+  },
+  methods: {
+    isZero(address) {
+      return address === this.$store.state.bsc.globalAccounts.zero
+    }
+  },
+  async mounted() {
+    const timerStep = moment.duration(this.$store.state.bsc.fomo.timestampStep * 1000)
+    this.timerStep.s = timerStep.seconds()
+    this.timerStep.m = timerStep.minutes()
+    this.timerStep.h = timerStep.hours()
+
+    // out
+    const oEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
+      filter: {
+        from: this.$store.state.bsc.globalAccounts.fomo
+      },
+      fromBlock: 0,
+      toBlock: 'latest'
+    })
+
+    oEvents.reverse()
+    let burned = new BN(this.oAmount)
+    for (let i = 0; i < oEvents.length; i++) {
+      burned = burned.add(new BN(oEvents[i].returnValues.value))
+
+      if (i < 10) {
+        this.oTransactions.push({
+          blockNumber: String(oEvents[i].blockNumber),
+          txHash: oEvents[i].transactionHash,
+
+          account: oEvents[i].returnValues.to,
+          amount:  oEvents[i].returnValues.value,
+        })
+      }
+    }
+
+    this.oCounter = oEvents.length
+    this.oAmount = burned.toString()
+
+    // in
+    const iEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
+      filter: {
+        to: this.$store.state.bsc.globalAccounts.fomo
+      },
+      fromBlock: 0,
+      toBlock: 'latest'
+    })
+
+    iEvents.reverse()
+    let iAmount = new BN(this.oAmount)
+    for (let i = 0; i < iEvents.length; i++) {
+      iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
+    }
+
+    this.iCounter = iEvents.length
+    this.iAmount = iAmount.toString()
+    this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+  }
+}</script>
+
+<style scoped lang='scss'>
+.dl-stat div dt {
+  @apply text-yellow-200;
+}
+
+thead {
+  th {
+    @apply px-3 py-3 text-xs text-gray-100 text-left;
+    @apply uppercase tracking-wider;
+
+    &:nth-child(3) {
+      @apply text-center;
+    }
+  }
+}
+
+tbody {
+  tr {
+    &:nth-child(odd) {
+      @apply bg-gray-700;
+    }
+
+    td {
+      @apply px-3 py-4 whitespace-nowrap text-sm text-gray-400;
+    }
+
+    td:nth-child(1) {
+      @apply text-gray-500;
+    }
+
+    td:nth-child(3) {
+      @apply text-gray-300 text-right;
+    }
+
+    &:hover {
+      @apply bg-orange-900;
+
+      td {
+        @apply text-orange-200;
+      }
+    }
+  }
+}
+</style>
