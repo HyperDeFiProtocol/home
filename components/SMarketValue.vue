@@ -57,8 +57,9 @@
               Current Total Supply
             </span>,
             releases during the number of holders grows
-            with a cap (decreasing) of
+            with a cap of
             <CBN :value='String($store.state.bsc.supply.cap)' :token='true' />
+            (decreasing...)
           </span>
         </p>
 
