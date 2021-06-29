@@ -8,7 +8,7 @@
 <!--              <HeroIconOutlineExclamation class="h-6 w-6 text-white" />-->
 <!--            </span>-->
             <HeroIconSolidExclamation class="h-8 w-8 text-white" />
-            <p class="ml-3 font-medium text-rose-500 truncate">
+            <p class="ml-3 font-medium text-rose-500">
               Working in
               <span class='font-bold text-white uppercase'>Development MODE,</span>
               BSC Chain ID#{{ $store.state.bsc.chainId }},
