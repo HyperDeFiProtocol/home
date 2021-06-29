@@ -4,7 +4,7 @@ export default {
     githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
     twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
-    telegramChannel: process.env.telegramChannel || 'HyperDeFiCH',
+    telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
     tokenAddress: process.env.tokenAddress,
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
     pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance'
