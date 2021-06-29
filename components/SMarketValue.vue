@@ -41,8 +41,8 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Latest price
-            </span>,
+              Latest price,
+            </span>
             provided by
             <CPancakeTo class='font-medium text-violet-300'>PancakeSwap Finance</CPancakeTo>
           </span>
@@ -54,8 +54,8 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Current Total Supply
-            </span>,
+              Current Total Supply,
+            </span>
             releases during the number of holders grows
             with a cap of
             <CBN :value='String($store.state.bsc.supply.cap)' :token='true' />
@@ -69,8 +69,8 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Circulating Market Cap
-            </span>,
+              Circulating Market Cap,
+            </span>
             of current total supply.
           </span>
         </p>
