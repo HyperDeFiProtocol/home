@@ -33,8 +33,13 @@
 <!--        </a>-->
 
         <a target='_blank' :href='hdfLink.telegram()' class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Twitter</span>
+          <span class="sr-only">Telegram</span>
           <IconTelegram class="h-6 w-6" />
+        </a>
+
+        <a target='_blank' :href='hdfLink.telegram(telegramChannel)' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Telegram Channel</span>
+          <IconTelegramCircle class="h-6 w-6" />
         </a>
 
         <a target='_blank' :href='hdfLink.twitter()' class="text-gray-400 hover:text-gray-500">
@@ -69,6 +74,9 @@ export default {
     hdfLink() {
       return hdfLink
     },
+    telegramChannel() {
+      return process.env.telegramChannel
+    }
   }
   // mounted() {
   //   console.log('::: process.env.tokenAddress:', process.env.tokenAddress)

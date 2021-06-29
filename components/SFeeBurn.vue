@@ -92,7 +92,7 @@
           <ul class='divide-y divide-gray-700'>
             <li v-for='tx in transactions' class='py-4 flex space-x-3'>
               <span class='h-6 w-6'>
-                <HeroIconSolidGift />
+                <HeroIconOutlineBreaker />
               </span>
               <div class="flex-1 space-y-2">
                 <div class="flex items-center justify-between">
