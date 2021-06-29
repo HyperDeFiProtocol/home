@@ -113,7 +113,7 @@ const navigation = [
   // { name: 'Product', href: '#' },
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
-  { name: 'Transaction Explorer', href: '/txs' }
+  { name: 'Tx Explorer', href: '/txs' }
 ]
 
 
