@@ -75,7 +75,7 @@
           </span>
         </p>
 
-        <p v-if='$store.state.bsc.metadata.holders > "0"'>
+        <p v-if='$store.state.bsc.metadata.holders > "1"'>
           <span class="block text-2xl font-bold text-violet-300">
             <CBN :value='String($store.state.bsc.metadata.holders)' />
           </span>

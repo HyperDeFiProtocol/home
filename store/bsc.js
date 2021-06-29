@@ -22,8 +22,10 @@ export const state = () => ({
     priceSymbol: null,
     priceDecimals: null,
 
-    holders: '0',
     price: '0',
+    holders: '0',
+    usernames: '0',
+
     bnPrice: new BN(),
     bnDiv: new BN(),
   },
@@ -201,7 +203,6 @@ export const mutations = {
     state.metadata.priceSymbol = data.priceSymbol
     state.metadata.priceDecimals = data.priceDecimals
 
-    state.metadata.holders = data.holders
     state.metadata.price = data.price
     state.metadata.bnPrice = new BN(state.metadata.price)
     let strDiv = '1'
@@ -209,6 +210,9 @@ export const mutations = {
       strDiv += '0'
     }
     state.metadata.bnDiv = new BN(strDiv)
+
+    state.metadata.holders = data.holders
+    state.metadata.usernames = data.usernames
 
     // supplies
     state.supply.cap = data.supplies[0]
