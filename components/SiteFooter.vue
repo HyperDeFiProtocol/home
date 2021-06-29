@@ -32,14 +32,14 @@
 <!--          <IconInstagram class="h-6 w-6" />-->
 <!--        </a>-->
 
+        <a target='_blank' :href='hdfLink.telegram(telegramChannel)' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Telegram Channel</span>
+          <HeroIconOutlineSpeakerphone class="h-6 w-6" />
+        </a>
+
         <a target='_blank' :href='hdfLink.telegram()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Telegram</span>
           <IconTelegram class="h-6 w-6" />
-        </a>
-
-        <a target='_blank' :href='hdfLink.telegram(telegramChannel)' class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Telegram Channel</span>
-          <IconTelegramCircle class="h-6 w-6" />
         </a>
 
         <a target='_blank' :href='hdfLink.twitter()' class="text-gray-400 hover:text-gray-500">
