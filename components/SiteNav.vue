@@ -4,9 +4,10 @@
       <LAutoWidth class="py-3 px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between flex-wrap">
           <div class="w-0 flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-rose-600">
-              <HeroIconOutlineExclamation class="h-6 w-6 text-white" />
-            </span>
+<!--            <span class="flex p-2 rounded-lg bg-rose-600">-->
+<!--              <HeroIconOutlineExclamation class="h-6 w-6 text-white" />-->
+<!--            </span>-->
+            <HeroIconSolidExclamation class="h-8 w-8 text-white" />
             <p class="ml-3 font-medium text-rose-500 truncate">
               Working in
               <span class='font-bold text-white uppercase'>Development MODE,</span>
@@ -19,13 +20,14 @@
     </div>
 
     <div class='pt-6'>
-      <nav class='relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6' aria-label='Global'>
+      <LAutoWidth class='relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6' aria-label='Global'>
         <div class='flex items-center flex-1'>
           <div class='flex items-center justify-between w-full md:w-auto'>
-            <nuxt-link to='/'>
+            <nuxt-link to='/' class='text-violet-500 hover:text-violet-600'>
               <span class='sr-only'>Workflow</span>
-              <img class='h-8 w-auto sm:h-10' src='https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg'
-                   alt=''>
+              <IconHyperDice class='h-8 w-auto sm:h-10' />
+<!--              <img class='h-8 w-auto sm:h-10' src='https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg'-->
+<!--                   alt=''>-->
             </nuxt-link>
             <div class='-mr-2 flex items-center md:hidden' :class='showMobileMenuButton'>
               <button type='button'
@@ -56,7 +58,7 @@
             Connect Wallet
           </a>
         </div>
-      </nav>
+      </LAutoWidth>
     </div>
 
     <transition
@@ -70,7 +72,7 @@
         <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
           <div class='px-5 pt-4 flex items-center justify-between'>
             <div>
-              <img class='h-8 w-auto' src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg' alt=''>
+              <IconHyperDice class='h-8 w-auto sm:h-10 text-violet-600' />
             </div>
             <div class='-mr-2'>
               <button type='button'
