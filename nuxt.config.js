@@ -6,7 +6,7 @@ export default {
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
     tokenAddress: process.env.tokenAddress,
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
-    pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://https://pancakeswap.finance'
+    pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance'
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
