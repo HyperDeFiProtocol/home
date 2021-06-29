@@ -29,11 +29,11 @@
 <!--              <img class='h-8 w-auto sm:h-10' src='https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg'-->
 <!--                   alt=''>-->
             </nuxt-link>
-            <div class='-mr-2 flex items-center md:hidden' :class='showMobileMenuButton'>
+            <div class='-mr-2 flex items-center md:hidden'>
               <button type='button'
                       class='bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
                       aria-expanded='false'
-                      @click='toggleMobileMenuOpen'>
+                      @click.stop='toggleMenuMobi'>
                 <span class='sr-only'>Open main menu</span>
                 <!-- Heroicon name: outline/menu -->
                 <svg class='h-6 w-6' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'
@@ -68,7 +68,7 @@
                 leave-active-class='duration-100 ease-in'
                 leave-from-class='opacity-100 scale-100'
                 leave-to-class='opacity-0 scale-95'>
-      <div v-show='mobileMenuOpen' class='absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden'>
+      <div v-show='$store.state.nav.menuMobi' class='absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden'>
         <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
           <div class='px-5 pt-4 flex items-center justify-between'>
             <div>
@@ -77,7 +77,7 @@
             <div class='-mr-2'>
               <button type='button'
                       class='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600'
-                      @click='toggleMobileMenuOpen'>
+                      @click='toggleMenuMobi'>
                 <span class='sr-only'>Close menu</span>
                 <!-- Heroicon name: outline/x -->
                 <svg class='h-6 w-6' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'
@@ -132,14 +132,10 @@ export default {
     devMode() {
       return process.env.dev
     },
-    showMobileMenuButton() {
-      if (this.mobileMenuOpen) {
-        return ['hidden']
-      }
-    },
   },
   methods: {
-    toggleMobileMenuOpen() {
+    toggleMenuMobi() {
+      this.$store.dispatch('nav/TOGGLE_MENU_MOBI')
       this.mobileMenuOpen = !this.mobileMenuOpen
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click='hideNavMenu'>
     <SiteNav />
     <Nuxt />
     <SiteFooter />
@@ -13,7 +13,10 @@ html {
 </style>
 <script>
 export default {
-  components: {
+  methods: {
+    hideNavMenu() {
+      this.$store.dispatch('nav/HIDE_ALL')
+    }
   }
 }
 </script>
