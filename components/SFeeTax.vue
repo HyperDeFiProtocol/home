@@ -10,7 +10,7 @@
       <main>
         <div class='header1'>
           <h2 class='text-violet-400'>
-            Tax
+            Tax Farm
           </h2>
           <p>
             For every HyperDeFi holder, keep the balance growing by just holding it.
@@ -33,7 +33,7 @@
             <span v-if='$store.state.bsc.whaleFee.tax > "0"'>
               {{ $store.state.bsc.whaleFee.tax }}% from whale,
             </span>
-            then deposit to the Tax pool;
+            then deposit to the Tax farm;
             Each HyperDeFi holder can share them on a pro-rata basis,
             that means you can earn more HyperDeFi just by holding it in your wallet,
             get your harvest weekly, or even daily.

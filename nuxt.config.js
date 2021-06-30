@@ -1,13 +1,16 @@
 export default {
   env: {
-    dev: process.env.mode !== 'production',
+    mode: process.env.mode,
+    tokenAddress: process.env.tokenAddress,
+    web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
+    chainName: process.env.chainName || 'BSC Chain Mainnet',
+    explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
+    pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance',
+
     githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
     twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
     telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
-    tokenAddress: process.env.tokenAddress,
-    explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
-    pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance'
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

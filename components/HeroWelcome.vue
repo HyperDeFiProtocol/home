@@ -55,8 +55,7 @@
                   <CPancakeTo class='font-medium text-violet-300'>
                     PancakeSwap Finance
                   </CPancakeTo>
-                  on block number #<CBN :value='String($store.state.bsc.blockNumber)' /> of BSC Chain ID#{{ $store.state.bsc.chainId }}
-                  <span v-if='devMode'>Testnet.</span>
+                  on block number #<CBN :value='String($store.state.bsc.blockNumber)' /> of {{ chainName }}, Chain ID#{{ $store.state.bsc.chainId }}
                 </p>
               </form>
             </div>
@@ -78,9 +77,9 @@
 export default {
   name: 'HeroWelcome',
   computed: {
-    devMode() {
-      return process.env.dev
-    },
+    chainName() {
+      return process.env.chainName
+    }
   }
 }
 </script>

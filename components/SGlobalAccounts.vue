@@ -109,7 +109,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                Tax Pool
+                Tax Farm
               </a>
             </h3>
             <p class="p-address">

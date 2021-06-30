@@ -1,6 +1,8 @@
 import Web3 from 'web3'
 import moment from 'moment'
 
+import tokenAbi from '~/utils/token.json'
+
 const BN = Web3.utils.BN
 
 export const state = () => ({
@@ -26,7 +28,7 @@ export const state = () => ({
     usernames: '0',
 
     bnPrice: new BN(),
-    bnDiv: new BN(),
+    bnDiv: new BN()
   },
 
   supply: {
@@ -172,26 +174,26 @@ export const state = () => ({
 
 
 export const mutations = {
-  SET_WEB3(state, web3) {
+  async SET_WEB3(state, web3) {
     state.web3 = function() {
       return web3
     }
   },
-  SET_BLOCK_NUMBER(state, blockNumber) {
+  async SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
   },
-  SET_CHAIN_ID(state, chainId) {
+  async SET_CHAIN_ID(state, chainId) {
     state.chainId = chainId
   },
-  SET_GAS_PRICE(state, gasPrice) {
+  async SET_GAS_PRICE(state, gasPrice) {
     state.gasPrice = gasPrice
   },
-  SET_TOKEN(state, token) {
+  async SET_TOKEN(state, token) {
     state.token = function() {
       return token
     }
   },
-  SET_METADATA(state, data) {
+  async SET_METADATA(state, data) {
     state.metadata.tokenName = data.tokenName
     state.metadata.tokenSymbol = data.tokenSymbol
     state.metadata.tokenDecimals = data.tokenDecimals
@@ -244,7 +246,7 @@ export const mutations = {
 
   },
 
-  SET_GLOBAL(state, data) {
+  async SET_GLOBAL(state, data) {
     state.global.airdropMode = data.airdropMode
     state.global.autoSwapReady = data.autoSwapReady
 
@@ -344,10 +346,9 @@ export const mutations = {
       state.global.launchCountdown.hh = '00'
     }
   },
-  SET_LAUNCH_COUNTDOWN_INTERVAL(state, payload) {
+  async SET_LAUNCH_COUNTDOWN_INTERVAL(state, payload) {
     state.global.launchCountdown.interval = payload
   },
-
 
   TOUCH_FOMO_COUNTDOWN(state) {
     const duration = moment.duration(moment(state.fomo.timestamp * 1000).diff(moment()))
@@ -367,47 +368,64 @@ export const mutations = {
       state.fomo.countdown.hh = '00'
     }
   },
-  SET_FOMO_COUNTDOWN_INTERVAL(state, payload) {
+  async SET_FOMO_COUNTDOWN_INTERVAL(state, payload) {
     state.fomo.countdown.interval = payload
-  },
+  }
 }
 
 
 export const actions = {
-  async SET_WEB3({ commit }, web3) {
-    commit('SET_WEB3', web3)
+  async SET_WEB3({ commit, dispatch }, web3) {
+    await commit('SET_WEB3', web3)
+    await dispatch('SET_TOKEN')
   },
-  async SET_CHAIN_ID({ commit }, chainId) {
-    commit('SET_CHAIN_ID', parseInt(chainId))
+  async SET_TOKEN({ state, commit }) {
+    const Contract = state.web3().eth.Contract
+    await commit('SET_TOKEN', new Contract(
+      tokenAbi, process.env.tokenAddress
+    ))
   },
-  async SET_BLOCK_NUMBER({ commit }, blockNumber) {
-    commit('SET_BLOCK_NUMBER', blockNumber)
+
+  async SET_CHAIN_ID({ state, commit }) {
+    await commit('SET_CHAIN_ID', await state.web3().eth.getChainId().catch(error => {
+      console.error('>>> Store[bsc] getChainId:', error.message)
+    }))
   },
-  async SET_GAS_PRICE({ commit }, gasPrice) {
-    commit('SET_GAS_PRICE', gasPrice)
+
+  async SYNC_BLOCK_NUMBER({ state, commit }) {
+    await commit('SET_BLOCK_NUMBER', await state.web3().eth.getBlockNumber().catch(error => {
+      console.error('>>> Store[bsc] getBlockNumber:', error.message)
+    }))
   },
-  async SET_TOKEN({ commit }, token) {
-    commit('SET_TOKEN', token)
+
+  async SYNC_GAS_PRICE({ state, commit }) {
+    let gasPrice = await state.web3().eth.getGasPrice().catch(error => {
+      console.error('>>> Store[bsc] getGasPrice:', error.message)
+    })
+    if (gasPrice > '0') {
+      await commit('SET_GAS_PRICE', gasPrice)
+    }
   },
-  async READ_DATA({ state, commit }) {
+
+  async SYNC_DATA({ state, commit }) {
     await state.token().methods.getMetadata().call()
       .then(async function(data) {
-        commit('SET_METADATA', data)
+        await commit('SET_METADATA', data)
       })
       .catch(error => {
-        console.error('>>> Store[bsc] READ_DATA - getMetadata:', error.message)
+        console.error('>>> Store[bsc] SYNC_DATA - getMetadata:', error.message)
       })
 
     await state.token().methods.getGlobal().call()
       .then(async function(data) {
-        commit('SET_GLOBAL', data)
+        await commit('SET_GLOBAL', data)
       })
       .catch(error => {
-        console.error('>>> Store[bsc] READ_DATA - getGlobal:', error.message)
+        console.error('>>> Store[bsc] SYNC_DATA - getGlobal:', error.message)
       })
 
     if (!state.fomo.countdown.finished && !state.fomo.countdown.interval) {
-      commit('SET_FOMO_COUNTDOWN_INTERVAL',
+      await commit('SET_FOMO_COUNTDOWN_INTERVAL',
         window.setInterval(
           () => {
             commit('TOUCH_FOMO_COUNTDOWN')
@@ -417,7 +435,7 @@ export const actions = {
     }
 
     if (!state.global.launchCountdown.finished && !state.global.launchCountdown.interval) {
-      commit('SET_LAUNCH_COUNTDOWN_INTERVAL',
+      await commit('SET_LAUNCH_COUNTDOWN_INTERVAL',
         window.setInterval(
           () => {
             commit('TOUCH_LAUNCH_COUNTDOWN')
@@ -428,15 +446,14 @@ export const actions = {
   },
 
   async KEEP_SYNC({ state, commit }) {
-    console.log('>>> Store[bsc] KEEP_SYNC')
+    console.log('>>> Store[bsc] try: KEEP_SYNC')
 
-    // // on: New Block
-    // await state.web3().eth
-    //   .subscribe('newBlockHeaders')
-    //   .on('data', async blockHeader => {
-    //
-    //     console.log('>>> blockHeader:', blockHeader)
-    //     // await store.dispatch('ether/SET_BLOCK_NUMBER', blockHeader.number)
-    //   })
-  },
+    // on: New Block
+    await state.web3().eth
+      .subscribe('newBlockHeaders')
+      .on('data', async blockHeader => {
+        // await commit('SET_BLOCK_NUMBER', blockHeader.number)
+        console.log('>>> blockHeader.number:', blockHeader.number)
+      })
+  }
 }
