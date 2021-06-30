@@ -122,7 +122,7 @@
                     Block
                   </th>
                   <th scope="col">
-                    Address
+                    Tx Hash
                   </th>
                   <th scope="col">
                     Amount
@@ -135,7 +135,7 @@
                     <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
                   </td>
                   <td>
-                    <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 42) }}...</a>
                   </td>
                   <td>
                     <CBN :value='tx.amount' :token='true' :padding='2' /> HyperDeFi
