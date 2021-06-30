@@ -118,7 +118,7 @@
                 <thead>
                 <tr>
                   <th scope="col">
-                    Tx Hash
+                    Block
                   </th>
                   <th scope="col">
                     Address
@@ -131,7 +131,7 @@
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 6) }}...</a>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
                   </td>
                   <td>
                     <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
