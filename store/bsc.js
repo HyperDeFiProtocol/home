@@ -445,19 +445,27 @@ export const actions = {
     }
   },
 
-  async REFRESH({ state, commit, dispatch }) {
-    //
+  async REFRESH({ state, commit, dispatch }, blockNumber) {
+    if (blockNumber > state.blockNumber + 5) {
+      // commit('SET_BLOCK_NUMBER', blockNumber)
+      console.log('>>> Store[bsc] REFRESH, blockNumber:', blockNumber)
+      return null
+    }
   },
 
-  async KEEP_SYNC({ state, commit }) {
+  async KEEP_SYNC({ state, dispatch }) {
     console.log('>>> Store[bsc] try: KEEP_SYNC')
 
     // on: New Block
     await state.web3().eth
       .subscribe('newBlockHeaders')
       .on('data', async blockHeader => {
-        // await commit('SET_BLOCK_NUMBER', blockHeader.number)
-        console.log('>>> blockHeader.number:', blockHeader.number)
+        await dispatch('REFRESH', blockHeader.number)
       })
+  },
+
+  async STOP_SYNC({ state }) {
+    console.log('>>> Store[bsc] try: STOP_SYNC')
+    await state.web3().eth.unsubscribe('newBlockHeaders')
   }
 }
