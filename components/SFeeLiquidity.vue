@@ -50,7 +50,7 @@
         </div>
       </main>
 
-      <dl v-if='$store.state.bsc.supply.liquidity > "0"' class="dl-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3">
+      <dl v-if='$store.state.bsc.supply.liquidity > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3'>
 
         <div>
           <dt>
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped>
-.dl-stat div dt {
+.hdf-stat div dt {
   @apply text-rose-100;
 }
 </style>

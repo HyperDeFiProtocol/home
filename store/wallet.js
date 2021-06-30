@@ -2,6 +2,8 @@ import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
 
 export const state = () => ({
+  noWeb3Provider: null,
+
   account: null,
   errorMessage: null,
   chainId: null,
@@ -9,6 +11,9 @@ export const state = () => ({
 
 
 export const mutations = {
+  async SET_NO_WEB3_PROVIDER(state, value) {
+    state.noWeb3Provider = value
+  },
   async SET_CHAIN_ID(state, chainId) {
     state.chainId = chainId
   },
@@ -19,6 +24,9 @@ export const mutations = {
 
 
 export const actions = {
+  async SET_NO_WEB3_PROVIDER({ commit }, value) {
+    await commit('SET_NO_WEB3_PROVIDER', value)
+  },
   async SET_CHAIN_ID({ commit }, chainId) {
     await commit('SET_CHAIN_ID', chainId)
   },
@@ -26,7 +34,7 @@ export const actions = {
     const provider = await detectEthereumProvider()
     if (!provider) {
       console.error('>>> Store[wallet] detect web3 provider: Failed')
-      state.errorMessage = 'Detect web3 provider: Failed'
+      await commit('SET_NO_WEB3_PROVIDER', true)
       return null
     }
     // ethereum.autoRefreshOnNetworkChange = false

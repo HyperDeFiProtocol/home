@@ -3,7 +3,7 @@
   @apply font-medium text-base text-white;
 }
 
-.dl-stat {
+.hdf-stat {
   @apply mt-10 text-center lg:mt-20 lg:mx-auto gap-y-10 lg:gap-x-4;
 
   div {
@@ -20,6 +20,9 @@
   }
 }
 
+.hdf-a-colored {
+  @apply font-medium text-violet-300;
+}
 
 .hdf-ch2 {
   @apply lg:text-center;

@@ -26,7 +26,7 @@
         </template>
       </CH2>
 
-      <dl class="dl-stat grid grid-cols-1 sm:grid-cols-2 lg:max-w-3xl">
+      <dl class='hdf-stat grid grid-cols-1 sm:grid-cols-2 lg:max-w-3xl'>
         <div>
           <dt>
             Remaining
@@ -195,7 +195,7 @@ export default {
 }</script>
 
 <style scoped lang='scss'>
-.dl-stat div dt {
+.hdf-stat div dt {
   @apply text-indigo-200;
 }
 

@@ -53,7 +53,7 @@
                 </div>
                 <p class='mt-3 text-sm text-gray-300 sm:mt-4'>
                   The latest price is provided by
-                  <CPancakeTo class='font-medium text-violet-300'>
+                  <CPancakeTo class='hdf-a-colored'>
                     PancakeSwap Finance
                   </CPancakeTo>
                   on block number #<CBN :value='String($store.state.bsc.blockNumber)' /> of {{ chainName }}, Chain ID#{{ $store.state.bsc.chainId }}

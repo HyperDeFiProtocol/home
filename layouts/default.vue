@@ -4,6 +4,7 @@
     <SiteNav />
     <Nuxt />
     <SiteFooter />
+    <SNoWeb3Provider v-if='noWeb3Provider' />
     <SUnsupportedChainId v-if='unsupportedChainId' />
   </div>
 </template>
@@ -16,6 +17,9 @@ html {
 <script>
 export default {
   computed: {
+    noWeb3Provider() {
+      return this.$store.state.wallet.noWeb3Provider
+    },
     notProductionMode() {
       return process.env.mode !== 'production'
     },

@@ -50,7 +50,7 @@
         </div>
       </main>
 
-      <dl v-if='counter > "0"' class="dl-stat lg:max-w-4xl grid grid-cols-1 sm:grid-cols-2">
+      <dl v-if='counter > "0"' class='hdf-stat lg:max-w-4xl grid grid-cols-1 sm:grid-cols-2'>
         <div>
           <dt>
             Lotto Transfers
@@ -214,7 +214,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.dl-stat div dt {
+.hdf-stat div dt {
   @apply text-teal-100;
 }
 

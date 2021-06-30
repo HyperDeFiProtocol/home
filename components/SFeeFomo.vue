@@ -55,7 +55,7 @@
         </div>
       </main>
 
-      <dl v-if='iAmount > "0"' class='dl-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-3'>
+      <dl v-if='iAmount > "0"' class='hdf-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-3'>
         <div>
           <dt>
             Next FOMO Prize
@@ -293,7 +293,7 @@ export default {
 }</script>
 
 <style scoped lang='scss'>
-.dl-stat div dt {
+.hdf-stat div dt {
   @apply text-yellow-200;
 }
 

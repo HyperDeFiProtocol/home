@@ -50,7 +50,7 @@
         </div>
       </main>
 
-      <dl v-if='counter' class='dl-stat lg:max-w-3xl grid grid-cols-1 sm:grid-cols-2'>
+      <dl v-if='counter' class='hdf-stat lg:max-w-3xl grid grid-cols-1 sm:grid-cols-2'>
         <div>
           <dt>
             Burn Transfers
@@ -209,7 +209,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.dl-stat div dt {
+.hdf-stat div dt {
   @apply text-emerald-100;
 }
 

@@ -445,6 +445,10 @@ export const actions = {
     }
   },
 
+  async REFRESH({ state, commit, dispatch }) {
+    //
+  },
+
   async KEEP_SYNC({ state, commit }) {
     console.log('>>> Store[bsc] try: KEEP_SYNC')
 

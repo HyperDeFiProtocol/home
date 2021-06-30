@@ -51,7 +51,7 @@
 
       </main>
 
-      <dl v-if='$store.state.bsc.supply.totalTax > "0"' class="dl-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3">
+      <dl v-if='$store.state.bsc.supply.totalTax > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3'>
         <div>
           <dt>
             Total Tax
@@ -79,6 +79,8 @@
           </dd>
         </div>
       </dl>
+
+
     </LAutoWidth>
   </div>
 </template>
@@ -97,7 +99,7 @@ export default {
 </script>
 
 <style scoped>
-.dl-stat div dt {
+.hdf-stat div dt {
   @apply text-violet-100;
 }
 </style>
