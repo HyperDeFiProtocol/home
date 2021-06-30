@@ -81,8 +81,8 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Holders
-            </span>,
+              Holders,
+            </span>
             are holding HyperDeFi in their wallets.
           </span>
         </p>
