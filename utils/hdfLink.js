@@ -6,6 +6,11 @@ const githubToRepo = function(repoName) {
   return 'https://github.com/' + process.env.githubUsername + '/' + repoName
 }
 
+const githubToWiki = function(repoName, path) {
+  return 'https://github.com/' + process.env.githubUsername + '/' + repoName + '/wiki/' + path
+}
+
+
 const twitter = function(username=process.env.twitterUsername) {
   return 'https://twitter.com/' + username
 }
@@ -42,6 +47,7 @@ const pancakeSwapTo = function(outputCurrency = process.env.tokenAddress) {
 export default {
   github: github,
   githubToRepo: githubToRepo,
+  githubToWiki: githubToWiki,
   twitter: twitter,
   telegram: telegram,
 

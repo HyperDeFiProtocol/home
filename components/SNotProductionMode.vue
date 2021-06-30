@@ -24,7 +24,7 @@ export default {
     },
     chainName() {
       return process.env.chainName
-    }
+    },
   },
 }
 </script>
