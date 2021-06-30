@@ -20,7 +20,11 @@
               </h3>
               <div class="mt-2">
                 <p class="text-sm text-gray-500">
-                  Please visit with your Trust Wallet App or change your MetaMask to <b>{{ chainName }}</b>.
+                  Please
+                  <span v-if='mode === "production"'>
+                    visit with your Trust Wallet App or
+                  </span>
+                  change your MetaMask to <b>{{ chainName }}</b>.
                 </p>
               </div>
             </div>
@@ -52,9 +56,12 @@ export default {
     hdfLink() {
       return hdfLink
     },
+    mode() {
+      return process.env.mode
+    },
     chainName() {
       return process.env.chainName
-    }
+    },
   },
   methods: {
     connectWallet() {
