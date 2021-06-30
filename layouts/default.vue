@@ -4,9 +4,10 @@
     <SiteNav />
     <Nuxt />
     <SiteFooter />
-    <SNoWeb3Provider v-if='noWeb3Provider' />
-    <SUnsupportedChainId v-if='unsupportedChainId' />
-    <SModalWarning />
+
+    <SModalWarning v-show='$store.state.warning.title && $store.state.warning.message' />
+    <SNoWeb3Provider v-show='noWeb3Provider' />
+    <SUnsupportedChainId v-show='unsupportedChainId' />
   </div>
 </template>
 

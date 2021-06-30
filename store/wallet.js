@@ -35,7 +35,7 @@ export const actions = {
       await commit('SET_NO_WEB3_PROVIDER', true)
       return null
     }
-    // ethereum.autoRefreshOnNetworkChange = false
+    // ethereum.autoRefreshOnNetworkChange = false ??
 
     // Set WEB3
     if (state.web3) {
@@ -59,7 +59,6 @@ export const actions = {
           message: error.message
         }, { root: true })
       }))
-
     if (state.chainId !== rootState.bsc.chainId) {
       return null
     }

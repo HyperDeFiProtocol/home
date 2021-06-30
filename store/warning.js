@@ -1,5 +1,5 @@
 export const state = () => ({
-  title: 'aaa',
+  title: null,
   message: null
 })
 
