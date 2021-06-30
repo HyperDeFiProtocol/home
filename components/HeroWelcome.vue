@@ -32,7 +32,8 @@
               </span>
             </h1>
             <p class='mt-3 leading-loose lg:leading-extra-loose xl:leading-extra-loose text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl'>
-              The Open-sourced HyperDeFi Protocol is a community driven, fair launched DeFi Token.
+              Holding is farming!
+              The Open-sourced HyperDeFi Protocol is a community driven, fair launched.
               Some functions occur during each trade:
               Lotto, FOMO, LP Acquisition, Burn, Fund, and Tax share to every holders.
             </p>

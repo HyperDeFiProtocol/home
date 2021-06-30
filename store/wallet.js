@@ -19,6 +19,9 @@ export const mutations = {
 
 
 export const actions = {
+  async SET_CHAIN_ID({ commit }, chainId) {
+    await commit('SET_CHAIN_ID', chainId)
+  },
   async CONNECT_WALLET({ rootState, state, commit, dispatch }) {
     const provider = await detectEthereumProvider()
     if (!provider) {

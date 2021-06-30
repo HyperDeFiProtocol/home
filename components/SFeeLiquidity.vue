@@ -50,7 +50,7 @@
         </div>
       </main>
 
-      <dl v-if='$store.state.bsc.supply.liquidity > "0"' class="dl-stat lg:max-w-5xl grid grid-cols-1 sm:grid-cols-3">
+      <dl v-if='$store.state.bsc.supply.liquidity > "0"' class="dl-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3">
 
         <div>
           <dt>
