@@ -5,8 +5,7 @@ export const state = () => ({
   noWeb3Provider: null,
 
   account: null,
-  errorMessage: null,
-  chainId: null,
+  chainId: null
 })
 
 
@@ -19,7 +18,7 @@ export const mutations = {
   },
   async SET_ACCOUNT(state, account) {
     state.account = Web3.utils.toChecksumAddress(account)
-  },
+  }
 }
 
 
@@ -33,7 +32,6 @@ export const actions = {
   async CONNECT_WALLET({ rootState, state, commit, dispatch }) {
     const provider = await detectEthereumProvider()
     if (!provider) {
-      console.error('>>> Store[wallet] detect web3 provider: Failed')
       await commit('SET_NO_WEB3_PROVIDER', true)
       return null
     }
@@ -45,31 +43,38 @@ export const actions = {
     }
     const web3 = new Web3(window.ethereum)
     if (!web3) {
-      console.error('>>> Store[wallet] initialize web3: Failed')
-      state.errorMessage = 'Initialize web3: Failed'
+      await dispatch('warning/SET_WARNING', {
+        title: 'Initialize web3: Failed',
+        message: 'Please visit with your Trust Wallet App'
+      }, { root: true })
       return null
     }
-    await dispatch('bsc/SET_WEB3', web3, {root: true})
+    await dispatch('bsc/SET_WEB3', web3, { root: true })
 
     // Set Chain ID
-    await commit('SET_CHAIN_ID', await rootState.bsc.web3().eth.getChainId().catch(error => {
-      console.error('>>> Store[bsc] getChainId:', error.message)
-    }))
+    await commit('SET_CHAIN_ID', await rootState.bsc.web3().eth.getChainId()
+      .catch(async function(error) {
+        await dispatch('warning/SET_WARNING', {
+          title: 'Error: Get Chain ID',
+          message: error.message
+        }, { root: true })
+      }))
 
-    // if (state.chainId !== rootState.bsc.chainId) {
-    //   return null
-    // }
+    if (state.chainId !== rootState.bsc.chainId) {
+      return null
+    }
 
     // Connect
-    await provider.request({method: 'eth_requestAccounts'})
-      .then(async function (accounts) {
+    await provider.request({ method: 'eth_requestAccounts' })
+      .then(async function(accounts) {
         await commit('SET_ACCOUNT', accounts[0])
+        await dispatch('bsc/KEEP_SYNC', web3, {root: true})
       })
-      .catch(error => {
-        console.error('>>> Store[wallet] request.eth_requestAccounts:', error.message)
+      .catch(async function(error) {
+        await dispatch('warning/SET_WARNING', {
+          title: 'Please allow authorization',
+          message: error.message
+        }, { root: true })
       })
-
-    //
-    // await dispatch('bsc/KEEP_SYNC', web3, {root: true})
-  },
+  }
 }

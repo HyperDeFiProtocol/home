@@ -6,6 +6,7 @@
     <SiteFooter />
     <SNoWeb3Provider v-if='noWeb3Provider' />
     <SUnsupportedChainId v-if='unsupportedChainId' />
+    <SModalWarning />
   </div>
 </template>
 
