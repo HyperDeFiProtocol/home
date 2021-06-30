@@ -8,7 +8,7 @@
               <thead>
               <tr>
                 <th scope='col'>
-                  TxHash
+                  Block
                 </th>
                 <th scope='col'>
                   Type
@@ -29,7 +29,8 @@
               <tbody class='divide-y divide-gray-700'>
               <tr v-for='tx in transactions' :class='txName(tx.txType)'>
                 <td class='hash'>
-                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 6) }}...</a>
+<!--                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 6) }}...</a>-->
+                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
                 </td>
                 <td class='type capitalize'>
                   {{ txName(tx.txType) }}
@@ -138,7 +139,6 @@ export default {
         }
       }
 
-      // if (i < 10) {
       this.transactions.push({
         blockNumber: events[i].blockNumber,
         txHash: events[i].transactionHash,
@@ -149,7 +149,6 @@ export default {
         amount: events[i].returnValues.amount,
         txAmount: events[i].returnValues.txAmount
       })
-      // }
     }
   }
 }

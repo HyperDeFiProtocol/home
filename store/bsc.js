@@ -8,8 +8,7 @@ export const state = () => ({
   chainId: null,
   blockNumber: 0,
   blockNumberStr: '',
-  gasPrice: null,
-  gasPriceStr: '',
+  gasPrice: '0',
 
   token: null,
 
@@ -180,14 +179,12 @@ export const mutations = {
   },
   SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
-    // state.blockNumberStr = fnFormat.ns2Str(blockNumber, 0)
   },
   SET_CHAIN_ID(state, chainId) {
     state.chainId = chainId
   },
   SET_GAS_PRICE(state, gasPrice) {
     state.gasPrice = gasPrice
-    state.gasPriceStr = Web3.utils.fromWei(gasPrice, 'gwei')
   },
   SET_TOKEN(state, token) {
     state.token = function() {
@@ -428,5 +425,18 @@ export const actions = {
           1000)
       )
     }
-  }
+  },
+
+  async KEEP_SYNC({ state, commit }) {
+    console.log('>>> Store[bsc] KEEP_SYNC')
+
+    // // on: New Block
+    // await state.web3().eth
+    //   .subscribe('newBlockHeaders')
+    //   .on('data', async blockHeader => {
+    //
+    //     console.log('>>> blockHeader:', blockHeader)
+    //     // await store.dispatch('ether/SET_BLOCK_NUMBER', blockHeader.number)
+    //   })
+  },
 }

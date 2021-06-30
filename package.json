@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
     "moment": "^2.29.1",

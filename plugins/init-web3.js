@@ -52,6 +52,9 @@ export default async function ({ app, store }, inject) {
     tokenAbi, process.env.tokenAddress
   ))
 
+  // read token data
   await store.dispatch('bsc/READ_DATA')
 
+  // keep sync
+  await store.dispatch('bsc/KEEP_SYNC')
 }

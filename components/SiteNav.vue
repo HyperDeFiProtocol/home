@@ -53,7 +53,7 @@
           <a target='_blank' :href='hdfLink.github()' class='text-base font-medium text-white hover:text-gray-300'>
             GitHub
           </a>
-          <a href='#'
+          <a href='#' @click='connectWallet'
              class='inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700'>
             Connect Wallet
           </a>
@@ -137,7 +137,10 @@ export default {
     toggleMenuMobi() {
       this.$store.dispatch('nav/TOGGLE_MENU_MOBI')
       this.mobileMenuOpen = !this.mobileMenuOpen
-    }
+    },
+    connectWallet() {
+      this.$store.dispatch('account/CONNECT_WALLET')
+    },
   }
 }
 </script>
