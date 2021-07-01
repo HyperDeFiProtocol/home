@@ -300,7 +300,7 @@
         </div>
       </div>
 
-      <div class='mt-10 md:mt-16 w-full bg-black py-8 md:py-12 px-10 md:px-16 rounded-md'>
+      <div class='mt-10 md:mt-16 w-full bg-gray-800 py-8 md:py-12 px-10 md:px-16 rounded-md'>
         <div class='mx-auto max-w-md lg:max-w-md xl:max-w-3xl'>
           <h3 class='w-full bg-red-900 py-1 md:py-2 font-semibold tracking-widest text-center text-white uppercase'>
             Scripts Warning
