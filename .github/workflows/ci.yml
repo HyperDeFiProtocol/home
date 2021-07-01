@@ -51,10 +51,12 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
-      - name: Add CNAME for `alpha.hyperdefi.org` 🚀🚀
-        run: echo "alpha.hyperdefi.org" > ./dist/CNAME
+      - name: Deploy for `alpha.hyperdefi.org` 🚀🚀
+        run: |
+          - echo "alpha.hyperdefi.org" > ./dist/CNAME
+          - cp README.alpha.md > ./dist/README.md
 
-      - name: Deploy for Testnet 🚀🚀🚀
+      - name: Deploy for Alpha Test 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           token: ${{ secrets.CI_TOKEN }}
@@ -63,10 +65,12 @@ jobs:
           branch: alpha
           folder: dist
 
-      - name: Add CNAME for `testnet.hyperdefi.org` 🚀🚀
-        run: echo "testnet.hyperdefi.org" > ./dist/CNAME
+      - name: Deploy for `testnet.hyperdefi.org` 🚀🚀
+        run: |
+          - echo "testnet.hyperdefi.org" > ./dist/CNAME
+          - cp README.testnet.md > ./dist/README.md
 
-      - name: Deploy for Testnet 🚀🚀🚀
+      - name: Deploy for BSC Chain Testnet 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           token: ${{ secrets.CI_TOKEN }}
