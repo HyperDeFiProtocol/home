@@ -94,7 +94,6 @@ export const actions = {
         //     message: error.message
         //   }, { root: true })
         //
-        //   await dispatch('bsc/STOP_SYNC', null, { root: true })
         //   await dispatch('bsc/SET_WEB3', new Web3(process.env.web3RpcUrl), { root: true })
         //   await dispatch('CONNECT_WALLET')
         // })

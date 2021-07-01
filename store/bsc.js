@@ -5,6 +5,13 @@ import tokenAbi from '~/utils/token.json'
 
 const BN = Web3.utils.BN
 
+const sleepAWhile = async function() {
+  await window.setTimeout(
+    async function() {
+    },
+    1000)
+}
+
 export const state = () => ({
   web3: null,
   chainId: null,
@@ -445,27 +452,23 @@ export const actions = {
     }
   },
 
-  async REFRESH({ state, commit, dispatch }, blockNumber) {
+  async TOUCH_REFRESH({ state, commit, dispatch }, blockNumber) {
     if (blockNumber > state.blockNumber + 5) {
-      // commit('SET_BLOCK_NUMBER', blockNumber)
-      console.log('>>> Store[bsc] REFRESH, blockNumber:', blockNumber)
+      commit('SET_BLOCK_NUMBER', blockNumber)
+      // console.log('>>> Store[bsc] REFRESH, blockNumber:', blockNumber, moment().format())
+      dispatch('SYNC_DATA')
+      await sleepAWhile()
       return null
     }
+
+    await sleepAWhile()
   },
 
   async KEEP_SYNC({ state, dispatch }) {
-    console.log('>>> Store[bsc] try: KEEP_SYNC')
-
-    // on: New Block
     await state.web3().eth
       .subscribe('newBlockHeaders')
       .on('data', async blockHeader => {
-        await dispatch('REFRESH', blockHeader.number)
+        await dispatch('TOUCH_REFRESH', blockHeader.number)
       })
-  },
-
-  async STOP_SYNC({ state }) {
-    console.log('>>> Store[bsc] try: STOP_SYNC')
-    await state.web3().eth.unsubscribe('newBlockHeaders')
   }
 }
