@@ -454,7 +454,7 @@ export const actions = {
   async TOUCH_REFRESH({ rootState, state, commit, dispatch }, blockNumber) {
     if (blockNumber > state.blockNumber + 5) {
       await commit('SET_BLOCK_NUMBER', blockNumber)
-      console.log(moment().format(), '>>> Store[bsc] TOUCH_REFRESH, newBlockNumber:', blockNumber)
+      // console.log(moment().format(), '>>> Store[bsc] TOUCH_REFRESH, newBlockNumber:', blockNumber)
       await dispatch('SYNC_DATA')
       if (rootState.wallet.account) {
         await dispatch('wallet/SYNC_DATA', null, { root: true })
