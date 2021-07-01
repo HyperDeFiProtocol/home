@@ -1,6 +1,7 @@
 # HyperDeFi Official Home
 
-[![ci](https://github.com/HyperDeFiProtocol/home/actions/workflows/ci.yml/badge.svg)](https://github.com/HyperDeFiProtocol/home/actions/workflows/ci.yml)
+[![Alpha Test](https://github.com/HyperDeFiProtocol/home/actions/workflows/alpha.yml/badge.svg)](https://github.com/HyperDeFiProtocol/home/actions/workflows/alpha.yml)
+[![Testnet](https://github.com/HyperDeFiProtocol/home/actions/workflows/testnet.yml/badge.svg)](https://github.com/HyperDeFiProtocol/home/actions/workflows/testnet.yml)
 
 
 ## Development
