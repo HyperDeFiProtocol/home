@@ -1,6 +1,6 @@
 # HyperDeFi Official Home
 
-TBD.
+[![ci](https://github.com/HyperDeFiProtocol/home/actions/workflows/ci.yml/badge.svg)](https://github.com/HyperDeFiProtocol/home/actions/workflows/ci.yml)
 
 
 ## Development

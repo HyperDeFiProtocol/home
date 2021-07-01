@@ -1,0 +1,64 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+#  pull_request:
+#    branches:
+#      - main
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 14 ]
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+
+      - name: Get yarn cache directory path 🛠
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies 👨🏻‍💻
+        run: yarn
+
+      - name: Use `.env.testnet` 🛠
+        run: cp .env.testnet .env
+
+      - name: Nuxt generate 🚀
+        run: yarn generate
+
+      - name: CNAME and README 🚀🚀
+        run: |
+          echo "testnet.hyperdefi.org" > ./dist/CNAME
+          cp README.testnet.md ./dist/README.md
+
+      - name: Deploy 🚀🚀🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          repository-name: HyperDeFiProtocol/testnet
+          commit-message: "${{ github.repository }}@${{ github.sha }}"
+          branch: testnet
+          folder: dist

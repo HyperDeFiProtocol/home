@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
+#  pull_request:
+#    branches:
+#      - main
 
 jobs:
   ci:
@@ -51,30 +49,30 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
-      - name: Deploy for `alpha.hyperdefi.org` 🚀🚀
-        run: |
-          echo "alpha.hyperdefi.org" > ./dist/CNAME
-          cp README.alpha.md ./dist/README.md
-
-      - name: Deploy for Alpha Test 🚀🚀🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          token: ${{ secrets.CI_TOKEN }}
-          repository-name: HyperDeFiProtocol/alpha
-          commit-message: "${{ github.repository }}@${{ github.sha }}"
-          branch: alpha
-          folder: dist
-
-      - name: Deploy for `testnet.hyperdefi.org` 🚀🚀
-        run: |
-          echo "testnet.hyperdefi.org" > ./dist/CNAME
-          cp README.testnet.md ./dist/README.md
-
-      - name: Deploy for BSC Chain Testnet 🚀🚀🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          token: ${{ secrets.CI_TOKEN }}
-          repository-name: HyperDeFiProtocol/testnet
-          commit-message: "${{ github.repository }}@${{ github.sha }}"
-          branch: testnet
-          folder: dist
+#      - name: Deploy for `alpha.hyperdefi.org` 🚀🚀
+#        run: |
+#          echo "alpha.hyperdefi.org" > ./dist/CNAME
+#          cp README.alpha.md ./dist/README.md
+#
+#      - name: Deploy for Alpha Test 🚀🚀🚀
+#        uses: JamesIves/github-pages-deploy-action@4.1.4
+#        with:
+#          token: ${{ secrets.CI_TOKEN }}
+#          repository-name: HyperDeFiProtocol/alpha
+#          commit-message: "${{ github.repository }}@${{ github.sha }}"
+#          branch: alpha
+#          folder: dist
+#
+#      - name: Deploy for `testnet.hyperdefi.org` 🚀🚀
+#        run: |
+#          echo "testnet.hyperdefi.org" > ./dist/CNAME
+#          cp README.testnet.md ./dist/README.md
+#
+#      - name: Deploy for BSC Chain Testnet 🚀🚀🚀
+#        uses: JamesIves/github-pages-deploy-action@4.1.4
+#        with:
+#          token: ${{ secrets.CI_TOKEN }}
+#          repository-name: HyperDeFiProtocol/testnet
+#          commit-message: "${{ github.repository }}@${{ github.sha }}"
+#          branch: testnet
+#          folder: dist
