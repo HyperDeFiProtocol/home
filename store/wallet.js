@@ -19,7 +19,7 @@ export const mutations = {
     state.chainId = chainId
   },
   async SET_ACCOUNT(state, account) {
-    state.account = Web3.utils.toChecksumAddress(account)
+    state.account = account ? Web3.utils.toChecksumAddress(account) : null
     state.loading = null
   },
   async START_LOADING(state) {
@@ -86,6 +86,18 @@ export const actions = {
       .then(async function(accounts) {
         await commit('SET_ACCOUNT', accounts[0])
         await dispatch('bsc/KEEP_SYNC', null, { root: true })
+
+        // // on: Disconnect TODO: not work... but `subscribe('newBlockHeaders')` still lives
+        // await provider.on('disconnect', async function(error) {
+        //   await dispatch('warning/SET_WARNING', {
+        //     title: 'Error: Disconnected',
+        //     message: error.message
+        //   }, { root: true })
+        //
+        //   await dispatch('bsc/STOP_SYNC', null, { root: true })
+        //   await dispatch('bsc/SET_WEB3', new Web3(process.env.web3RpcUrl), { root: true })
+        //   await dispatch('CONNECT_WALLET')
+        // })
 
         // on: Chain Changed
         await provider.on('chainChanged', async function(chainId) {
