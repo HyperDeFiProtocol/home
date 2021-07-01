@@ -13,7 +13,7 @@
             Tax Farm
           </h2>
           <p>
-            For every HyperDeFi holder, keep the balance growing by just holding it.
+            For every HyperDeFi holder, keep the farming (balance growing) by just holding it.
           </p>
         </div>
 

@@ -27,7 +27,7 @@ export const mutations = {
   },
   async STOP_LOADING(state) {
     state.loading = null
-  },
+  }
 }
 
 
@@ -80,11 +80,22 @@ export const actions = {
       return null
     }
 
+
     // Connect
     await provider.request({ method: 'eth_requestAccounts' })
       .then(async function(accounts) {
         await commit('SET_ACCOUNT', accounts[0])
-        await dispatch('bsc/KEEP_SYNC', web3, {root: true})
+        await dispatch('bsc/KEEP_SYNC', null, { root: true })
+
+        // on: Chain Changed
+        await provider.on('chainChanged', async function(chainId) {
+          await dispatch('SET_CHAIN_ID', parseInt(chainId))
+        })
+
+        // on: Account Changed
+        await provider.on('accountsChanged', async function(accounts) {
+          await commit('SET_ACCOUNT', accounts[0])
+        })
       })
       .catch(async function(error) {
         await dispatch('warning/SET_WARNING', {
