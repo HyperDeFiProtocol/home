@@ -4,6 +4,7 @@ import detectEthereumProvider from '@metamask/detect-provider'
 export const state = () => ({
   noWeb3Provider: null,
 
+  loading: null,
   account: null,
   chainId: null
 })
@@ -12,13 +13,21 @@ export const state = () => ({
 export const mutations = {
   async SET_NO_WEB3_PROVIDER(state, value) {
     state.noWeb3Provider = value
+    state.loading = null
   },
   async SET_CHAIN_ID(state, chainId) {
     state.chainId = chainId
   },
   async SET_ACCOUNT(state, account) {
     state.account = Web3.utils.toChecksumAddress(account)
-  }
+    state.loading = null
+  },
+  async START_LOADING(state) {
+    state.loading = true
+  },
+  async STOP_LOADING(state) {
+    state.loading = null
+  },
 }
 
 
@@ -30,6 +39,8 @@ export const actions = {
     await commit('SET_CHAIN_ID', chainId)
   },
   async CONNECT_WALLET({ rootState, state, commit, dispatch }) {
+    await commit('START_LOADING')
+
     const provider = await detectEthereumProvider()
     if (!provider) {
       await commit('SET_NO_WEB3_PROVIDER', true)
@@ -39,6 +50,7 @@ export const actions = {
 
     // Set WEB3
     if (state.web3) {
+      await commit('STOP_LOADING')
       return null
     }
     const web3 = new Web3(window.ethereum)
@@ -47,6 +59,8 @@ export const actions = {
         title: 'Initialize web3: Failed',
         message: 'Please visit with your Trust Wallet App'
       }, { root: true })
+
+      await commit('STOP_LOADING')
       return null
     }
     await dispatch('bsc/SET_WEB3', web3, { root: true })
@@ -58,8 +72,11 @@ export const actions = {
           title: 'Error: Get Chain ID',
           message: error.message
         }, { root: true })
+
+        await commit('STOP_LOADING')
       }))
     if (state.chainId !== rootState.bsc.chainId) {
+      await commit('STOP_LOADING')
       return null
     }
 
@@ -74,6 +91,8 @@ export const actions = {
           title: 'Please allow authorization',
           message: error.message
         }, { root: true })
+
+        await commit('STOP_LOADING')
       })
   }
 }

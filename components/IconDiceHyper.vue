@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'IconHyperDice'
+  name: 'IconDiceHyper'
 }
 </script>
 

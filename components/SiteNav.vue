@@ -5,7 +5,7 @@
         <div class='flex items-center justify-between w-full md:w-auto'>
           <nuxt-link to='/' class='text-violet-500 hover:text-violet-600'>
             <span class='sr-only'>HyperDeFi Home</span>
-            <IconHyperDice class='h-8 w-auto sm:h-10' />
+            <IconDiceHyper class='h-8 w-auto sm:h-10' />
           </nuxt-link>
 
           <div class='md:hidden'>
@@ -15,10 +15,8 @@
                class='inline-flex items-center font-medium text-base text-gray-500 hover:text-gray-200'>
               {{ $store.state.wallet.account.slice(0, 4) }}...{{ $store.state.wallet.account.slice(-4) }}
             </a>
-            <button v-else @click='connectWallet'
-               class='inline-flex items-center px-4 py-1 border border-transparent text-base font-medium rounded-md text-emerald-300 bg-emerald-900 hover:bg-emerald-800 focus:outline-none'>
-              Connect Wallet
-            </button>
+            <BtnConnectWallet v-else @click='connectWallet'
+               class='inline-flex items-center px-4 py-1 border border-transparent text-base font-medium rounded-md text-emerald-300 bg-emerald-900 hover:bg-emerald-800 focus:outline-none' />
           </div>
 
           <div class='-mr-2 flex items-center md:hidden'>
@@ -48,10 +46,7 @@
            target='_blank' :href='hdfLink.exploreToken4address($store.state.wallet.account)'>
           {{ $store.state.wallet.account.slice(0, 4) }}...{{ $store.state.wallet.account.slice(-4) }}
         </a>
-        <button v-else @click='connectWallet'
-                class='btn-md-account'>
-          Connect Wallet
-        </button>
+        <BtnConnectWallet v-else class='btn-md-account' />
       </div>
     </LAutoWidth>
 
@@ -60,7 +55,7 @@
       <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
         <div class='px-5 pt-4 flex items-center justify-between'>
           <div>
-            <IconHyperDice class='h-8 w-auto sm:h-10 text-violet-600' />
+            <IconDiceHyper class='h-8 w-auto sm:h-10 text-violet-600' />
           </div>
           <div class='-mr-2'>
             <button type='button'
