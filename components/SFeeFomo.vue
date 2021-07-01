@@ -48,7 +48,7 @@
                class="a-track bg-yellow-700 hover:bg-yellow-600 space-x-2">
               <HeroIconSolidCursorClick class="h-5 w-5" />
               <span>
-                Track all FOMO transfers
+                Track all {{ oCounter + iCounter }} FOMO transfers
               </span>
             </a>
           </div>
