@@ -139,7 +139,7 @@
                     <CBN :value='tx.amount' /> HyperDeFi
                   </h4>
                   <p class="text-sm text-gray-500">
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 10) }}...</a>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
                   </p>
                 </div>
                 <p class="text-sm text-gray-500">
@@ -173,7 +173,7 @@
                   <td>
                     <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
                   </td>
-                  <td>
+                  <td class='font-mono'>
                     <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                   </td>
                   <td>
