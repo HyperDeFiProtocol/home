@@ -1,8 +1,8 @@
 <template>
   <div class='section-fee'>
     <div class='text-center'>
-      <span class="span-icon bg-teal-50 text-teal-700">
-        <HeroIconOutlineSparkles class="h-8 w-8" />
+      <span class='span-icon bg-teal-50 text-teal-700'>
+        <HeroIconOutlineSparkles class='h-8 w-8' />
       </span>
     </div>
 
@@ -35,13 +35,16 @@
             <span v-if='$store.state.bsc.whaleFee.lotto > "0"'>
               {{ $store.state.bsc.whaleFee.lotto }}% from whale,
             </span>
-            then randomly send to 1 HyperDeFi holder (minimum holding <CBN :value='String($store.state.bsc.global.lottoThreshold)' :token='true' /> HyperDeFi).
-            <span v-if='$store.state.bsc.global.holders > "0"'>Now, every holder has a 1/<CBN :value='String($store.state.bsc.global.holders)' /> chance of winning this.</span>
+            then randomly send to 1 HyperDeFi holder (minimum holding
+            <CBN :value='String($store.state.bsc.global.lottoThreshold)' :token='true' />
+            HyperDeFi).
+            <span v-if='$store.state.bsc.global.holders > "0"'>Now, every holder has a 1/<CBN
+              :value='String($store.state.bsc.global.holders)' /> chance of winning this.</span>
           </p>
 
-          <div v-if='counter' class="mt-5 inline-flex rounded-md shadow">
-            <a href="#" class="a-track bg-teal-700 hover:bg-teal-600 space-x-2">
-              <HeroIconSolidCursorClick class="h-5 w-5" />
+          <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
+            <a href='#' class='a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
+              <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 Track all {{ counter }} lotto transfers
               </span>
@@ -60,14 +63,14 @@
           </dd>
         </div>
 
-<!--        <div>-->
-<!--          <dt>-->
-<!--            Tax Market Value-->
-<!--          </dt>-->
-<!--          <dd>-->
-<!--            $<CBN :value='marketValue' :price='true' /> USD-->
-<!--          </dd>-->
-<!--        </div>-->
+        <!--        <div>-->
+        <!--          <dt>-->
+        <!--            Tax Market Value-->
+        <!--          </dt>-->
+        <!--          <dd>-->
+        <!--            $<CBN :value='marketValue' :price='true' /> USD-->
+        <!--          </dd>-->
+        <!--        </div>-->
 
         <div>
           <dt>
@@ -80,9 +83,8 @@
       </dl>
 
 
-
       <div v-if='transactions.length'>
-        <h6 class="mt-12 md:mt-16 ml-2 text-sm font-semibold text-teal-500 tracking-wide uppercase">
+        <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-teal-500 tracking-wide uppercase'>
           Latest {{ transactions.length }} Lotto History
         </h6>
 
@@ -93,16 +95,19 @@
               <span class='h-6 w-6'>
                 <HeroIconSolidGift />
               </span>
-              <div class="flex-1 space-y-2">
-                <div class="flex items-center justify-between">
+              <div class='flex-1 space-y-2'>
+                <div class='flex items-center justify-between'>
                   <h4 class='font-medium text-base'>
-                    <CBN :value='tx.amount' /> HyperDeFi
+                    <CBN :value='tx.amount' />
+                    HyperDeFi
                   </h4>
-                  <p class="text-sm text-gray-500">
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                  <p class='text-sm text-gray-500'>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                      <CBN :value='tx.blockNumber' />
+                    </a>
                   </p>
                 </div>
-                <p class="text-sm text-gray-500">
+                <p class='text-sm text-gray-500'>
                   <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                 </p>
               </div>
@@ -111,19 +116,19 @@
         </div>
 
         <!-- md: -->
-        <div class="hidden mt-4 overflow-x-auto md:block">
-          <div class="align-middle inline-block min-w-full">
-            <div class="shadow overflow-hidden border-b border-gray-700">
-              <table class="min-w-full divide-y divide-gray-700">
+        <div class='hidden mt-4 overflow-x-auto md:block'>
+          <div class='align-middle inline-block min-w-full'>
+            <div class='shadow overflow-hidden border-b border-gray-700'>
+              <table class='min-w-full divide-y divide-gray-700'>
                 <thead>
                 <tr>
-                  <th scope="col">
+                  <th scope='col'>
                     Block
                   </th>
-                  <th scope="col">
+                  <th scope='col'>
                     Address
                   </th>
-                  <th scope="col">
+                  <th scope='col'>
                     Amount
                   </th>
                 </tr>
@@ -131,13 +136,16 @@
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                      <CBN :value='tx.blockNumber' />
+                    </a>
                   </td>
                   <td class='font-mono'>
                     <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                   </td>
                   <td>
-                    <CBN :value='tx.amount' :token='true' :padding='2' /> HyperDeFi
+                    <CBN :value='tx.amount' :token='true' :padding='2' />
+                    HyperDeFi
                   </td>
                 </tr>
                 </tbody>
@@ -146,11 +154,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
 
 
     </LAutoWidth>
@@ -177,7 +180,7 @@ export default {
   computed: {
     explorer() {
       return hdfLink
-    },
+    }
   },
   watch: {
     '$store.state.bsc.blockNumber': async function() {
@@ -190,13 +193,17 @@ export default {
   methods: {
     async load() {
 
-      const events = await this.$store.state.bsc.token().getPastEvents('Lotto', {
-        // filter: {
-        //   to: this.$store.state.bsc.globalAccounts.zero
-        // },
-        fromBlock: 0,
-        toBlock: 'latest'
-      })
+      const events = await this.$store.state.bsc.token()
+        .getPastEvents('Lotto', {
+          // filter: {
+          //   to: this.$store.state.bsc.globalAccounts.zero
+          // },
+          fromBlock: 0,
+          toBlock: 'latest'
+        })
+        .catch(async function(error) {
+          console.error('>>> SFeeLotto:', error)
+        })
 
       events.reverse()
       // console.log(events)
@@ -212,7 +219,7 @@ export default {
             txHash: events[i].transactionHash,
 
             account: events[i].returnValues.account,
-            amount:  events[i].returnValues.amount,
+            amount: events[i].returnValues.amount
           })
         }
       }

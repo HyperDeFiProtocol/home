@@ -1,8 +1,8 @@
 <template>
   <div class='section-fee'>
     <div class='text-center'>
-      <span class="span-icon bg-orange-50 text-orange-700">
-        <HeroIconOutlineClock class="h-8 w-8" />
+      <span class='span-icon bg-orange-50 text-orange-700'>
+        <HeroIconOutlineClock class='h-8 w-8' />
       </span>
     </div>
 
@@ -13,7 +13,9 @@
             FOMO
           </h2>
           <p>
-            For the user who buy more than <CBN :value='fomo.threshold' :token='true' /> HyperDeFi on PancakeSwap.
+            For the user who buy more than
+            <CBN :value='fomo.threshold' :token='true' />
+            HyperDeFi on PancakeSwap.
           </p>
         </div>
 
@@ -38,15 +40,17 @@
             <span v-if='timerStep.h > "0"'>{{ timerStep.h }} hours,</span>
             <span v-if='timerStep.m > "0"'>{{ timerStep.m }} minutes,</span>
             <span v-if='timerStep.s > "0"'>{{ timerStep.s }} seconds,</span>
-            if no other user buy more than <CBN :value='fomo.threshold' :token='true' /> HyperDeFi from PancakeSwap,
+            if no other user buy more than
+            <CBN :value='fomo.threshold' :token='true' />
+            HyperDeFi from PancakeSwap,
             the last buyer will win this prize.
           </p>
 
-          <div v-if='$store.state.bsc.supply.fomo > "0"' class="mt-5 inline-flex rounded-md shadow">
+          <div v-if='$store.state.bsc.supply.fomo > "0"' class='mt-5 inline-flex rounded-md shadow'>
             <a target='_blank'
                :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.fomo)'
-               class="a-track bg-yellow-700 hover:bg-yellow-600 space-x-2">
-              <HeroIconSolidCursorClick class="h-5 w-5" />
+               class='a-track bg-yellow-700 hover:bg-yellow-600 space-x-2'>
+              <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 Track all {{ oCounter + iCounter }} FOMO transfers
               </span>
@@ -71,7 +75,8 @@
           </dt>
           <dd>
             <span v-if='!fomo.countdown.finished'>
-              <span v-if='fomo.countdown.hh > "00"'>{{ fomo.countdown.hh }}:</span>{{ fomo.countdown.mm }}:{{ fomo.countdown.ss }}
+              <span v-if='fomo.countdown.hh > "00"'>{{ fomo.countdown.hh }}:</span>{{ fomo.countdown.mm
+              }}:{{ fomo.countdown.ss }}
             </span>
             <span v-else-if='this.isZero(fomo.next)'>
               Finished
@@ -82,11 +87,11 @@
           </dd>
         </div>
 
-        <div class="flex flex-col mt-10 lg:mt-0">
-          <dt class="order-2 mt-1 text-base leading-6 font-medium text-yellow-100">
+        <div class='flex flex-col mt-10 lg:mt-0'>
+          <dt class='order-2 mt-1 text-base leading-6 font-medium text-yellow-100'>
             FOMO Transfers
           </dt>
-          <dd class="order-1 text-3xl font-extrabold text-white">
+          <dd class='order-1 text-3xl font-extrabold text-white'>
             <CBN :value='oCounter' />
           </dd>
         </div>
@@ -94,7 +99,7 @@
 
 
       <div class='mt-10 md:mt-12'>
-        <h6 class="ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase">
+        <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>
           <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>
             FOMO Prize Winner
           </span>
@@ -104,11 +109,13 @@
         </h6>
 
         <div class='mt-4'>
-          <div class="mx-auto max-w-2xl flex rounded-md shadow-sm">
-            <span class="inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600">
+          <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>
+            <span
+              class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>
               Address
             </span>
-            <div class="flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate">
+            <div
+              class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>
               <span v-if='!this.isZero(fomo.next)' class='font-bold text-orange-700'>
                 {{ fomo.next }}
               </span>
@@ -122,7 +129,7 @@
 
 
       <div v-if='oTransactions.length'>
-        <h6 class="mt-12 md:mt-16 ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase">
+        <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>
           Latest {{ oTransactions.length }} FOMO Prize
         </h6>
 
@@ -133,16 +140,19 @@
               <span class='h-6 w-6'>
                 <HeroIconSolidBadgeCheck />
               </span>
-              <div class="flex-1 space-y-2">
-                <div class="flex items-center justify-between">
+              <div class='flex-1 space-y-2'>
+                <div class='flex items-center justify-between'>
                   <h4 class='font-medium text-base'>
-                    <CBN :value='tx.amount' /> HyperDeFi
+                    <CBN :value='tx.amount' />
+                    HyperDeFi
                   </h4>
-                  <p class="text-sm text-gray-500">
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                  <p class='text-sm text-gray-500'>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                      <CBN :value='tx.blockNumber' />
+                    </a>
                   </p>
                 </div>
-                <p class="text-sm text-gray-500">
+                <p class='text-sm text-gray-500'>
                   <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                 </p>
               </div>
@@ -151,19 +161,19 @@
         </div>
 
         <!-- md: -->
-        <div class="hidden mt-4 overflow-x-auto md:block">
-          <div class="align-middle inline-block min-w-full">
-            <div class="shadow overflow-hidden border-b border-gray-700">
-              <table class="min-w-full divide-y divide-gray-700">
+        <div class='hidden mt-4 overflow-x-auto md:block'>
+          <div class='align-middle inline-block min-w-full'>
+            <div class='shadow overflow-hidden border-b border-gray-700'>
+              <table class='min-w-full divide-y divide-gray-700'>
                 <thead>
                 <tr>
-                  <th scope="col">
+                  <th scope='col'>
                     Block
                   </th>
-                  <th scope="col">
+                  <th scope='col'>
                     Address
                   </th>
-                  <th scope="col">
+                  <th scope='col'>
                     Amount
                   </th>
                 </tr>
@@ -171,13 +181,16 @@
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in oTransactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                      <CBN :value='tx.blockNumber' />
+                    </a>
                   </td>
                   <td class='font-mono'>
                     <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                   </td>
                   <td>
-                    <CBN :value='tx.amount' :token='true' :padding='2' /> HyperDeFi
+                    <CBN :value='tx.amount' :token='true' :padding='2' />
+                    HyperDeFi
                   </td>
                 </tr>
                 </tbody>
@@ -215,7 +228,7 @@ export default {
       timerStep: {
         h: '0',
         m: '0',
-        s: '0',
+        s: '0'
       }
     }
   },
@@ -253,13 +266,17 @@ export default {
       this.timerStep.h = timerStep.hours()
 
       // out
-      const oEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
-        filter: {
-          from: this.$store.state.bsc.globalAccounts.fomo
-        },
-        fromBlock: 0,
-        toBlock: 'latest'
-      })
+      const oEvents = await this.$store.state.bsc.token()
+        .getPastEvents('Transfer', {
+          filter: {
+            from: this.$store.state.bsc.globalAccounts.fomo
+          },
+          fromBlock: 0,
+          toBlock: 'latest'
+        })
+        .catch(async function(error) {
+          console.error('>>> SFeeFomo:', error)
+        })
 
       oEvents.reverse()
       let burned = new BN()
@@ -273,7 +290,7 @@ export default {
             txHash: oEvents[i].transactionHash,
 
             account: oEvents[i].returnValues.to,
-            amount:  oEvents[i].returnValues.value,
+            amount: oEvents[i].returnValues.value
           })
         }
       }
@@ -283,13 +300,17 @@ export default {
       this.oAmount = burned.toString()
 
       // in
-      const iEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
-        filter: {
-          to: this.$store.state.bsc.globalAccounts.fomo
-        },
-        fromBlock: 0,
-        toBlock: 'latest'
-      })
+      const iEvents = await this.$store.state.bsc.token()
+        .getPastEvents('Transfer', {
+          filter: {
+            to: this.$store.state.bsc.globalAccounts.fomo
+          },
+          fromBlock: 0,
+          toBlock: 'latest'
+        })
+        .catch(async function(error) {
+          console.error('>>> SFeeFomo:', error)
+        })
 
       iEvents.reverse()
       let iAmount = new BN()
@@ -301,7 +322,7 @@ export default {
       this.iAmount = iAmount.toString()
       this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
     }
-  },
+  }
 
 
 }</script>

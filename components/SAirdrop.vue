@@ -1,8 +1,8 @@
 <template>
   <div>
-    <LAutoWidth class="py-16 px-4 sm:py-24">
+    <LAutoWidth class='py-16 px-4 sm:py-24'>
       <CH2>
-        <span class="text-violet-400">Airdrop</span>
+        <span class='text-violet-400'>Airdrop</span>
         <span>
           <span v-if='$store.state.bsc.supply.airdrop === "0"'>
             Ended
@@ -19,9 +19,13 @@
           Free Gift
         </template>
         <template #desc>
-          Up to <CBN :value='String($store.state.bsc.global.airdropMax)' :token='true' /> HyperDeFi per address;
+          Up to
+          <CBN :value='String($store.state.bsc.global.airdropMax)' :token='true' />
+          HyperDeFi per address;
           will be issued after the first buy from PancakeSwap for every address;
-          totally <CBN :value='summed' :token='true' /> HyperDeFi,
+          totally
+          <CBN :value='summed' :token='true' />
+          HyperDeFi,
           first-come, first-served.
         </template>
       </CH2>
@@ -42,7 +46,9 @@
             Total Airdrop Market Value
           </dt>
           <dd>
-            $<CBN :value='summedMarketValue' :price='true' :padding='6' /> USD
+            $
+            <CBN :value='summedMarketValue' :price='true' :padding='6' />
+            USD
           </dd>
         </div>
 
@@ -67,7 +73,7 @@
       </dl>
 
       <div v-if='transactions.length'>
-        <h6 class="mt-12 md:mt-16 ml-2 text-sm font-semibold text-violet-400 tracking-wide uppercase">
+        <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-violet-400 tracking-wide uppercase'>
           Latest {{ transactions.length }} Airdrop History
         </h6>
 
@@ -78,16 +84,19 @@
               <span class='h-6 w-6'>
                 <HeroIconSolidGift />
               </span>
-              <div class="flex-1 space-y-2">
-                <div class="flex items-center justify-between">
+              <div class='flex-1 space-y-2'>
+                <div class='flex items-center justify-between'>
                   <h4 class='font-medium text-base'>
-                    <CBN :value='tx.amount' /> HyperDeFi
+                    <CBN :value='tx.amount' />
+                    HyperDeFi
                   </h4>
-                  <p class="text-sm text-gray-500">
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                  <p class='text-sm text-gray-500'>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                      <CBN :value='tx.blockNumber' />
+                    </a>
                   </p>
                 </div>
-                <p class="text-sm text-gray-500">
+                <p class='text-sm text-gray-500'>
                   <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                 </p>
               </div>
@@ -96,19 +105,19 @@
         </div>
 
         <!-- md: -->
-        <div class="hidden mt-4 overflow-x-auto md:block">
-          <div class="align-middle inline-block min-w-full">
-            <div class="shadow overflow-hidden border-b border-gray-700">
-              <table class="min-w-full divide-y divide-gray-700">
+        <div class='hidden mt-4 overflow-x-auto md:block'>
+          <div class='align-middle inline-block min-w-full'>
+            <div class='shadow overflow-hidden border-b border-gray-700'>
+              <table class='min-w-full divide-y divide-gray-700'>
                 <thead>
                 <tr>
-                  <th scope="col">
+                  <th scope='col'>
                     Block
                   </th>
-                  <th scope="col">
+                  <th scope='col'>
                     Address
                   </th>
-                  <th scope="col">
+                  <th scope='col'>
                     Amount
                   </th>
                 </tr>
@@ -116,13 +125,16 @@
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                      <CBN :value='tx.blockNumber' />
+                    </a>
                   </td>
                   <td class='font-mono'>
                     <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                   </td>
                   <td>
-                    <CBN :value='tx.amount' :token='true' :padding='2' /> HyperDeFi
+                    <CBN :value='tx.amount' :token='true' :padding='2' />
+                    HyperDeFi
                   </td>
                 </tr>
                 </tbody>
@@ -174,13 +186,17 @@ export default {
   methods: {
     async load() {
 
-      const events = await this.$store.state.bsc.token().getPastEvents('Transfer', {
-        filter: {
-          from: this.$store.state.bsc.globalAccounts.airdrop
-        },
-        fromBlock: 0,
-        toBlock: 'latest'
-      })
+      const events = await this.$store.state.bsc.token()
+        .getPastEvents('Transfer', {
+          filter: {
+            from: this.$store.state.bsc.globalAccounts.airdrop
+          },
+          fromBlock: 0,
+          toBlock: 'latest'
+        })
+        .catch(async function(error) {
+          console.error('>>> SAirdrop:', error)
+        })
 
       events.reverse()
       // console.log(events)
@@ -195,7 +211,7 @@ export default {
             txHash: events[i].transactionHash,
 
             account: events[i].returnValues.to,
-            amount:  events[i].returnValues.value,
+            amount: events[i].returnValues.value
           })
         }
       }
@@ -204,7 +220,7 @@ export default {
       this.counter = events.length
       this.amount = amount.toString()
     }
-  },
+  }
 }</script>
 
 <style scoped lang='scss'>
