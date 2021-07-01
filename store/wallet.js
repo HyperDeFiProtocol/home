@@ -5,8 +5,8 @@ export const state = () => ({
   noWeb3Provider: null,
 
   loading: null,
+  chainId: null,
   account: null,
-  chainId: null
 })
 
 

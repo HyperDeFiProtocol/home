@@ -16,7 +16,6 @@ export const state = () => ({
   web3: null,
   chainId: null,
   blockNumber: 0,
-  blockNumberStr: '',
   gasPrice: '0',
 
   token: null,
@@ -455,7 +454,7 @@ export const actions = {
   async TOUCH_REFRESH({ state, commit, dispatch }, blockNumber) {
     if (blockNumber > state.blockNumber + 5) {
       commit('SET_BLOCK_NUMBER', blockNumber)
-      console.log(moment().format(), '>>> Store[bsc] REFRESH, blockNumber:', blockNumber)
+      console.log(moment().format(), '>>> Store[bsc] TOUCH_REFRESH, newBlockNumber:', blockNumber)
       dispatch('SYNC_DATA')
       await sleepAWhile()
       return null
