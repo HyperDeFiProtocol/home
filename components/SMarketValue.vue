@@ -12,24 +12,27 @@
       </div>
 
       <h2 class="text-sm font-semibold text-violet-300 tracking-wide uppercase">
-        Realtime data on BSC chain
+        {{ $t('sMarketValue.tag') }}
       </h2>
       <p class="mt-3 text-2xl font-extrabold text-white break-all">
-        Contract Address: {{ tokenAddress }}
+        {{ $t('sMarketValue.contractAddress_') }}{{ tokenAddress }}
       </p>
 
       <p class="mt-2 text-base text-gray-400 break-all">
-        Token Name/Symbol:
-        <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>;
-        with
-        <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenDecimals }} decimals</span>
+        {{ $t('sMarketValue.tokenNameSymbol_') }}
+        <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>
+        {{ $t('sMarketValue.with') }}
+        <span class='font-bold text-white'>
+          {{ $store.state.bsc.metadata.tokenDecimals }}
+          {{ $t('sMarketValue.decimals') }}
+        </span>
       </p>
 
       <div class="mt-5 inline-flex rounded-md shadow">
         <a target='_blank' :href='explorer.exploreToken(tokenAddress)' class="a-track bg-violet-600 hover:bg-violet-700 space-x-2">
           <HeroIconSolidCursorClick class="h-5 w-5" />
           <span>
-            Track on BSC Scan Explorer
+            {{ $t('sMarketValue.trackWith__') }}
           </span>
         </a>
       </div>
@@ -41,9 +44,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Latest Price,
+              {{ $t('sMarketValue.latestPrice_') }}
             </span>
-            provided by
+            {{ $t('sMarketValue.providedBy') }}
             <CPancakeTo class='font-medium text-violet-300'>PancakeSwap Finance</CPancakeTo>
           </span>
         </p>
@@ -55,9 +58,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Circulating Market Cap,
+              {{ $t('sMarketValue.circulatingMarketCap_') }}
             </span>
-            of current total supply.
+            {{ $t('sMarketValue.ofCurrentTotalSupply') }}
           </span>
         </p>
 
@@ -67,9 +70,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Current Total Supply,
+              {{ $t('sMarketValue.currentTotalSupply_') }}
             </span>
-            which is also the circulating total supply
+            {{ $t('sMarketValue._alsoTheCirculatingTotalSupply') }}
           </span>
         </p>
 
@@ -79,9 +82,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Total Supply Cap
+              {{ $t('sMarketValue.totalSupplyCap_') }}
             </span>
-            decreasing...
+            {{ $t('sMarketValue.decreasing_') }}
           </span>
         </p>
 
@@ -91,9 +94,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Holders,
+              {{ $t('sMarketValue.holders_') }}
             </span>
-            are holding HyperDeFi in their wallets.
+            {{ $t('sMarketValue._holding_') }}
           </span>
         </p>
 
@@ -101,18 +104,18 @@
           <span class="block inline-flex items-center space-x-2 text-2xl font-bold text-violet-300">
             <HeroIconSolidFire class='inline w-6 h-6' />
             <span>
-              Check your
+              {{ $t('sMarketValue.checkYour') }}
               <span class='text-gray-200'>
-                harvest?
+                {{ $t('sMarketValue.harvest_') }}
               </span>
             </span>
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <BtnConnectWallet class='focus:outline-none'>
               <span class="font-medium text-white">
-                Click here
+                {{ $t('sMarketValue.clickHere') }}
               </span>
-              to connect wallet...
+              {{ $t('sMarketValue.toConnectWallet_') }}
             </BtnConnectWallet>
           </span>
         </p>
@@ -121,26 +124,26 @@
       <div v-if='$store.state.wallet.account' class="transition duration-300 ease-in-out mt-12 border-t-2 border-gray-700 pt-12">
         <CH3>
           <span>
-            Your
+            {{ $t('sMarketValue.your') }}
           </span>
           <span class='hidden lg:inline'>
-            harvest and
+            {{ $t('sMarketValue.harvestAnd') }}
           </span>
           <span>
-            balance
+            {{ $t('sMarketValue.balance') }}
           </span>
 
           <template #tag>
-            Tax Farm
+            {{ $t('sMarketValue.taxFarm') }}
           </template>
           <template #desc>
             <p class='truncate'>
-              Hello,
+              {{ $t('sMarketValue.hello_') }}
               <span v-if='$store.state.wallet.username'>
                 {{ $store.state.wallet.username }}
               </span>
-              <span v-else>
-                {{ $store.state.wallet.account.slice(0, 12) }}...{{ $store.state.wallet.account.slice(-4) }}
+              <span v-else class='font-mono'>
+                {{ $store.state.wallet.account.slice(0, 10) }}...{{ $store.state.wallet.account.slice(-4) }}
               </span>
             </p>
           </template>
@@ -153,9 +156,9 @@
               <CBN :value='$store.state.wallet.power' :token='true' />
             </span>
             <span class="mt-1 block text-base text-gray-300">
-              Your
+              {{ $t('sMarketValue.your') }}
               <span class="font-medium text-white">
-                Harvest Power
+                {{ $t('sMarketValue.harvestPower') }}
               </span>
             </span>
           </p>
@@ -166,19 +169,19 @@
             </span>
             <span class="mt-1 block text-base text-gray-300">
               <span class="font-medium text-white">
-                To Harvest,
+                {{ $t('sMarketValue.toHarvest_') }}
               </span>
-              on block number #<CBN :value='$store.state.bsc.blockNumber' />
+              {{ $t('sMarketValue.onBlockNumber') }}<CBN :value='$store.state.bsc.blockNumber' />
             </span>
           </p>
 
           <p v-if='$store.state.wallet.harvest > "0"' class='transition duration-300 ease-out'>
             <BtnGetHarvest class='a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
               <span class='hidden lg:inline'>
-                Click to
+                {{ $t('sMarketValue.clickHereTo') }}
               </span>
               <span>
-                Harvest all
+                {{ $t('sMarketValue.harvestAll') }}
               </span>
             </BtnGetHarvest>
           </p>
@@ -189,9 +192,9 @@
             </span>
             <span class="mt-1 block text-base text-gray-300">
               <span class="font-medium text-white">
-                Total
+                {{ $t('sMarketValue.total_') }}
               </span>
-              already harvested
+              {{ $t('sMarketValue.alreadyHarvested') }}
             </span>
           </p>
 
@@ -201,9 +204,9 @@
             </span>
             <span class="mt-1 block text-base text-gray-300">
               <span class="font-medium text-white">
-                Balance,
+                {{ $t('sMarketValue.balance_') }}
               </span>
-              in your wallet
+              {{ $t('sMarketValue.inYourWallet') }}
             </span>
           </p>
         </div>

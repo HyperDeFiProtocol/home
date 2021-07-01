@@ -1,3 +1,5 @@
+import locales from './locales/conf'
+
 export default {
   env: {
     mode: process.env.mode,
@@ -10,7 +12,7 @@ export default {
     githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
     twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
-    telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
+    telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol'
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -49,7 +51,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/init-web3.js',
+    '~/plugins/init-web3.js'
   ],
 
   router: {
@@ -70,7 +72,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-i18n'
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -79,6 +82,24 @@ export default {
       lang: 'en'
     }
   },
+
+  i18n: {
+    locales: locales,
+    lazy: true,
+    langDir: 'locales/',
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en'
+    },
+    vueI18nLoader: true,
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieSecure: false,
+      alwaysRedirect: false,
+      fallbackLocale: 'en'
+    }
+  },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
