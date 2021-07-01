@@ -457,11 +457,8 @@ export const actions = {
       commit('SET_BLOCK_NUMBER', blockNumber)
       // console.log('>>> Store[bsc] REFRESH, blockNumber:', blockNumber, moment().format())
       dispatch('SYNC_DATA')
-      await sleepAWhile()
       return null
     }
-
-    await sleepAWhile()
   },
 
   async KEEP_SYNC({ state, dispatch }) {
@@ -469,6 +466,7 @@ export const actions = {
       .subscribe('newBlockHeaders')
       .on('data', async blockHeader => {
         await dispatch('TOUCH_REFRESH', blockHeader.number)
+        await sleepAWhile()
       })
   }
 }
