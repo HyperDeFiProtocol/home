@@ -184,7 +184,7 @@ export default {
 
       events.reverse()
       // console.log(events)
-      let amount = new BN(this.amount)
+      let amount = new BN()
       let transactions = []
       for (let i = 0; i < events.length; i++) {
         amount = amount.add(new BN(events[i].returnValues.value))

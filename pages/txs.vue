@@ -83,9 +83,62 @@ export default {
     explorer() {
       return explorer
     },
-
+  },
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.load()
+    }
+  },
+  async mounted() {
+    await this.load()
   },
   methods: {
+    async load() {
+      const events = await this.$store.state.bsc.token()
+        .getPastEvents('Tx',
+          {
+            // filter: {
+            //   to: this.$store.state.bsc.globalAccounts.burn
+            // },
+            fromBlock: 0,
+            toBlock: 'latest'
+          })
+
+      events.reverse()
+      // console.log(events)
+
+      let transactions = []
+      for (let i = 0; i < events.length; i++) {
+        if (transactions.length) {
+          let tx = transactions[transactions.length - 1]
+          if (tx.txHash === events[i].transactionHash &&
+            tx.txType === events[i].returnValues.txType &&
+            tx.sender === events[i].returnValues.sender &&
+            tx.recipient === events[i].returnValues.recipient
+          ) {
+            transactions[transactions.length - 1].amount =
+              new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
+            transactions[this.transactions.length - 1].txAmount =
+              new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
+
+            continue
+          }
+        }
+
+        transactions.push({
+          blockNumber: events[i].blockNumber,
+          txHash: events[i].transactionHash,
+
+          txType: events[i].returnValues.txType,
+          sender: events[i].returnValues.sender,
+          recipient: events[i].returnValues.recipient,
+          amount: events[i].returnValues.amount,
+          txAmount: events[i].returnValues.txAmount
+        })
+
+        this.transactions = transactions
+      }
+    },
     txName(txType) {
       switch (txType) {
         case "0":
@@ -108,49 +161,7 @@ export default {
       return 'mark'
     }
   },
-  async mounted() {
-    const events = await this.$store.state.bsc.token()
-      .getPastEvents('Tx',
-        {
-          // filter: {
-          //   to: this.$store.state.bsc.globalAccounts.burn
-          // },
-          fromBlock: 0,
-          toBlock: 'latest'
-        })
 
-    events.reverse()
-    // console.log(events)
-
-    for (let i = 0; i < events.length; i++) {
-      if (this.transactions.length) {
-        let tx = this.transactions[this.transactions.length - 1]
-        if (tx.txHash === events[i].transactionHash &&
-          tx.txType === events[i].returnValues.txType &&
-          tx.sender === events[i].returnValues.sender &&
-          tx.recipient === events[i].returnValues.recipient
-        ) {
-          this.transactions[this.transactions.length - 1].amount =
-            new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
-          this.transactions[this.transactions.length - 1].txAmount =
-            new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
-
-          continue
-        }
-      }
-
-      this.transactions.push({
-        blockNumber: events[i].blockNumber,
-        txHash: events[i].transactionHash,
-
-        txType: events[i].returnValues.txType,
-        sender: events[i].returnValues.sender,
-        recipient: events[i].returnValues.recipient,
-        amount: events[i].returnValues.amount,
-        txAmount: events[i].returnValues.txAmount
-      })
-    }
-  }
 }
 </script>
 

@@ -262,7 +262,7 @@ export default {
       })
 
       oEvents.reverse()
-      let burned = new BN(this.oAmount)
+      let burned = new BN()
       let transactions = []
       for (let i = 0; i < oEvents.length; i++) {
         burned = burned.add(new BN(oEvents[i].returnValues.value))
@@ -292,7 +292,7 @@ export default {
       })
 
       iEvents.reverse()
-      let iAmount = new BN(this.oAmount)
+      let iAmount = new BN()
       for (let i = 0; i < iEvents.length; i++) {
         iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
       }
