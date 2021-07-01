@@ -51,6 +51,18 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
+      - name: Add CNAME for `alpha.hyperdefi.org` 🚀🚀
+        run: echo "alpha.hyperdefi.org" > ./dist/CNAME
+
+      - name: Deploy for Testnet 🚀🚀🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          repository-name: HyperDeFiProtocol/alpha
+          commit-message: "${{ github.repository }}@${{ github.sha }}"
+          branch: alpha
+          folder: dist
+
       - name: Add CNAME for `testnet.hyperdefi.org` 🚀🚀
         run: echo "testnet.hyperdefi.org" > ./dist/CNAME
 
