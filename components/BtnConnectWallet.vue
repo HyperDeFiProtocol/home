@@ -1,7 +1,7 @@
 <template>
-  <button @click='connectWallet'>
-    Connect Wallet
-    <IconDiceHyperSpin v-show='$store.state.wallet.loading' class='ml-2 w-6 h-6' />
+  <button @click='connectWallet' class='space-x-2'>
+    <slot>Connect Wallet</slot>
+    <IconDiceHyperSpin v-show='$store.state.wallet.loading' />
   </button>
 </template>
 

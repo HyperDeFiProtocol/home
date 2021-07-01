@@ -34,17 +34,30 @@
         </a>
       </div>
 
-      <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
+      <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2">
         <p>
           <span class="block text-2xl font-bold text-violet-300">
             $<CBN :value='String($store.state.bsc.metadata.price)' :price='true' :padding='18' /> USD
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Latest price,
+              Latest Price,
             </span>
             provided by
             <CPancakeTo class='font-medium text-violet-300'>PancakeSwap Finance</CPancakeTo>
+          </span>
+        </p>
+
+
+        <p>
+          <span class="block text-2xl font-bold text-violet-300">
+            $<CBN :value='String($store.state.bsc.marketValue.totalSupply)' :price='true' :padding='6' /> USD
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <span class="font-medium text-white">
+              Circulating Market Cap,
+            </span>
+            of current total supply.
           </span>
         </p>
 
@@ -56,22 +69,19 @@
             <span class="font-medium text-white">
               Current Total Supply,
             </span>
-            releases during the number of holders grows
-            with a cap of
-            <CBN :value='String($store.state.bsc.supply.cap)' :token='true' />
-            (decreasing...)
+            which is also the circulating total supply
           </span>
         </p>
 
         <p>
           <span class="block text-2xl font-bold text-violet-300">
-            $<CBN :value='String($store.state.bsc.marketValue.totalSupply)' :price='true' :padding='6' /> USD
+            <CBN :value='$store.state.bsc.supply.cap' :token='true' /> HyperDeFi
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              Circulating Market Cap,
+              Total Supply Cap
             </span>
-            of current total supply.
+            decreasing...
           </span>
         </p>
 
@@ -86,6 +96,117 @@
             are holding HyperDeFi in their wallets.
           </span>
         </p>
+
+        <p v-if='!$store.state.wallet.account' class='transition duration-300 ease-out'>
+          <span class="block inline-flex items-center space-x-2 text-2xl font-bold text-violet-300">
+            <HeroIconSolidFire class='inline w-6 h-6' />
+            <span>
+              Check your
+              <span class='text-gray-200'>
+                harvest?
+              </span>
+            </span>
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <BtnConnectWallet class='focus:outline-none'>
+              <span class="font-medium text-white">
+                Click here
+              </span>
+              to connect wallet...
+            </BtnConnectWallet>
+          </span>
+        </p>
+      </div>
+
+      <div v-if='$store.state.wallet.account' class="transition duration-300 ease-in-out mt-12 border-t-2 border-gray-700 pt-12">
+        <CH3>
+          <span>
+            Your
+          </span>
+          <span class='hidden lg:inline'>
+            harvest and
+          </span>
+          <span>
+            balance
+          </span>
+
+          <template #tag>
+            Tax Farm
+          </template>
+          <template #desc>
+            <p class='truncate'>
+              Hello,
+              <span v-if='$store.state.wallet.username'>
+                {{ $store.state.wallet.username }}
+              </span>
+              <span v-else>
+                {{ $store.state.wallet.account.slice(0, 12) }}...{{ $store.state.wallet.account.slice(-4) }}
+              </span>
+            </p>
+          </template>
+        </CH3>
+
+        <div class='mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2'>
+          <p>
+            <span class="block text-2xl font-bold text-violet-300 inline-flex items-center space-x-2">
+              <HeroIconSolidFire class='inline w-6 h-6' />
+              <CBN :value='$store.state.wallet.power' :token='true' />
+            </span>
+            <span class="mt-1 block text-base text-gray-300">
+              Your
+              <span class="font-medium text-white">
+                Harvest Power
+              </span>
+            </span>
+          </p>
+
+          <p>
+            <span class="block text-2xl font-bold text-violet-300">
+              <CBN :value='$store.state.wallet.harvest' :token='true' /> HyperDeFi
+            </span>
+            <span class="mt-1 block text-base text-gray-300">
+              <span class="font-medium text-white">
+                To Harvest,
+              </span>
+              on block number #<CBN :value='$store.state.bsc.blockNumber' />
+            </span>
+          </p>
+
+          <p v-if='$store.state.wallet.harvest > "0"'>
+            <BtnGetHarvest class='a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
+              <span class='hidden lg:inline'>
+                Click to
+              </span>
+              <span>
+                Harvest all
+              </span>
+            </BtnGetHarvest>
+          </p>
+
+          <p v-if='$store.state.wallet.totalHarvest > "0"'>
+            <span class="block text-2xl font-bold text-violet-300">
+              <CBN :value='$store.state.wallet.totalHarvest' :token='true' /> HyperDeFi
+            </span>
+            <span class="mt-1 block text-base text-gray-300">
+              <span class="font-medium text-white">
+                Total
+              </span>
+              already harvested
+            </span>
+          </p>
+
+          <p>
+            <span class="block text-2xl font-bold text-violet-300">
+              <CBN :value='$store.state.wallet.balance' :token='true' /> HyperDeFi
+            </span>
+            <span class="mt-1 block text-base text-gray-300">
+              <span class="font-medium text-white">
+                Balance,
+              </span>
+              in your wallet
+            </span>
+          </p>
+        </div>
       </div>
     </LAutoWidth>
   </div>

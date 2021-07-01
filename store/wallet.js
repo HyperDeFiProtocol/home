@@ -7,6 +7,18 @@ export const state = () => ({
   loading: null,
   chainId: null,
   account: null,
+
+  isHolder: false,
+  isFlat: false,
+  isSlot: false,
+  username: '',
+  balance: '0',
+  harvest: '0',
+  power: '0',
+  inputs: '0',
+  outputs: '0',
+  totalHarvest: '0',
+  totalTaxSnap: '0',
 })
 
 
@@ -27,7 +39,21 @@ export const mutations = {
   },
   async STOP_LOADING(state) {
     state.loading = null
-  }
+  },
+
+  async SET_ACCOUNT_DATA(state, data) {
+    state.isHolder = data.isHolder
+    state.isFlat = data.isFlat
+    state.isSlot = data.isSlot
+    state.username = data.username
+    state.balance = data.balance
+    state.harvest = data.harvest
+    state.power = data.power
+    state.inputs = data.inputs
+    state.outputs = data.outputs
+    state.totalHarvest = data.totalHarvest
+    state.totalTaxSnap = data.totalTaxSnap
+  },
 }
 
 
@@ -107,6 +133,8 @@ export const actions = {
         await provider.on('accountsChanged', async function(accounts) {
           await commit('SET_ACCOUNT', accounts[0])
         })
+
+        await dispatch('SYNC_DATA')
       })
       .catch(async function(error) {
         await dispatch('warning/SET_WARNING', {
@@ -115,6 +143,15 @@ export const actions = {
         }, { root: true })
 
         await commit('STOP_LOADING')
+      })
+  },
+  async SYNC_DATA({ rootState, state, commit, dispatch }) {
+    await rootState.bsc.token().methods.getAccount(state.account).call()
+      .then(async function(data) {
+        await commit('SET_ACCOUNT_DATA', data)
+      })
+      .catch(error => {
+        console.error('>>> Store[wallet] SYNC_DATA - getAccount:', error.message)
       })
   }
 }

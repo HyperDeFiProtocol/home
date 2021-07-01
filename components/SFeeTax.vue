@@ -80,6 +80,15 @@
         </div>
       </dl>
 
+<!--      <div class='mt-6 md:mt-20 bg-violet-900 rounded-md py-10 px-8 lg:flex lg:items-center lg:justify-between'>-->
+<!--        <div class="text-3xl font-extrabold tracking-tight">-->
+<!--          <span class='text-violet-400'>Check your</span>-->
+<!--          <span class="text-gray-200">harvest?</span>-->
+<!--        </div>-->
+<!--        <div class="mt-6 lg:mt-0">-->
+<!--          <BtnConnectWallet class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-violet-700 hover:bg-violet-600 focus:outline-none" />-->
+<!--        </div>-->
+<!--      </div>-->
 
     </LAutoWidth>
   </div>
