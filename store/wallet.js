@@ -132,6 +132,7 @@ export const actions = {
         // on: Account Changed
         await provider.on('accountsChanged', async function(accounts) {
           await commit('SET_ACCOUNT', accounts[0])
+          await dispatch('SYNC_DATA')
         })
 
         await dispatch('SYNC_DATA')

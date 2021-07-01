@@ -14,12 +14,39 @@ export default {
     }
   },
   methods: {
-    getHarvest() {
-      this.$store.dispatch('warning/SET_WARNING', {
-        title: 'In development',
-        message: 'Coming soon...',
+    async getHarvest() {
+      this.pending = true
+      await this.$store.state.bsc.token().methods.getHarvest()
+        .send({'from': this.$store.state.wallet.account})
+        .on('transactionHash', this.onTransactionHash)
+        .on('receipt', this.onReceipt)
+        .on('confirmation', this.onConfirmation)
+        .on('error', this.onError)
+        .catch(this.onError)
+    },
+    async onTransactionHash(txHash) {
+      console.log('>>> onTransactionHash:', txHash)
+    },
+    async onReceipt(receipt) {
+      console.log('>>> onReceipt:', receipt)
+
+      if (receipt.status) {
+        //
+      } else {
+        //
+      }
+    },
+    async onConfirmation(confirmation) {
+      console.log('>>> onConfirmation:', confirmation)
+    },
+    async onError(error) {
+      this.pending = false
+
+      await this.$store.dispatch('warning/SET_WARNING', {
+        title: 'Tx Error: ' + error.code,
+        message: error.message,
       })
-    }
+    },
   }
 }
 </script>

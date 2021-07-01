@@ -172,7 +172,7 @@
             </span>
           </p>
 
-          <p v-if='$store.state.wallet.harvest > "0"'>
+          <p v-if='$store.state.wallet.harvest > "0"' class='transition duration-300 ease-out'>
             <BtnGetHarvest class='a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
               <span class='hidden lg:inline'>
                 Click to
