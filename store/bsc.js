@@ -455,10 +455,13 @@ export const actions = {
   async TOUCH_REFRESH({ state, commit, dispatch }, blockNumber) {
     if (blockNumber > state.blockNumber + 5) {
       commit('SET_BLOCK_NUMBER', blockNumber)
-      // console.log('>>> Store[bsc] REFRESH, blockNumber:', blockNumber, moment().format())
+      console.log(moment().format(), '>>> Store[bsc] REFRESH, blockNumber:', blockNumber)
       dispatch('SYNC_DATA')
+      await sleepAWhile()
       return null
     }
+
+    await sleepAWhile()
   },
 
   async KEEP_SYNC({ state, dispatch }) {
@@ -466,7 +469,6 @@ export const actions = {
       .subscribe('newBlockHeaders')
       .on('data', async blockHeader => {
         await dispatch('TOUCH_REFRESH', blockHeader.number)
-        await sleepAWhile()
       })
   }
 }
