@@ -219,6 +219,7 @@ export default {
       }
     }
   },
+
   computed: {
     explorer() {
       return hdfLink
@@ -232,64 +233,77 @@ export default {
       return this.$store.state.bsc.fomo
     }
   },
-  methods: {
-    isZero(address) {
-      return address === this.$store.state.bsc.globalAccounts.zero
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.load()
     }
   },
   async mounted() {
-    const timerStep = moment.duration(this.$store.state.bsc.fomo.timestampStep * 1000)
-    this.timerStep.s = timerStep.seconds()
-    this.timerStep.m = timerStep.minutes()
-    this.timerStep.h = timerStep.hours()
+    await this.load()
+  },
+  methods: {
+    isZero(address) {
+      return address === this.$store.state.bsc.globalAccounts.zero
+    },
+    async load() {
 
-    // out
-    const oEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
-      filter: {
-        from: this.$store.state.bsc.globalAccounts.fomo
-      },
-      fromBlock: 0,
-      toBlock: 'latest'
-    })
+      const timerStep = moment.duration(this.$store.state.bsc.fomo.timestampStep * 1000)
+      this.timerStep.s = timerStep.seconds()
+      this.timerStep.m = timerStep.minutes()
+      this.timerStep.h = timerStep.hours()
 
-    oEvents.reverse()
-    let burned = new BN(this.oAmount)
-    for (let i = 0; i < oEvents.length; i++) {
-      burned = burned.add(new BN(oEvents[i].returnValues.value))
+      // out
+      const oEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
+        filter: {
+          from: this.$store.state.bsc.globalAccounts.fomo
+        },
+        fromBlock: 0,
+        toBlock: 'latest'
+      })
 
-      if (i < 10) {
-        this.oTransactions.push({
-          blockNumber: String(oEvents[i].blockNumber),
-          txHash: oEvents[i].transactionHash,
+      oEvents.reverse()
+      let burned = new BN(this.oAmount)
+      let transactions = []
+      for (let i = 0; i < oEvents.length; i++) {
+        burned = burned.add(new BN(oEvents[i].returnValues.value))
 
-          account: oEvents[i].returnValues.to,
-          amount:  oEvents[i].returnValues.value,
-        })
+        if (i < 10) {
+          transactions.push({
+            blockNumber: String(oEvents[i].blockNumber),
+            txHash: oEvents[i].transactionHash,
+
+            account: oEvents[i].returnValues.to,
+            amount:  oEvents[i].returnValues.value,
+          })
+        }
       }
+
+      this.oTransactions = transactions
+      this.oCounter = oEvents.length
+      this.oAmount = burned.toString()
+
+      // in
+      const iEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
+        filter: {
+          to: this.$store.state.bsc.globalAccounts.fomo
+        },
+        fromBlock: 0,
+        toBlock: 'latest'
+      })
+
+      iEvents.reverse()
+      let iAmount = new BN(this.oAmount)
+      for (let i = 0; i < iEvents.length; i++) {
+        iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
+      }
+
+      this.iCounter = iEvents.length
+      this.iAmount = iAmount.toString()
+      this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
     }
+  },
 
-    this.oCounter = oEvents.length
-    this.oAmount = burned.toString()
 
-    // in
-    const iEvents = await this.$store.state.bsc.token().getPastEvents('Transfer', {
-      filter: {
-        to: this.$store.state.bsc.globalAccounts.fomo
-      },
-      fromBlock: 0,
-      toBlock: 'latest'
-    })
-
-    iEvents.reverse()
-    let iAmount = new BN(this.oAmount)
-    for (let i = 0; i < iEvents.length; i++) {
-      iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
-    }
-
-    this.iCounter = iEvents.length
-    this.iAmount = iAmount.toString()
-    this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
-  }
 }</script>
 
 <style scoped lang='scss'>

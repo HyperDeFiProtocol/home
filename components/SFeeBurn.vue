@@ -174,36 +174,49 @@ export default {
       return hdfLink
     },
   },
-  async mounted() {
-    const events = await this.$store.state.bsc.token().getPastEvents('Transfer', {
-      filter: {
-        to: this.$store.state.bsc.globalAccounts.burn
-      },
-      fromBlock: 0,
-      toBlock: 'latest'
-    })
-
-    events.reverse()
-    // console.log(events)
-
-    let amount = new BN(this.amount)
-    for (let i = 0; i < events.length; i++) {
-      amount = amount.add(new BN(events[i].returnValues.value))
-
-      if (i < 10) {
-        this.transactions.push({
-          blockNumber: events[i].blockNumber,
-          txHash: events[i].transactionHash,
-
-          account: events[i].returnValues.from,
-          amount:  events[i].returnValues.value,
-        })
-      }
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.load()
     }
+  },
+  async mounted() {
+    await this.load()
+  },
+  methods: {
+    async load() {
+      const events = await this.$store.state.bsc.token().getPastEvents('Transfer', {
+        filter: {
+          to: this.$store.state.bsc.globalAccounts.burn
+        },
+        fromBlock: 0,
+        toBlock: 'latest'
+      })
 
-    this.counter = events.length
-    this.amount = amount.toString()
-    this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+      events.reverse()
+      // console.log(events)
+
+      let amount = new BN(this.amount)
+
+      let transactions = []
+      for (let i = 0; i < events.length; i++) {
+        amount = amount.add(new BN(events[i].returnValues.value))
+
+        if (i < 10) {
+          transactions.push({
+            blockNumber: events[i].blockNumber,
+            txHash: events[i].transactionHash,
+
+            account: events[i].returnValues.from,
+            amount:  events[i].returnValues.value,
+          })
+        }
+      }
+
+      this.transactions = transactions
+      this.counter = events.length
+      this.amount = amount.toString()
+      this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+    }
   }
 }
 </script>
