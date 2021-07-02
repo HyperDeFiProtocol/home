@@ -46,4 +46,10 @@ export default {
   script4Fund_: '用于基金，',
   script4Burning_: '销毁）。',
 
+  forEachTransaction: '对于每笔交易：',
+
+  fromTaker: '从索取者，',
+  fromMaker: '从贡献者，',
+  fromWhale: '从鲸鱼，',
+
 }

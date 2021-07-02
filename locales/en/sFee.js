@@ -46,4 +46,9 @@ export default {
   script4Fund_: 'for Fund,',
   script4Burning_: 'for Burning).',
 
+  forEachTransaction: 'For each transaction:',
+
+  fromTaker: 'from taker,',
+  fromMaker: 'from maker,',
+  fromWhale: 'from whale,',
 }

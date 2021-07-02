@@ -10,28 +10,31 @@
       <main>
         <div class='header1'>
           <h2 class='text-violet-400'>
-            Tax Farm
+            {{ $t('sFeeTax.title') }}
           </h2>
           <p>
-            For every HyperDeFi holder, keep the farming (balance growing) by just holding it.
+            {{ $t('sFeeTax.text') }}
           </p>
         </div>
 
         <div class='body2 to-violet-900 from-violet-900 text-violet-300'>
           <h3>
-            For each transaction:
+            {{ $t('sFee.forEachTransaction') }}
           </h3>
 
           <p>
             Take
             <span v-if='$store.state.bsc.takerFee.tax > "0"'>
-              {{ $store.state.bsc.takerFee.tax }}% from taker,
+              {{ $store.state.bsc.takerFee.tax }}%
+              {{ $t('sFee.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.tax > "0"'>
-              {{ $store.state.bsc.makerFee.tax }}% from maker,
+              {{ $store.state.bsc.makerFee.tax }}%
+              {{ $t('sFee.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.tax > "0"'>
-              {{ $store.state.bsc.whaleFee.tax }}% from whale,
+              {{ $store.state.bsc.whaleFee.tax }}%
+              {{ $t('sFee.fromWhale') }}
             </span>
             then deposit to the Tax farm;
             Each HyperDeFi holder can share them on a pro-rata basis,
