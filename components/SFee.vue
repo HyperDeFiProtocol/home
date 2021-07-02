@@ -329,21 +329,28 @@
       <div class='mt-10 md:mt-16 w-full bg-gray-800 py-8 md:py-12 px-10 md:px-16 rounded-md'>
         <div class='mx-auto max-w-md lg:max-w-md xl:max-w-3xl'>
           <h3 class='w-full bg-red-900 py-1 md:py-2 font-semibold tracking-widest text-center text-white uppercase'>
-            Scripts Warning
+            {{ $t('sFee.scriptWarning') }}
           </h3>
 
           <p class='mt-3 md:mt-6 px-4 md:px-8 leading-loose tracking-wide'>
-            Scripts are not welcomed in HyperDeFi ecology, especially in the very beginning phases.
-            If someone uses scripts to make a big-trade that takes or puts
-            more than {{ $store.state.bsc.global.robberPercentage }}% of the liquidity
-            (which can't be done manually),
-            he will be treat as a ROBBER and be charged up to {{ $store.state.bsc.robberFee.total }}% of the fee
-            ({{ $store.state.bsc.robberFee.tax }}% for tax,
-            {{ $store.state.bsc.robberFee.lotto }}% for lotto,
-            {{ $store.state.bsc.robberFee.fomo }}% for FOMO,
-            {{ $store.state.bsc.robberFee.liquidity }}% for LP Acquisition,
-            {{ $store.state.bsc.robberFee.dev }}% for dev,
-            {{ $store.state.bsc.robberFee.destroy }}% for burning).
+            {{ $t('sFee.scriptNotWelcomed__moreThan') }}
+            {{ $store.state.bsc.global.robberPercentage }}%
+            {{ $t('sFee.scriptCannot__') }}
+            {{ $store.state.bsc.robberFee.total }}%
+            {{ $t('sFee.scriptOfTheFee') }}
+            {{ $store.state.bsc.robberFee.tax }}%
+
+            {{ $t('sFee.script4Tax_') }}
+            {{ $store.state.bsc.robberFee.lotto }}%
+            {{ $t('sFee.script4Lotto_') }}
+            {{ $store.state.bsc.robberFee.fomo }}%
+            {{ $t('sFee.script4FOMO_') }}
+            {{ $store.state.bsc.robberFee.liquidity }}%
+            {{ $t('sFee.script4LPAcquisition_') }}
+            {{ $store.state.bsc.robberFee.dev }}%
+            {{ $t('sFee.script4Fund_') }}
+            {{ $store.state.bsc.robberFee.destroy }}%
+            {{ $t('sFee.script4Burning_') }}
           </p>
         </div>
       </div>

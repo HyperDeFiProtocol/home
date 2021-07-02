@@ -35,6 +35,15 @@ export default {
   definitionsWhaleRemark2: '）',
   definitionsRobber: '阅读下方的脚本警告...',
 
-
+  scriptWarning: '脚本警告',
+  scriptNotWelcomed__moreThan: 'HyperDeFi 生态不欢迎脚本机器人，尤其是在刚刚开始的阶段。如果有人使用脚本进行大额买卖买走或卖出流性性的',
+  scriptCannot__: '（这是人工无法做到的），他将被当作掠食者对待，征收高达',
+  scriptOfTheFee: '的交易费用（',
+  script4Tax_: '进入税收矿池，',
+  script4Lotto_: '发放乐透，',
+  script4FOMO_: '用于 FOMO，',
+  script4LPAcquisition_: 'LP 收购，',
+  script4Fund_: '用于基金，',
+  script4Burning_: '销毁）。',
 
 }

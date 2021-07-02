@@ -35,4 +35,15 @@ export default {
   definitionsWhaleRemark2: 'of the liquidity)',
   definitionsRobber: 'Read SCRIPTS WARNING info below...',
 
+  scriptWarning: 'Script Warning',
+  scriptNotWelcomed__moreThan: 'Scripts are not welcomed in HyperDeFi ecology, especially in the very beginning phases. If someone uses scripts to make a big-trade that takes or puts',
+  scriptCannot__: ' of the liquidity (which can\'t be done manually), he will be treat as a ROBBER and be charged up to ',
+  scriptOfTheFee: 'of the fee (',
+  script4Tax_: 'for Tax,',
+  script4Lotto_: 'for Lotto,',
+  script4FOMO_: 'for FOMO,',
+  script4LPAcquisition_: 'for LP Acquisition,',
+  script4Fund_: 'for Fund,',
+  script4Burning_: 'for Burning).',
+
 }
