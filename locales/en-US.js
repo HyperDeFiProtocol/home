@@ -4,6 +4,7 @@ import sWelcome from '~/locales/en/sWelcome'
 import sFeatures from '~/locales/en/sFeatures'
 import sMarketValue from '~/locales/en/sMarketValue'
 import sAirdrop from '~/locales/en/sAirdrop'
+import sFee from '~/locales/en/sFee'
 
 import txTable from '~/locales/en/txTable'
 
@@ -18,5 +19,6 @@ export default {
   sFeatures: sFeatures,
   sMarketValue: sMarketValue,
   sAirdrop: sAirdrop,
+  sFee: sFee,
 
 }

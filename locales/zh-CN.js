@@ -4,6 +4,7 @@ import sWelcome from '~/locales/zh/sWelcome'
 import sFeatures from '~/locales/zh/sFeatures'
 import sMarketValue from '~/locales/zh/sMarketValue'
 import sAirdrop from '~/locales/zh/sAirdrop'
+import sFee from '~/locales/zh/sFee'
 
 import txTable from '~/locales/zh/txTable'
 
@@ -17,5 +18,6 @@ export default {
   sFeatures: sFeatures,
   sMarketValue: sMarketValue,
   sAirdrop: sAirdrop,
+  sFee: sFee,
 
 }

@@ -2,15 +2,16 @@
   <div>
     <LAutoWidth class='pt-12 pb-20 px-4 md:py-24 md:px-8'>
       <CH2>
-        Trade
-        <span class='text-violet-400'>Fees</span>
+        {{ $t('sFee.title') }}
+        <span class='text-violet-400'>
+          {{ $t('sFee.titleFees') }}
+        </span>
 
         <template #tag>
-          RULES
+          {{ $t('sFee.tag') }}
         </template>
         <template #desc>
-          Fees will be taken from each transaction:
-          Lotto, FOMO, LP Acquisition, Burn, Fund, and Tax share to every holders.
+          {{ $t('sFee.desc') }}
         </template>
       </CH2>
 
@@ -18,22 +19,30 @@
       <div class='mt-8 sm:mt-16 lg:grid lg:grid-cols-2 lg:gap-8'>
         <table class='w-full h-px table-fixed'>
           <caption class='sr-only'>
-            Trade Fees
+            {{ $t('sFee.tradeFees') }}
           </caption>
           <thead>
           <tr>
             <th class='pb-4 px-6 text-sm font-medium text-gray-200 text-left' scope='col'>
-              <span class='sr-only'>Fees for</span>
-              <span>Types</span>
+              <span class='sr-only'>{{ $t('sFee.type') }}</span>
+              <span>{{ $t('sFee.type') }}</span>
             </th>
-            <th class='w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-200 text-left' scope='col'>Taker</th>
-            <th class='w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-200 text-left' scope='col'>Maker</th>
-            <th class='w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-200 text-left' scope='col'>Whale</th>
+            <th class='w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-200 text-left' scope='col'>
+              {{ $t('sFee.taker') }}
+            </th>
+            <th class='w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-200 text-left' scope='col'>
+              {{ $t('sFee.maker') }}
+            </th>
+            <th class='w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-200 text-left' scope='col'>
+              {{ $t('sFee.whale') }}
+            </th>
           </tr>
           </thead>
           <tbody class='border-t border-gray-600 divide-y divide-gray-600'>
           <tr>
-            <th class='py-8 pl-6 pr-6 align-top text-sm font-medium text-gray-200 text-left' scope='row'>Total</th>
+            <th class='py-8 pl-6 pr-6 align-top text-sm font-medium text-gray-200 text-left' scope='row'>
+              {{ $t('sFee.total') }}
+            </th>
 
             <td class='h-full py-8 px-6 align-top'>
               <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.takerFee.total }}</span>
@@ -53,19 +62,21 @@
 
           <tr>
             <th class='py-3 pl-6 bg-gray-800 text-sm font-medium text-gray-400 text-left' colspan='4' scope='colgroup'>
-              Fees
+              {{ $t('sFee.fees') }}
             </th>
           </tr>
 
 
           <tr>
-            <th class='th-item' scope='row'>Tax</th>
+            <th class='th-item' scope='row'>
+              {{ $t('sFee.tax') }}
+            </th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.tax > "0"'>
                 {{ $store.state.bsc.takerFee.tax }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Taker
+                {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -73,7 +84,7 @@
                 {{ $store.state.bsc.makerFee.tax }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Maker
+                {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -81,19 +92,21 @@
                 {{ $store.state.bsc.whaleFee.tax }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Whale
+                {{ $t('sFee.freeForWhale') }}
               </span>
             </td>
           </tr>
 
           <tr>
-            <th class='th-item' scope='row'>Lotto</th>
+            <th class='th-item' scope='row'>
+              {{ $t('sFee.lotto') }}
+            </th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.lotto > "0"'>
                 {{ $store.state.bsc.takerFee.lotto }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Taker
+                {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -101,7 +114,7 @@
                 {{ $store.state.bsc.makerFee.lotto }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Maker
+                {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -109,19 +122,21 @@
                 {{ $store.state.bsc.whaleFee.lotto }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Whale
+                {{ $t('sFee.freeForWhale') }}
               </span>
             </td>
           </tr>
 
           <tr>
-            <th class='th-item' scope='row'>FOMO</th>
+            <th class='th-item' scope='row'>
+              {{ $t('sFee.fomo') }}
+            </th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.fomo > "0"'>
                 {{ $store.state.bsc.takerFee.fomo }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Taker
+                {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -129,7 +144,7 @@
                 {{ $store.state.bsc.makerFee.fomo }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Maker
+                {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -137,20 +152,22 @@
                 {{ $store.state.bsc.whaleFee.fomo }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Whale
+                {{ $t('sFee.freeForWhale') }}
               </span>
             </td>
           </tr>
 
 
           <tr>
-            <th class='th-item' scope='row'>LP Acquisition</th>
+            <th class='th-item' scope='row'>
+              {{ $t('sFee.lpAcquisition') }}
+            </th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.liquidity > "0"'>
                 {{ $store.state.bsc.takerFee.liquidity }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Taker
+                {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -158,7 +175,7 @@
                 {{ $store.state.bsc.makerFee.liquidity }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Maker
+                {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -166,19 +183,21 @@
                 {{ $store.state.bsc.whaleFee.liquidity }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Whale
+                {{ $t('sFee.freeForWhale') }}
               </span>
             </td>
           </tr>
 
           <tr>
-            <th class='th-item' scope='row'>Fund</th>
+            <th class='th-item' scope='row'>
+              {{ $t('sFee.fund') }}
+            </th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.dev > "0"'>
                 {{ $store.state.bsc.takerFee.dev }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Taker
+                {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -186,7 +205,7 @@
                 {{ $store.state.bsc.makerFee.dev }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Maker
+                {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -194,19 +213,21 @@
                 {{ $store.state.bsc.whaleFee.dev }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Whale
+                {{ $t('sFee.freeForWhale') }}
               </span>
             </td>
           </tr>
 
           <tr>
-            <th class='th-item' scope='row'>Burn</th>
+            <th class='th-item' scope='row'>
+              {{ $t('sFee.burn') }}
+            </th>
             <td class='td-item'>
               <span v-if='$store.state.bsc.takerFee.destroy > "0"'>
                 {{ $store.state.bsc.takerFee.destroy }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Taker
+                {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -214,7 +235,7 @@
                 {{ $store.state.bsc.makerFee.destroy }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Maker
+                {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
@@ -222,19 +243,17 @@
                 {{ $store.state.bsc.whaleFee.destroy }}%
               </span>
               <span v-else class='sr-only'>
-                Free for Whale
+                {{ $t('sFee.freeForWhale') }}
               </span>
             </td>
           </tr>
-
-
           </tbody>
         </table>
 
 
         <div class='w-full'>
           <h2 class='mt-10 lg:mt-0 text-sm font-semibold text-gray-500 tracking-wide uppercase'>
-            Definitions
+            {{ $t('sFee.definitions') }}
           </h2>
 
           <dl class='mt-10 space-y-10 lg:space-y-16'>
@@ -243,10 +262,12 @@
                 <div class='absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white'>
                   <HeroIconOutlineRefresh class='h-6 w-6' />
                 </div>
-                <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>Taker</p>
+                <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>
+                  {{ $t('sFee.taker') }}
+                </p>
               </dt>
               <dd class='mt-2 ml-16 text-base text-gray-500'>
-                Sell to PancakeSwap Liquidity, or the sender of a transaction.
+                {{ $t('sFee.definitionsTaker') }}
               </dd>
             </div>
 
@@ -255,10 +276,12 @@
                 <div class='absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white'>
                   <HeroIconOutlineCash class='h-6 w-6' />
                 </div>
-                <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>Maker</p>
+                <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>
+                  {{ $t('sFee.maker') }}
+                </p>
               </dt>
               <dd class='mt-2 ml-16 text-base text-gray-500'>
-                Buy from PancakeSwap Liquidity.
+                {{ $t('sFee.definitionsMaker') }}
               </dd>
             </div>
 
@@ -267,19 +290,22 @@
                 <div class='absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white'>
                   <HeroIconOutlineLibrary class='h-6 w-6' />
                 </div>
-                <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>Whale</p>
+                <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>
+                  {{ $t('sFee.whale') }}
+                </p>
               </dt>
               <dd class='mt-2 ml-16 text-base text-gray-500'>
-                Who holds or trades
+                {{ $t('sFee.definitionsWhaleWho__') }}
                 <span v-if='$store.state.bsc.global.whaleThreshold > "0"'>
-                  more than <CBN :value='$store.state.bsc.global.whaleThreshold' :token='true' /> HyperDeFi
+                  {{ $t('sFee.definitionsWhaleMoreThan') }}
+                  <CBN :value='$store.state.bsc.global.whaleThreshold' :token='true' /> HyperDeFi
                 </span>
                 <span v-else>
-                  a large amount of HyperDeFi
+                  {{ $t('sFee.definitionsWhaleALarge__') }}
                 </span>
-                (dynamic amount value,
+                {{ $t('sFee.definitionsWhaleRemark1') }}
                 {{ $store.state.bsc.global.whaleFractionA }}/<CBN :value='$store.state.bsc.global.whaleFractionB' />
-                of the liquidity)
+                {{ $t('sFee.definitionsWhaleRemark2') }}
               </dd>
             </div>
 
@@ -289,11 +315,11 @@
                   <HeroIconOutlineEmojiSad class='h-6 w-6' />
                 </div>
                 <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>
-                  Robber
+                  {{ $t('sFee.robber') }}
                 </p>
               </dt>
               <dd class='mt-2 ml-16 text-base text-gray-500'>
-                Read <span class='uppercase'>Scripts Warning</span> info below...
+                {{ $t('sFee.definitionsRobber') }}
               </dd>
             </div>
           </dl>

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <SWelcome />
-    <SFeatures class='bg-gray-800' />
-    <SMarketValue />
-    <SAirdrop class='bg-gray-800' />
+<!--    <SWelcome />-->
+<!--    <SFeatures class='bg-gray-800' />-->
+<!--    <SMarketValue />-->
+<!--    <SAirdrop class='bg-gray-800' />-->
     <SFee />
     <SFeeTax class='bg-gray-800' />
     <SFeeLotto />
