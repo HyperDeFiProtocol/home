@@ -2,13 +2,13 @@
   <div>
     <LAutoWidth class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        A better crypto for HOLDING
+        {{ $t('sFeatures.title') }}
 
         <template #tag>
-          Features
+          {{ $t('sFeatures.tag') }}
         </template>
         <template #desc>
-          A social experiment of wealth
+          {{ $t('sFeatures.desc') }}
         </template>
       </CH3>
 
@@ -23,11 +23,11 @@
                 <HeroIconOutlineBadgeCheck class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                Community Powered
+                {{ $t('sFeatures.communityDriven') }}
               </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              Decentralized, based on a broad consensus of holders.
+              {{ $t('sFeatures.communityDriven__') }}
             </dd>
           </div>
 
@@ -37,11 +37,11 @@
                 <HeroIconOutlineScale class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                Fair launch
+                {{ $t('sFeatures.fairLaunch') }}
               </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              No reservations for anybody.
+              {{ $t('sFeatures.fairLaunch__') }}
             </dd>
           </div>
 
@@ -52,11 +52,11 @@
                 <HeroIconOutlineGlobeAlt class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                BSC/PancakeSwap Ecology
+                {{ $t('sFeatures.bscEcology') }}
               </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              More faster, more cheaper than the ETH Chain.
+              {{ $t('sFeatures.bscEcology__') }}
             </dd>
           </div>
 
@@ -67,11 +67,11 @@
                 <HeroIconOutlineCube class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                Black-hole holds the LP Tokens
+                {{ $t('sFeatures.blackHole') }}
               </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              Nobody can remove the global liquidity.
+              {{ $t('sFeatures.blackHole__') }}
             </dd>
           </div>
 
@@ -81,11 +81,11 @@
                 <HeroIconOutlineCode class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                Ready for DApps
+                {{ $t('sFeatures.ready4DApps') }}
               </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              Provide slots for DApps
+              {{ $t('sFeatures.ready4DApps__') }}
             </dd>
           </div>
 
@@ -96,11 +96,18 @@
                 <HeroIconOutlineCode class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                Open-sourced
+                {{ $t('sFeatures.openSourced') }}
               </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              Contracts are verified by BSC Scan Explorer, and open-sourced on GitHub.
+              {{ $t('sFeatures.contractsVerified__') }}
+              <a target='_blank' :href='hdfLink.exploreToken()' class='hdf-a-colored'>
+                {{ $t('sFeatures.bscScanExplorer') }}
+              </a>
+              {{ $t('sFeatures._andOpenSourcedOn') }}
+              <a target='_blank' :href='hdfLink.github()' class='hdf-a-colored'>
+                GitHub
+              </a>
             </dd>
           </div>
         </dl>
@@ -113,8 +120,15 @@
 </template>
 
 <script>
+import hdfLink from '~/utils/hdfLink'
+
 export default {
-  name: 'SFeatures'
+  name: 'SFeatures',
+  computed: {
+    hdfLink() {
+      return hdfLink
+    },
+  }
 }
 </script>
 

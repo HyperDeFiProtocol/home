@@ -1,6 +1,7 @@
 import connectWallet from '~/locales/en/connectWallet'
 import getHarvest from '~/locales/en/getHarvest'
 import sWelcome from '~/locales/en/sWelcome'
+import sFeatures from '~/locales/en/sFeatures'
 import sMarketValue from '~/locales/en/sMarketValue'
 
 
@@ -10,6 +11,7 @@ export default {
   getHarvest: getHarvest,
 
   sWelcome: sWelcome,
+  sFeatures: sFeatures,
   sMarketValue: sMarketValue,
 
 }

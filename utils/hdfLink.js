@@ -31,8 +31,8 @@ const exploreAddress = function(address) {
   return process.env.explorerBaseUrl + '/address/' + address
 }
 
-const exploreToken = function(address) {
-  return process.env.explorerBaseUrl + '/token/' + address
+const exploreToken = function(tokenAddress = process.env.tokenAddress) {
+  return process.env.explorerBaseUrl + '/token/' + tokenAddress
 }
 
 const exploreToken4address = function(address, token = process.env.tokenAddress) {

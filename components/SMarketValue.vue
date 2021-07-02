@@ -29,7 +29,7 @@
       </p>
 
       <div class="mt-5 inline-flex rounded-md shadow">
-        <a target='_blank' :href='explorer.exploreToken(tokenAddress)' class="a-track bg-violet-600 hover:bg-violet-700 space-x-2">
+        <a target='_blank' :href='hdfLink.exploreToken(tokenAddress)' class="a-track bg-violet-600 hover:bg-violet-700 space-x-2">
           <HeroIconSolidCursorClick class="h-5 w-5" />
           <span>
             {{ $t('sMarketValue.trackWith__') }}
@@ -228,7 +228,7 @@ export default {
     tokenAddress() {
       return process.env.tokenAddress
     },
-    explorer() {
+    hdfLink() {
       return hdfLink
     },
     launchCountdown() {
