@@ -13,7 +13,7 @@ export default {
   bscEcology__: 'More faster, more cheaper than the ETH Chain',
 
   blackHole: 'Black-hole holds the LP Tokens',
-  blackHole__: 'Nobody can remove the global liquidity',
+  blackHole__: 'Nobody can remove the PancakeSwap global liquidity',
 
   ready4DApps: 'Ready for DApps',
   ready4DApps__: 'Provide interface and slots for DApps',

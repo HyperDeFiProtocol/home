@@ -37,7 +37,7 @@ export default {
 
   scriptWarning: 'Script Warning',
   scriptNotWelcomed__moreThan: 'Scripts are not welcomed in HyperDeFi ecology, especially in the very beginning phases. If someone uses scripts to make a big-trade that takes or puts',
-  scriptCannot__: ' of the liquidity (which can\'t be done manually), he will be treat as a ROBBER and be charged up to ',
+  scriptCannot__: ' of the PancakeSwap liquidity (which can\'t be done manually), he will be treat as a ROBBER and be charged up to ',
   scriptOfTheFee: 'of the fee (',
   script4Tax_: 'for Tax,',
   script4Lotto_: 'for Lotto,',
@@ -48,6 +48,7 @@ export default {
 
   forEachTransaction: 'For each transaction:',
 
+  take: 'Take',
   fromTaker: 'from taker,',
   fromMaker: 'from maker,',
   fromWhale: 'from whale,',

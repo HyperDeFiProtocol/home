@@ -23,7 +23,7 @@
           </h3>
 
           <p>
-            Take
+            {{ $t('sFee.take') }}
             <span v-if='$store.state.bsc.takerFee.tax > "0"'>
               {{ $store.state.bsc.takerFee.tax }}%
               {{ $t('sFee.fromTaker') }}
@@ -36,17 +36,14 @@
               {{ $store.state.bsc.whaleFee.tax }}%
               {{ $t('sFee.fromWhale') }}
             </span>
-            then deposit to the Tax farm;
-            Each HyperDeFi holder can share them on a pro-rata basis,
-            that means you can earn more HyperDeFi just by holding it in your wallet,
-            get your harvest weekly, or even daily.
+            {{ $t('sFeeTax.takeThen__') }}
           </p>
 
           <div v-if='$store.state.bsc.supply.tax > "0"' class="mt-5 inline-flex rounded-md shadow">
             <a target='_blank' :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.tax)' class="a-track bg-violet-700 hover:bg-violet-600 space-x-2">
               <HeroIconSolidCursorClick class="h-5 w-5" />
               <span>
-                Track all tax transfers
+                {{ $t('sFeeTax.track__') }}
               </span>
             </a>
           </div>
@@ -57,7 +54,7 @@
       <dl v-if='$store.state.bsc.supply.totalTax > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3'>
         <div>
           <dt>
-            Total Tax
+            {{ $t('sFeeTax.totalTax') }}
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.totalTax)' :token='true' />
@@ -66,7 +63,7 @@
 
         <div>
           <dt>
-            Total Tax Market Value
+            {{ $t('sFeeTax.totalTaxMarketValue') }}
           </dt>
           <dd>
             $<CBN :value='String($store.state.bsc.marketValue.totalTax)' :price='true' :padding='9' /> USD
@@ -75,7 +72,7 @@
 
         <div>
           <dt>
-            Tax Pool
+            {{ $t('sFeeTax.taxPool') }}
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.tax)' :token='true' />

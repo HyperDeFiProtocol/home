@@ -13,7 +13,7 @@ export default {
   bscEcology__: '比 ETH 链更快速、费用更便宜',
 
   blackHole: '黑洞地址持有 LP Token',
-  blackHole__: '没有人可以撤出全球流动性',
+  blackHole__: '没有人可以撤除 PancakeSwap 全局流动池',
 
   ready4DApps: '已为 DApp 做好准备',
   ready4DApps__: '为 DApp 提供好的接口和插槽',
