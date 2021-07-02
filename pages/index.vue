@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeroWelcome />
+    <SWelcome />
     <SFeatures class='bg-gray-800' />
     <SMarketValue />
     <SAirdrop class='bg-gray-800' />

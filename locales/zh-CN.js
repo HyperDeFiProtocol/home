@@ -1,5 +1,6 @@
 import connectWallet from '~/locales/zh/connectWallet'
 import getHarvest from '~/locales/zh/getHarvest'
+import sWelcome from '~/locales/zh/sWelcome'
 import sMarketValue from '~/locales/zh/sMarketValue'
 
 export default {
@@ -7,6 +8,7 @@ export default {
   connectWallet: connectWallet,
   getHarvest: getHarvest,
 
+  sWelcome: sWelcome,
   sMarketValue: sMarketValue,
 
 }
