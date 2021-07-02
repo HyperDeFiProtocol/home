@@ -6,6 +6,10 @@ import sMarketValue from '~/locales/zh/sMarketValue'
 import sAirdrop from '~/locales/zh/sAirdrop'
 import sFee from '~/locales/zh/sFee'
 import sFeeTax from '~/locales/zh/sFeeTax'
+import sFeeLotto from '~/locales/zh/sFeeLotto'
+import sFeeFomo from '~/locales/zh/sFeeFomo'
+import sFeeLiquidity from '~/locales/zh/sFeeLiquidity'
+import sFeeFund from '~/locales/zh/sFeeFund'
 
 import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
@@ -23,5 +27,9 @@ export default {
   sAirdrop: sAirdrop,
   sFee: sFee,
   sFeeTax: sFeeTax,
+  sFeeLotto: sFeeLotto,
+  sFeeFomo: sFeeFomo,
+  sFeeLiquidity: sFeeLiquidity,
+  sFeeFund: sFeeFund,
 
 }

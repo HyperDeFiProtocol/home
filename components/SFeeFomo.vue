@@ -10,40 +10,41 @@
       <main>
         <div class='header1'>
           <h2 class='text-orange-400'>
-            FOMO
+            {{ $t('sFeeFomo.title') }}
           </h2>
           <p>
-            For the user who buy more than
-            <CBN :value='fomo.threshold' :token='true' />
-            HyperDeFi on PancakeSwap.
+            {{ $t('sFeeFomo.text1') }}
+            <CBN :value='fomo.threshold' :token='true' /> HyperDeFi
+            {{ $t('sFeeFomo.text2') }}
           </p>
         </div>
 
         <div class='body2 to-orange-900 from-yellow-800 text-orange-300'>
           <h3>
-            For each transaction:
+            {{ $t('sFee.forEachTransaction') }}
           </h3>
 
           <p>
-            Take
+            {{ $t('sFee.take') }}
             <span v-if='$store.state.bsc.takerFee.fomo > "0"'>
-              {{ $store.state.bsc.takerFee.fomo }}% from taker,
+              {{ $store.state.bsc.takerFee.fomo }}%
+              {{ $t('sFee.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.fomo > "0"'>
-              {{ $store.state.bsc.makerFee.fomo }}% from maker,
+              {{ $store.state.bsc.makerFee.fomo }}%
+              {{ $t('sFee.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.fomo > "0"'>
-              {{ $store.state.bsc.whaleFee.fomo }}% from whale,
+              {{ $store.state.bsc.whaleFee.fomo }}%
+              {{ $t('sFee.fromWhale') }}
             </span>
-            then deposit to the FOMO pool;
-            after
-            <span v-if='timerStep.h > "0"'>{{ timerStep.h }} hours,</span>
-            <span v-if='timerStep.m > "0"'>{{ timerStep.m }} minutes,</span>
-            <span v-if='timerStep.s > "0"'>{{ timerStep.s }} seconds,</span>
-            if no other user buy more than
+            {{ $t('sFeeFomo.thenDeposit__') }}
+            <span v-if='timerStep.h > "0"'>{{ timerStep.h }} {{ $t('sFeeFomo.hours') }}</span>
+            <span v-if='timerStep.m > "0"'>{{ timerStep.m }} {{ $t('sFeeFomo.minutes') }}</span>
+            <span v-if='timerStep.s > "0"'>{{ timerStep.s }} {{ $t('sFeeFomo.seconds') }}</span>
+            {{ $t('sFeeFomo.ifNoOther__') }}
             <CBN :value='fomo.threshold' :token='true' />
-            HyperDeFi from PancakeSwap,
-            the last buyer will win this prize.
+            HyperDeFi{{ $t('sFeeFomo.fromPancake__') }}
           </p>
 
           <div v-if='$store.state.bsc.supply.fomo > "0"' class='mt-5 inline-flex rounded-md shadow'>
@@ -52,7 +53,9 @@
                class='a-track bg-yellow-700 hover:bg-yellow-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
-                Track all {{ oCounter + iCounter }} FOMO transfers
+                {{ $t('sFee.trackAll') }}
+                {{ oCounter + iCounter }}
+                {{ $t('sFeeFomo.trackFomoTransfers') }}
               </span>
             </a>
           </div>
@@ -62,7 +65,7 @@
       <dl v-if='iAmount > "0"' class='hdf-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-3'>
         <div>
           <dt>
-            Next FOMO Prize
+            {{ $t('sFeeFomo.statNextFomoPrize') }}
           </dt>
           <dd>
             <CBN :value='fomo.amount' :token='true' />
@@ -71,25 +74,18 @@
 
         <div>
           <dt>
-            FOMO countdown timer
+            {{ $t('sFeeFomo.statFomoCountdownTimer') }}
           </dt>
-          <dd>
-            <span v-if='!fomo.countdown.finished'>
-              <span v-if='fomo.countdown.hh > "00"'>{{ fomo.countdown.hh }}:</span>{{ fomo.countdown.mm
-              }}:{{ fomo.countdown.ss }}
-            </span>
-            <span v-else-if='this.isZero(fomo.next)'>
-              Finished
-            </span>
-            <span v-else>
-              Finishing
-            </span>
+          <dd class='inline-flex justify-center'>
+            <span v-if='fomo.countdown.hh > "00"'>{{ fomo.countdown.hh }}:</span>
+            <span>{{ fomo.countdown.mm }}:</span>
+            <span>{{ fomo.countdown.ss }}</span>
           </dd>
         </div>
 
         <div class='flex flex-col mt-10 lg:mt-0'>
           <dt class='order-2 mt-1 text-base leading-6 font-medium text-yellow-100'>
-            FOMO Transfers
+            {{ $t('sFeeFomo.statFomoTransfers') }}
           </dt>
           <dd class='order-1 text-3xl font-extrabold text-white'>
             <CBN :value='oCounter' />
@@ -101,10 +97,10 @@
       <div class='mt-10 md:mt-12'>
         <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>
           <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>
-            FOMO Prize Winner
+            {{ $t('sFeeFomo.prizeWinner') }}
           </span>
           <span v-else>
-            Next Winner
+            {{ $t('sFeeFomo.nextWinner') }}
           </span>
         </h6>
 
@@ -112,7 +108,7 @@
           <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>
             <span
               class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>
-              Address
+              {{ $t('sFeeFomo.address') }}
             </span>
             <div
               class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>
@@ -120,7 +116,7 @@
                 {{ fomo.next }}
               </span>
               <span v-else class='font-normal text-gray-400'>
-                Next Buyer 0x...
+                {{ $t('sFeeFomo.nextBuyer') }} 0x...
               </span>
             </div>
           </div>
@@ -130,7 +126,9 @@
 
       <div v-if='oTransactions.length'>
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>
-          Latest {{ oTransactions.length }} FOMO Prize
+          {{ $t('txTable.latest') }}
+          {{ oTransactions.length }}
+          {{ $t('sFeeFomo.fomoPrizeHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -147,8 +145,8 @@
                     HyperDeFi
                   </h4>
                   <p class='text-sm text-gray-500'>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </p>
                 </div>
@@ -168,21 +166,21 @@
                 <thead>
                 <tr>
                   <th scope='col'>
-                    Block
+                    {{ $t('txTable.block') }}
                   </th>
                   <th scope='col'>
-                    Address
+                    {{ $t('txTable.address') }}
                   </th>
                   <th scope='col'>
-                    Amount
+                    {{ $t('txTable.amount') }}
                   </th>
                 </tr>
                 </thead>
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in oTransactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </td>
                   <td class='font-mono'>

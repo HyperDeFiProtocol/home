@@ -2,7 +2,7 @@ export default {
   title: 'Trade',
   titleFees: 'Fees',
   tag: 'Rules',
-  desc: 'Fees will be taken from each transaction: Lotto, FOMO, LP Acquisition, Burn, Fund, and Tax share to every holders',
+  desc: 'Fees will be taken from each transaction: Lotto, FOMO, LP Acquisition, Fund, Burn, and Tax share to every holders',
 
   tradeFees: 'Trade Fees',
 
@@ -46,6 +46,7 @@ export default {
   script4Fund_: 'for Fund,',
   script4Burning_: 'for Burning).',
 
+  trackAll: 'Track all',
   forEachTransaction: 'For each transaction:',
 
   take: 'Take',

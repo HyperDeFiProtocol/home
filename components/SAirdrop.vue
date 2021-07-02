@@ -92,8 +92,8 @@
                     HyperDeFi
                   </h4>
                   <p class='text-sm text-gray-500'>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </p>
                 </div>
@@ -126,8 +126,8 @@
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </td>
                   <td class='font-mono'>

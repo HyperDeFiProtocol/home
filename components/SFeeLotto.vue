@@ -8,45 +8,50 @@
 
     <LAutoWidth class='auto-layout'>
       <main>
-
-
         <div class='header2'>
           <h2 class='text-teal-400'>
-            Lotto
+            {{ $t('sFeeLotto.title') }}
           </h2>
           <p>
-            For every HyperDeFi holder, can be obtained multiple times.
+            {{ $t('sFeeLotto.text') }}
           </p>
         </div>
 
         <div class='body1 to-blue-900 from-teal-900 text-teal-300'>
           <h3>
-            For each transaction:
+            {{ $t('sFee.forEachTransaction') }}
           </h3>
 
           <p>
-            Take
+            {{ $t('sFee.take') }}
             <span v-if='$store.state.bsc.takerFee.lotto > "0"'>
-              {{ $store.state.bsc.takerFee.lotto }}% from taker,
+              {{ $store.state.bsc.takerFee.lotto }}%
+              {{ $t('sFee.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.lotto > "0"'>
-              {{ $store.state.bsc.makerFee.lotto }}% from maker,
+              {{ $store.state.bsc.makerFee.lotto }}%
+              {{ $t('sFee.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.lotto > "0"'>
-              {{ $store.state.bsc.whaleFee.lotto }}% from whale,
+              {{ $store.state.bsc.whaleFee.lotto }}%
+              {{ $t('sFee.fromWhale') }}
             </span>
-            then randomly send to 1 HyperDeFi holder (minimum holding
+            {{ $t('sFeeLotto.takeThen__') }}
             <CBN :value='String($store.state.bsc.global.lottoThreshold)' :token='true' />
-            HyperDeFi).
-            <span v-if='$store.state.bsc.global.holders > "0"'>Now, every holder has a 1/<CBN
-              :value='String($store.state.bsc.global.holders)' /> chance of winning this.</span>
+            HyperDeFi{{ $t('sFeeLotto.takeThen2__') }}
+            <span v-if='$store.state.bsc.metadata.holders > "0"'>
+              {{ $t('sFeeLotto.now__') }} 1/<CBN :value='String($store.state.bsc.metadata.holders)' />
+              {{ $t('sFeeLotto.chance__') }}
+            </span>
           </p>
 
           <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
             <a href='#' class='a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
-                Track all {{ counter }} lotto transfers
+                {{ $t('sFee.trackAll') }}
+                {{ counter }}
+                {{ $t('sFeeLotto.trackLottoTransfers') }}
               </span>
             </a>
           </div>
@@ -56,7 +61,7 @@
       <dl v-if='counter > "0"' class='hdf-stat lg:max-w-4xl grid grid-cols-1 sm:grid-cols-2'>
         <div>
           <dt>
-            Lotto Transfers
+            {{ $t('sFeeLotto.statLottoTransfers') }}
           </dt>
           <dd>
             <CBN :value='counter' />
@@ -74,7 +79,7 @@
 
         <div>
           <dt>
-            Total Lotto
+            {{ $t('sFeeLotto.statTotalLotto') }}
           </dt>
           <dd>
             <CBN :value='amount' :token='true' />
@@ -85,7 +90,9 @@
 
       <div v-if='transactions.length'>
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-teal-500 tracking-wide uppercase'>
-          Latest {{ transactions.length }} Lotto History
+          {{ $t('txTable.latest') }}
+          {{ transactions.length }}
+          {{ $t('sFeeLotto.lottoHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -123,21 +130,21 @@
                 <thead>
                 <tr>
                   <th scope='col'>
-                    Block
+                    {{ $t('txTable.block') }}
                   </th>
                   <th scope='col'>
-                    Address
+                    {{ $t('txTable.address') }}
                   </th>
                   <th scope='col'>
-                    Amount
+                    {{ $t('txTable.amount') }}
                   </th>
                 </tr>
                 </thead>
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </td>
                   <td class='font-mono'>

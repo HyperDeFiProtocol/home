@@ -8,44 +8,43 @@
 
     <LAutoWidth class='auto-layout'>
       <main>
-
-
         <div class='header2'>
           <h2 class='text-rose-400'>
-            LP Acquisition
+            {{ $t('sFeeLiquidity.title') }}
           </h2>
           <p>
-            Globally, keep making the PancakeSwap liquidity stronger.
+            {{ $t('sFeeLiquidity.text') }}
           </p>
         </div>
 
         <div class='body1 to-red-900 from-rose-900 text-rose-300'>
           <h3>
-            For each transaction:
+            {{ $t('sFee.forEachTransaction') }}
           </h3>
 
           <p>
-            Take
+            {{ $t('sFee.take') }}
             <span v-if='$store.state.bsc.takerFee.liquidity > "0"'>
-              {{ $store.state.bsc.takerFee.liquidity }}% from taker,
+              {{ $store.state.bsc.takerFee.liquidity }}%
+              {{ $t('sFee.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.liquidity > "0"'>
-              {{ $store.state.bsc.makerFee.liquidity }}% from maker,
+              {{ $store.state.bsc.makerFee.liquidity }}%
+              {{ $t('sFee.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.liquidity > "0"'>
-              {{ $store.state.bsc.whaleFee.liquidity }}% from whale,
+              {{ $store.state.bsc.whaleFee.liquidity }}%
+              {{ $t('sFee.fromWhale') }}
             </span>
-            then send to the Buffer pool.
-            When the balance of Buffer pool grows larger than
+            {{ $t('sFeeLiquidity.thenDeposit1__') }}
             <CBN :value='$store.state.bsc.global.autoSwapAmountMin' :token='true' /> HyperDeFi
-            ({{ $store.state.bsc.global.autoSwapNumeratorMin }}/<CBN :value='$store.state.bsc.global.autoSwapDenominator' />
-            of the PancakeSwap liquidity,
-            max limit is <CBN :value='$store.state.bsc.global.autoSwapAmountMax' :token='true' />),
-            half of them will be swapped to BUSD, and add into the liquidity with the other half.
+            {{ $t('sFeeLiquidity.thenDeposit2__') }}
+            {{ $store.state.bsc.global.autoSwapNumeratorMin }}/<CBN :value='$store.state.bsc.global.autoSwapDenominator' />{{ $t('sFeeLiquidity.thenDeposit3__') }}
+<!--            max limit is <CBN :value='$store.state.bsc.global.autoSwapAmountMax' :token='true' />-->
           </p>
 
           <p>
-            New LP Tokens will be sent to the black-hole address, nobody can remove the global liquidity.
+            {{ $t('sFeeLiquidity.newLPTokens__') }}
           </p>
         </div>
       </main>
@@ -54,7 +53,7 @@
 
         <div>
           <dt>
-            Liquidity Market Value
+            {{ $t('sFeeLiquidity.statLiquidityMarketValue') }}
           </dt>
           <dd>
             $<CBN :value='String($store.state.bsc.marketValue.liquidity)' :price='true' :padding='9' /> USD
@@ -63,7 +62,7 @@
 
         <div>
           <dt>
-            Liquidity
+            {{ $t('sFeeLiquidity.statLiquidity') }}
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.liquidity)' :token='true' />
@@ -71,10 +70,12 @@
         </div>
 
         <div>
-          <dt>
-            Buffer
+          <dt class='inline-flex justify-center'>
+            <span>
+              {{ $t('sFeeLiquidity.statBuffer') }}
+            </span>
             <span v-if='$store.state.bsc.global.autoSwapReady'>
-              Ready
+              {{ $t('sFeeLiquidity.statReady') }}
             </span>
           </dt>
           <dd>

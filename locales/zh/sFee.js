@@ -2,7 +2,7 @@ export default {
   title: '交易',
   titleFees: '费用',
   tag: '规则',
-  desc: '费用将在每笔交易中收取：乐透、FOMO、流动性回收，销毁，和全球税分享给每一位持有人',
+  desc: '费用将在每笔交易中收取：乐透、FOMO、流动池回收、基金、销毁、和全球税分享给每一位持有人',
 
   tradeFees: '交易费用',
 
@@ -17,7 +17,7 @@ export default {
   tax: '税',
   lotto: '乐透',
   fomo: 'FOMO',
-  lpAcquisition: '流动性回收',
+  lpAcquisition: '流动池回收',
   fund: '基金',
   burn: '销毁',
 
@@ -26,7 +26,7 @@ export default {
   freeForWhale: '鲸鱼费用免除',
 
   definitions: '定义',
-  definitionsTaker: '向 PancakeSwap 流动性售出，或一笔普通转账的发送者',
+  definitionsTaker: '向 PancakeSwap 流动性出售，或一笔普通转账的发送者',
   definitionsMaker: '从 PancakeSwap 流动性买入',
   definitionsWhaleWho__: '持有或交易',
   definitionsWhaleMoreThan: '大于',
@@ -42,10 +42,11 @@ export default {
   script4Tax_: '进入税收矿池，',
   script4Lotto_: '发放乐透，',
   script4FOMO_: '存入 FOMO，',
-  script4LPAcquisition_: '回收至 LP 流动池，',
+  script4LPAcquisition_: '流动性回收，',
   script4Fund_: '用于基金，',
   script4Burning_: '销毁）。',
 
+  trackAll: '跟踪所有',
   forEachTransaction: '对于每笔交易：',
 
   take: '征收',

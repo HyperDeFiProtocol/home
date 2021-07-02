@@ -19,7 +19,9 @@
                class='inline-flex items-center px-4 py-1 border border-transparent text-base font-medium rounded-md text-emerald-300 bg-emerald-900 hover:bg-emerald-800 focus:outline-none' />
           </div>
 
-          <div class='-mr-2 flex items-center md:hidden'>
+          <div class='-mr-2 flex items-center space-x-4 md:hidden'>
+            <BtnTranslate class='text-gray-500 hover:text-gray-200 focus:outline-none' />
+
             <button type='button'
                     class='bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
                     aria-expanded='false'
@@ -42,6 +44,8 @@
       </div>
 
       <div class='hidden md:flex md:items-center md:space-x-6'>
+        <BtnTranslate class='text-gray-500 hover:text-gray-200 focus:outline-none' />
+
         <a v-if='$store.state.wallet.account' class='btn-md-account'
            target='_blank' :href='hdfLink.exploreToken4address($store.state.wallet.account)'>
           {{ $store.state.wallet.account.slice(0, 4) }}...{{ $store.state.wallet.account.slice(-4) }}

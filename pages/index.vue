@@ -9,7 +9,7 @@
     <SFeeLotto />
     <SFeeFomo class='bg-gray-800' />
     <SFeeLiquidity />
-    <SFeeDev class='bg-gray-800' />
+    <SFeeFund class='bg-gray-800' />
     <SFeeBurn />
     <SReadyForDApps class='bg-gray-800' />
     <SDAppsComingSoon />

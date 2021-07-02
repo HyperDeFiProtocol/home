@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: 'SFeeDev',
+  name: 'SFeeFund',
 }
 </script>
 
