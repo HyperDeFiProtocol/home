@@ -111,11 +111,13 @@
             </span>
           </span>
           <span class="mt-1 block text-base text-gray-300">
-            <BtnConnectWallet class='text-base focus:outline-none'>
+            <BtnConnectWallet class='inline-flex text-base focus:outline-none'>
               <span class="font-medium text-white">
                 {{ $t('sMarketValue.clickHere') }}
               </span>
-              {{ $t('sMarketValue.toConnectWallet_') }}
+              <span class='text-violet-300'>
+                {{ $t('sMarketValue.toConnectWallet_') }}
+              </span>
             </BtnConnectWallet>
           </span>
         </p>

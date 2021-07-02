@@ -2,38 +2,38 @@
   <div>
     <LAutoWidth class='py-16 px-4 sm:py-24'>
       <CH2>
-        <span class='text-violet-400'>Airdrop</span>
+        <span class='text-violet-400'>
+          {{ $t('sAirdrop.title') }}
+        </span>
         <span>
           <span v-if='$store.state.bsc.supply.airdrop === "0"'>
-            Ended
+            {{ $t('sAirdrop.titleEnded') }}
           </span>
           <span v-else-if='$store.state.bsc.global.airdropMode'>
-            Ongoing
+            {{ $t('sAirdrop.titleOngoing') }}
           </span>
           <span v-else>
-            Paused
+            {{ $t('sAirdrop.titlePaused') }}
           </span>
         </span>
 
         <template #tag>
-          Free Gift
+          {{ $t('sAirdrop.tag') }}
         </template>
         <template #desc>
-          Up to
-          <CBN :value='String($store.state.bsc.global.airdropMax)' :token='true' />
-          HyperDeFi per address;
-          will be issued after the first buy from PancakeSwap for every address;
-          totally
-          <CBN :value='summed' :token='true' />
-          HyperDeFi,
-          first-come, first-served.
+          {{ $t('sAirdrop.descUpTo') }}
+          <CBN :value='String($store.state.bsc.global.airdropMax)' :token='true' /> HyperDeFi
+          {{ $t('sAirdrop.descUpPerAddress_') }}
+          {{ $t('sAirdrop.descWill__') }}
+          <CBN :value='summed' :token='true' /> HyperDeFi
+          {{ $t('sAirdrop.descFirstCame__') }}
         </template>
       </CH2>
 
       <dl class='hdf-stat grid grid-cols-1 sm:grid-cols-2 lg:max-w-3xl'>
         <div>
           <dt>
-            Remaining
+            {{ $t('sAirdrop.remaining') }}
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.airdrop)' :token='true' />
@@ -43,18 +43,17 @@
 
         <div>
           <dt>
-            Total Airdrop Market Value
+            {{ $t('sAirdrop.totalAirdropMarketValue') }}
           </dt>
           <dd>
-            $
-            <CBN :value='summedMarketValue' :price='true' :padding='6' />
+            $<CBN :value='summedMarketValue' :price='true' :padding='6' />
             USD
           </dd>
         </div>
 
         <div>
           <dt>
-            Airdropped
+            {{ $t('sAirdrop.airdropped') }}
           </dt>
           <dd>
             <CBN :value='amount' :token='true' />
@@ -64,7 +63,7 @@
 
         <div>
           <dt>
-            Airdrop Transfer
+            {{ $t('sAirdrop.airdropTransfer') }}
           </dt>
           <dd>
             <CBN :value='counter' />
@@ -74,7 +73,9 @@
 
       <div v-if='transactions.length'>
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-violet-400 tracking-wide uppercase'>
-          Latest {{ transactions.length }} Airdrop History
+          {{ $t('txTable.latest') }}
+          {{ transactions.length }}
+          {{ $t('sAirdrop.txAirdropHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -112,13 +113,13 @@
                 <thead>
                 <tr>
                   <th scope='col'>
-                    Block
+                    {{ $t('txTable.block') }}
                   </th>
                   <th scope='col'>
-                    Address
+                    {{ $t('txTable.address') }}
                   </th>
                   <th scope='col'>
-                    Amount
+                    {{ $t('txTable.amount') }}
                   </th>
                 </tr>
                 </thead>

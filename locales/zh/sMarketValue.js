@@ -5,7 +5,7 @@ export default {
   with: '有',
   decimals: '位小数',
 
-  trackWith__: '用 BSC 浏览器追踪',
+  trackWith__: '使用 BSC 浏览器追踪',
 
   latestPrice_: '最新价格，',
   providedBy: '提供者',

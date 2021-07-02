@@ -1,6 +1,6 @@
 export default {
   tag: '特性',
-  title: '更好的加密货币，适合持有',
+  title: '持有更好的加密货币',
   desc: '一场关于财富的社会实验',
 
   communityDriven: '社区驱动',

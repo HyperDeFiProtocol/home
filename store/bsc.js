@@ -108,7 +108,7 @@ export const state = () => ({
 
     countdown: {
       interval: null,
-      finished: false,
+      finished: true,
 
       hh: '00',
       mm: '00',
@@ -338,6 +338,8 @@ export const mutations = {
     const duration = moment.duration(moment(state.global.launchTimestamp * 1000).diff(moment()))
 
     if (duration.asSeconds() > 0) {
+      state.global.launchCountdown.finished = false
+
       const s = duration.seconds()
       const m = duration.minutes()
       const h = duration.hours()
