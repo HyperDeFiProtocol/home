@@ -1,3 +1,5 @@
+import siteNav from '~/locales/zh/siteNav'
+
 import connectWallet from '~/locales/zh/btnConnectWallet'
 import getHarvest from '~/locales/zh/btnGetHarvest'
 import sWelcome from '~/locales/zh/sWelcome'
@@ -20,8 +22,10 @@ import sGlobalAccounts from '~/locales/zh/sGlobalAccounts'
 import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
 
+// zh
 export default {
-  lang: '简体中文',
+  siteNav: siteNav,
+
   connectWallet: connectWallet,
   getHarvest: getHarvest,
   txTable: txTable,
@@ -42,6 +46,6 @@ export default {
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,
   sRestraint: sRestraint,
-  sGlobalAccounts: sGlobalAccounts,
+  sGlobalAccounts: sGlobalAccounts
 
 }

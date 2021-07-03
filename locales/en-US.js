@@ -1,3 +1,5 @@
+import siteNav from '~/locales/en/siteNav'
+
 import connectWallet from '~/locales/en/btnConnectWallet'
 import getHarvest from '~/locales/en/btnGetHarvest'
 import sWelcome from '~/locales/en/sWelcome'
@@ -20,9 +22,10 @@ import sGlobalAccounts from '~/locales/en/sGlobalAccounts'
 import txTable from '~/locales/en/txTable'
 import user from '~/locales/en/user'
 
-
+// en
 export default {
-  lang: 'English',
+  siteNav: siteNav,
+
   connectWallet: connectWallet,
   getHarvest: getHarvest,
   txTable: txTable,
@@ -43,6 +46,6 @@ export default {
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,
   sRestraint: sRestraint,
-  sGlobalAccounts: sGlobalAccounts,
+  sGlobalAccounts: sGlobalAccounts
 
 }

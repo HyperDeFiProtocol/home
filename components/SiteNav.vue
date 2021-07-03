@@ -3,7 +3,7 @@
     <LAutoWidth class='relative pt-6 flex items-center justify-between px-4 sm:px-6' aria-label='Global'>
       <div class='flex items-center flex-1'>
         <div class='flex items-center justify-between w-full md:w-auto'>
-          <nuxt-link to='/' class='text-violet-500 hover:text-violet-600'>
+          <nuxt-link :to='localePath("/")' class='text-violet-500 hover:text-violet-600'>
             <span class='sr-only'>HyperDeFi Home</span>
             <IconDiceHyper class='h-8 w-auto sm:h-10' />
           </nuxt-link>
@@ -37,8 +37,9 @@
         </div>
 
         <div class='hidden space-x-8 md:flex md:ml-10'>
-          <nuxt-link v-for='item in navigation' :key='item.name' :to='item.href'
-                     class='font-medium text-white hover:text-gray-300'>{{ item.name }}
+          <nuxt-link v-for='item in navigation' :key='item.name' :to='localePath(item.href)'
+                     class='font-medium text-white hover:text-gray-300'>
+            {{ $t('siteNav.' + item.name) }}
           </nuxt-link>
         </div>
       </div>
@@ -72,9 +73,9 @@
         </div>
         <div class='pt-5 pb-6'>
           <div class='px-2 space-y-1'>
-            <nuxt-link v-for='item in navigation' :key='item.name' :to='item.href'
+            <nuxt-link v-for='item in navigation' :key='item.name' :to='localePath(item.href)'
                        class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
-              {{ item.name }}
+              {{ $t('siteNav.' + item.name) }}
             </nuxt-link>
           </div>
           <div class='mt-6 px-5'>
@@ -95,7 +96,7 @@ const navigation = [
   // { name: 'Product', href: '#' },
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
-  { name: 'Tx Explorer', href: '/txs' }
+  { name: 'txExplorer', href: '/txs' }
 ]
 
 
