@@ -14,6 +14,7 @@ import sFeeBurn from '~/locales/zh/sFeeBurn'
 
 import sReadyForDApps from '~/locales/zh/sReadyForDApps'
 import sDApps from '~/locales/zh/sDApps'
+import sRestraint from '~/locales/zh/sRestraint'
 
 import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
@@ -39,5 +40,6 @@ export default {
 
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,
+  sRestraint: sRestraint,
 
 }

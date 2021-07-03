@@ -2,14 +2,18 @@
   <div>
     <LAutoWidth class="py-16 px-4 sm:py-24">
       <CH2>
-        Team
-        <span class="text-violet-400">Restraint</span>
+        <span>
+          {{ $t('sRestraint.title1') }}
+        </span>
+        <span class="text-violet-400">
+          {{ $t('sRestraint.title2') }}
+        </span>
 
 <!--        <template #tag>-->
 <!--          DApps-->
 <!--        </template>-->
         <template #desc>
-          Long-term value is more important than immediate benefits.
+          {{ $t('sRestraint.desc') }}
         </template>
       </CH2>
 
@@ -23,11 +27,11 @@
                 <HeroIconOutlineChartPie class="h-6 w-6" />
               </div>
               <p class="mt-5 text-lg leading-6 font-medium text-gray-200">
-                No reservations
+                {{ $t('sRestraint.s1') }}
               </p>
             </dt>
             <dd class="mt-2 text-base text-gray-500">
-              The team has no initial set-aside, fair participation, and will grow along with the HyperDeFi ecology.
+              {{ $t('sRestraint.s1__') }}
             </dd>
           </div>
 
@@ -37,12 +41,11 @@
                 <HeroIconOutlineLockClosed class="h-6 w-6" />
               </div>
               <p class="mt-5 text-lg leading-6 font-medium text-gray-200">
-                Cannot remove the liquidity
+                {{ $t('sRestraint.s2') }}
               </p>
             </dt>
             <dd class="mt-2 text-base text-gray-500">
-              The global LP Token is held by the black-hole address, not any private address,
-              there is no possibility of cheating and the liquidity cannot be removed.
+              {{ $t('sRestraint.s2__') }}
             </dd>
           </div>
 
@@ -52,11 +55,11 @@
                 <HeroIconOutlineBan class="h-6 w-6" />
               </div>
               <p class="mt-5 text-lg leading-6 font-medium text-gray-200">
-                No backdoor
+                {{ $t('sRestraint.s3') }}
               </p>
             </dt>
             <dd class="mt-2 text-base text-gray-500">
-              No privileges, no backdoor, open-sourced.
+              {{ $t('sRestraint.s3__') }}
             </dd>
           </div>
         </dl>
