@@ -23,6 +23,8 @@ import sGlobalAccounts from '~/locales/en/sGlobalAccounts'
 import txTable from '~/locales/en/txTable'
 import user from '~/locales/en/user'
 
+import modalNoWeb3 from '~/locales/en/modalNoWeb3'
+
 // en
 export default {
   locales: locales,
@@ -49,6 +51,7 @@ export default {
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,
   sRestraint: sRestraint,
-  sGlobalAccounts: sGlobalAccounts
+  sGlobalAccounts: sGlobalAccounts,
 
+  modalNoWeb3: modalNoWeb3,
 }

@@ -23,6 +23,8 @@ import sGlobalAccounts from '~/locales/zh/sGlobalAccounts'
 import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
 
+import modalNoWeb3 from '~/locales/zh/modalNoWeb3'
+
 // zh
 export default {
   locales: locales,
@@ -49,6 +51,7 @@ export default {
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,
   sRestraint: sRestraint,
-  sGlobalAccounts: sGlobalAccounts
+  sGlobalAccounts: sGlobalAccounts,
 
+  modalNoWeb3: modalNoWeb3,
 }
