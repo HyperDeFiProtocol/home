@@ -16,15 +16,16 @@
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                Unsupported Chain ID
+                {{ $t('modalUnsupportedChainId.title') }}
               </h3>
               <div class="mt-2">
                 <p class="text-sm text-gray-500">
-                  Please
+                  {{ $t('modalUnsupportedChainId.please') }}
                   <span v-if='mode === "production"'>
                     visit with your Trust Wallet App or
                   </span>
-                  change your MetaMask to <b>{{ chainName }}</b>.
+                  {{ $t('modalUnsupportedChainId.change__') }}
+                  <b>{{ chainName }}</b>.
                 </p>
               </div>
             </div>
@@ -34,11 +35,11 @@
           <a target='_blank'
              :href='hdfLink.githubToWiki("home", "Connecting-MetaMask-to-Binance-Smart-Chain")'
              class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">
-            Read Guidance
+            {{ $t('modalUnsupportedChainId.read') }}
           </a>
           <button type="button" @click='close'
-                  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-            Close
+                  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+            {{ $t('modalUnsupportedChainId.close') }}
           </button>
         </div>
       </div>

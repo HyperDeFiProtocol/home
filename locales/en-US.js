@@ -23,7 +23,9 @@ import sGlobalAccounts from '~/locales/en/sGlobalAccounts'
 import txTable from '~/locales/en/txTable'
 import user from '~/locales/en/user'
 
+import modal from '~/locales/en/modal'
 import modalNoWeb3 from '~/locales/en/modalNoWeb3'
+import modalUnsupportedChainId from '~/locales/en/modalUnsupportedChainId'
 
 // en
 export default {
@@ -53,5 +55,7 @@ export default {
   sRestraint: sRestraint,
   sGlobalAccounts: sGlobalAccounts,
 
+  modal: modal,
   modalNoWeb3: modalNoWeb3,
+  modalUnsupportedChainId: modalUnsupportedChainId,
 }

@@ -199,27 +199,29 @@ export default {
           console.error('>>> SAirdrop:', error)
         })
 
-      events.reverse()
-      // console.log(events)
-      let amount = new BN()
-      let transactions = []
-      for (let i = 0; i < events.length; i++) {
-        amount = amount.add(new BN(events[i].returnValues.value))
+      if (events) {
+        events.reverse()
+        // console.log(events)
+        let amount = new BN()
+        let transactions = []
+        for (let i = 0; i < events.length; i++) {
+          amount = amount.add(new BN(events[i].returnValues.value))
 
-        if (i < 10) {
-          transactions.push({
-            blockNumber: events[i].blockNumber,
-            txHash: events[i].transactionHash,
+          if (i < 10) {
+            transactions.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
 
-            account: events[i].returnValues.to,
-            amount: events[i].returnValues.value
-          })
+              account: events[i].returnValues.to,
+              amount: events[i].returnValues.value
+            })
+          }
         }
-      }
 
-      this.transactions = transactions
-      this.counter = events.length
-      this.amount = amount.toString()
+        this.transactions = transactions
+        this.counter = events.length
+        this.amount = amount.toString()
+      }
     }
   }
 }</script>

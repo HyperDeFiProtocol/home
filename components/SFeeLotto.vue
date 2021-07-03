@@ -212,29 +212,31 @@ export default {
           console.error('>>> SFeeLotto:', error)
         })
 
-      events.reverse()
-      // console.log(events)
+      if (events) {
+        events.reverse()
+        // console.log(events)
 
-      let amount = new BN()
-      let transactions = []
-      for (let i = 0; i < events.length; i++) {
-        amount = amount.add(new BN(events[i].returnValues.amount))
+        let amount = new BN()
+        let transactions = []
+        for (let i = 0; i < events.length; i++) {
+          amount = amount.add(new BN(events[i].returnValues.amount))
 
-        if (i < 10) {
-          transactions.push({
-            blockNumber: events[i].blockNumber,
-            txHash: events[i].transactionHash,
+          if (i < 10) {
+            transactions.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
 
-            account: events[i].returnValues.account,
-            amount: events[i].returnValues.amount
-          })
+              account: events[i].returnValues.account,
+              amount: events[i].returnValues.amount
+            })
+          }
         }
-      }
 
-      this.transactions = transactions
-      this.counter = events.length
-      this.amount = amount.toString()
-      this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+        this.transactions = transactions
+        this.counter = events.length
+        this.amount = amount.toString()
+        this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+      }
     }
   }
 }

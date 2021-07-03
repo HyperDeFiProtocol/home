@@ -276,26 +276,29 @@ export default {
           console.error('>>> SFeeFomo:', error)
         })
 
-      oEvents.reverse()
-      let burned = new BN()
-      let transactions = []
-      for (let i = 0; i < oEvents.length; i++) {
-        burned = burned.add(new BN(oEvents[i].returnValues.value))
+      if (oEvents) {
+        oEvents.reverse()
+        let burned = new BN()
+        let transactions = []
+        for (let i = 0; i < oEvents.length; i++) {
+          burned = burned.add(new BN(oEvents[i].returnValues.value))
 
-        if (i < 10) {
-          transactions.push({
-            blockNumber: String(oEvents[i].blockNumber),
-            txHash: oEvents[i].transactionHash,
+          if (i < 10) {
+            transactions.push({
+              blockNumber: String(oEvents[i].blockNumber),
+              txHash: oEvents[i].transactionHash,
 
-            account: oEvents[i].returnValues.to,
-            amount: oEvents[i].returnValues.value
-          })
+              account: oEvents[i].returnValues.to,
+              amount: oEvents[i].returnValues.value
+            })
+          }
         }
+
+        this.oTransactions = transactions
+        this.oCounter = oEvents.length
+        this.oAmount = burned.toString()
       }
 
-      this.oTransactions = transactions
-      this.oCounter = oEvents.length
-      this.oAmount = burned.toString()
 
       // in
       const iEvents = await this.$store.state.bsc.token()
@@ -310,15 +313,17 @@ export default {
           console.error('>>> SFeeFomo:', error)
         })
 
-      iEvents.reverse()
-      let iAmount = new BN()
-      for (let i = 0; i < iEvents.length; i++) {
-        iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
-      }
+      if (iEvents) {
+        iEvents.reverse()
+        let iAmount = new BN()
+        for (let i = 0; i < iEvents.length; i++) {
+          iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
+        }
 
-      this.iCounter = iEvents.length
-      this.iAmount = iAmount.toString()
-      this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+        this.iCounter = iEvents.length
+        this.iAmount = iAmount.toString()
+        this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
+      }
     }
   }
 

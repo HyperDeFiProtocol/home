@@ -23,7 +23,9 @@ import sGlobalAccounts from '~/locales/zh/sGlobalAccounts'
 import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
 
+import modal from '~/locales/zh/modal'
 import modalNoWeb3 from '~/locales/zh/modalNoWeb3'
+import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 
 // zh
 export default {
@@ -53,5 +55,7 @@ export default {
   sRestraint: sRestraint,
   sGlobalAccounts: sGlobalAccounts,
 
+  modal: modal,
   modalNoWeb3: modalNoWeb3,
+  modalUnsupportedChainId: modalUnsupportedChainId,
 }
