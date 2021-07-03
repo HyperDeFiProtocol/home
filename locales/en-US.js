@@ -1,4 +1,3 @@
-import locales from '~/locales/en/locales'
 import siteNav from '~/locales/en/siteNav'
 
 import connectWallet from '~/locales/en/btnConnectWallet'
@@ -24,13 +23,12 @@ import txTable from '~/locales/en/txTable'
 import user from '~/locales/en/user'
 
 import modal from '~/locales/en/modal'
+import modalLang from '~/locales/en/modalLang'
 import modalNoWeb3 from '~/locales/en/modalNoWeb3'
 import modalUnsupportedChainId from '~/locales/en/modalUnsupportedChainId'
 
 // en
 export default {
-  locales: locales,
-
   siteNav: siteNav,
 
   connectWallet: connectWallet,
@@ -56,6 +54,7 @@ export default {
   sGlobalAccounts: sGlobalAccounts,
 
   modal: modal,
+  modalLang: modalLang,
   modalNoWeb3: modalNoWeb3,
   modalUnsupportedChainId: modalUnsupportedChainId,
 }

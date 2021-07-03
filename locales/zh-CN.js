@@ -1,4 +1,3 @@
-import locales from '~/locales/zh/locales'
 import siteNav from '~/locales/zh/siteNav'
 
 import connectWallet from '~/locales/zh/btnConnectWallet'
@@ -24,13 +23,12 @@ import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
 
 import modal from '~/locales/zh/modal'
+import modalLang from '~/locales/zh/modalLang'
 import modalNoWeb3 from '~/locales/zh/modalNoWeb3'
 import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 
 // zh
 export default {
-  locales: locales,
-
   siteNav: siteNav,
 
   connectWallet: connectWallet,
@@ -56,6 +54,7 @@ export default {
   sGlobalAccounts: sGlobalAccounts,
 
   modal: modal,
+  modalLang: modalLang,
   modalNoWeb3: modalNoWeb3,
   modalUnsupportedChainId: modalUnsupportedChainId,
 }

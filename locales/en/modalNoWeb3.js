@@ -9,5 +9,4 @@ export default {
   orScan__: 'Or: scan with your Trust Wallet App',
 
   installMetaMask: 'Install MetaMask',
-  close: 'Close',
 }

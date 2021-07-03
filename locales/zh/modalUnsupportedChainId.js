@@ -3,6 +3,4 @@ export default {
   please: '请',
   change__: '切换 MetaMask 到',
   read: '阅读指导',
-  close: '关闭',
-
 }

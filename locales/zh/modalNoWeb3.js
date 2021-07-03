@@ -7,5 +7,4 @@ export default {
 
   orScan__: '或者：使用 Trust Wallet App 扫码',
   installMetaMask: '安装 MetaMask',
-  close: '关闭',
 }
