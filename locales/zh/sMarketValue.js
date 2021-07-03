@@ -22,7 +22,7 @@ export default {
   holders_: '持有人数，',
   _holding_: '正在钱包中持有 HyperDeFi',
 
-  checkYour: '查看你的',
+  checkYour: '查看您的',
   harvest_: '持币挖矿？',
 
   clickHere: '点此',
