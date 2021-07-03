@@ -40,7 +40,7 @@
 import locales from '~/locales/conf'
 
 export default {
-  name: 'SLang',
+  name: 'ModalLang',
   computed: {
     locales() {
       return locales

@@ -76,7 +76,7 @@ import {detect} from 'detect-browser'
 import hdfLink from '~/utils/hdfLink'
 
 export default {
-  name: 'SNoWeb3Provider',
+  name: 'ModalNoWeb3Provider',
   components: {VueQr},
   data() {
     return {

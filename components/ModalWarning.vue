@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'SModalWarning',
+  name: 'ModalWarning',
   methods: {
     close() {
       this.$store.dispatch('warning/SET_CLOSE')

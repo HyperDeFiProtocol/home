@@ -51,7 +51,7 @@
 import hdfLink from '~/utils/hdfLink'
 
 export default {
-  name: 'SUnsupportedChainId',
+  name: 'ModalUnsupportedChainId',
   computed: {
     hdfLink() {
       return hdfLink

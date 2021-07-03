@@ -5,11 +5,11 @@
     <Nuxt />
     <SiteFooter />
 
-    <SModalWarning v-show='$store.state.warning.title && $store.state.warning.message' />
-    <SNoWeb3Provider v-show='$store.state.wallet.noWeb3Provider' />
-    <SUnsupportedChainId
+    <ModalWarning v-show='$store.state.warning.title && $store.state.warning.message' />
+    <ModalNoWeb3Provider v-show='$store.state.wallet.noWeb3Provider' />
+    <ModalUnsupportedChainId
       v-show='$store.state.wallet.chainId && $store.state.wallet.chainId !== $store.state.bsc.chainId' />
-    <SLang v-show='$store.state.lang.show' />
+    <ModalLang v-show='$store.state.lang.show' />
   </div>
 </template>
 
