@@ -1,5 +1,5 @@
 export default {
-  title: '基金',
+  title: '销毁',
   text: '全局，保持 HyperDeFi 长期通缩。',
 
   burn: '销毁',
