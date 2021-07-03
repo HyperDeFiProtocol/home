@@ -3,7 +3,7 @@ export default {
   maker: '贡献者',
   whale: '鲸鱼',
   robber: '掠食者',
-  flat: 'flat',
+  flat: '',
 
   deployer: '合约部署',
   liquidity: 'PancakeSwap 流动池',

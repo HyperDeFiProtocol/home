@@ -3,7 +3,7 @@ export default {
   maker: 'maker',
   whale: 'whale',
   robber: 'robber',
-  flat: 'flat',
+  flat: '',
 
   deployer: 'Deployer',
   liquidity: 'PancakeSwap Liquidity',
