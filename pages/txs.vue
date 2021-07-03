@@ -8,36 +8,37 @@
               <thead>
               <tr>
                 <th scope='col'>
-                  Block
+                  {{ $t('txTable.block') }}
                 </th>
                 <th scope='col'>
-                  Type
+                  {{ $t('txTable.type') }}
                 </th>
                 <th scope='col'>
-                  From
+                  {{ $t('txTable.from') }}
                 </th>
                 <th scope='col'>
                 </th>
                 <th scope='col'>
-                  To
+                  {{ $t('txTable.to') }}
                 </th>
                 <th scope='col'>
-                  Amount
+                  {{ $t('txTable.amount') }}
                 </th>
               </tr>
               </thead>
               <tbody class='divide-y divide-gray-700'>
               <tr v-for='tx in transactions' :class='txName(tx.txType)'>
                 <td class='hash'>
-<!--                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 6) }}...</a>-->
-                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#<CBN :value='tx.blockNumber' /></a>
+                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
+                    <CBN :value='tx.blockNumber' />
+                  </a>
                 </td>
                 <td class='type capitalize'>
-                  {{ txName(tx.txType) }}
+                  {{ $t('user.' + txName(tx.txType)) }}
                 </td>
-                <td class='sender' :class='markingClass(tx.sender)'>
+                <td class='sender' :class='markClass(tx, "sender")'>
                   <a target='_blank' :href='explorer.exploreToken4address(tx.sender)'>
-                    <LAddress :value='tx.sender' />
+                    <CAddress :value='tx.sender' />
                   </a>
                 </td>
                 <td>
@@ -45,9 +46,9 @@
                     <HeroIconOutlineArrowCircleRight class='w-5 h-5 text-gray-400' />
                   </span>
                 </td>
-                <td class='recipient' :class='markingClass(tx.recipient)'>
+                <td class='recipient' :class='markClass(tx, "recipient")'>
                   <a target='_blank' :href='explorer.exploreToken4address(tx.recipient)'>
-                    <LAddress :value='tx.recipient' />
+                    <CAddress :value='tx.recipient' />
                   </a>
                 </td>
                 <td class='amount'>
@@ -83,6 +84,7 @@ export default {
     explorer() {
       return explorer
     },
+
   },
   watch: {
     '$store.state.bsc.blockNumber': async function() {
@@ -104,63 +106,80 @@ export default {
             toBlock: 'latest'
           })
 
-      events.reverse()
-      // console.log(events)
 
-      let transactions = []
-      for (let i = 0; i < events.length; i++) {
-        if (transactions.length) {
-          let tx = transactions[transactions.length - 1]
-          if (tx.txHash === events[i].transactionHash &&
-            tx.txType === events[i].returnValues.txType &&
-            tx.sender === events[i].returnValues.sender &&
-            tx.recipient === events[i].returnValues.recipient
-          ) {
-            transactions[transactions.length - 1].amount =
-              new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
-            transactions[this.transactions.length - 1].txAmount =
-              new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
+      if (events) {
+        events.reverse()
+        // console.log(events)
 
-            continue
+        let transactions = []
+        for (let i = 0; i < events.length; i++) {
+          if (transactions.length) {
+            let tx = transactions[transactions.length - 1]
+            if (tx.txHash === events[i].transactionHash &&
+              tx.txType === events[i].returnValues.txType &&
+              tx.sender === events[i].returnValues.sender &&
+              tx.recipient === events[i].returnValues.recipient
+            ) {
+              transactions[transactions.length - 1].amount =
+                new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
+              transactions[this.transactions.length - 1].txAmount =
+                new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
+
+              continue
+            }
           }
+
+          transactions.push({
+            blockNumber: events[i].blockNumber,
+            txHash: events[i].transactionHash,
+
+            txType: events[i].returnValues.txType,
+            sender: events[i].returnValues.sender,
+            recipient: events[i].returnValues.recipient,
+            amount: events[i].returnValues.amount,
+            txAmount: events[i].returnValues.txAmount
+          })
+
+          this.transactions = transactions
         }
-
-        transactions.push({
-          blockNumber: events[i].blockNumber,
-          txHash: events[i].transactionHash,
-
-          txType: events[i].returnValues.txType,
-          sender: events[i].returnValues.sender,
-          recipient: events[i].returnValues.recipient,
-          amount: events[i].returnValues.amount,
-          txAmount: events[i].returnValues.txAmount
-        })
-
-        this.transactions = transactions
       }
+
     },
     txName(txType) {
       switch (txType) {
-        case "0":
+        case '0':
           return 'taker'
-        case "1":
+        case '1':
           return 'maker'
-        case "2":
+        case '2':
           return 'whale'
-        case "3":
+        case '3':
           return 'robber'
-        case "4":
+        case '4':
           return 'flat'
         default:
           return ''
       }
     },
-    markingClass(address) {
-      if (address === this.$store.state.bsc.globalAccounts.pair) return null
-      if (address === this.$store.state.bsc.globalAccounts.buffer) return null
-      return 'mark'
+    markClass(tx, account) {
+      switch (account) {
+        case 'sender':
+          // if (tx.recipient === this.$store.state.bsc.globalAccounts.pair) {
+          //   return 'mark'
+          // }
+
+          return tx.sender !== this.$store.state.bsc.globalAccounts.pair ? 'mark' : null
+        case 'recipient':
+          if (tx.sender !== this.$store.state.bsc.globalAccounts.pair) {
+            return null
+          }
+
+          return tx.recipient !== this.$store.state.bsc.globalAccounts.pair ? 'mark' : null
+        default:
+          return null
+      }
     }
-  },
+  }
 
 }
 </script>

@@ -20,7 +20,7 @@ import sRestraint from '~/locales/en/sRestraint'
 import sGlobalAccounts from '~/locales/en/sGlobalAccounts'
 
 import txTable from '~/locales/en/txTable'
-import user from '~/locales/en/user'
+import defUser from '~/locales/en/defUser'
 
 import modal from '~/locales/en/modal'
 import modalLang from '~/locales/en/modalLang'
@@ -34,7 +34,7 @@ export default {
   connectWallet: connectWallet,
   getHarvest: getHarvest,
   txTable: txTable,
-  user: user,
+  user: defUser,
 
   sWelcome: sWelcome,
   sFeatures: sFeatures,
