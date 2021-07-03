@@ -2,13 +2,13 @@
   <div>
     <LAutoWidth class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        About to launch: 6 official DApps
+        {{ $t('sDApps.title') }}
 
         <template #tag>
-          DApps
+          {{ $t('sDApps.tag') }}
         </template>
         <template #desc>
-          Coming Soon...
+          {{ $t('sDApps.desc') }}
         </template>
       </CH3>
     </LAutoWidth>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'SDAppsComingSoon'
+  name: 'SDApps'
 }
 </script>
 

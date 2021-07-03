@@ -2,13 +2,13 @@
   <div>
     <LAutoWidth class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        Ready for DApps
+        {{ $t('sReadyForDApps.title') }}
 
         <template #tag>
-          Slot
+          {{ $t('sReadyForDApps.tag') }}
         </template>
         <template #desc>
-          Interface is provided, for building DApps with HyperDeFi functions.
+          {{ $t('sReadyForDApps.desc') }}
         </template>
       </CH3>
 
@@ -16,13 +16,13 @@
         <div class="inline-flex rounded-md shadow">
           <a target='_blank' :href='hdfLink.githubToRepo("contracts")'
              class="text-white bg-violet-600 hover:bg-violet-700">
-            Documentation
+            {{ $t('sReadyForDApps.documentation') }}
           </a>
         </div>
         <div class="ml-3 inline-flex">
           <a target='_blank' :href='hdfLink.githubToRepo("contracts")'
              class="text-violet-700 bg-violet-100 hover:bg-violet-200">
-            GitHub Code
+            {{ $t('sReadyForDApps.githubCodes') }}
           </a>
         </div>
       </div>

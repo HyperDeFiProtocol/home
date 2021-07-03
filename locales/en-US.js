@@ -12,6 +12,9 @@ import sFeeLiquidity from '~/locales/en/sFeeLiquidity'
 import sFeeFund from '~/locales/en/sFeeFund'
 import sFeeBurn from '~/locales/en/sFeeBurn'
 
+import sReadyForDApps from '~/locales/en/sReadyForDApps'
+import sDApps from '~/locales/en/sDApps'
+
 import txTable from '~/locales/en/txTable'
 import user from '~/locales/en/user'
 
@@ -34,5 +37,8 @@ export default {
   sFeeLiquidity: sFeeLiquidity,
   sFeeFund: sFeeFund,
   sFeeBurn: sFeeBurn,
+
+  sReadyForDApps: sReadyForDApps,
+  sDApps: sDApps,
 
 }

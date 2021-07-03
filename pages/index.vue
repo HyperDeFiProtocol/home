@@ -12,7 +12,7 @@
     <SFeeFund class='bg-gray-800' />
     <SFeeBurn />
     <SReadyForDApps class='bg-gray-800' />
-    <SDAppsComingSoon />
+    <SDApps />
     <SRestraint class='bg-gray-800' />
     <SGlobalAccounts />
 <!--    <SData />-->
