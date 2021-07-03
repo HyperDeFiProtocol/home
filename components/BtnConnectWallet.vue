@@ -1,7 +1,7 @@
 <template>
   <button @click='connectWallet' class='space-x-2'>
     <slot>{{ $t('connectWallet.connectWallet') }}</slot>
-    <IconDiceHyperSpin v-show='$store.state.wallet.loading' />
+    <IconDiceHyperSpin v-show='$store.state.wallet.loading' class='w-6 h-6' />
   </button>
 </template>
 

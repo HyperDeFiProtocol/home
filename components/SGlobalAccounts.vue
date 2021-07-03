@@ -2,14 +2,18 @@
   <div>
     <LAutoWidth class='py-12 px-4 md:py-24 md:px-8'>
       <CH2>
-        <span class="text-violet-400">Global Address</span>
-        List
+        <span class="text-violet-400">
+          {{ $t('sGlobalAccounts.title1') }}
+        </span>
+        <span>
+          {{ $t('sGlobalAccounts.title2') }}
+        </span>
 
         <!--        <template #tag>-->
         <!--          DApps-->
         <!--        </template>-->
         <template #desc>
-          Nobody can control the ZERO addresses (black-holes); and the only Buffer Contract we deployed has no owner nor admin.
+          {{ $t('sGlobalAccounts.desc') }}
         </template>
       </CH2>
 
@@ -28,7 +32,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                LP Token Holder, black-hole
+                {{ $t('sGlobalAccounts.lpHolder') }}
               </a>
             </h3>
             <p class="p-address">
@@ -55,7 +59,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                Burned
+                {{ $t('sGlobalAccounts.burned') }}
               </a>
             </h3>
             <p class="p-address">
@@ -82,7 +86,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                Buffer Pool, no owner
+                {{ $t('sGlobalAccounts.buffer') }}
               </a>
             </h3>
             <p class="p-address">
@@ -109,7 +113,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                Tax Farm
+                {{ $t('sGlobalAccounts.tax') }}
               </a>
             </h3>
             <p class="p-address">
@@ -139,7 +143,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                FOMO pool
+                {{ $t('sGlobalAccounts.fomo') }}
               </a>
             </h3>
             <p class="p-address">
@@ -171,7 +175,7 @@
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                Airdrop Pool
+                {{ $t('sGlobalAccounts.airdrop') }}
               </a>
             </h3>
             <p class="p-address">
