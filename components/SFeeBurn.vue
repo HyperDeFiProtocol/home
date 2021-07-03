@@ -12,29 +12,33 @@
 
         <div class='header2'>
           <h2 class='text-emerald-500'>
-            Burn
+            {{ $t('sFeeBurn.title') }}
           </h2>
           <p>
-            Globally, keep making HyperDeFi deflationary in the long term.
+            {{ $t('sFeeBurn.text') }}
           </p>
         </div>
 
         <div class='body1 to-emerald-900 from-green-900 text-emerald-300'>
           <h3>
-            For each transaction:
+            {{ $t('sFee.forEachTransaction') }}
           </h3>
 
           <p>
-            Burn
+            {{ $t('sFeeBurn.burn') }}
             <span v-if='$store.state.bsc.takerFee.destroy > "0"'>
-              {{ $store.state.bsc.takerFee.destroy }}% from taker,
+              {{ $store.state.bsc.takerFee.destroy }}%
+              {{ $t('sFee.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.destroy > "0"'>
-              {{ $store.state.bsc.makerFee.destroy }}% from maker,
+              {{ $store.state.bsc.makerFee.destroy }}%
+              {{ $t('sFee.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.destroy > "0"'>
-              {{ $store.state.bsc.whaleFee.destroy }}% from whale.
+              {{ $store.state.bsc.whaleFee.destroy }}%
+              {{ $t('sFee.fromWhale') }}
             </span>
+            {{ $t('sFeeBurn.destroy__') }}
           </p>
 
           <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
@@ -43,7 +47,9 @@
                class='a-track bg-emerald-700 hover:bg-emerald-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
-                Track all {{ counter }} burn transfers
+                {{ $t('sFee.trackAll') }}
+                {{ counter }}
+                {{ $t('sFeeBurn.trackBurnTransfers') }}
               </span>
             </a>
           </div>
@@ -53,7 +59,7 @@
       <dl v-if='counter' class='hdf-stat lg:max-w-3xl grid grid-cols-1 sm:grid-cols-2'>
         <div>
           <dt>
-            Burn Transfers
+            {{ $t('sFeeBurn.statBurnTransfers') }}
           </dt>
           <dd>
             <CBN :value='counter' />
@@ -71,7 +77,7 @@
 
         <div>
           <dt>
-            Total Burned
+            {{ $t('sFeeBurn.statTotalBurned') }}
           </dt>
           <dd>
             <CBN :value='amount' :token='true' />
@@ -82,7 +88,9 @@
 
       <div v-if='transactions.length'>
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-emerald-500 tracking-wide uppercase'>
-          Latest {{ transactions.length }} Burn History
+          {{ $t('txTable.latest') }}
+          {{ transactions.length }}
+          {{ $t('sFeeBurn.burnHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -120,13 +128,13 @@
                 <thead>
                 <tr>
                   <th scope='col'>
-                    Block
+                    {{ $t('txTable.block') }}
                   </th>
                   <th scope='col'>
-                    Tx Hash
+                    {{ $t('txTable.txHash') }}
                   </th>
                   <th scope='col'>
-                    Amount
+                    {{ $t('txTable.amount') }}
                   </th>
                 </tr>
                 </thead>

@@ -10,6 +10,7 @@ import sFeeLotto from '~/locales/zh/sFeeLotto'
 import sFeeFomo from '~/locales/zh/sFeeFomo'
 import sFeeLiquidity from '~/locales/zh/sFeeLiquidity'
 import sFeeFund from '~/locales/zh/sFeeFund'
+import sFeeBurn from '~/locales/zh/sFeeBurn'
 
 import txTable from '~/locales/zh/txTable'
 import user from '~/locales/zh/user'
@@ -31,5 +32,6 @@ export default {
   sFeeFomo: sFeeFomo,
   sFeeLiquidity: sFeeLiquidity,
   sFeeFund: sFeeFund,
+  sFeeBurn: sFeeBurn,
 
 }

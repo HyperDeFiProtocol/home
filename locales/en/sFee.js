@@ -50,7 +50,9 @@ export default {
   forEachTransaction: 'For each transaction:',
 
   take: 'Take',
+  takeOnly: 'Take only',
   fromTaker: 'from taker,',
   fromMaker: 'from maker,',
   fromWhale: 'from whale,',
+  fromTakerMakerWhale: 'from taker, maker, and whale,'
 }

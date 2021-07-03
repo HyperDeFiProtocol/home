@@ -8,40 +8,41 @@
 
     <LAutoWidth class='auto-layout'>
       <main>
-
-
         <div class='header1'>
           <h2 class='text-cool-gray-400'>
-            Fund
+            {{ $t('sFeeFund.title') }}
           </h2>
           <p>
-            For the promotion of HyperDeFi.
+            {{ $t('sFeeFund.text') }}
           </p>
         </div>
 
         <div class='body2 to-cool-gray-900 from-gray-900 text-gray-400'>
           <h3>
-            For each transaction:
+            {{ $t('sFee.forEachTransaction') }}
           </h3>
 
           <p>
-            Take only
+            {{ $t('sFee.takeOnly') }}
             <span v-if='$store.state.bsc.takerFee.dev === $store.state.bsc.makerFee.dev && $store.state.bsc.makerFee.dev === $store.state.bsc.whaleFee.dev'>
-              {{ $store.state.bsc.takerFee.dev }}% from taker, maker, and whale,
+              {{ $store.state.bsc.takerFee.dev }}%
+              {{ $t('sFee.fromTakerMakerWhale') }}
             </span>
             <span v-else>
               <span v-if='$store.state.bsc.takerFee.dev > "0"'>
-                {{ $store.state.bsc.takerFee.dev }}% from taker,
+                {{ $store.state.bsc.takerFee.dev }}%
+                {{ $t('sFee.fromTaker') }}
               </span>
               <span v-if='$store.state.bsc.makerFee.dev > "0"'>
-                {{ $store.state.bsc.makerFee.dev }}% from maker,
+                {{ $store.state.bsc.makerFee.dev }}%
+                {{ $t('sFee.fromMaker') }}
               </span>
               <span v-if='$store.state.bsc.whaleFee.dev > "0"'>
-                {{ $store.state.bsc.whaleFee.dev }}% from whale,
+                {{ $store.state.bsc.whaleFee.dev }}%
+                {{ $t('sFee.fromWhale') }}
               </span>
             </span>
-            then send to the team fund.
-            For amortizing development costs, funding marketing, communities and other operating costs...
+            {{ $t('sFeeFund.thenDeposit__') }}
           </p>
         </div>
       </main>

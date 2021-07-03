@@ -10,7 +10,7 @@ export default {
   ifNoOther__: '之后，如果没有其它用户从 PancakeSwap 购买超过',
   fromPancake__: '，那么最后一个购买者赢得奖金。',
 
-  trackFomoTransfers: 'FOMO 转账',
+  trackFomoTransfers: '笔 FOMO 转账',
 
   statNextFomoPrize: '下一个 FOMO 奖金',
   statFomoCountdownTimer: 'FOMO 倒计时',

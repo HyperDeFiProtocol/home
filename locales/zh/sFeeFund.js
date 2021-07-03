@@ -1,14 +1,6 @@
 export default {
-  title: '流动池回收',
-  text: '全局，使 PancakeSwap 流动性持续增强。',
+  title: '基金',
+  text: '用于发展 HyperDeFi。',
 
-  thenDeposit1__: '然后存入缓冲池，当缓冲池余额增涨超过',
-  thenDeposit2__: '（PancakeSwap 流动池的',
-  thenDeposit3__: '），其中一半将会换为 BUSD 并与另一半一起添加到全局流动池。',
-  newLPTokens__: '新的 LP Token 将会被发送到黑洞地址，没有人可以撤除全局流动池。',
-
-  statLiquidityMarketValue: '流动池市值',
-  statLiquidity: '流动池',
-  statBuffer: '缓冲池',
-  statReady: '就续',
+  thenDeposit__: '然后存入基金。用于分摊开发成本、资助市场、社区和其它运营成本...',
 }
