@@ -1,5 +1,5 @@
 export default {
-  title: 'Fund',
+  title: 'Burn',
   text: 'Globally, keep making HyperDeFi deflationary in the long term.',
 
   burn: 'Burn',

@@ -1,5 +1,5 @@
-import connectWallet from '~/locales/en/connectWallet'
-import getHarvest from '~/locales/en/getHarvest'
+import connectWallet from '~/locales/en/btnConnectWallet'
+import getHarvest from '~/locales/en/btnGetHarvest'
 import sWelcome from '~/locales/en/sWelcome'
 import sFeatures from '~/locales/en/sFeatures'
 import sMarketValue from '~/locales/en/sMarketValue'
