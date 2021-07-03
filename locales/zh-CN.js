@@ -1,3 +1,4 @@
+import locales from '~/locales/zh/locales'
 import siteNav from '~/locales/zh/siteNav'
 
 import connectWallet from '~/locales/zh/btnConnectWallet'
@@ -24,6 +25,8 @@ import user from '~/locales/zh/user'
 
 // zh
 export default {
+  locales: locales,
+
   siteNav: siteNav,
 
   connectWallet: connectWallet,

@@ -1,3 +1,4 @@
+import locales from '~/locales/en/locales'
 import siteNav from '~/locales/en/siteNav'
 
 import connectWallet from '~/locales/en/btnConnectWallet'
@@ -24,6 +25,8 @@ import user from '~/locales/en/user'
 
 // en
 export default {
+  locales: locales,
+
   siteNav: siteNav,
 
   connectWallet: connectWallet,
