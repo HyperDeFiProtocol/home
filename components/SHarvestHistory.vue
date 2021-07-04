@@ -7,7 +7,7 @@
     </h6>
 
     <!-- md:hidden -->
-    <div class='md:hidden mt-4'>
+    <div class='md:hidden mt-4 px-4'>
       <ul class='divide-y divide-gray-700'>
         <li v-for='tx in transactions' class='py-4 flex space-x-3'>
               <span class='h-6 w-6'>
@@ -25,8 +25,8 @@
                 </a>
               </p>
             </div>
-            <p class='text-sm text-gray-500'>
-              <a target='_blank' :href='hdfLink.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+            <p class='text-sm text-gray-500 break-all'>
+              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
             </p>
           </div>
         </li>

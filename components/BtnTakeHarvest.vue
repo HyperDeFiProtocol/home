@@ -37,7 +37,10 @@ export default {
       }
     },
     async onConfirmation(confirmation) {
-      console.log('>>> onConfirmation:', confirmation)
+      if (confirmation > 6) {
+        this.pending = false
+      }
+      // console.log('>>> onConfirmation:', confirmation)
     },
     async onError(error) {
       this.pending = false
