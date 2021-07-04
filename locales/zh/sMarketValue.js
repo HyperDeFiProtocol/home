@@ -29,8 +29,10 @@ export default {
   toConnectWallet_: '连接钱包...',
 
   your: '您的',
-  harvestAnd: '挖矿收入和',
+  yourBalance: '您的余额',
   balance: '余额',
+  andHarvest: '和 挖矿收入',
+  harvestAnd: '挖矿收入和',
 
   taxFarm: '税收矿场',
 

@@ -29,7 +29,7 @@ export default {
           return 'liquidity'
         case this.$store.state.bsc.globalAccounts.buffer:
           return 'buffer'
-        case this.$store.state.bsc.globalAccounts.dev:
+        case this.$store.state.bsc.globalAccounts.fund:
           return 'deployer'
         default:
           return null

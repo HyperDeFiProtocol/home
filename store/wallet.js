@@ -11,12 +11,11 @@ export const state = () => ({
   isHolder: false,
   isFlat: false,
   isSlot: false,
+
   username: '',
   balance: '0',
   harvest: '0',
-  power: '0',
-  inputs: '0',
-  outputs: '0',
+
   totalHarvest: '0',
   totalTaxSnap: '0',
 })
@@ -45,12 +44,11 @@ export const mutations = {
     state.isHolder = data.isHolder
     state.isFlat = data.isFlat
     state.isSlot = data.isSlot
+
     state.username = data.username
     state.balance = data.balance
     state.harvest = data.harvest
-    state.power = data.power
-    state.inputs = data.inputs
-    state.outputs = data.outputs
+
     state.totalHarvest = data.totalHarvest
     state.totalTaxSnap = data.totalTaxSnap
   },

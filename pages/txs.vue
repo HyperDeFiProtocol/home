@@ -148,15 +148,15 @@ export default {
     txName(txType) {
       switch (txType) {
         case '0':
-          return 'taker'
-        case '1':
-          return 'maker'
-        case '2':
-          return 'whale'
-        case '3':
-          return 'robber'
-        case '4':
           return 'flat'
+        case '1':
+          return 'taker'
+        case '2':
+          return 'maker'
+        case '3':
+          return 'whale'
+        case '4':
+          return 'robber'
         default:
           return ''
       }

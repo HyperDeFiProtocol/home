@@ -193,24 +193,24 @@
               {{ $t('sFee.fund') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.dev > "0"'>
-                {{ $store.state.bsc.takerFee.dev }}%
+              <span v-if='$store.state.bsc.takerFee.fund > "0"'>
+                {{ $store.state.bsc.takerFee.fund }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.dev > "0"'>
-                {{ $store.state.bsc.makerFee.dev }}%
+              <span v-if='$store.state.bsc.makerFee.fund > "0"'>
+                {{ $store.state.bsc.makerFee.fund }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.dev > "0"'>
-                {{ $store.state.bsc.whaleFee.dev }}%
+              <span v-if='$store.state.bsc.whaleFee.fund > "0"'>
+                {{ $store.state.bsc.whaleFee.fund }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sFee.freeForWhale') }}
@@ -347,7 +347,7 @@
             {{ $t('sFee.script4FOMO_') }}
             {{ $store.state.bsc.robberFee.liquidity }}%
             {{ $t('sFee.script4LPAcquisition_') }}
-            {{ $store.state.bsc.robberFee.dev }}%
+            {{ $store.state.bsc.robberFee.fund }}%
             {{ $t('sFee.script4Fund_') }}
             {{ $store.state.bsc.robberFee.destroy }}%
             {{ $t('sFee.script4Burning_') }}

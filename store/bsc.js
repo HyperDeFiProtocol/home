@@ -94,7 +94,7 @@ export const state = () => ({
     buffer: null,
     airdrop: null,
     fomo: null,
-    dev: null,
+    fund: null,
     zero: null,
     burn: null
   },
@@ -122,7 +122,7 @@ export const state = () => ({
     lotto: '0',
     fomo: '0',
     liquidity: '0',
-    dev: '0',
+    fund: '0',
     destroy: '0',
     txn: '0',
     total: '0'
@@ -133,7 +133,7 @@ export const state = () => ({
     lotto: '0',
     fomo: '0',
     liquidity: '0',
-    dev: '0',
+    fund: '0',
     destroy: '0',
     txn: '0',
     total: '0'
@@ -144,7 +144,7 @@ export const state = () => ({
     lotto: '0',
     fomo: '0',
     liquidity: '0',
-    dev: '0',
+    fund: '0',
     destroy: '0',
     txn: '0',
     total: '0'
@@ -155,7 +155,7 @@ export const state = () => ({
     lotto: '0',
     fomo: '0',
     liquidity: '0',
-    dev: '0',
+    fund: '0',
     destroy: '0',
     txn: '0',
     total: '0'
@@ -246,7 +246,7 @@ export const mutations = {
     state.globalAccounts.buffer = data.accounts[4]
     state.globalAccounts.airdrop = data.accounts[5]
     state.globalAccounts.fomo = data.accounts[6]
-    state.globalAccounts.dev = data.accounts[7]
+    state.globalAccounts.fund = data.accounts[7]
     state.globalAccounts.zero = data.accounts[8]
     state.globalAccounts.burn = data.accounts[9]
 
@@ -294,7 +294,7 @@ export const mutations = {
     state.takerFee.lotto = data.takerFees[1]
     state.takerFee.fomo = data.takerFees[2]
     state.takerFee.liquidity = data.takerFees[3]
-    state.takerFee.dev = data.takerFees[4]
+    state.takerFee.fund = data.takerFees[4]
     state.takerFee.destroy = data.takerFees[5]
     state.takerFee.txn = data.takerFees[6]
     state.takerFee.total = data.takerFees[7]
@@ -304,7 +304,7 @@ export const mutations = {
     state.makerFee.lotto = data.makerFees[1]
     state.makerFee.fomo = data.makerFees[2]
     state.makerFee.liquidity = data.makerFees[3]
-    state.makerFee.dev = data.makerFees[4]
+    state.makerFee.fund = data.makerFees[4]
     state.makerFee.destroy = data.makerFees[5]
     state.makerFee.txn = data.makerFees[6]
     state.makerFee.total = data.makerFees[7]
@@ -314,7 +314,7 @@ export const mutations = {
     state.whaleFee.lotto = data.whaleFees[1]
     state.whaleFee.fomo = data.whaleFees[2]
     state.whaleFee.liquidity = data.whaleFees[3]
-    state.whaleFee.dev = data.whaleFees[4]
+    state.whaleFee.fund = data.whaleFees[4]
     state.whaleFee.destroy = data.whaleFees[5]
     state.whaleFee.txn = data.whaleFees[6]
     state.whaleFee.total = data.whaleFees[7]
@@ -324,7 +324,7 @@ export const mutations = {
     state.robberFee.lotto = data.robberFees[1]
     state.robberFee.fomo = data.robberFees[2]
     state.robberFee.liquidity = data.robberFees[3]
-    state.robberFee.dev = data.robberFees[4]
+    state.robberFee.fund = data.robberFees[4]
     state.robberFee.destroy = data.robberFees[5]
     state.robberFee.txn = data.robberFees[6]
     state.robberFee.total = data.robberFees[7]

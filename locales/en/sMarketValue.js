@@ -29,8 +29,10 @@ export default {
   toConnectWallet_: 'to connect wallet...',
 
   your: 'Your',
-  harvestAnd: 'harvest and',
+  yourBalance: 'Your balance',
   balance: 'balance',
+  andHarvest: 'and harvest',
+  harvestAnd: 'harvest and',
 
   taxFarm: 'Tax Farm',
 
