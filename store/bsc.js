@@ -91,6 +91,7 @@ export const state = () => ({
     pancake: null,
     pair: null,
     BUSD: null,
+    tax: null,
     buffer: null,
     airdrop: null,
     fomo: null,

@@ -199,10 +199,10 @@
               {{ $t('sMarketValue.alreadyHarvested') }}
             </span>
           </p>
-
-
         </div>
       </div>
+
+      <SHarvestHistory v-if='$store.state.wallet.account' class="transition duration-300 ease-in-out -mx-4 pt-12" />
     </LAutoWidth>
   </div>
 </template>
@@ -226,7 +226,7 @@ export default {
     launchCountdown() {
       return this.$store.state.bsc.global.launchCountdown
     }
-  }
+  },
 }
 </script>
 

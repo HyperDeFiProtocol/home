@@ -92,13 +92,13 @@
                     HyperDeFi
                   </h4>
                   <p class='text-sm text-gray-500'>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
                       #<CBN :value='tx.blockNumber' />
                     </a>
                   </p>
                 </div>
                 <p class='text-sm text-gray-500'>
-                  <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+                  <a target='_blank' :href='hdfLink.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                 </p>
               </div>
             </li>
@@ -126,12 +126,12 @@
                 <tbody class='divide-y divide-gray-700'>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
                       #<CBN :value='tx.blockNumber' />
                     </a>
                   </td>
                   <td class='font-mono'>
-                    <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+                    <a target='_blank' :href='hdfLink.exploreToken4address(tx.account)'>{{ tx.account }}</a>
                   </td>
                   <td>
                     <CBN :value='tx.amount' :token='true' :padding='2' />
@@ -166,7 +166,7 @@ export default {
     }
   },
   computed: {
-    explorer() {
+    hdfLink() {
       return hdfLink
     },
     summed() {

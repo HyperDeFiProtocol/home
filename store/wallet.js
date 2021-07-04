@@ -131,6 +131,7 @@ export const actions = {
         await provider.on('accountsChanged', async function(accounts) {
           await commit('SET_ACCOUNT', accounts[0])
           await dispatch('SYNC_DATA')
+
         })
 
         await dispatch('SYNC_DATA')
@@ -152,5 +153,7 @@ export const actions = {
       .catch(error => {
         console.error('>>> Store[wallet] SYNC_DATA - getAccount:', error.message)
       })
-  }
+  },
+
+
 }

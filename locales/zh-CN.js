@@ -13,6 +13,7 @@ import sFeeFomo from '~/locales/zh/sFeeFomo'
 import sFeeLiquidity from '~/locales/zh/sFeeLiquidity'
 import sFeeFund from '~/locales/zh/sFeeFund'
 import sFeeBurn from '~/locales/zh/sFeeBurn'
+import sHarvestHistory from '~/locales/zh/sHarvestHistory'
 
 import sReadyForDApps from '~/locales/zh/sReadyForDApps'
 import sDApps from '~/locales/zh/sDApps'
@@ -47,6 +48,7 @@ export default {
   sFeeLiquidity: sFeeLiquidity,
   sFeeFund: sFeeFund,
   sFeeBurn: sFeeBurn,
+  sHarvestHistory: sHarvestHistory,
 
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,
