@@ -30,7 +30,7 @@
         </template>
       </CH2>
 
-      <dl class='hdf-stat grid grid-cols-1 sm:grid-cols-2 lg:max-w-3xl'>
+      <dl class='hdf-stat grid grid-cols-1 sm:grid-cols-3 lg:max-w-6xl'>
         <div>
           <dt>
             {{ $t('sAirdrop.remaining') }}
@@ -41,15 +41,15 @@
         </div>
 
 
-        <div>
-          <dt>
-            {{ $t('sAirdrop.totalAirdropMarketValue') }}
-          </dt>
-          <dd>
-            $<CBN :value='summedMarketValue' :price='true' :padding='6' />
-            USD
-          </dd>
-        </div>
+<!--        <div>-->
+<!--          <dt>-->
+<!--            {{ $t('sAirdrop.totalAirdropMarketValue') }}-->
+<!--          </dt>-->
+<!--          <dd>-->
+<!--            $<CBN :value='summedMarketValue' :price='true' :padding='6' />-->
+<!--            USD-->
+<!--          </dd>-->
+<!--        </div>-->
 
         <div>
           <dt>

@@ -5,6 +5,7 @@ import getHarvest from '~/locales/en/btnGetHarvest'
 import sWelcome from '~/locales/en/sWelcome'
 import sFeatures from '~/locales/en/sFeatures'
 import sMarketValue from '~/locales/en/sMarketValue'
+import sHarvest from '~/locales/en/sHarvest'
 import sAirdrop from '~/locales/en/sAirdrop'
 import sFee from '~/locales/en/sFee'
 import sFeeTax from '~/locales/en/sFeeTax'
@@ -13,7 +14,6 @@ import sFeeFomo from '~/locales/en/sFeeFomo'
 import sFeeLiquidity from '~/locales/en/sFeeLiquidity'
 import sFeeFund from '~/locales/en/sFeeFund'
 import sFeeBurn from '~/locales/en/sFeeBurn'
-import sHarvestHistory from '~/locales/en/sHarvestHistory'
 
 import sReadyForDApps from '~/locales/en/sReadyForDApps'
 import sDApps from '~/locales/en/sDApps'
@@ -40,6 +40,7 @@ export default {
   sWelcome: sWelcome,
   sFeatures: sFeatures,
   sMarketValue: sMarketValue,
+  sHarvest: sHarvest,
   sAirdrop: sAirdrop,
   sFee: sFee,
   sFeeTax: sFeeTax,
@@ -48,7 +49,6 @@ export default {
   sFeeLiquidity: sFeeLiquidity,
   sFeeFund: sFeeFund,
   sFeeBurn: sFeeBurn,
-  sHarvestHistory: sHarvestHistory,
 
   sReadyForDApps: sReadyForDApps,
   sDApps: sDApps,

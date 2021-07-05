@@ -83,7 +83,7 @@
           </dd>
         </div>
 
-        <div class='flex flex-col mt-10 lg:mt-0'>
+        <div>
           <dt class='order-2 mt-1 text-base leading-6 font-medium text-yellow-100'>
             {{ $t('sFeeFomo.statFomoTransfers') }}
           </dt>
