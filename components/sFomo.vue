@@ -19,17 +19,20 @@
           </span>
         </div>
 
-        <h4 v-if='this.isZero($store.state.bsc.fomo.next)'
-            class="mt-2 lg:mt-3 lg:w-full lg:mx-auto inline-flex lg:justify-center text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <span v-if='step.hh > "00"'>{{ step.hh }}:</span>
-          <span>{{ step.mm }}:</span>
-          <span>{{ step.ss }}</span>
-        </h4>
-        <h4 v-else
-            class="mt-2 lg:mt-3 lg:w-full lg:mx-auto inline-flex lg:justify-center text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <span v-if='$store.state.bsc.fomo.countdown.hh > "00"'>{{ $store.state.bsc.fomo.countdown.hh }}:</span>
-          <span>{{ $store.state.bsc.fomo.countdown.mm }}:</span>
-          <span>{{ $store.state.bsc.fomo.countdown.ss }}</span>
+        <h4 class="mt-2 lg:mt-3 lg:w-full lg:mx-auto text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
+          <span v-if='this.isZero($store.state.bsc.fomo.next)' class='inline-flex lg:justify-center'>
+            <span v-if='step.hh > "00"'>{{ step.hh }}:</span>
+            <span>{{ step.mm }}:</span>
+            <span>{{ step.ss }}</span>
+          </span>
+<!--          <span v-else-if='$store.state.bsc.fomo.countdown.finished'>-->
+<!--            {{ $t('sFomo.finished') }}-->
+<!--          </span>-->
+          <span v-else class='inline-flex lg:justify-center'>
+            <span v-if='$store.state.bsc.fomo.countdown.hh > "00"'>{{ $store.state.bsc.fomo.countdown.hh }}:</span>
+            <span>{{ $store.state.bsc.fomo.countdown.mm }}:</span>
+            <span>{{ $store.state.bsc.fomo.countdown.ss }}</span>
+          </span>
         </h4>
 
         <div class='mt-10 sm:mt-16 text-lg text-gray-500'>
@@ -43,18 +46,23 @@
 
       <div class='mt-10 sm:mt-16'>
         <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>
-            <span
-              class='inline-flex items-center px-4 lg:px-8 rounded-l-md border border-r-0 border-violet-300 bg-violet-50 font-bold text-lg text-violet-600'>
+          <span
+            class='inline-flex items-center px-4 lg:px-8 rounded-l-md border border-r-0 border-violet-300 bg-violet-50 font-bold text-lg text-violet-600'>
+            <span v-if='!$store.state.bsc.fomo.countdown.finished'>
               {{ $t('sFomo.current') }}
             </span>
+            <span v-else>
+              {{ $t('sFomo.winner') }}
+            </span>
+          </span>
           <div
             class='flex-1 min-w-0 block w-full p-4 border border-violet-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>
-              <span v-if='!this.isZero($store.state.bsc.fomo.next)' class='font-bold text-violet-700'>
-                {{ $store.state.bsc.fomo.next }}
-              </span>
+            <span v-if='!this.isZero($store.state.bsc.fomo.next)' class='font-bold text-violet-700'>
+              {{ $store.state.bsc.fomo.next }}
+            </span>
             <span v-else class='font-normal text-gray-400'>
-                {{ $t('sFomo.nextBuyer') }} 0x...
-              </span>
+              {{ $t('sFomo.nextBuyer') }} 0x...
+            </span>
           </div>
         </div>
       </div>

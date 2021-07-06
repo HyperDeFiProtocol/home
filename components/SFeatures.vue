@@ -16,6 +16,27 @@
       <div class="mt-10">
         <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
 
+          <div class="relative">
+            <dt>
+              <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white">
+                <HeroIconOutlineCode class="h-6 w-6" />
+              </div>
+              <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
+                {{ $t('sFeatures.openSourced') }}
+              </p>
+            </dt>
+            <dd class="mt-2 ml-16 text-base text-gray-500">
+              {{ $t('sFeatures.contractsVerified__') }}
+              <a target='_blank' :href='hdfLink.exploreToken()' class='hdf-a-colored'>
+                {{ $t('sFeatures.bscScanExplorer') }}
+              </a>
+              {{ $t('sFeatures._andOpenSourcedOn') }}
+              <a target='_blank' :href='hdfLink.github()' class='hdf-a-colored'>
+                GitHub
+              </a>
+            </dd>
+          </div>
+
 
           <div class="relative">
             <dt>
@@ -49,6 +70,21 @@
           <div class="relative">
             <dt>
               <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white">
+                <HeroIconOutlineCube class="h-6 w-6" />
+              </div>
+              <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
+                {{ $t('sFeatures.blackHole') }}
+              </p>
+            </dt>
+            <dd class="mt-2 ml-16 text-base text-gray-500">
+              {{ $t('sFeatures.blackHole__') }}
+            </dd>
+          </div>
+
+
+          <div class="relative">
+            <dt>
+              <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white">
                 <HeroIconOutlineGlobeAlt class="h-6 w-6" />
               </div>
               <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
@@ -61,19 +97,6 @@
           </div>
 
 
-          <div class="relative">
-            <dt>
-              <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white">
-                <HeroIconOutlineCube class="h-6 w-6" />
-              </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                {{ $t('sFeatures.blackHole') }}
-              </p>
-            </dt>
-            <dd class="mt-2 ml-16 text-base text-gray-500">
-              {{ $t('sFeatures.blackHole__') }}
-            </dd>
-          </div>
 
           <div class="relative">
             <dt>
@@ -90,26 +113,7 @@
           </div>
 
 
-          <div class="relative">
-            <dt>
-              <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white">
-                <HeroIconOutlineCode class="h-6 w-6" />
-              </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-gray-200">
-                {{ $t('sFeatures.openSourced') }}
-              </p>
-            </dt>
-            <dd class="mt-2 ml-16 text-base text-gray-500">
-              {{ $t('sFeatures.contractsVerified__') }}
-              <a target='_blank' :href='hdfLink.exploreToken()' class='hdf-a-colored'>
-                {{ $t('sFeatures.bscScanExplorer') }}
-              </a>
-              {{ $t('sFeatures._andOpenSourcedOn') }}
-              <a target='_blank' :href='hdfLink.github()' class='hdf-a-colored'>
-                GitHub
-              </a>
-            </dd>
-          </div>
+
         </dl>
 
 

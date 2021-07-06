@@ -8,5 +8,6 @@ export default {
   waitForStarting: '等待开始',
   finished: '已结束',
   current: '当前',
+  winner: '获奖者',
   nextBuyer: '下一位购买者',
 }

@@ -8,5 +8,6 @@ export default {
   waitForStarting: 'wait for starting',
   finished: 'finished',
   current: 'Current',
+  winner: 'Winner',
   nextBuyer: 'Next Buyer',
 }

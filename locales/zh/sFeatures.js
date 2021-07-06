@@ -9,7 +9,7 @@ export default {
   fairLaunch: '公平启动',
   fairLaunch__: '无预售，无预留，无预挖，部署后 50% 已销毁',
 
-  bscEcology: 'BSC/PancakeSwap 生态',
+  bscEcology: '基于 BSC/PancakeSwap 生态',
   bscEcology__: '比 ETH 链更快速、费用更便宜',
 
   blackHole: '黑洞地址持有 LP Token',
