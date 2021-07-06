@@ -76,6 +76,11 @@ export default {
       username: ''
     }
   },
+  watch: {
+    username() {
+      this.username = this.username.trim()
+    }
+  }
 }
 </script>
 
