@@ -12,10 +12,11 @@
     <SFeeLiquidity />
     <SFeeFund class='bg-gray-800' />
     <SFeeBurn />
-    <SReadyForDApps class='bg-gray-800' />
-    <SDApps />
     <SRestraint class='bg-gray-800' />
     <SGlobalAccounts />
+    <SReadyForDApps class='bg-gray-800' />
+    <SUsername />
+    <SDApps />
     <SFAQ class='bg-gray-800' />
 <!--    <SData />-->
   </div>

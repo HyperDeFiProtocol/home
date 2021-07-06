@@ -75,6 +75,7 @@
             <span class="font-medium text-white">
               {{ $t('sMarketValue.currentTotalSupply_') }}
             </span>
+            {{ $t('sMarketValue.blackHoleIncluded') }}
           </span>
         </p>
 

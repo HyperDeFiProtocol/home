@@ -17,6 +17,7 @@ import sFeeFund from '~/locales/en/sFeeFund'
 import sFeeBurn from '~/locales/en/sFeeBurn'
 
 import sReadyForDApps from '~/locales/en/sReadyForDApps'
+import sUsername from '~/locales/en/sUsername'
 import sDApps from '~/locales/en/sDApps'
 import sRestraint from '~/locales/en/sRestraint'
 import sGlobalAccounts from '~/locales/en/sGlobalAccounts'
@@ -53,6 +54,7 @@ export default {
   sFeeBurn: sFeeBurn,
 
   sReadyForDApps: sReadyForDApps,
+  sUsername: sUsername,
   sDApps: sDApps,
   sRestraint: sRestraint,
   sGlobalAccounts: sGlobalAccounts,

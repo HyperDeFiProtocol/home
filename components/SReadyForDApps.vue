@@ -12,7 +12,7 @@
         </template>
       </CH3>
 
-      <div class="mt-8 flex justify-center">
+      <div class="mt-8 lg:flex lg:justify-center">
         <div class="inline-flex rounded-md shadow">
           <a target='_blank' :href='hdfLink.githubToRepo("contracts")'
              class="text-white bg-violet-600 hover:bg-violet-700">

@@ -16,8 +16,8 @@ export default {
   currentMarketCap_: 'Current Market Cap,',
   ofCurrentTotalSupply: 'of current total supply',
 
-  currentTotalSupply_: 'Current Total Supply',
-  _alsoTheCirculatingTotalSupply: 'which is also the circulating total supply',
+  currentTotalSupply_: 'Current Total Supply,',
+  blackHoleIncluded: 'black-hold included',
 
   totalSupplyCap_: 'Total Supply Cap,',
   fixed: 'fixed',

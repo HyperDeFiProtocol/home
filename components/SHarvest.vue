@@ -12,18 +12,19 @@
         <template #tag>
           {{ $t('sHarvest.taxFarm') }}
         </template>
-        <template #desc>
-          <p class='truncate'>
-            {{ $t('sHarvest.hello_') }}
-            <span v-if='$store.state.wallet.username'>
-              {{ $store.state.wallet.username }}
-            </span>
-            <span v-else class='font-mono'>
-              {{ $store.state.wallet.account.slice(0, 10) }}...{{ $store.state.wallet.account.slice(-4) }}
-            </span>
-          </p>
-        </template>
       </CH3>
+
+      <p class='flex justify-start mt-8 sm:mt-12 text-2xl text-gray-500 break-all truncate'>
+        <span>
+          {{ $t('sHarvest.hello_') }}
+        </span>
+        <span v-if='$store.state.wallet.username' class='font-semibold text-gray-300'>
+          {{ $store.state.wallet.username }}
+        </span>
+        <span v-else class='font-mono'>
+          {{ $store.state.wallet.account.slice(0, 10) }}...{{ $store.state.wallet.account.slice(-4) }}
+        </span>
+      </p>
 
       <div class='mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2'>
         <p>
