@@ -6,6 +6,7 @@ export default {
   latestBuyerWin: 'The latest buyer will win the Prize',
   countdown: 'Countdown to',
   waitForStarting: 'wait for starting',
+  finished: 'finished',
   current: 'Current',
   nextBuyer: 'Next Buyer',
 }

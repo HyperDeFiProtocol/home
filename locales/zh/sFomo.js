@@ -6,6 +6,7 @@ export default {
   latestBuyerWin: '最近一位购买者赢得奖金',
   countdown: '倒计时',
   waitForStarting: '等待开始',
+  finished: '已结束',
   current: '当前',
   nextBuyer: '下一位购买者',
 }

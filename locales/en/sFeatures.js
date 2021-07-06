@@ -1,7 +1,7 @@
 export default {
   tag: 'Features',
   title: 'Fair, Fair, and FAIR',
-  desc: 'A decentralized social experiment on universal dividend sharing',
+  desc: 'A community driven decentralized social experiment on universal dividend sharing; which will transfer wealth from the impatient person to the patient person.',
 
   communityDriven: 'Community Driven',
   communityDriven__: 'Decentralized, based on a broad consensus of holders',
