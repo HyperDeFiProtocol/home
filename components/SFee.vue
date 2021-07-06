@@ -288,7 +288,7 @@
             <div class='relative'>
               <dt>
                 <div class='absolute flex items-center justify-center h-12 w-12 rounded-md bg-violet-500 text-white'>
-                  <HeroIconOutlineLibrary class='h-6 w-6' />
+                  <IconWhale class='h-6 w-6' />
                 </div>
                 <p class='ml-16 text-lg leading-6 font-bold text-gray-200'>
                   {{ $t('sFee.whale') }}

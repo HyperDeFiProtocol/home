@@ -15,6 +15,7 @@
     <SDApps />
     <SRestraint class='bg-gray-800' />
     <SGlobalAccounts />
+    <SFAQ class='bg-gray-800' />
 <!--    <SData />-->
   </div>
 </template>
@@ -22,7 +23,6 @@
 <script>
 export default {
   name: 'Index',
-  // middleware: ['bsc'],
   components: {
   },
 }

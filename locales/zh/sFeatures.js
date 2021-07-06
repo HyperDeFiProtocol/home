@@ -1,7 +1,7 @@
 export default {
   tag: '特性',
   title: '持有更好的加密货币',
-  desc: '一场关于财富的社会实验',
+  desc: '一个全民分红的社会实验',
 
   communityDriven: '社区驱动',
   communityDriven__: '去中心化，基于持有者的广泛共识',

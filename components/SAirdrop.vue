@@ -9,11 +9,8 @@
           <span v-if='$store.state.bsc.supply.airdrop === "0"'>
             {{ $t('sAirdrop.titleEnded') }}
           </span>
-          <span v-else-if='$store.state.bsc.global.airdropMode'>
-            {{ $t('sAirdrop.titleOngoing') }}
-          </span>
           <span v-else>
-            {{ $t('sAirdrop.titlePaused') }}
+            {{ $t('sAirdrop.titleOngoing') }}
           </span>
         </span>
 

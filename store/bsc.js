@@ -47,7 +47,8 @@ export const state = () => ({
     buffer: '0',
     tax: '0',
     airdrop: '0',
-    fomo: '0'
+    fomo: '0',
+    burned: '0',
   },
 
   total: {
@@ -66,7 +67,6 @@ export const state = () => ({
       ss: '00'
     },
 
-    airdropMode: null,
     airdropMax: '0',
 
     whaleFractionA: '0',
@@ -103,7 +103,6 @@ export const state = () => ({
   fomo: {
     next: null,
     amount: '0',
-    threshold: '0',
     timestamp: '0',
     timestampStep: '0',
 
@@ -174,6 +173,7 @@ export const state = () => ({
     tax: '0',
     airdrop: '0',
     fomo: '0',
+    burned: '0',
 
     totalTax: '0'
   }
@@ -230,6 +230,7 @@ export const mutations = {
     state.supply.tax = data.supplies[6]
     state.supply.airdrop = data.supplies[7]
     state.supply.fomo = data.supplies[8]
+    state.supply.burned = data.supplies[9]
 
     state.marketValue.totalSupply = new BN(state.supply.totalSupply).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.totalTax = new BN(state.supply.totalTax).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
@@ -238,6 +239,7 @@ export const mutations = {
     state.marketValue.tax = new BN(state.supply.tax).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.airdrop = new BN(state.supply.airdrop).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.fomo = new BN(state.supply.fomo).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
+    state.marketValue.burned = new BN(state.supply.burned).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
 
     // accounts
     state.globalAccounts.pancake = data.accounts[0]
@@ -254,7 +256,6 @@ export const mutations = {
   },
 
   async SET_GLOBAL(state, data) {
-    state.global.airdropMode = data.airdropMode
     state.global.autoSwapReady = data.autoSwapReady
 
     // whale
@@ -268,8 +269,8 @@ export const mutations = {
     state.global.autoSwapNumeratorMin = data.i16[3]
     state.global.autoSwapNumeratorMax = data.i16[4]
     state.global.autoSwapDenominator = data.i16[5]
-    state.global.autoSwapAmountMin = data.i256[6]
-    state.global.autoSwapAmountMax = data.i256[7]
+    state.global.autoSwapAmountMin = data.i256[5]
+    state.global.autoSwapAmountMax = data.i256[6]
 
     // launch timestamp
     state.global.launchTimestamp = data.i256[0]
@@ -279,15 +280,14 @@ export const mutations = {
 
     // thresholds
     state.global.lottoThreshold = data.i256[2]
-    state.global.whaleThreshold = data.i256[4]
-    state.global.robberThreshold = data.i256[5]
+    state.global.whaleThreshold = data.i256[3]
+    state.global.robberThreshold = data.i256[4]
 
     // fomo
     state.fomo.next = data.fomoNext
-    state.fomo.amount = data.i256[8]
-    state.fomo.threshold = data.i256[3]
-    state.fomo.timestamp = data.i256[9]
-    state.fomo.timestampStep = data.i256[10]
+    state.fomo.amount = data.i256[7]
+    state.fomo.timestamp = data.i256[8]
+    state.fomo.timestampStep = data.i256[9]
     state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerFee

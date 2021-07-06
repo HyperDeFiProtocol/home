@@ -1,14 +1,12 @@
 export default {
   title: 'FOMO',
-  text1: '为在 PancakeSwap 购买超过',
-  text2: '的持有人。',
+  text: '为下一个在 PancakeSwap 的购买者。',
 
   thenDeposit__: '然后存入 FOMO 池；在',
   hours: '小时',
   minutes: '分钟',
   seconds: '秒',
-  ifNoOther__: '之后，如果没有其它用户从 PancakeSwap 购买超过',
-  fromPancake__: '，那么最后一个购买者赢得奖金。',
+  ifNoOther__: '之后，如果没有其它用户从 PancakeSwap 购买，那么最后一个购买者赢得奖池的 60%。',
 
   trackFomoTransfers: '笔 FOMO 转账',
 

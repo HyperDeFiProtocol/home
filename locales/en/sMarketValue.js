@@ -1,4 +1,7 @@
 export default {
+  launchTag: 'Launch Time',
+  launchText: 'Trading is allowed after',
+
   tag: 'Realtime data on BSC chain',
   contractAddress_: 'Contract Address: ',
   tokenNameSymbol_: 'Token Name/Symbol:',
@@ -17,7 +20,11 @@ export default {
   _alsoTheCirculatingTotalSupply: 'which is also the circulating total supply',
 
   totalSupplyCap_: 'Total Supply Cap,',
+  fixed: 'fixed',
   decreasing_: 'decreasing...',
+
+  totalBurned_: 'Total Burned,',
+  increasing_: 'increasing...',
 
   holders_: 'Holders,',
   _holding_: 'are holding HyperDeFi in their wallets.',

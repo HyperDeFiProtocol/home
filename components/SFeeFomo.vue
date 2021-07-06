@@ -13,9 +13,7 @@
             {{ $t('sFeeFomo.title') }}
           </h2>
           <p>
-            {{ $t('sFeeFomo.text1') }}
-            <CBN :value='fomo.threshold' :token='true' /> HyperDeFi
-            {{ $t('sFeeFomo.text2') }}
+            {{ $t('sFeeFomo.text') }}
           </p>
         </div>
 
@@ -43,8 +41,6 @@
             <span v-if='timerStep.m > "0"'>{{ timerStep.m }} {{ $t('sFeeFomo.minutes') }}</span>
             <span v-if='timerStep.s > "0"'>{{ timerStep.s }} {{ $t('sFeeFomo.seconds') }}</span>
             {{ $t('sFeeFomo.ifNoOther__') }}
-            <CBN :value='fomo.threshold' :token='true' />
-            HyperDeFi{{ $t('sFeeFomo.fromPancake__') }}
           </p>
 
           <div v-if='$store.state.bsc.supply.fomo > "0"' class='mt-5 inline-flex rounded-md shadow'>

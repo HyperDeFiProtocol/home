@@ -3,7 +3,7 @@ export default {
   text: 'Globally, keep making HyperDeFi deflationary in the long term.',
 
   burn: 'Burn',
-  destroy__: 'destroy them forever, and decrease from the total supply and total supply cap.',
+  destroy__: 'destroy them forever, to black-hole address.',
 
   trackBurnTransfers: 'burn transfers',
 

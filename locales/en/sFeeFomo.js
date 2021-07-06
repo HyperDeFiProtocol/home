@@ -1,14 +1,12 @@
 export default {
   title: 'FOMO',
-  text1: 'For the holder who buy more than',
-  text2: 'on PancakeSwap.',
+  text: 'For next buyer on PancakeSwap.',
 
   thenDeposit__: 'then deposit to the FOMO pool; after',
   hours: 'hours,',
   minutes: 'minutes,',
   seconds: 'seconds,',
-  ifNoOther__: 'if no other user buy more than',
-  fromPancake__: 'from PancakeSwap, the last buyer will win this prize.',
+  ifNoOther__: 'if no other user buy from PancakeSwap, the last buyer will win 60% of this prize.',
 
   trackFomoTransfers: 'FOMO transfers',
 

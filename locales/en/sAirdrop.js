@@ -3,7 +3,6 @@ export default {
   title: 'Airdrop',
   titleEnded: 'Ended',
   titleOngoing: 'Ongoing',
-  titlePaused: 'Paused',
   descUpTo: 'Random, up to',
   descUpPerAddress_: 'per address;',
   descWill__: 'will be issued after the first buy from PancakeSwap for every address; totally',

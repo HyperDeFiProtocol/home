@@ -2,12 +2,15 @@
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
       <div v-if='!launchCountdown.finished' class="mb-12 md:mb-20 text-center">
-        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">LAUNCH TIME</h2>
+        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
+          {{ $t('sMarketValue.launchTag') }}
+        </h2>
         <h1 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
           {{ launchCountdown.hh }}:{{ launchCountdown.mm }}:{{ launchCountdown.ss }}
         </h1>
         <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-          Trading is allowed after {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
+          {{ $t('sMarketValue.launchText') }}
+          {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
         </p>
       </div>
 
@@ -84,7 +87,19 @@
             <span class="font-medium text-white">
               {{ $t('sMarketValue.totalSupplyCap_') }}
             </span>
-            {{ $t('sMarketValue.decreasing_') }}
+            {{ $t('sMarketValue.fixed') }}
+          </span>
+        </p>
+
+        <p>
+          <span class="block text-2xl font-bold text-violet-300">
+            <CBN :value='$store.state.bsc.supply.burned' :token='true' /> HyperDeFi
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <span class="font-medium text-white">
+              {{ $t('sMarketValue.totalBurned_') }}
+            </span>
+            {{ $t('sMarketValue.increasing_') }}
           </span>
         </p>
 

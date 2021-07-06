@@ -1,4 +1,7 @@
 export default {
+  launchTag: '启动时间',
+  launchText: '交易开始时间',
+
   tag: 'BSC 链上实时数据',
   contractAddress_: '合约地址：',
   tokenNameSymbol_: '代币名/符号：',
@@ -17,7 +20,11 @@ export default {
   _alsoTheCirculatingTotalSupply: '也是总流通量',
 
   totalSupplyCap_: '总量上限，',
+  fixed: '恒定不变',
   decreasing_: '缩减中...',
+
+  totalBurned_: '已销毁，',
+  increasing_: '增加中...',
 
   holders_: '持有人数，',
   _holding_: '正在钱包中持有 HyperDeFi',

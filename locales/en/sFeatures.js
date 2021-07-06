@@ -1,7 +1,7 @@
 export default {
   tag: 'Features',
   title: 'A better crypto for HOLDING',
-  desc: 'A social experiment of wealth',
+  desc: 'A social experiment on universal dividend sharing',
 
   communityDriven: 'Community Driven',
   communityDriven__: 'Decentralized, based on a broad consensus of holders',

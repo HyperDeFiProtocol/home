@@ -80,7 +80,7 @@
             {{ $t('sFeeBurn.statTotalBurned') }}
           </dt>
           <dd>
-            <CBN :value='amount' :token='true' />
+            <CBN :value='$store.state.bsc.supply.burned' :token='true' />
           </dd>
         </div>
       </dl>
