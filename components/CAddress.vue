@@ -31,6 +31,10 @@ export default {
           return 'buffer'
         case this.$store.state.bsc.globalAccounts.fund:
           return 'fund'
+        case this.$store.state.bsc.globalAccounts.zero:
+          return 'zero'
+        case this.$store.state.bsc.globalAccounts.burn:
+          return 'burn'
         default:
           return null
       }

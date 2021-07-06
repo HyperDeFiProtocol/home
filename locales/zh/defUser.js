@@ -7,6 +7,8 @@ export default {
 
   deployer: '合约部署',
 
+  burn: '黑洞',
+  zero: '零地址',
   fund: '基金',
   liquidity: 'PancakeSwap 流动池',
   buffer: '缓冲池',

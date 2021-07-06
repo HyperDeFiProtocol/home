@@ -7,6 +7,8 @@ export default {
 
   deployer: 'Deployer',
 
+  burn: 'Black-hole',
+  zero: 'Zero Address',
   fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',
