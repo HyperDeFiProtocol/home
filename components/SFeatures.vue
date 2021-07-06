@@ -128,6 +128,7 @@ export default {
     hdfLink() {
       return hdfLink
     },
+
   }
 }
 </script>

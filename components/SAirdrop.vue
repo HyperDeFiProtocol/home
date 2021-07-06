@@ -27,7 +27,7 @@
         </template>
       </CH2>
 
-      <dl class='hdf-stat grid grid-cols-1 sm:grid-cols-3 lg:max-w-6xl'>
+      <dl class='hdf-stat grid grid-cols-1 lg:grid-cols-3 lg:max-w-6xl'>
         <div>
           <dt>
             {{ $t('sAirdrop.remaining') }}

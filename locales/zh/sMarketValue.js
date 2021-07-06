@@ -13,18 +13,21 @@ export default {
   latestPrice_: '最新价格，',
   providedBy: '提供者',
 
-  circulatingMarketCap_: '流通市值，',
+  currentMarketCap_: '当前市值，',
   ofCurrentTotalSupply: '根据当前总供应量',
 
-  currentTotalSupply_: '当前总供应量，',
+  currentTotalSupply_: '当前总供应量',
   _alsoTheCirculatingTotalSupply: '也是总流通量',
 
   totalSupplyCap_: '总量上限，',
   fixed: '恒定不变',
   decreasing_: '缩减中...',
 
+  burned: '总量上限的',
   totalBurned_: '已销毁，',
-  increasing_: '增加中...',
+  held__: '由',
+  blackHole: '黑洞',
+  increasing_: '地址持有，并持续增加...',
 
   holders_: '持有人数，',
   _holding_: '正在钱包中持有 HyperDeFi',

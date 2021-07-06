@@ -10,9 +10,8 @@ export default {
 
   trackFomoTransfers: 'FOMO transfers',
 
-  statNextFomoPrize: 'Next FOMO Prize',
-  statFomoCountdownTimer: 'FOMO countdown timer',
-  statFomoTransfers: 'FOMO Transfers',
+  statFomoPool: 'FOMO Pool',
+  statFomoPrizeTransfers: 'FOMO Prize Transfers',
 
   prizeWinner: 'Prize Winner',
   nextWinner: 'Next Winner',

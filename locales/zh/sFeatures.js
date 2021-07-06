@@ -1,13 +1,13 @@
 export default {
   tag: '特性',
-  title: '公平，公平，和公平',
+  title: '公平，公平，与公平',
   desc: '一个全民分红的社会实验',
 
   communityDriven: '社区驱动',
   communityDriven__: '去中心化，基于持有者的广泛共识',
 
   fairLaunch: '公平启动',
-  fairLaunch__: '无预售，无预留，无预挖，50% 销毁',
+  fairLaunch__: '无预售，无预留，无预挖，部署后 50% 已销毁',
 
   bscEcology: 'BSC/PancakeSwap 生态',
   bscEcology__: '比 ETH 链更快速、费用更便宜',

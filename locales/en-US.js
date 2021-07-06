@@ -3,6 +3,7 @@ import siteNav from '~/locales/en/siteNav'
 import connectWallet from '~/locales/en/btnConnectWallet'
 import getHarvest from '~/locales/en/btnGetHarvest'
 import sWelcome from '~/locales/en/sWelcome'
+import sFomo from '~/locales/en/sFomo'
 import sFeatures from '~/locales/en/sFeatures'
 import sMarketValue from '~/locales/en/sMarketValue'
 import sHarvest from '~/locales/en/sHarvest'
@@ -38,6 +39,7 @@ export default {
   user: defUser,
 
   sWelcome: sWelcome,
+  sFomo: sFomo,
   sFeatures: sFeatures,
   sMarketValue: sMarketValue,
   sHarvest: sHarvest,

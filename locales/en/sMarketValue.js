@@ -13,18 +13,21 @@ export default {
   latestPrice_: 'Latest Price,',
   providedBy: 'provided by',
 
-  circulatingMarketCap_: 'Circulating Market Cap,',
+  currentMarketCap_: 'Current Market Cap,',
   ofCurrentTotalSupply: 'of current total supply',
 
-  currentTotalSupply_: 'Current Total Supply,',
+  currentTotalSupply_: 'Current Total Supply',
   _alsoTheCirculatingTotalSupply: 'which is also the circulating total supply',
 
   totalSupplyCap_: 'Total Supply Cap,',
   fixed: 'fixed',
   decreasing_: 'decreasing...',
 
-  totalBurned_: 'Total Burned,',
-  increasing_: 'increasing...',
+  burned: 'Burned',
+  totalBurned_: 'of Total Supply Cap',
+  held__: 'held by',
+  blackHole: 'black-hole',
+  increasing_: 'address and keep increasing...',
 
   holders_: 'Holders,',
   _holding_: 'are holding HyperDeFi in their wallets.',

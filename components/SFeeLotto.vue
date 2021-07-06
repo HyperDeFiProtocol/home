@@ -58,7 +58,7 @@
         </div>
       </main>
 
-      <dl v-if='counter > "0"' class='hdf-stat lg:max-w-4xl grid grid-cols-1 sm:grid-cols-2'>
+      <dl v-if='counter > "0"' class='hdf-stat lg:max-w-5xl grid grid-cols-1 lg:grid-cols-2'>
         <div>
           <dt>
             {{ $t('sFeeLotto.statLottoTransfers') }}

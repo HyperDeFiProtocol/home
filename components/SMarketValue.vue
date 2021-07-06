@@ -5,9 +5,9 @@
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.launchTag') }}
         </h2>
-        <h1 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
+        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
           {{ launchCountdown.hh }}:{{ launchCountdown.mm }}:{{ launchCountdown.ss }}
-        </h1>
+        </h3>
         <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
           {{ $t('sMarketValue.launchText') }}
           {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
@@ -61,7 +61,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.circulatingMarketCap_') }}
+              {{ $t('sMarketValue.currentMarketCap_') }}
             </span>
             {{ $t('sMarketValue.ofCurrentTotalSupply') }}
           </span>
@@ -75,7 +75,6 @@
             <span class="font-medium text-white">
               {{ $t('sMarketValue.currentTotalSupply_') }}
             </span>
-            {{ $t('sMarketValue._alsoTheCirculatingTotalSupply') }}
           </span>
         </p>
 
@@ -97,9 +96,16 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
+              {{ $t('sMarketValue.burned') }}
               <CBN :value='$store.state.bsc.supply.burnedRatio' :decimals='3' :padding='3' />%
               {{ $t('sMarketValue.totalBurned_') }}
             </span>
+            {{ $t('sMarketValue.held__') }}
+            <a target='_blank'
+               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+               class='hdf-a-colored'>
+              {{ $t('sMarketValue.blackHole') }}
+            </a>
             {{ $t('sMarketValue.increasing_') }}
           </span>
         </p>

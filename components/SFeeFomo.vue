@@ -58,30 +58,19 @@
         </div>
       </main>
 
-      <dl v-if='iAmount > "0"' class='hdf-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-3'>
+      <dl v-if='oCounter > "0"' class='hdf-stat lg:max-w-5xl grid grid-cols-1 lg:grid-cols-2'>
         <div>
           <dt>
-            {{ $t('sFeeFomo.statNextFomoPrize') }}
+            {{ $t('sFeeFomo.statFomoPool') }}
           </dt>
           <dd>
-            <CBN :value='fomo.amount' :token='true' />
-          </dd>
-        </div>
-
-        <div>
-          <dt>
-            {{ $t('sFeeFomo.statFomoCountdownTimer') }}
-          </dt>
-          <dd class='inline-flex justify-center'>
-            <span v-if='fomo.countdown.hh > "00"'>{{ fomo.countdown.hh }}:</span>
-            <span>{{ fomo.countdown.mm }}:</span>
-            <span>{{ fomo.countdown.ss }}</span>
+            <CBN :value='$store.state.bsc.supply.fomo' :token='true' />
           </dd>
         </div>
 
         <div>
           <dt class='order-2 mt-1 text-base leading-6 font-medium text-yellow-100'>
-            {{ $t('sFeeFomo.statFomoTransfers') }}
+            {{ $t('sFeeFomo.statFomoPrizeTransfers') }}
           </dt>
           <dd class='order-1 text-3xl font-extrabold text-white'>
             <CBN :value='oCounter' />
@@ -90,34 +79,34 @@
       </dl>
 
 
-      <div class='mt-10 md:mt-12'>
-        <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>
-          <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>
-            {{ $t('sFeeFomo.prizeWinner') }}
-          </span>
-          <span v-else>
-            {{ $t('sFeeFomo.nextWinner') }}
-          </span>
-        </h6>
+<!--      <div class='mt-10 md:mt-12'>-->
+<!--        <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>-->
+<!--          <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>-->
+<!--            {{ $t('sFeeFomo.prizeWinner') }}-->
+<!--          </span>-->
+<!--          <span v-else>-->
+<!--            {{ $t('sFeeFomo.nextWinner') }}-->
+<!--          </span>-->
+<!--        </h6>-->
 
-        <div class='mt-4'>
-          <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>
-            <span
-              class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>
-              {{ $t('sFeeFomo.address') }}
-            </span>
-            <div
-              class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>
-              <span v-if='!this.isZero(fomo.next)' class='font-bold text-orange-700'>
-                {{ fomo.next }}
-              </span>
-              <span v-else class='font-normal text-gray-400'>
-                {{ $t('sFeeFomo.nextBuyer') }} 0x...
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+<!--        <div class='mt-4'>-->
+<!--          <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>-->
+<!--            <span-->
+<!--              class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>-->
+<!--              {{ $t('sFeeFomo.address') }}-->
+<!--            </span>-->
+<!--            <div-->
+<!--              class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>-->
+<!--              <span v-if='!this.isZero(fomo.next)' class='font-bold text-orange-700'>-->
+<!--                {{ fomo.next }}-->
+<!--              </span>-->
+<!--              <span v-else class='font-normal text-gray-400'>-->
+<!--                {{ $t('sFeeFomo.nextBuyer') }} 0x...-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
 
       <div v-if='oTransactions.length'>

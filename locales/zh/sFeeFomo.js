@@ -10,9 +10,8 @@ export default {
 
   trackFomoTransfers: '笔 FOMO 转账',
 
-  statNextFomoPrize: '下一个 FOMO 奖金',
-  statFomoCountdownTimer: 'FOMO 倒计时',
-  statFomoTransfers: 'FOMO 转账笔数',
+  statFomoPool: 'FOMO 奖池',
+  statFomoPrizeTransfers: 'FOMO 奖励笔数',
 
   prizeWinner: '奖金获得者',
   nextWinner: '下一位获奖者',

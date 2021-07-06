@@ -1,6 +1,7 @@
 <template>
   <div>
     <SWelcome />
+    <SFomo v-if='$store.state.bsc.fomo.amount > "0"' />
     <SFeatures class='bg-gray-800' />
     <SMarketValue />
     <SAirdrop class='bg-gray-800' />
