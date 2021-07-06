@@ -14,10 +14,10 @@ export default {
   providedBy: '提供者',
 
   currentMarketCap_: '当前市值，',
-  blackHoleIncluded: '根据当前总供应量',
+  ofCurrentTotalSupply: '根据当前总供应量',
 
   currentTotalSupply_: '当前总供应量，',
-  _alsoTheCirculatingTotalSupply: '已包含黑洞地址',
+  blackHoleIncluded: '已包含黑洞地址',
 
   totalSupplyCap_: '总量上限，',
   fixed: '恒定不变',
