@@ -74,6 +74,7 @@ import explorer from '~/utils/hdfLink'
 const BN = Web3.utils.BN
 
 export default {
+  scrollToTop: true,
   name: 'txs',
   data() {
     return {

@@ -30,7 +30,7 @@ export default {
         case this.$store.state.bsc.globalAccounts.buffer:
           return 'buffer'
         case this.$store.state.bsc.globalAccounts.fund:
-          return 'deployer'
+          return 'fund'
         default:
           return null
       }

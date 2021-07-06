@@ -1,7 +1,7 @@
 <template>
   <button @click='getHarvest' class='space-x-2'>
     <slot>Get Harvest</slot>
-    <IconDiceHyperSpin v-show='pending' class='w-6 h-6' />
+    <IconDiceHyperSpin v-show='pending' class='inline w-6 h-6' />
   </button>
 </template>
 
@@ -37,8 +37,8 @@ export default {
       }
     },
     async onConfirmation(confirmation) {
-      if (confirmation > 6) {
-        this.pending = false
+      if (confirmation === 6) {
+        // this.pending = false
       }
       // console.log('>>> onConfirmation:', confirmation)
     },

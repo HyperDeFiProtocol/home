@@ -30,22 +30,32 @@
               </p>
             </div>
             <div class="mt-12">
-              <div v-if='$store.state.wallet.account' class='sm:mx-auto sm:max-w-lg sm:flex'>
-                <div class="min-w-0 flex-1">
-                  <label for="dapp-username" class="sr-only">
-                    {{ $t('sUsername.sr') }}
-                  </label>
-                  <input id="dapp-username"
-                         type="text"
-                         maxlength='24'
-                         class="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600"
-                         :placeholder='$t("sUsername.placeholder")' />
+              <div v-if='$store.state.wallet.account'>
+                <div v-if='!$store.state.wallet.username' class='sm:mx-auto sm:max-w-lg sm:flex'>
+
+
+                  <div class="min-w-0 flex-1">
+                    <label for="dapp-username" class="sr-only">
+                      {{ $t('sUsername.sr') }}
+                    </label>
+                    <input id="dapp-username"
+                           type="text"
+                           maxlength='24'
+                           class="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600"
+                           v-model='username'
+                           :placeholder='$t("sUsername.placeholder")' />
+                  </div>
+                  <div class="mt-4 sm:mt-0 sm:ml-3">
+                    <BtnSubmitUsername :username='username' />
+                  </div>
                 </div>
-                <div class="mt-4 sm:mt-0 sm:ml-3">
-                  <button @click='submit'>
-                    {{ $t('sUsername.submit') }}
-                  </button>
+                <div v-else class='sm:mx-auto sm:max-w-lg sm:flex'>
+                  <NuxtLink :to='localePath("/user/" + $store.state.wallet.username)'>
+                    {{ $store.state.wallet.username }}
+                    {{ $t('sUsername._sDashboard') }}
+                  </NuxtLink>
                 </div>
+
               </div>
               <div v-else class='sm:mx-auto sm:max-w-sm sm:flex'>
                 <BtnConnectWallet />
@@ -59,31 +69,21 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
-
 export default {
   name: 'SUsername',
-  computed: {
-    hdfLink() {
-      return hdfLink
-    },
+  data() {
+    return {
+      username: ''
+    }
   },
-  methods: {
-    async submit(error) {
-      await this.$store.dispatch('warning/SET_WARNING', {
-        title: 'Under development',
-        message: 'Coming soon...',
-      })
-    },
-  }
 }
 </script>
 
 <style scoped>
-button {
+a, button {
   @apply block w-full rounded-md border border-transparent shadow px-5 py-3 sm:px-10;
   @apply bg-violet-600 hover:bg-violet-700 focus:outline-none;
   @apply focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600;
-  @apply text-base font-medium text-white;
+  @apply text-base font-medium text-white text-center;
 }
 </style>

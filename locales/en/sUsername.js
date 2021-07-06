@@ -5,4 +5,6 @@ export default {
   sr: 'Set your username',
   placeholder: 'Enter your username',
   submit: 'Submit',
+
+  _sDashboard: '\'s Dashboard'
 }

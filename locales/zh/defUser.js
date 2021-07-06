@@ -6,6 +6,8 @@ export default {
   flat: '',
 
   deployer: '合约部署',
+
+  fund: '基金',
   liquidity: 'PancakeSwap 流动池',
   buffer: '缓冲池',
 }

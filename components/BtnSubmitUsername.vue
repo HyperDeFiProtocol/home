@@ -1,0 +1,109 @@
+<template>
+  <button @click='submit' class='space-x-2'>
+    <slot>{{ $t('sUsername.submit') }}</slot>
+    <IconDiceHyperSpin v-show='pending' class='inline w-6 h-6' />
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'BtnSubmitUsername',
+  props: {
+    username: {
+      type: String,
+      required: true
+    },
+  },
+  data() {
+    return {
+      pending: false
+    }
+  },
+  methods: {
+    async submit() {
+      // empty check
+      if (!this.username) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: 'Error',
+          message: 'Username cannot be empty.',
+        })
+
+        return
+      }
+
+      // username set check
+      if (this.$store.state.wallet.username) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: 'Error',
+          message: 'Username cannot be changed.',
+        })
+
+        return
+      }
+
+      // spin
+      this.pending = true
+
+      // username exist check
+      const account = await this.$store.state.bsc.token().methods.getAccountByUsername(this.username).call()
+        .catch(async function (error) {
+          this.pending = false
+
+          await this.$store.dispatch('warning/SET_WARNING', {
+            title: 'Error',
+            message: error.message,
+          })
+        })
+      if (account.account !== this.$store.state.bsc.globalAccounts.zero) {
+        this.pending = false
+
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: 'Error',
+          message: 'Username has already been taken.',
+        })
+
+        return
+      }
+
+      // submit
+      await this.$store.state.bsc.token().methods.setUsername(this.username)
+        .send({'from': this.$store.state.wallet.account})
+        .on('transactionHash', this.onTransactionHash)
+        .on('receipt', this.onReceipt)
+        .on('confirmation', this.onConfirmation)
+        .on('error', this.onError)
+        .catch(this.onError)
+    },
+    async onTransactionHash(txHash) {
+      console.log('>>> onTransactionHash:', txHash)
+    },
+    async onReceipt(receipt) {
+      console.log('>>> onReceipt:', receipt)
+
+      if (receipt.status) {
+        //
+      } else {
+        //
+      }
+    },
+    async onConfirmation(confirmation) {
+      if (confirmation === 6) {
+        // this.pending = false
+      }
+      // console.log('>>> onConfirmation:', confirmation)
+    },
+    async onError(error) {
+      this.pending = false
+
+      await this.$store.dispatch('warning/SET_WARNING', {
+        title: 'Tx Error: ' + error.code,
+        message: error.message,
+      })
+    },
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

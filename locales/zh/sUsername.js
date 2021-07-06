@@ -5,4 +5,6 @@ export default {
   sr: '设置您的用户名',
   placeholder: '输入您的用户名',
   submit: '提交',
+
+  _sDashboard: '的数据面板'
 }

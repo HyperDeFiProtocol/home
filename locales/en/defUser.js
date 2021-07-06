@@ -6,6 +6,8 @@ export default {
   flat: '',
 
   deployer: 'Deployer',
+
+  fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',
 }
