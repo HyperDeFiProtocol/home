@@ -13,7 +13,7 @@ export default {
   latestPrice_: 'Latest Price,',
   providedBy: 'provided by',
 
-  currentMarketCap_: 'Current Market Cap,',
+  currentMarketValue_: 'Current Market Value,',
   ofCurrentTotalSupply: 'of current total supply',
 
   currentTotalSupply_: 'Current Total Supply,',
@@ -23,11 +23,20 @@ export default {
   fixed: 'fixed',
   decreasing_: 'decreasing...',
 
+  thereIsA__: 'There is a amount of',
+  willBeMinted__: 'will be minted slowly and released to replenish the PancakeSwap Liquidity (LP Token goes into the black-hole) through the Buffer only when the liquidity is less than',
+  executeByContract__: ', execute by the contract automatically with no human intervention.',
+  clickToMintHistory: 'Click here to check the history.',
+
+
+
   burned: 'Burned',
   totalBurned_: 'of Total Supply Cap',
   held__: 'held by',
   blackHole: 'black-hole',
   increasing_: 'address and keep increasing...',
+
+  currentCirculating: 'Current Circulating',
 
   holders_: 'Holders,',
   _holding_: 'are holding HyperDeFi in their wallets.',

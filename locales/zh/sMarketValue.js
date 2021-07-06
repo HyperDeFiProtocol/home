@@ -13,7 +13,7 @@ export default {
   latestPrice_: '最新价格，',
   providedBy: '提供者',
 
-  currentMarketCap_: '当前市值，',
+  currentMarketValue_: '当前市值，',
   ofCurrentTotalSupply: '根据当前总供应量',
 
   currentTotalSupply_: '当前总供应量，',
@@ -23,11 +23,19 @@ export default {
   fixed: '恒定不变',
   decreasing_: '缩减中...',
 
+  thereIsA__: '尚有',
+  willBeMinted__: '将经由缓冲池，被铸造并缓释用于补充 PancakeSwap 流动性（当流动性低于',
+  executeByContract__: '时，LP Token 进入黑洞），由合约自动执行，人工无权介入。',
+  clickToMintHistory: '点此查看记录。',
+
   burned: '总量上限的',
   totalBurned_: '已销毁，',
   held__: '由',
   blackHole: '黑洞',
   increasing_: '地址持有，并持续增加...',
+
+
+  currentCirculating: '当前流通量',
 
   holders_: '持有人数，',
   _holding_: '正在钱包中持有 HyperDeFi',

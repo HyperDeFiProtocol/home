@@ -42,6 +42,7 @@ export const state = () => ({
     gate: '0',
     totalSupply: '0',
     totalTax: '0',
+    circulating: '0',
 
     liquidity: '0',
     buffer: '0',
@@ -70,6 +71,8 @@ export const state = () => ({
     },
 
     airdropMax: '0',
+
+    liquidityBottom: '0',
 
     whaleFractionA: '0',
     whaleFractionB: '0',
@@ -234,6 +237,7 @@ export const mutations = {
     state.supply.fomo = data.supplies[8]
     state.supply.burned = data.supplies[9]
     state.supply.burnedRatio = new BN(state.supply.burned).mul(new BN('100000')).div(new BN(state.supply.cap)).toString()
+    state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
 
     state.marketValue.totalSupply = new BN(state.supply.totalSupply).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.totalTax = new BN(state.supply.totalTax).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
@@ -272,8 +276,8 @@ export const mutations = {
     state.global.autoSwapNumeratorMin = data.i16[3]
     state.global.autoSwapNumeratorMax = data.i16[4]
     state.global.autoSwapDenominator = data.i16[5]
-    state.global.autoSwapAmountMin = data.i256[5]
-    state.global.autoSwapAmountMax = data.i256[6]
+    state.global.autoSwapAmountMin = data.i256[6]
+    state.global.autoSwapAmountMax = data.i256[7]
 
     // launch timestamp
     state.global.launchTimestamp = data.i256[0]
@@ -281,16 +285,19 @@ export const mutations = {
     // airdrop
     state.global.airdropMax = data.i256[1]
 
+    // liquidity amount
+    state.global.liquidityBottom = data.i256[2]
+
     // thresholds
-    state.global.lottoThreshold = data.i256[2]
-    state.global.whaleThreshold = data.i256[3]
-    state.global.robberThreshold = data.i256[4]
+    state.global.lottoThreshold = data.i256[3]
+    state.global.whaleThreshold = data.i256[4]
+    state.global.robberThreshold = data.i256[5]
 
     // fomo
     state.fomo.next = data.fomoNext
-    state.fomo.amount = data.i256[7]
-    state.fomo.timestamp = data.i256[8]
-    state.fomo.timestampStep = data.i256[9]
+    state.fomo.amount = data.i256[8]
+    state.fomo.timestamp = data.i256[9]
+    state.fomo.timestampStep = data.i256[10]
     state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerFee
