@@ -1,7 +1,7 @@
 export default {
   tag: '特性',
   title: '公平，公平，与公平',
-  desc: '一个全民分红的社会实验',
+  desc: '一个去中心化的全民分红社会实验',
 
   communityDriven: '社区驱动',
   communityDriven__: '去中心化，基于持有者的广泛共识',
