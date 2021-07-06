@@ -21,8 +21,8 @@
         <span v-if='$store.state.wallet.username' class='font-semibold text-gray-300'>
           "{{ $store.state.wallet.username }}"
         </span>
-        <span v-else class='font-mono'>
-          {{ $store.state.wallet.account.slice(0, 10) }}...{{ $store.state.wallet.account.slice(-4) }}
+        <span v-else class='font-mono truncate'>
+          {{ $store.state.wallet.account.slice(0, 6) }}...{{ $store.state.wallet.account.slice(-4) }}
         </span>
       </p>
 
