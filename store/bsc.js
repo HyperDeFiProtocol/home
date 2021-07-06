@@ -49,6 +49,8 @@ export const state = () => ({
     airdrop: '0',
     fomo: '0',
     burned: '0',
+
+    burnedRatio: '0',
   },
 
   total: {
@@ -231,6 +233,7 @@ export const mutations = {
     state.supply.airdrop = data.supplies[7]
     state.supply.fomo = data.supplies[8]
     state.supply.burned = data.supplies[9]
+    state.supply.burnedRatio = new BN(state.supply.burned).mul(new BN('100000')).div(new BN(state.supply.cap)).toString()
 
     state.marketValue.totalSupply = new BN(state.supply.totalSupply).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.totalTax = new BN(state.supply.totalTax).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()

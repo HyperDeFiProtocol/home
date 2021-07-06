@@ -97,6 +97,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
+              <CBN :value='$store.state.bsc.supply.burnedRatio' :decimals='3' :padding='3' />%
               {{ $t('sMarketValue.totalBurned_') }}
             </span>
             {{ $t('sMarketValue.increasing_') }}

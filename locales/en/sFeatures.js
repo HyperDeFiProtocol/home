@@ -1,13 +1,13 @@
 export default {
   tag: 'Features',
-  title: 'A better crypto for HOLDING',
+  title: 'Fair, Fair, and FAIR',
   desc: 'A social experiment on universal dividend sharing',
 
   communityDriven: 'Community Driven',
   communityDriven__: 'Decentralized, based on a broad consensus of holders',
 
   fairLaunch: 'Fair launch',
-  fairLaunch__: 'No reservations for anybody',
+  fairLaunch__: 'No presale, no reservations for anybody, 50% burned',
 
   bscEcology: 'BSC/PancakeSwap Ecology',
   bscEcology__: 'More faster, more cheaper than the ETH Chain',
