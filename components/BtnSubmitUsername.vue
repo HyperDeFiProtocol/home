@@ -24,8 +24,18 @@ export default {
       // empty check
       if (!this.username) {
         await this.$store.dispatch('warning/SET_WARNING', {
-          title: 'Error',
-          message: 'Username cannot be empty.',
+          title: this.$t('modal.error'),
+          message: this.$t('modal.usernameEmpty'),
+        })
+
+        return
+      }
+
+      // length check
+      if (4 > this.username.length) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.error'),
+          message: this.$t('modal.usernameLengthMin'),
         })
 
         return
@@ -34,8 +44,8 @@ export default {
       // username set check
       if (this.$store.state.wallet.username) {
         await this.$store.dispatch('warning/SET_WARNING', {
-          title: 'Error',
-          message: 'Username cannot be changed.',
+          title: this.$t('modal.error'),
+          message: this.$t('modal.usernameChange'),
         })
 
         return
@@ -50,7 +60,7 @@ export default {
           this.pending = false
 
           await this.$store.dispatch('warning/SET_WARNING', {
-            title: 'Error',
+            title: this.$t('modal.error'),
             message: error.message,
           })
         })
@@ -58,8 +68,8 @@ export default {
         this.pending = false
 
         await this.$store.dispatch('warning/SET_WARNING', {
-          title: 'Error',
-          message: 'Username has already been taken.',
+          title: this.$t('modal.error'),
+          message: this.$t('modal.usernameTaken'),
         })
 
         return
@@ -96,7 +106,7 @@ export default {
       this.pending = false
 
       await this.$store.dispatch('warning/SET_WARNING', {
-        title: 'Tx Error: ' + error.code,
+        title: this.$t('modal.txError') + ' #' + error.code,
         message: error.message,
       })
     },

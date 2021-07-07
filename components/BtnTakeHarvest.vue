@@ -46,7 +46,7 @@ export default {
       this.pending = false
 
       await this.$store.dispatch('warning/SET_WARNING', {
-        title: 'Tx Error: ' + error.code,
+        title: this.$t('modal.txError') + ' #' + error.code,
         message: error.message,
       })
     },
