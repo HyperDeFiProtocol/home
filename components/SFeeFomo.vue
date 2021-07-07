@@ -58,7 +58,7 @@
         </div>
       </main>
 
-      <dl v-if='oCounter > "0"' class='hdf-stat lg:max-w-5xl grid grid-cols-1 lg:grid-cols-2'>
+      <dl v-if='oCounter > "0"' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
         <div>
           <dt>
             {{ $t('sFeeFomo.statFomoPool') }}

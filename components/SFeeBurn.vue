@@ -56,15 +56,8 @@
         </div>
       </main>
 
-      <dl v-if='counter' class='hdf-stat lg:max-w-3xl grid grid-cols-1 sm:grid-cols-2'>
-        <div>
-          <dt>
-            {{ $t('sFeeBurn.statBurnTransfers') }}
-          </dt>
-          <dd>
-            <CBN :value='counter' />
-          </dd>
-        </div>
+      <dl v-if='counter' class='hdf-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-2'>
+
 
         <!--        <div>-->
         <!--          <dt>-->
@@ -81,6 +74,15 @@
           </dt>
           <dd>
             <CBN :value='$store.state.bsc.supply.burned' :token='true' />
+          </dd>
+        </div>
+
+        <div>
+          <dt>
+            {{ $t('sFeeBurn.statBurnTransfers') }}
+          </dt>
+          <dd>
+            <CBN :value='counter' />
           </dd>
         </div>
       </dl>

@@ -51,7 +51,7 @@
 
       </main>
 
-      <dl v-if='$store.state.bsc.supply.totalTax > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-3'>
+      <dl v-if='$store.state.bsc.supply.totalTax > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-2'>
         <div>
           <dt>
             {{ $t('sFeeTax.totalTax') }}
@@ -61,14 +61,14 @@
           </dd>
         </div>
 
-        <div>
-          <dt>
-            {{ $t('sFeeTax.totalTaxMarketValue') }}
-          </dt>
-          <dd>
-            $<CBN :value='String($store.state.bsc.marketValue.totalTax)' :price='true' :padding='9' /> USD
-          </dd>
-        </div>
+<!--        <div>-->
+<!--          <dt>-->
+<!--            {{ $t('sFeeTax.totalTaxMarketValue') }}-->
+<!--          </dt>-->
+<!--          <dd>-->
+<!--            $<CBN :value='String($store.state.bsc.marketValue.totalTax)' :price='true' :padding='9' /> USD-->
+<!--          </dd>-->
+<!--        </div>-->
 
         <div>
           <dt>

@@ -58,15 +58,8 @@
         </div>
       </main>
 
-      <dl v-if='counter > "0"' class='hdf-stat lg:max-w-5xl grid grid-cols-1 lg:grid-cols-2'>
-        <div>
-          <dt>
-            {{ $t('sFeeLotto.statLottoTransfers') }}
-          </dt>
-          <dd>
-            <CBN :value='counter' />
-          </dd>
-        </div>
+      <dl v-if='counter > "0"' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
+
 
         <!--        <div>-->
         <!--          <dt>-->
@@ -83,6 +76,15 @@
           </dt>
           <dd>
             <CBN :value='amount' :token='true' />
+          </dd>
+        </div>
+
+        <div>
+          <dt>
+            {{ $t('sFeeLotto.statLottoTransfers') }}
+          </dt>
+          <dd>
+            <CBN :value='counter' />
           </dd>
         </div>
       </dl>
