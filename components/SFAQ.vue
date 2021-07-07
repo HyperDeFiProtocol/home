@@ -11,38 +11,51 @@
         <dl class="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-10">
           <div>
             <dt>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+              How does the transaction fee work?
             </dt>
             <dd>
-              Morbi blandit, tellus eu rhoncus aliquet, nisl nibh malesuada ante, sed consequat dui ligula sed lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas tellus nisi, tincidunt lobortis commodo vitae, laoreet at erat.
+              HyperDeFi has a 10%-30% transaction fee
+              ({{ $store.state.bsc.takerFee.total }}% for Taker,
+              {{ $store.state.bsc.makerFee.total }}% for Maker,
+              {{ $store.state.bsc.whaleFee.total }}% for Whale).
+              Please check the Trade Fee Section of the home page.
             </dd>
           </div>
 
           <div>
             <dt>
-              Mauris fringilla maximus dolor eu pretium?
+              How do I buy HyperDeFi? Is it safe?
             </dt>
             <dd>
-              Quisque vitae nisi egestas sem vulputate porta eget non massa. Sed rutrum urna eros, nec dapibus eros lobortis commodo. Sed posuere nisi sed nibh hendrerit, cursus elementum nibh ultricies. Nunc ac suscipit arcu.
+              HyperDeFi is based on BSC Chain (Binance Smart Chain) and the liquidity is locked in PancakeSwap.
+              It is completely safe. You can get HyperDeFi from
+              <CPancakeTo class='hdf-a-colored'>
+                PancakeSwap Finance
+              </CPancakeTo>.
             </dd>
           </div>
 
           <div>
             <dt>
-              Donec quis odio vitae orci condimentum sodales?
+              What makes HyperDeFi different from other tokens?
             </dt>
             <dd>
-              Phasellus vel fringilla leo. Morbi bibendum lectus ut enim rutrum, vitae sollicitudin ante bibendum. Praesent egestas iaculis leo. Nunc ligula ipsum, accumsan nec accumsan eu, ultricies eget diam. Vestibulum semper id felis nec consequat. Maecenas nec ipsum molestie, tincidunt orci eget, congue felis.
+              Holding is farming; 100% decentralized; no presale, no reservation for team nor anyone;
+              more healthier 3 trade fee levels for Taker, Maker, and Whale, heavy tax for scripts;
+              a FOMO prize is accumulating there to incentive trading consistently;
+              and even a burning scheme to keep making HyperDeFi deflationary in the long term;
+              and one more thing: the upcoming DApps.
             </dd>
           </div>
 
 
           <div>
             <dt>
-              Proin ipsum orci, dapibus vitae faucibus ut, dapibus vel arcu?
+              Is the HyperDeFi auto-farming?
             </dt>
             <dd>
-              Sed ac odio velit. Mauris tempor accumsan suscipit. Etiam fermentum sapien nec molestie feugiat. Donec vitae est nec sapien ultrices euismod. Quisque vel ante ac eros facilisis consectetur.
+              Yes, Safe Auto-farming: 26.6% - 30% of all transaction fees are distributed to holders.
+              You will see your harvest (a wealth accumulation) in the wallet right away once you start holding.
             </dd>
           </div>
         </dl>
