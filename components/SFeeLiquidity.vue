@@ -230,7 +230,7 @@ export default {
 
       if (events) {
         events.reverse()
-        console.log(events)
+        // console.log(events)
 
         let amount = new BN()
         let transactions = []
