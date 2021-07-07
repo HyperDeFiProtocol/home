@@ -1,5 +1,5 @@
 <template>
-  <div class='section-fee'>
+  <div class='hdf-section-fee'>
     <div class='text-center'>
       <span class="span-icon bg-violet-50 text-violet-700">
         <HeroIconOutlineCurrencyDollar class="h-8 w-8" />

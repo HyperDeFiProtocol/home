@@ -1,5 +1,5 @@
 <template>
-  <div class='section-fee'>
+  <div class='hdf-section-fee'>
     <div class='text-center'>
       <span class='span-icon bg-emerald-50 text-emerald-700'>
         <HeroIconOutlineBreaker class='h-8 w-8' />
@@ -95,26 +95,26 @@
 
         <!-- md:hidden -->
         <div class='md:hidden mt-4'>
-          <ul class='divide-y divide-gray-700'>
-            <li v-for='tx in transactions' class='py-4 flex space-x-3'>
-              <span class='h-6 w-6'>
+          <ul class='hdf-tx-ul'>
+            <li v-for='tx in transactions'>
+              <span class='span-icon-wrap'>
                 <HeroIconOutlineBreaker />
               </span>
-              <div class='flex-1 space-y-2'>
-                <div class='flex items-center justify-between'>
-                  <h4 class='font-medium text-base'>
+              <div class='div-body'>
+                <div>
+                  <h4>
                     <CBN :value='tx.amount' />
                     HyperDeFi
                   </h4>
-                  <p class='text-sm text-gray-500'>
-                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                  <p>
+                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </p>
                 </div>
-                <p class='text-sm text-gray-500'>
-                  <a target='_blank' :href='hdfLink.exploreToken4address(tx.account)'>{{ tx.account }}</a>
-                </p>
+<!--                <p class='p-tx'>-->
+<!--                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 20) }}...</a>-->
+<!--                </p>-->
               </div>
             </li>
           </ul>
@@ -124,7 +124,7 @@
         <div class='hidden mt-4 overflow-x-auto md:block'>
           <div class='align-middle inline-block min-w-full'>
             <div class='shadow overflow-hidden border-b border-gray-700'>
-              <table class='min-w-full divide-y divide-gray-700'>
+              <table class='hdf-tx-table'>
                 <thead>
                 <tr>
                   <th scope='col'>
@@ -138,7 +138,7 @@
                   </th>
                 </tr>
                 </thead>
-                <tbody class='divide-y divide-gray-700'>
+                <tbody>
                 <tr v-for='tx in transactions'>
                   <td>
                     <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>#
@@ -146,7 +146,9 @@
                     </a>
                   </td>
                   <td class='font-mono'>
-                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
+                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                      {{ tx.txHash.slice(0, 36) }}...{{ tx.txHash.slice(-4) }}
+                    </a>
                   </td>
                   <td>
                     <CBN :value='tx.amount' :token='true' :padding='2' />
@@ -243,35 +245,9 @@ export default {
   @apply text-emerald-100;
 }
 
-thead {
-  th {
-    @apply px-3 py-3 text-xs text-gray-100 text-left;
-    @apply uppercase tracking-wider;
-
-    &:nth-child(3) {
-      @apply text-center;
-    }
-  }
-}
 
 tbody {
   tr {
-    &:nth-child(odd) {
-      @apply bg-gray-700;
-    }
-
-    td {
-      @apply px-3 py-4 whitespace-nowrap text-sm text-gray-400;
-    }
-
-    td:nth-child(1) {
-      @apply text-gray-500;
-    }
-
-    td:nth-child(3) {
-      @apply text-gray-300 text-right;
-    }
-
     &:hover {
       @apply bg-emerald-900;
 

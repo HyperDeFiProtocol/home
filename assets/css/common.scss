@@ -72,7 +72,7 @@
 }
 
 
-.section-fee {
+.hdf-section-fee {
   .span-icon {
     @apply -mt-8 rounded-lg inline-flex p-2 ring-4 ring-white;
   }
@@ -127,5 +127,89 @@
 
   h3 {
     @apply font-semibold tracking-wide uppercase;
+  }
+}
+
+
+.hdf-tx-ul {
+  @apply divide-y divide-gray-700;
+
+  li {
+    @apply py-4 flex space-x-3;
+
+    span.span-icon-wrap {
+      @apply h-6 w-6;
+    }
+
+    div.div-body {
+      @apply flex-1 space-y-2;
+
+      div {
+        @apply flex items-center justify-between;
+
+        h4 {
+          @apply font-medium text-base;
+        }
+
+        p {
+          @apply text-sm text-gray-500;
+        }
+      }
+
+      p.p-tx {
+        @apply text-sm text-gray-500;
+
+        a {
+          @apply truncate break-all;
+        }
+      }
+    }
+  }
+}
+
+
+.hdf-tx-table {
+  @apply min-w-full divide-y divide-gray-700;
+
+  thead {
+    th {
+      @apply px-3 py-3 text-xs text-gray-100 text-left;
+      @apply uppercase tracking-wider;
+
+      &:last-child {
+        @apply text-center;
+      }
+    }
+  }
+
+  tbody {
+    @apply divide-y divide-gray-700;
+
+    tr {
+      &:nth-child(odd) {
+        @apply bg-gray-800;
+      }
+
+      td {
+        @apply px-3 py-4 whitespace-nowrap text-sm text-gray-400;
+      }
+
+      td:first-child {
+        @apply text-gray-500;
+      }
+
+      td:last-child {
+        @apply text-gray-300 text-right;
+      }
+
+      &:hover {
+        @apply bg-teal-900;
+
+        td {
+          @apply text-teal-200;
+        }
+      }
+
+    }
   }
 }

@@ -36,8 +36,6 @@
             <div class='mt-12'>
               <div v-if='$store.state.wallet.account'>
                 <div v-if='!$store.state.wallet.username' class='sm:mx-auto sm:max-w-lg sm:flex'>
-
-
                   <div class='min-w-0 flex-1'>
                     <label for='dapp-username' class='sr-only'>
                       {{ $t('sUsername.sr') }}
@@ -45,6 +43,7 @@
                     <span class='relative'>
                       <input id='dapp-username'
                              type='text'
+                             autocomplete='off'
                              maxlength='15'
                              class='block w-full border border-transparent rounded-md pl-10 pr-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
                              v-model='username'
