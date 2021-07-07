@@ -1,6 +1,8 @@
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
 
+const BN = Web3.utils.BN
+
 export const state = () => ({
   noWeb3Provider: null,
 
@@ -9,6 +11,7 @@ export const state = () => ({
   account: null,
 
   isHolder: false,
+  isWhale: false,
   isFlat: false,
   isSlot: false,
 
@@ -42,6 +45,7 @@ export const mutations = {
 
   async SET_ACCOUNT_DATA(state, data) {
     state.isHolder = data.isHolder
+    state.isWhale = data.isWhale
     state.isFlat = data.isFlat
     state.isSlot = data.isSlot
 

@@ -14,7 +14,7 @@
         </template>
       </CH3>
 
-      <p class='flex justify-start mt-8 sm:mt-12 text-2xl text-gray-500 break-all truncate'>
+      <p class='flex justify-start mt-8 sm:mt-12 text-2xl text-gray-500 space-x-2 break-all truncate'>
         <span>
           {{ $t('sHarvest.hello_') }}
         </span>
@@ -24,6 +24,7 @@
         <span v-else class='font-mono truncate'>
           {{ $store.state.wallet.account.slice(0, 6) }}...{{ $store.state.wallet.account.slice(-4) }}
         </span>
+        <IconWhale v-if='$store.state.wallet.isWhale' class='inline h-8 w-8' />
       </p>
 
       <div class='mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2'>
