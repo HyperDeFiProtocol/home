@@ -82,6 +82,20 @@
           </span>
         </p>
 
+
+        <!--  circulating  -->
+        <p>
+          <span class="block text-2xl font-bold text-violet-300">
+            <CBN :value='$store.state.bsc.supply.circulating' :token='true' /> HyperDeFi
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <span class="font-medium text-white">
+              {{ $t('sMarketValue.currentCirculating') }}
+            </span>
+          </span>
+        </p>
+
+
         <!--  total supply cap  -->
         <p>
           <span class="block text-2xl font-bold text-violet-300">
@@ -92,6 +106,27 @@
               {{ $t('sMarketValue.totalSupplyCap_') }}
             </span>
             {{ $t('sMarketValue.fixed') }}
+          </span>
+        </p>
+
+        <!--  burned  -->
+        <p>
+          <span class="block text-2xl font-bold text-violet-300">
+            <CBN :value='$store.state.bsc.supply.burnedRatio' :decimals='3' :padding='3' /> %
+
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <span class="font-medium text-white">
+              {{ $t('sMarketValue.totalBurned_') }}
+            </span>
+            <CBN :value='$store.state.bsc.supply.burned' :token='true' /> HyperDeFi
+            {{ $t('sMarketValue.held__') }}
+            <a target='_blank'
+               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+               class='hdf-a-colored'>
+              {{ $t('sMarketValue.blackHole') }}
+            </a>
+            {{ $t('sMarketValue.increasing_') }}
           </span>
         </p>
       </div>
@@ -112,38 +147,6 @@
 
       <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2">
 
-        <!--  burned  -->
-        <p>
-          <span class="block text-2xl font-bold text-violet-300">
-            <CBN :value='$store.state.bsc.supply.burned' :token='true' /> HyperDeFi
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sMarketValue.burned') }}
-              <CBN :value='$store.state.bsc.supply.burnedRatio' :decimals='3' :padding='3' />%
-              {{ $t('sMarketValue.totalBurned_') }}
-            </span>
-            {{ $t('sMarketValue.held__') }}
-            <a target='_blank'
-               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
-               class='hdf-a-colored'>
-              {{ $t('sMarketValue.blackHole') }}
-            </a>
-            {{ $t('sMarketValue.increasing_') }}
-          </span>
-        </p>
-
-        <!--  circulating  -->
-        <p>
-          <span class="block text-2xl font-bold text-violet-300">
-            <CBN :value='$store.state.bsc.supply.circulating' :token='true' /> HyperDeFi
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sMarketValue.currentCirculating') }}
-            </span>
-          </span>
-        </p>
 
         <!--  holders  -->
         <p v-if='$store.state.bsc.metadata.holders > "1"'>

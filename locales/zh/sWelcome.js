@@ -4,9 +4,9 @@ export default {
   welcomeTo: '欢迎来到',
   hyperDeFiProtocol: 'HyperDeFi 协议',
   text: '持有即挖矿！开源的 HyperDeFi 协议由社区驱动，公平启动。每笔交易中收取费用：乐透、FOMO、流动池回收、基金、销毁、和全球税分享给每个持有人；并已为 DApp 做好准备……',
-  buyOnPancakeSwap: '在 PancakeSwap 上购买',
-  _providedBy: '最新价格提供由',
-  onBlockNumber: '在区块号',
+  buyOnPancakeSwap: '在 PancakeSwap 购买',
+  _providedBy: '最新价格由',
+  onBlockNumber: '提供，区块号',
   of: '',
   chainId: '链 ID',
 }
