@@ -3,7 +3,7 @@
     <span>
       <slot>{{ $t('connectWallet.connectWallet') }}</slot>
     </span>
-    <IconDiceHyperSpin v-show='$store.state.wallet.loading' class='w-6 h-6' />
+    <IconDiceHyperSpin v-show='$store.state.wallet.loading' class='inline w-6 h-6' />
   </button>
 </template>
 
