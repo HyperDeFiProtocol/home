@@ -3,8 +3,8 @@ export default {
   title: '空投',
   titleEnded: '已结束',
   titleOngoing: '正在进行',
-  descUpTo: '随机，最多',
-  descUpPerAddress_: '每个地址，',
+  descUpTo: '随机，每个地址最多',
+  descUpPerAddress_: '，',
   descWill__: '在第一次从 PancakeSwap 买入同时得到；总共有',
   descFirstCame__: '先到先得。',
 

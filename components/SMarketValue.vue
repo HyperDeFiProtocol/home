@@ -40,8 +40,8 @@
         </a>
       </div>
 
+      <!--  part.1  -->
       <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2">
-
         <!--  price  -->
         <p>
           <span class="block text-2xl font-bold text-violet-300">
@@ -82,7 +82,6 @@
           </span>
         </p>
 
-
         <!--  circulating  -->
         <p>
           <span class="block text-2xl font-bold text-violet-300">
@@ -94,7 +93,6 @@
             </span>
           </span>
         </p>
-
 
         <!--  total supply cap  -->
         <p>
@@ -145,9 +143,8 @@
         </p>
       </div>
 
+      <!--  part.2  -->
       <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2">
-
-
         <!--  holders  -->
         <p v-if='$store.state.bsc.metadata.holders > "1"'>
           <span class="block text-2xl font-bold text-violet-300">
