@@ -27,7 +27,8 @@
         </template>
       </CH2>
 
-      <dl class='hdf-stat grid grid-cols-1 lg:grid-cols-3 lg:max-w-6xl'>
+      <dl class='hdf-stat grid grid-cols-1 lg:max-w-7xl'
+          :class='{"xl:grid-cols-3": counter, "xl:grid-cols-1": !counter}'>
         <div>
           <dt>
             {{ $t('sAirdrop.remaining') }}
@@ -48,7 +49,7 @@
 <!--          </dd>-->
 <!--        </div>-->
 
-        <div>
+        <div v-if='counter'>
           <dt>
             {{ $t('sAirdrop.airdropped') }}
           </dt>
@@ -58,7 +59,7 @@
         </div>
 
 
-        <div>
+        <div v-if='counter'>
           <dt>
             {{ $t('sAirdrop.airdropTransfer') }}
           </dt>
@@ -181,7 +182,7 @@ export default {
     }
   },
   async mounted() {
-    await this.load()
+    // await this.load()
   },
   methods: {
     async load() {

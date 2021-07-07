@@ -49,7 +49,9 @@
         </div>
       </main>
 
-      <dl v-if='$store.state.bsc.supply.liquidity > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-2'>
+      <dl v-if='$store.state.bsc.supply.liquidity > "0"'
+          class='hdf-stat grid grid-cols-1 xl:max-w-7xl'
+          :class='{"xl:grid-cols-3": counter, "xl:grid-cols-2": !counter}'>
 
 <!--        <div>-->
 <!--          <dt>-->
@@ -82,20 +84,193 @@
             <CBN :value='$store.state.bsc.supply.buffer' :token='true' />
           </dd>
         </div>
+
+        <div v-if='counter'>
+          <dt>
+            {{ $t('sFeeLiquidity.statLiquidityAddTransfers') }}
+          </dt>
+          <dd>
+            <CBN :value='counter' />
+          </dd>
+        </div>
       </dl>
+
+      <div v-if='transactions.length'>
+        <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-rose-500 tracking-wide uppercase'>
+          {{ $t('txTable.latest') }}
+          {{ transactions.length }}
+          {{ $t('sFeeLiquidity.liquidityAddHistory') }}
+        </h6>
+
+        <!-- md:hidden -->
+        <div class='md:hidden mt-4'>
+          <ul class='hdf-tx-ul'>
+            <li v-for='tx in transactions'>
+              <span class='span-icon-wrap'>
+                <HeroIconSolidGift />
+              </span>
+              <div class='div-body'>
+                <div>
+                  <h4>
+                    <CBN :value='tx.tokenAdded' />
+                    HyperDeFi
+                  </h4>
+                  <p>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
+                    </a>
+                  </p>
+                </div>
+                <p class='p-tx'>
+                  <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>
+                    {{ tx.txHash.slice(0, 8) }}...{{ tx.txHash.slice(-4) }}
+                  </a>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- md: -->
+        <div class='hidden mt-4 overflow-x-auto md:block'>
+          <div class='align-middle inline-block min-w-full'>
+            <div class='shadow overflow-hidden border-b border-gray-700'>
+              <table class='hdf-tx-table'>
+                <thead>
+                <tr>
+                  <th scope='col'>
+                    {{ $t('txTable.block') }}
+                  </th>
+                  <th scope='col'>
+                    {{ $t('txTable.txHash') }}
+                  </th>
+                  <th scope='col'>
+                    {{ $t('txTable.BUSD') }}
+                  </th>
+                  <th scope='col'>
+                    {{ $t('txTable.amount') }}
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for='tx in transactions'>
+                  <td>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
+                    </a>
+                  </td>
+                  <td class='font-mono'>
+                    <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                      {{ tx.txHash.slice(0, 28) }}...{{ tx.txHash.slice(-4) }}
+                    </a>
+                  </td>
+                  <td>
+                    <CBN :value='tx.busdAdded' :decimals='18' :padding='6' />
+                    BUSD
+                  </td>
+                  <td>
+                    <CBN :value='tx.tokenAdded' :token='true' :padding='2' />
+                    HyperDeFi
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </LAutoWidth>
   </div>
 </template>
 
 <script>
+import Web3 from 'web3'
+import hdfLink from '~/utils/hdfLink'
+
+const BN = Web3.utils.BN
+
 export default {
   name: 'SFeeLiquidity',
+  data() {
+    return {
+      counter: 0,
+      amount: '0',
+
+      transactions: []
+    }
+  },
+  computed: {
+    explorer() {
+      return hdfLink
+    }
+  },
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.load()
+    }
+  },
+  async mounted() {
+    // await this.load()
+  },
+  methods: {
+    async load() {
+
+      const events = await this.$store.state.bsc.token()
+        .getPastEvents('LiquidityAdded', {
+          // filter: {
+          //   to: this.$store.state.bsc.globalAccounts.zero
+          // },
+          fromBlock: 0,
+          toBlock: 'latest'
+        })
+        .catch(async function(error) {
+          console.error('>>> SFeeLiquidity:', error)
+        })
+
+      if (events) {
+        events.reverse()
+        console.log(events)
+
+        let amount = new BN()
+        let transactions = []
+        for (let i = 0; i < events.length; i++) {
+          amount = amount.add(new BN(events[i].returnValues.tokenAdded))
+
+          if (i < 10) {
+            transactions.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
+
+              busdAdded: events[i].returnValues.busdAdded,
+              tokenAdded: events[i].returnValues.tokenAdded
+            })
+          }
+        }
+
+        this.transactions = transactions
+        this.counter = events.length
+        this.amount = amount.toString()
+      }
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .hdf-stat div dt {
   @apply text-rose-100;
+}
+
+tbody {
+  tr {
+    &:hover {
+      @apply bg-rose-900;
+
+      td {
+        @apply text-rose-200;
+      }
+    }
+  }
 }
 </style>

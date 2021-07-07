@@ -201,15 +201,6 @@
       td:last-child {
         @apply text-gray-300 text-right;
       }
-
-      &:hover {
-        @apply bg-teal-900;
-
-        td {
-          @apply text-teal-200;
-        }
-      }
-
     }
   }
 }

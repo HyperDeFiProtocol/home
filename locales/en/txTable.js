@@ -8,4 +8,5 @@ export default {
   txHash: 'Tx Hash',
   address: 'Address',
   amount: 'Amount',
+  BUSD: 'BUSD',
 }
