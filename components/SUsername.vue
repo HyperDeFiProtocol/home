@@ -42,12 +42,16 @@
                     <label for='dapp-username' class='sr-only'>
                       {{ $t('sUsername.sr') }}
                     </label>
-                    <input id='dapp-username'
-                           type='text'
-                           maxlength='24'
-                           class='block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
-                           v-model='username'
-                           :placeholder='$t("sUsername.placeholder")' />
+                    <span class='relative'>
+                      <input id='dapp-username'
+                             type='text'
+                             maxlength='15'
+                             class='block w-full border border-transparent rounded-md pl-10 pr-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
+                             v-model='username'
+                             :placeholder='$t("sUsername.placeholder")' />
+                      <span class='absolute top-3 left-5 text-base text-gray-500'>@</span>
+                    </span>
+
                   </div>
                   <div class='mt-4 sm:mt-0 sm:ml-3'>
                     <BtnSubmitUsername :username='username' />
@@ -82,13 +86,7 @@ export default {
   },
   watch: {
     username() {
-      let s = this.username
-      s = s.trim().replace(/[^@a-za-z0-9]/g, '')
-      if (1 < s.length) {
-        s = s.slice(0, 1) + s.slice(1).replace(/[^a-za-z0-9]/g, '')
-      }
-
-      this.username = s
+      this.username = this.username.trim().replace(/[^A-Za-z0-9]/g, '')
     }
   },
 }

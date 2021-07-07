@@ -41,6 +41,15 @@ export default {
         return
       }
 
+      if (15 < this.username.length) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.error'),
+          message: this.$t('modal.usernameLengthMax'),
+        })
+
+        return
+      }
+
       // username set check
       if (this.$store.state.wallet.username) {
         await this.$store.dispatch('warning/SET_WARNING', {
