@@ -21,6 +21,11 @@
         {{ $t('sMarketValue.contractAddress_') }}{{ tokenAddress }}
       </p>
 
+      <p v-if='launchCountdown.finished' class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sMarketValue.launchTime') }}
+        {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
+      </p>
+
       <p class="mt-2 text-base text-gray-400 break-all">
         {{ $t('sMarketValue.tokenNameSymbol_') }}
         <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>

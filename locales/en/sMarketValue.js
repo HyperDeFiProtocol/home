@@ -4,6 +4,7 @@ export default {
 
   tag: 'Realtime data on BSC chain',
   contractAddress_: 'Contract Address: ',
+  launchTime: 'Launch Time:',
   tokenNameSymbol_: 'Token Name/Symbol:',
   with: 'with',
   decimals: 'decimals',

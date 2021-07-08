@@ -4,6 +4,7 @@ export default {
 
   tag: 'BSC 链上实时数据',
   contractAddress_: '合约地址：',
+  launchTime: '启动时间：',
   tokenNameSymbol_: '代币名/符号：',
   with: '有',
   decimals: '位小数',
