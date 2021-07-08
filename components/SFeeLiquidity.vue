@@ -72,7 +72,7 @@
         </div>
 
         <div>
-          <dt class='inline-flex justify-center'>
+          <dt>
             <span>
               {{ $t('sFeeLiquidity.statBuffer') }}
             </span>
