@@ -115,7 +115,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.totalBurned_') }}
+              {{ $t('sMarketValue.burned') }}
             </span>
             <CBN :value='$store.state.bsc.supply.burned' :token='true' /> HyperDeFi
             {{ $t('sMarketValue.held__') }}

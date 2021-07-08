@@ -144,9 +144,9 @@
                   <th scope='col'>
                     {{ $t('txTable.txHash') }}
                   </th>
-                  <th scope='col'>
-                    {{ $t('txTable.BUSD') }}
-                  </th>
+<!--                  <th scope='col'>-->
+<!--                    {{ $t('txTable.BUSD') }}-->
+<!--                  </th>-->
                   <th scope='col'>
                     {{ $t('txTable.amount') }}
                   </th>
@@ -161,13 +161,13 @@
                   </td>
                   <td class='font-mono'>
                     <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
-                      {{ tx.txHash.slice(0, 28) }}...{{ tx.txHash.slice(-4) }}
+                      {{ tx.txHash.slice(0, 36) }}...{{ tx.txHash.slice(-4) }}
                     </a>
                   </td>
-                  <td>
-                    <CBN :value='tx.busdAdded' :decimals='18' :padding='6' />
-                    BUSD
-                  </td>
+<!--                  <td>-->
+<!--                    <CBN :value='tx.busdAdded' :decimals='18' :padding='6' />-->
+<!--                    BUSD-->
+<!--                  </td>-->
                   <td>
                     <CBN :value='tx.tokenAdded' :token='true' :padding='2' />
                     HyperDeFi

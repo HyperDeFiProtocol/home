@@ -28,8 +28,7 @@ export default {
   executeByContract__: '时，LP Token 进入黑洞），由合约自动执行，人工无权介入。',
   clickToMintHistory: '点此查看记录。',
 
-  burned: '总量上限的',
-  totalBurned_: '已销毁，',
+  burned: '已销毁，',
   held__: '由',
   blackHole: '黑洞',
   increasing_: '地址持有，并持续增加...',

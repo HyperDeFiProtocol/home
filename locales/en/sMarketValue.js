@@ -30,8 +30,7 @@ export default {
 
 
 
-  burned: 'Burned',
-  totalBurned_: 'of Total Supply Cap',
+  burned: 'Burned Already,',
   held__: 'held by',
   blackHole: 'black-hole',
   increasing_: 'address and keep increasing...',
