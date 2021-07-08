@@ -44,6 +44,9 @@
                      class='font-medium text-white hover:text-gray-300'>
             {{ $t('siteNav.' + item.name) }}
           </nuxt-link>
+          <a target='_blank' :href='$t("siteNav.documentationHref")' class='font-medium text-white hover:text-gray-300'>
+            {{ $t('siteNav.documentation') }}
+          </a>
         </div>
       </div>
 
@@ -83,6 +86,10 @@
                        class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
               {{ $t('siteNav.' + item.name) }}
             </nuxt-link>
+            <a target='_blank' :href='$t("siteNav.documentationHref")'
+               class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
+              {{ $t('siteNav.documentation') }}
+            </a>
           </div>
           <div class='mt-6 px-5'>
             <p class='text-center text-base font-medium text-gray-500'>Open-sourced on
@@ -102,7 +109,7 @@ const navigation = [
   // { name: 'Product', href: '#' },
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
-  { name: 'txExplorer', href: '/txs' }
+  { name: 'txExplorer', href: '/txs' },
 ]
 
 
