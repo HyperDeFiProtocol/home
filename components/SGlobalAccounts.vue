@@ -28,7 +28,7 @@
           <div class="mt-8">
             <h3 class="text-lg font-bold">
               <a target='_blank'
-                 :href='explorer.exploreAddress($store.state.bsc.globalAccounts.zero)'
+                 :href='explorer.exploreTokenHolders($store.state.bsc.globalAccounts.pair)'
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
@@ -36,7 +36,7 @@
               </a>
             </h3>
             <p class="p-address">
-              {{ $store.state.bsc.globalAccounts.zero }}
+              {{ $store.state.bsc.globalAccounts.burn.toLowerCase() }}
             </p>
           </div>
           <span class="span-out-wrapper" aria-hidden="true">

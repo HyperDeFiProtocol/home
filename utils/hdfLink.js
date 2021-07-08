@@ -35,6 +35,10 @@ const exploreToken = function(tokenAddress = process.env.tokenAddress) {
   return process.env.explorerBaseUrl + '/token/' + tokenAddress
 }
 
+const exploreTokenHolders = function(tokenAddress = process.env.tokenAddress) {
+  return process.env.explorerBaseUrl + '/token/' + tokenAddress + '#balances'
+}
+
 const exploreToken4address = function(address, token = process.env.tokenAddress) {
   return process.env.explorerBaseUrl + '/token/' + token + '?a=' + address
 }
@@ -55,6 +59,7 @@ export default {
   exploreTx: exploreTx,
   exploreAddress: exploreAddress,
   exploreToken: exploreToken,
+  exploreTokenHolders: exploreTokenHolders,
   exploreToken4address: exploreToken4address,
 
   pancakeSwapTo: pancakeSwapTo
