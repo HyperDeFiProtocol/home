@@ -182,7 +182,7 @@ export default {
     }
   },
   async mounted() {
-    // await this.load()
+    await this.load()
   },
   methods: {
     async load() {
