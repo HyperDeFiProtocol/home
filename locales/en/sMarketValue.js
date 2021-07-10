@@ -1,6 +1,7 @@
 export default {
   presaleTag: 'Presale End Time',
   presaleText: 'Deposit is allowed before',
+  visitPresale: 'Visit Presale',
 
   launchTag: 'Launch Time',
   launchText: 'Trading is allowed after',

@@ -12,6 +12,9 @@
         <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
           {{ $t('sMarketValue.presaleText') }}
           {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
+          <nuxt-link :to='localePath("/presale")' class='hdf-a-colored'>
+            {{ $t('sMarketValue.visitPresale') }}
+          </nuxt-link>
         </p>
       </div>
 

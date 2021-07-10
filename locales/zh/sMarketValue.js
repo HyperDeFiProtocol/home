@@ -1,6 +1,7 @@
 export default {
   presaleTag: '预售结束时间',
   presaleText: '允许存入截止时间',
+  visitPresale: '进入预售',
 
   launchTag: '启动时间',
   launchText: '交易开始时间',
