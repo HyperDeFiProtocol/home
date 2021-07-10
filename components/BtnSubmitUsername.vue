@@ -50,6 +50,17 @@ export default {
         return
       }
 
+      // pending check
+      if (this.pending) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.info'),
+          message: this.$t('modal.pending'),
+        })
+
+        return
+      }
+
+
       // username set check
       if (this.$store.state.wallet.username) {
         await this.$store.dispatch('warning/SET_WARNING', {
@@ -106,7 +117,8 @@ export default {
       }
     },
     async onConfirmation(confirmation) {
-      if (confirmation === 6) {
+      if (confirmation === 3) {
+        await this.$store.dispatch('bsc/SYNC_DATA')
         // this.pending = false
       }
       // console.log('>>> onConfirmation:', confirmation)

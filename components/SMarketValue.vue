@@ -1,7 +1,21 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">
+      <div v-show='!presaleCountdownFinished' class="mb-12 md:mb-20 text-center">
+        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
+          {{ $t('sMarketValue.presaleTag') }}
+        </h2>
+        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
+          <CCountdown :timestamp='$store.state.bsc.presale.endTimestamp * 1000'
+                      :show-ds='true' v-on:finished='setPresaleCountdownFinished' />
+        </h3>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+          {{ $t('sMarketValue.presaleText') }}
+          {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
+        </p>
+      </div>
+
+      <div v-show='presaleCountdownFinished && !launchCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.launchTag') }}
         </h2>
@@ -22,7 +36,7 @@
         {{ $t('sMarketValue.contractAddress_') }}{{ tokenAddress }}
       </p>
 
-      <p v-if='launchCountdownFinished' class="mt-2 text-base text-gray-400 break-all">
+      <p class="mt-2 text-base text-gray-400 break-all">
         {{ $t('sMarketValue.launchTime') }}
         {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
       </p>
@@ -203,7 +217,8 @@ export default {
   name: 'SMarketValue',
   data() {
     return {
-      launchCountdownFinished: false
+      launchCountdownFinished: false,
+      presaleCountdownFinished: false,
     }
   },
   computed: {
@@ -220,7 +235,10 @@ export default {
   methods: {
     setLaunchCountdownFinished(value) {
       this.launchCountdownFinished = value
-    }
+    },
+    setPresaleCountdownFinished(value) {
+      this.presaleCountdownFinished = value
+    },
   }
 }
 </script>

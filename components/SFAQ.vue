@@ -54,7 +54,7 @@
               Is the HyperDeFi auto-farming?
             </dt>
             <dd>
-              Yes, Safe Auto-farming: 26.6% - 30% of all transaction fees are distributed to holders.
+              Yes, Safe Auto-farming: almost all the transaction fees are distributed to holders in different ways.
               You will see your harvest (a wealth accumulation) in the wallet right away once you start holding.
             </dd>
           </div>

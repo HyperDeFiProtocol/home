@@ -1,10 +1,13 @@
 export default {
+  presaleTag: '预售结束时间',
+  presaleText: '允许存入截止时间',
+
   launchTag: '启动时间',
   launchText: '交易开始时间',
 
   tag: 'BSC 链上实时数据',
   contractAddress_: '合约地址：',
-  launchTime: '启动时间：',
+  launchTime: '交易启动时间：',
   tokenNameSymbol_: '代币名/符号：',
   with: '有',
   decimals: '位小数',

@@ -1,10 +1,13 @@
 export default {
+  presaleTag: 'Presale End Time',
+  presaleText: 'Deposit is allowed before',
+
   launchTag: 'Launch Time',
   launchText: 'Trading is allowed after',
 
   tag: 'Realtime data on BSC chain',
   contractAddress_: 'Contract Address: ',
-  launchTime: 'Launch Time:',
+  launchTime: 'Trade Launch Time:',
   tokenNameSymbol_: 'Token Name/Symbol:',
   with: 'with',
   decimals: 'decimals',
