@@ -32,6 +32,8 @@ $ yarn generate
 - [Node.js](https://nodejs.org/)
 - [Vue2](https://vuejs.org/)
 - [Nuxt.js](https://nuxtjs.org/) as the Main Framework
-- [TailwindCSS](https://tailwindcss.com/) and [TailwindUI](https://tailwindui.com/) for the UI
+- [TailwindCSS](https://tailwindcss.com/) and [TailwindUI](https://tailwindui.com/) for the styles and UI
 - [Ico Generator](https://favicon.io/) for generating favicons
-- [Affinity](https://affinity.serif.com/) for designing tools
+- [Affinity](https://affinity.serif.com/) as designing tools:
+  [Affinity Photo](https://affinity.serif.com/en-gb/photo/) for jpg, and
+  [Affinity Designer](https://affinity.serif.com/en-gb/designer/) for vector.
