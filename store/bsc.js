@@ -2,6 +2,7 @@ import Web3 from 'web3'
 import moment from 'moment'
 
 import tokenAbi from '~/utils/token.json'
+import busdAbi from '~/utils/busd.json'
 
 const BN = Web3.utils.BN
 
@@ -19,6 +20,7 @@ export const state = () => ({
   gasPrice: '0',
 
   token: null,
+  busd: null,
 
   metadata: {
     tokenName: null,
@@ -61,14 +63,14 @@ export const state = () => ({
 
   global: {
     launchTimestamp: '0',
-    launchCountdown: {
-      interval: null,
-      finished: false,
-
-      hh: '00',
-      mm: '00',
-      ss: '00'
-    },
+    // launchCountdown: {
+    //   interval: null,
+    //   finished: false,
+    //
+    //   hh: '00',
+    //   mm: '00',
+    //   ss: '00'
+    // },
 
     airdropMax: '0',
 
@@ -102,7 +104,9 @@ export const state = () => ({
     fomo: null,
     fund: null,
     zero: null,
-    burn: null
+    burn: null,
+
+    presale: null,
   },
 
   fomo: {
@@ -111,14 +115,14 @@ export const state = () => ({
     timestamp: '0',
     timestampStep: '0',
 
-    countdown: {
-      interval: null,
-      finished: true,
-
-      hh: '00',
-      mm: '00',
-      ss: '00'
-    }
+    // countdown: {
+    //   interval: null,
+    //   finished: true,
+    //
+    //   hh: '00',
+    //   mm: '00',
+    //   ss: '00'
+    // }
   },
 
 
@@ -181,7 +185,15 @@ export const state = () => ({
     burned: '0',
 
     totalTax: '0'
-  }
+  },
+
+  presale: {
+    endTimestamp: '0',
+    liquidityCreatedTimestamp: '0',
+    presaleAmount: '0',
+    balance: '0',
+    fund: '0',
+  },
 })
 
 
@@ -203,6 +215,11 @@ export const mutations = {
   async SET_TOKEN(state, token) {
     state.token = function() {
       return token
+    }
+  },
+  async SET_BUSD(state, busd) {
+    state.busd = function() {
+      return busd
     }
   },
   async SET_METADATA(state, data) {
@@ -260,6 +277,8 @@ export const mutations = {
     state.globalAccounts.zero = data.accounts[8]
     state.globalAccounts.burn = data.accounts[9]
 
+    state.globalAccounts.presale = data.accounts[10]
+
   },
 
   async SET_GLOBAL(state, data) {
@@ -298,7 +317,7 @@ export const mutations = {
     state.fomo.amount = data.i256[8]
     state.fomo.timestamp = data.i256[9]
     state.fomo.timestampStep = data.i256[10]
-    state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
+    // state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerFee
     state.takerFee.tax = data.takerFees[0]
@@ -343,53 +362,62 @@ export const mutations = {
     // specials
     state.specials.flats = data.flats
     state.specials.slots = data.slots
+
+    // presale
+    state.presale.endTimestamp = data.i256[11]
+    state.presale.liquidityCreatedTimestamp = data.i256[12]
+    state.presale.presaleAmount = data.i256[13]
+    state.presale.balance = data.i256[14]
+    state.presale.fund = data.i256[15]
   },
 
-  TOUCH_LAUNCH_COUNTDOWN(state) {
-    const duration = moment.duration(moment(state.global.launchTimestamp * 1000).diff(moment()))
+  // TOUCH_LAUNCH_COUNTDOWN(state) {
+  //   const duration = moment.duration(moment(state.global.launchTimestamp * 1000).diff(moment()))
+  //
+  //   if (duration.asSeconds() > 0) {
+  //     state.global.launchCountdown.finished = false
+  //
+  //     const s = duration.seconds()
+  //     const m = duration.minutes()
+  //     const h = duration.hours()
+  //     state.global.launchCountdown.ss = s < 10 ? '0' + s : s
+  //     state.global.launchCountdown.mm = m < 10 ? '0' + m : m
+  //     state.global.launchCountdown.hh = h < 10 ? '0' + h : h
+  //   } else {
+  //     state.global.launchCountdown.finished = true
+  //     clearInterval(state.global.launchCountdown.interval)
+  //
+  //     state.global.launchCountdown.ss = '00'
+  //     state.global.launchCountdown.mm = '00'
+  //     state.global.launchCountdown.hh = '00'
+  //   }
+  // },
+  // async SET_LAUNCH_COUNTDOWN_INTERVAL(state, payload) {
+  //   state.global.launchCountdown.interval = payload
+  // },
 
-    if (duration.asSeconds() > 0) {
-      state.global.launchCountdown.finished = false
-
-      const s = duration.seconds()
-      const m = duration.minutes()
-      const h = duration.hours()
-      state.global.launchCountdown.ss = s < 10 ? '0' + s : s
-      state.global.launchCountdown.mm = m < 10 ? '0' + m : m
-      state.global.launchCountdown.hh = h < 10 ? '0' + h : h
-    } else {
-      state.global.launchCountdown.finished = true
-
-      state.global.launchCountdown.ss = '00'
-      state.global.launchCountdown.mm = '00'
-      state.global.launchCountdown.hh = '00'
-    }
-  },
-  async SET_LAUNCH_COUNTDOWN_INTERVAL(state, payload) {
-    state.global.launchCountdown.interval = payload
-  },
-
-  TOUCH_FOMO_COUNTDOWN(state) {
-    const duration = moment.duration(moment(state.fomo.timestamp * 1000).diff(moment()))
-
-    if (duration.asSeconds() > 0) {
-      const s = duration.seconds()
-      const m = duration.minutes()
-      const h = duration.hours()
-      state.fomo.countdown.ss = s < 10 ? '0' + s : s
-      state.fomo.countdown.mm = m < 10 ? '0' + m : m
-      state.fomo.countdown.hh = h < 10 ? '0' + h : h
-    } else {
-      state.fomo.countdown.finished = true
-
-      state.fomo.countdown.ss = '00'
-      state.fomo.countdown.mm = '00'
-      state.fomo.countdown.hh = '00'
-    }
-  },
-  async SET_FOMO_COUNTDOWN_INTERVAL(state, payload) {
-    state.fomo.countdown.interval = payload
-  }
+  // TOUCH_FOMO_COUNTDOWN(state) {
+  //   const duration = moment.duration(moment(state.fomo.timestamp * 1000).diff(moment()))
+  //
+  //   if (duration.asSeconds() > 0) {
+  //     const s = duration.seconds()
+  //     const m = duration.minutes()
+  //     const h = duration.hours()
+  //     state.fomo.countdown.ss = s < 10 ? '0' + s : s
+  //     state.fomo.countdown.mm = m < 10 ? '0' + m : m
+  //     state.fomo.countdown.hh = h < 10 ? '0' + h : h
+  //   } else {
+  //     state.fomo.countdown.finished = true
+  //     clearInterval(state.fomo.countdown.interval)
+  //
+  //     state.fomo.countdown.ss = '00'
+  //     state.fomo.countdown.mm = '00'
+  //     state.fomo.countdown.hh = '00'
+  //   }
+  // },
+  // async SET_FOMO_COUNTDOWN_INTERVAL(state, payload) {
+  //   state.fomo.countdown.interval = payload
+  // }
 }
 
 
@@ -402,6 +430,12 @@ export const actions = {
     const Contract = state.web3().eth.Contract
     await commit('SET_TOKEN', new Contract(
       tokenAbi, process.env.tokenAddress
+    ))
+  },
+  async SET_BUSD({ state, commit }) {
+    const Contract = state.web3().eth.Contract
+    await commit('SET_BUSD', new Contract(
+      busdAbi, state.globalAccounts.BUSD
     ))
   },
 
@@ -443,25 +477,25 @@ export const actions = {
         console.error('>>> Store[bsc] SYNC_DATA - getGlobal:', error.message)
       })
 
-    if (!state.fomo.countdown.finished && !state.fomo.countdown.interval) {
-      await commit('SET_FOMO_COUNTDOWN_INTERVAL',
-        window.setInterval(
-          () => {
-            commit('TOUCH_FOMO_COUNTDOWN')
-          },
-          1000)
-      )
-    }
+    // if (!state.fomo.countdown.finished && !state.fomo.countdown.interval) {
+    //   await commit('SET_FOMO_COUNTDOWN_INTERVAL',
+    //     window.setInterval(
+    //       () => {
+    //         commit('TOUCH_FOMO_COUNTDOWN')
+    //       },
+    //       1000)
+    //   )
+    // }
 
-    if (!state.global.launchCountdown.finished && !state.global.launchCountdown.interval) {
-      await commit('SET_LAUNCH_COUNTDOWN_INTERVAL',
-        window.setInterval(
-          () => {
-            commit('TOUCH_LAUNCH_COUNTDOWN')
-          },
-          1000)
-      )
-    }
+    // if (!state.global.launchCountdown.finished && !state.global.launchCountdown.interval) {
+    //   await commit('SET_LAUNCH_COUNTDOWN_INTERVAL',
+    //     window.setInterval(
+    //       () => {
+    //         commit('TOUCH_LAUNCH_COUNTDOWN')
+    //       },
+    //       1000)
+    //   )
+    // }
   },
 
   async TOUCH_REFRESH({ rootState, state, commit, dispatch }, blockNumber) {

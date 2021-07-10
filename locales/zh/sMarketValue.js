@@ -41,7 +41,7 @@ export default {
   _holding_: '正在钱包中持有 HyperDeFi',
 
   checkYour: '查看您的',
-  harvest_: '持币挖矿？',
+  harvest_: '持币挖矿',
 
   clickHere: '点此',
   toConnectWallet_: '连接钱包...',

@@ -32,6 +32,7 @@ export default async function ({ app, store }, inject) {
   await store.dispatch('bsc/SYNC_BLOCK_NUMBER')
   await store.dispatch('bsc/SYNC_GAS_PRICE')
   await store.dispatch('bsc/SYNC_DATA')
+  await store.dispatch('bsc/SET_BUSD')
 
   if (provider) {
     await store.dispatch('bsc/KEEP_SYNC')

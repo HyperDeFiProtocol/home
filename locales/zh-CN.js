@@ -1,4 +1,6 @@
+import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
+import pPresale from '~/locales/zh/pPresale'
 
 import connectWallet from '~/locales/zh/btnConnectWallet'
 import getHarvest from '~/locales/zh/btnGetHarvest'
@@ -32,7 +34,9 @@ import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 
 // zh
 export default {
+  global: global,
   siteNav: siteNav,
+  pPresale: pPresale,
 
   connectWallet: connectWallet,
   getHarvest: getHarvest,

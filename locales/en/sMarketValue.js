@@ -42,7 +42,7 @@ export default {
   _holding_: 'are holding HyperDeFi in their wallets.',
 
   checkYour: 'Check your',
-  harvest_: 'harvest?',
+  harvest_: 'harvest',
 
   clickHere: 'Click here',
   toConnectWallet_: 'to connect wallet...',

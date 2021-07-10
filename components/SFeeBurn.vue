@@ -8,8 +8,6 @@
 
     <LAutoWidth class='auto-layout'>
       <main>
-
-
         <div class='header2'>
           <h2 class='text-emerald-500'>
             {{ $t('sFeeBurn.title') }}
@@ -44,7 +42,7 @@
           <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
             <a target='_blank'
                :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
-               class='a-track bg-emerald-700 hover:bg-emerald-600 space-x-2'>
+               class='hdf-a-track bg-emerald-700 hover:bg-emerald-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}

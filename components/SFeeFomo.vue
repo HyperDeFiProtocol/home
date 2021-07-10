@@ -46,7 +46,7 @@
           <div v-if='$store.state.bsc.supply.fomo > "0"' class='mt-5 inline-flex rounded-md shadow'>
             <a target='_blank'
                :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.fomo)'
-               class='a-track bg-yellow-700 hover:bg-yellow-600 space-x-2'>
+               class='hdf-a-track bg-yellow-700 hover:bg-yellow-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
@@ -244,7 +244,6 @@ export default {
       return address === this.$store.state.bsc.globalAccounts.zero
     },
     async load() {
-
       const timerStep = moment.duration(this.$store.state.bsc.fomo.timestampStep * 1000)
       this.timerStep.s = timerStep.seconds()
       this.timerStep.m = timerStep.minutes()

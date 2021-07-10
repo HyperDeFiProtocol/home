@@ -12,7 +12,9 @@ export default {
     githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
     twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
-    telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol'
+    telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
+
+    tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

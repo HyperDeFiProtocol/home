@@ -1,7 +1,7 @@
 <template>
   <div @click='hideNavMenu'>
     <SNotProductionMode v-if='notProductionMode' />
-    <SiteNav />
+    <SiteNav class='bg-gray-900' />
     <Nuxt />
     <SiteFooter />
 
@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<style>
+<style lang='scss'>
 html {
   @apply bg-gray-900 text-gray-300;
 }

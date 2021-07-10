@@ -40,7 +40,7 @@
               What makes HyperDeFi different from other tokens?
             </dt>
             <dd>
-              Holding is farming; 100% decentralized; no presale, no reservation for team nor anyone;
+              Holding is farming; 100% decentralized; no reservation for team nor anyone;
               more healthier 3 trade fee levels for Taker, Maker, and Whale, heavy tax for scripts;
               a FOMO prize is accumulating there to incentive trading consistently;
               and even a auto-burning scheme to keep making HyperDeFi deflationary in the long term;

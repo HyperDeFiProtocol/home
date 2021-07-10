@@ -1,12 +1,13 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-if='!launchCountdown.finished' class="mb-12 md:mb-20 text-center">
+      <div v-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.launchTag') }}
         </h2>
         <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          {{ launchCountdown.hh }}:{{ launchCountdown.mm }}:{{ launchCountdown.ss }}
+          <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000'
+                      :show-ds='true' v-on:finished='setLaunchCountdownFinished' />
         </h3>
         <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
           {{ $t('sMarketValue.launchText') }}
@@ -21,7 +22,7 @@
         {{ $t('sMarketValue.contractAddress_') }}{{ tokenAddress }}
       </p>
 
-      <p v-if='launchCountdown.finished' class="mt-2 text-base text-gray-400 break-all">
+      <p v-if='launchCountdownFinished' class="mt-2 text-base text-gray-400 break-all">
         {{ $t('sMarketValue.launchTime') }}
         {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
       </p>
@@ -37,10 +38,10 @@
       </p>
 
       <div class="mt-5 inline-flex rounded-md shadow">
-        <a target='_blank' :href='hdfLink.exploreToken(tokenAddress)' class="a-track bg-violet-600 hover:bg-violet-700 space-x-2">
+        <a target='_blank' :href='hdfLink.exploreToken(tokenAddress)' class='hdf-a-track bg-violet-600 hover:bg-violet-700 space-x-2'>
           <HeroIconSolidCursorClick class="h-5 w-5" />
           <span>
-            {{ $t('sMarketValue.trackWith__') }}
+            {{ $t('global.trackWithBSCScan') }}
           </span>
         </a>
       </div>
@@ -134,7 +135,8 @@
         </p>
       </div>
 
-      <div class='mt-6 border-l-8 border-gray-800 py-4 px-4 leading-6 text-base text-gray-500'>
+      <div class='mt-6 border-l-8 border-gray-800 py-4 px-4 leading-6 text-base text-gray-500'
+           v-if='$store.state.bsc.presale.liquidityCreatedTimestamp > "0"'>
         <p>
           {{ $t('sMarketValue.thereIsA__') }}
           <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi
@@ -149,7 +151,8 @@
       </div>
 
       <!--  part.2  -->
-      <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2">
+      <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2"
+           v-if='$store.state.bsc.metadata.holders > "1" || !$store.state.wallet.account'>
         <!--  holders  -->
         <p v-if='$store.state.bsc.metadata.holders > "1"'>
           <span class="block text-2xl font-bold text-violet-300">
@@ -198,6 +201,11 @@ import hdfLink from '~/utils/hdfLink'
 
 export default {
   name: 'SMarketValue',
+  data() {
+    return {
+      launchCountdownFinished: false
+    }
+  },
   computed: {
     moment() {
       return moment
@@ -208,10 +216,12 @@ export default {
     hdfLink() {
       return hdfLink
     },
-    launchCountdown() {
-      return this.$store.state.bsc.global.launchCountdown
-    }
   },
+  methods: {
+    setLaunchCountdownFinished(value) {
+      this.launchCountdownFinished = value
+    }
+  }
 }
 </script>
 

@@ -1,4 +1,6 @@
+import global from '~/locales/en/global'
 import siteNav from '~/locales/en/siteNav'
+import pPresale from '~/locales/en/pPresale'
 
 import connectWallet from '~/locales/en/btnConnectWallet'
 import getHarvest from '~/locales/en/btnGetHarvest'
@@ -32,7 +34,9 @@ import modalUnsupportedChainId from '~/locales/en/modalUnsupportedChainId'
 
 // en
 export default {
+  global: global,
   siteNav: siteNav,
+  pPresale: pPresale,
 
   connectWallet: connectWallet,
   getHarvest: getHarvest,

@@ -8,7 +8,7 @@
   }
 }
 
-.a-track {
+.hdf-a-track {
   @apply inline-flex items-center justify-center px-5 py-3 border border-transparent rounded-md;
   @apply font-medium text-base text-white;
 }
@@ -31,7 +31,7 @@
 }
 
 .hdf-a-colored {
-  @apply font-medium text-violet-300;
+  @apply font-medium text-violet-300 hover:text-white;
 }
 
 .hdf-ch2 {
@@ -62,7 +62,7 @@
   }
 
   h3 {
-    @apply leading-8 tracking-tight font-extrabold text-3xl sm:text-4xl;
+    @apply leading-snug tracking-tight font-extrabold text-3xl sm:text-4xl;
     @apply text-gray-200;
   }
 

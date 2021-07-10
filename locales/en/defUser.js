@@ -9,6 +9,7 @@ export default {
 
   burn: 'Black-hole',
   zero: 'Zero Address',
+  presale: 'Presale Contract',
   fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',

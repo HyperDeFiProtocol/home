@@ -20,19 +20,16 @@
         </div>
 
         <h4 class="mt-2 lg:mt-3 lg:w-full lg:mx-auto text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <span v-if='this.isZero($store.state.bsc.fomo.next)' class='inline-flex lg:justify-center'>
-            <span v-if='step.hh > "00"'>{{ step.hh }}:</span>
-            <span>{{ step.mm }}:</span>
-            <span>{{ step.ss }}</span>
-          </span>
-<!--          <span v-else-if='$store.state.bsc.fomo.countdown.finished'>-->
-<!--            {{ $t('sFomo.finished') }}-->
-<!--          </span>-->
-          <span v-else class='inline-flex lg:justify-center'>
-            <span v-if='$store.state.bsc.fomo.countdown.hh > "00"'>{{ $store.state.bsc.fomo.countdown.hh }}:</span>
-            <span>{{ $store.state.bsc.fomo.countdown.mm }}:</span>
-            <span>{{ $store.state.bsc.fomo.countdown.ss }}</span>
-          </span>
+          <CTimeDuration v-if='!isZero($store.state.bsc.fomo.next)'
+                         :milliseconds='$store.state.bsc.fomo.timestampStep * 1000'
+                         :may-hide-hours='true' />
+
+          <CCountdown v-else
+                      :timestamp='$store.state.bsc.fomo.timestamp * 1000'
+                      :may-hide-hours='true'
+                      :show-ds='true'
+                      class='lg:justify-center'
+                      v-on:finished='setCountdownFinished' />
         </h4>
 
         <div class='mt-10 sm:mt-16 text-lg text-gray-500'>
@@ -48,7 +45,7 @@
         <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>
           <span
             class='inline-flex items-center px-4 lg:px-8 rounded-l-md border border-r-0 border-violet-300 bg-violet-50 font-bold text-lg text-violet-600'>
-            <span v-if='!$store.state.bsc.fomo.countdown.finished'>
+            <span v-if='!this.countdownFinished'>
               {{ $t('sFomo.current') }}
             </span>
             <span v-else>
@@ -76,6 +73,11 @@ import moment from 'moment'
 
 export default {
   name: 'sFomo',
+  data() {
+    return {
+      countdownFinished: true
+    }
+  },
   computed: {
     step() {
       let step = {
@@ -99,6 +101,10 @@ export default {
     isZero(address) {
       return address === this.$store.state.bsc.globalAccounts.zero
     },
+
+    setCountdownFinished(value) {
+      this.countdownFinished = value
+    }
   }
 }
 </script>

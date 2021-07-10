@@ -9,6 +9,7 @@ export default {
 
   burn: '黑洞',
   zero: '零地址',
+  presale: '预售合约',
   fund: '基金',
   liquidity: 'PancakeSwap 流动池',
   buffer: '缓冲池',

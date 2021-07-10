@@ -57,7 +57,7 @@
         </p>
 
         <p v-if='$store.state.wallet.harvest > "0"' class='transition duration-300 ease-out'>
-          <BtnTakeHarvest class='a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
+          <BtnTakeHarvest class='hdf-a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
             <HeroIconSolidFire v-if='$store.state.wallet.harvest > "0"' class='inline w-6 h-6' />
             <span class='hidden lg:inline'>
               {{ $t('sHarvest.clickHereTo') }}

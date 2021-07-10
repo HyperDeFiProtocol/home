@@ -40,7 +40,7 @@
           </p>
 
           <div v-if='$store.state.bsc.supply.tax > "0"' class="mt-5 inline-flex rounded-md shadow">
-            <a target='_blank' :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.tax)' class="a-track bg-violet-700 hover:bg-violet-600 space-x-2">
+            <a target='_blank' :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.tax)' class='hdf-a-track bg-violet-700 hover:bg-violet-600 space-x-2'>
               <HeroIconSolidCursorClick class="h-5 w-5" />
               <span>
                 {{ $t('sFeeTax.track__') }}

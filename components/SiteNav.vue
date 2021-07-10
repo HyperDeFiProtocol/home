@@ -110,6 +110,7 @@ const navigation = [
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
   { name: 'txExplorer', href: '/txs' },
+  { name: 'presale', href: '/presale' },
 ]
 
 

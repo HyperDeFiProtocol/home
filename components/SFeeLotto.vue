@@ -46,7 +46,7 @@
           </p>
 
           <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
-            <a href='#' class='a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
+            <a href='#' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
