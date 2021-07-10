@@ -1,9 +1,8 @@
-# HyperDeFi on BSC Chain Testnet
+# HyperDeFi Alpha Test
 
-[![Testnet](https://github.com/HyperDeFiProtocol/home/actions/workflows/testnet.yml/badge.svg)](https://testnet.hyperdefi.org/)
+[![Official Home](https://github.com/HyperDeFiProtocol/home/actions/workflows/mainnet.yml/badge.svg)](https://hyperdefi.org/)
 
-Working on BSC Chain Testnet
+Now, working on BSC Chain Testnet.
 
-Just visit [https://testnet.hyperdefi.org/](https://testnet.hyperdefi.org/)
+Just visit [https://hyperdefi.org/](https://hyperdefi.org/)
 
-Now, it is still in **alpha test mode**
