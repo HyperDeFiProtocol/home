@@ -5,7 +5,7 @@
 [![Alpha Test](https://github.com/HyperDeFiProtocol/home/actions/workflows/alpha.yml/badge.svg)](https://alpha.hyperdefi.org/)
 
 Just visit [https://hyperdefi.org/](https://hyperdefi.org/) for preview and test, after the contracts deployed on
-mainnet, this will work for production mode.
+mainnet, this will work in production mode.
 
 So, for now, the `alpha`, `testnet`, and `official home` are same same...
 
