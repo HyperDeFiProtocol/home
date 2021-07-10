@@ -52,7 +52,7 @@ jobs:
       - name: CNAME and README 🚀🚀
         run: |
           echo "hyperdefi.org" > ./dist/CNAME
-          cp README.mainnet.md ./dist/README.md
+          cp README.md ./dist/README.md
 
       - name: Deploy 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
