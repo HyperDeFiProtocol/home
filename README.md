@@ -38,3 +38,4 @@ $ yarn generate
 - [Affinity](https://affinity.serif.com/) as designing tools:
   [Affinity Photo](https://affinity.serif.com/en-gb/photo/) for jpg, and
   [Affinity Designer](https://affinity.serif.com/en-gb/designer/) for vector.
+- [GitHub Actions](https://github.com/features/actions) for CI
