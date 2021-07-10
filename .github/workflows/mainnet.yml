@@ -49,28 +49,14 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
-      - name: Deploy for `hyperdefi.org` 🚀🚀
+      - name: CNAME and README 🚀🚀
         run: |
           echo "hyperdefi.org" > ./dist/CNAME
           cp README.mainnet.md ./dist/README.md
 
-      - name: Deploy for Alpha Test 🚀🚀🚀
+      - name: Deploy 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          token: ${{ secrets.CI_TOKEN }}
-          repository-name: HyperDeFiProtocol/alpha
-          commit-message: "${{ github.repository }}@${{ github.sha }}"
-          branch: alpha
-          folder: dist
-
-      - name: Deploy for `hyperdefi.org` 🚀🚀
-        run: |
-          echo "hyperdefi.org" > ./dist/CNAME
-          cp README.testnet.md ./dist/README.md
-
-      - name: Deploy for BSC Chain Testnet 🚀🚀🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          commit-message: "@${{ github.sha }}"
+          commit-message: "{{ github.sha }}"
           branch: gh-pages
           folder: dist
