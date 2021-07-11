@@ -598,7 +598,7 @@ export default {
       if (receipt.status) {
         await this.syncData()
         await this.$store.dispatch('bsc/SYNC_DATA')
-        this.pendingDeposit = false
+        this.pendingRedeem = false
       }
     },
     async onRedeemConfirmation(confirmation) {
