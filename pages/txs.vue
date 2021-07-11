@@ -1,7 +1,17 @@
 <template>
   <div>
     <LAutoWidth class='py-10 md:py-20'>
-      <div class='mt-4 overflow-x-auto'>
+      <CH3>
+        {{ $t('siteNav.txExplorer') }}
+
+        <template #tag>
+          On Chain
+        </template>
+      </CH3>
+
+      <CLoading class='mt-32' :show='showLoading' />
+
+      <div v-show='transactions.length' class='mt-10 lg:mt-24 overflow-x-auto'>
         <div class='align-middle inline-block min-w-full'>
           <div class='shadow overflow-hidden border-b border-gray-700'>
             <table class='min-w-full divide-y divide-gray-700'>
@@ -78,6 +88,7 @@ export default {
   name: 'txs',
   data() {
     return {
+      showLoading: true,
       transactions: []
     }
   },
@@ -145,6 +156,7 @@ export default {
         }
       }
 
+      this.showLoading = false
     },
     txName(txType) {
       switch (txType) {
