@@ -49,14 +49,12 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
-      - name: CNAME and README 🚀🚀
-        run: |
-          echo "hyperdefi.org" > ./dist/CNAME
-          cp README.md ./dist/README.md
+      - name: CNAME 🚀🚀
+        run: echo "hyperdefi.org" > ./dist/CNAME
 
       - name: Deploy 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          commit-message: "{{ github.sha }}"
+          commit-message: "@{{ github.sha }}"
           branch: gh-pages
           folder: dist

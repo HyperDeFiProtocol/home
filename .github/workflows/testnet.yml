@@ -49,10 +49,8 @@ jobs:
       - name: Nuxt generate 🚀
         run: yarn generate
 
-      - name: CNAME and README 🚀🚀
-        run: |
-          echo "testnet.hyperdefi.org" > ./dist/CNAME
-          cp README.testnet.md ./dist/README.md
+      - name: CNAME 🚀🚀
+        run: echo "testnet.hyperdefi.org" > ./dist/CNAME
 
       - name: Deploy 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
@@ -60,5 +58,5 @@ jobs:
           token: ${{ secrets.CI_TOKEN }}
           repository-name: HyperDeFiProtocol/testnet
           commit-message: "${{ github.repository }}@${{ github.sha }}"
-          branch: testnet
+          branch: gh-pages
           folder: dist
