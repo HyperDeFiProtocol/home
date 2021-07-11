@@ -135,11 +135,11 @@
                              type='text'
                              autocomplete='off'
                              maxlength='15'
-                             class='block w-full border border-transparent rounded-md pl-10 pr-5 py-3 font-mono text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
+                             class='block w-full border-0 rounded-md pl-7 md:pl-10 pr-10 py-4 font-mono text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
                              v-model='amount'
                              :placeholder='$t("pPresale.amountToDeposit")' />
-                      <span class='absolute top-3 left-5 text-base text-gray-500'>$</span>
-                      <span class='absolute top-3 right-5 text-base text-gray-500'>BUSD</span>
+                      <span class='absolute top-4 left-3 md:left-5 text-base text-gray-500'>$</span>
+                      <span class='absolute top-4 right-3 md:right-5 pl-2 bg-white text-base text-gray-500'>BUSD</span>
                     </div>
                   </div>
                   <div class='flex space-x-2'>
