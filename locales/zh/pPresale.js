@@ -1,9 +1,11 @@
 export default {
-  title: '预售：建设 PancakeSwap 流动性',
-  tag: '共建',
+  title: '共同建设 PancakeSwap 流动性',
+  tag: '预售',
+  desc1: '只接受',
+  desc2: '，所有的存入将 100% 用于建设 PancakeSwap 初始流动池。',
 
   deploy: '部署预售合约',
-  contractAddress_: '合约地址：',
+  contractAddress_: '合约地址（无管理员）：',
 
   mint: '铸币 HyperDeFi 总量上限的 3% 存入预售合约',
   sameTx__: '与 HyperDeFi 主合约创建是同一笔交易。',
@@ -31,7 +33,7 @@ export default {
 
   // add liquidity
   createLiquidity: '铸币 HyperDeFi 总量上限的 10%，并与以上所有存入的 BUSD 一并创建 PancakeSwap 流动性',
-  liquidityCreatedAt: 'PancakeSwap 流动池已创建于：',
+  liquidityCreatedAt: 'PancakeSwap 初始流动池已创建于：',
 
   createLi1__: '团队无法占有预售存入的 BUSD',
   createLi2__: '所有流程由合约自动执行，人工无权介入',
@@ -44,8 +46,6 @@ export default {
 
   connectWalletToCheck: '连接钱包 查看份额',
   redeem: '认领',
-
-
 
   // launch
   launch: '交易启动',

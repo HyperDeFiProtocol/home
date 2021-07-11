@@ -11,7 +11,11 @@
         </template>
 
         <template #desc>
-          Coming soon... Just preview here...
+          {{ $t('pPresale.desc1') }}
+          <a target='_blank' :href='hdfLink.exploreToken($store.state.bsc.globalAccounts.BUSD)' class='hdf-a-colored'>
+            BUSD
+          </a>
+          {{ $t('pPresale.desc2') }}
         </template>
       </CH3>
 

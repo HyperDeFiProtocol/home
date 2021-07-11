@@ -31,7 +31,7 @@
 }
 
 .hdf-a-colored {
-  @apply font-medium text-violet-300 hover:text-white;
+  @apply font-medium text-violet-400 hover:text-white;
 }
 
 .hdf-ch2 {
@@ -67,7 +67,10 @@
   }
 
   main {
-    @apply mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto
+    @apply mt-4 lg:mx-auto;
+    @apply max-w-md md:max-w-5xl;
+    @apply text-lg md:text-xl;
+    @apply text-gray-500;
   }
 }
 
