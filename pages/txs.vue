@@ -98,11 +98,11 @@ export default {
     },
 
   },
-  watch: {
-    '$store.state.bsc.blockNumber': async function() {
-      await this.load()
-    }
-  },
+  // watch: {
+  //   '$store.state.bsc.blockNumber': async function() {
+  //     await this.load()
+  //   }
+  // },
   async mounted() {
     await this.load()
   },
@@ -114,7 +114,7 @@ export default {
             // filter: {
             //   to: this.$store.state.bsc.globalAccounts.burn
             // },
-            fromBlock: 0,
+            fromBlock: 10000000,
             toBlock: 'latest'
           })
 
