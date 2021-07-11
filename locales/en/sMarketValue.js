@@ -1,5 +1,5 @@
 export default {
-  presaleTag: 'Presale End Time',
+  presaleTag: 'Presale Ongoing',
   presaleText: 'Deposit is allowed before',
   visitPresale: 'Visit Presale',
 

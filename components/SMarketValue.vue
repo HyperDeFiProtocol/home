@@ -1,7 +1,7 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-show='!presaleCountdownFinished' class="mb-12 md:mb-20 text-center">
+      <div v-show='$store.state.bsc.presale.liquidityCreatedTimestamp === "0"' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.presaleTag') }}
         </h2>
@@ -9,9 +9,14 @@
           <CCountdown :timestamp='$store.state.bsc.presale.endTimestamp * 1000'
                       :show-ds='true' v-on:finished='setPresaleCountdownFinished' />
         </h3>
-        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-          {{ $t('sMarketValue.presaleText') }}
-          {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
+        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
+          <span v-if='$store.state.bsc.presale.liquidityCreatedTimestamp === "0" && this.presaleCountdownFinished'>
+            {{ $t('pPresale.theLastDeposit') }}
+          </span>
+          <span v-else>
+            {{ $t('sMarketValue.presaleText') }}
+            {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
+          </span>
           <nuxt-link :to='localePath("/presale")' class='hdf-a-colored'>
             {{ $t('sMarketValue.visitPresale') }}
           </nuxt-link>
@@ -26,7 +31,7 @@
           <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000'
                       :show-ds='true' v-on:finished='setLaunchCountdownFinished' />
         </h3>
-        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
           {{ $t('sMarketValue.launchText') }}
           {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
         </p>
