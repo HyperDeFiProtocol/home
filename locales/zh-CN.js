@@ -23,6 +23,7 @@ import sUsername from '~/locales/zh/sUsername'
 import sDApps from '~/locales/zh/sDApps'
 import sRestraint from '~/locales/zh/sRestraint'
 import sGlobalAccounts from '~/locales/zh/sGlobalAccounts'
+import sFAQ from '~/locales/zh/sFAQ'
 
 import txTable from '~/locales/zh/txTable'
 import defUser from '~/locales/zh/defUser'
@@ -62,6 +63,7 @@ export default {
   sDApps: sDApps,
   sRestraint: sRestraint,
   sGlobalAccounts: sGlobalAccounts,
+  sFAQ: sFAQ,
 
   modal: modal,
   modalLang: modalLang,

@@ -9,9 +9,13 @@ mainnet, this will work in production mode.
 
 So, for now, the `alpha`, `testnet`, and `official home` are same same...
 
+## Forum (talk and share)
+
+- [Discussions](https://github.com/HyperDeFiProtocol/home/discussions) Provided by GitHub
+
 ## Development
 
-[Project Main Board](https://github.com/orgs/HyperDeFiProtocol/projects/1)
+- [Project Main Board](https://github.com/orgs/HyperDeFiProtocol/projects/1)
 
 ### Build Setup
 
