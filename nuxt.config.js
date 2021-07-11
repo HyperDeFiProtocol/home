@@ -103,9 +103,12 @@ export default {
     }
   },
 
-  googleAnalytics: {
-    id: process.env.googleAnalyticsId,
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.googleAnalyticsId,
+    },
   },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
