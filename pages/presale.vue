@@ -31,7 +31,7 @@
                 {{ $t('pPresale.contractAddress_') }}
               </p>
 
-              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 truncate'>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 break-all'>
                 {{ $store.state.bsc.globalAccounts.presale }}
               </p>
 
@@ -66,7 +66,7 @@
               <p class='mt-2 md:mt-4'>
                 {{ $t('pPresale.amount_') }}
               </p>
-              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 truncate'>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 <CBN :value='$store.state.bsc.presale.presaleAmount' :token='true' /> HyperDeFi
               </p>
             </div>
@@ -86,14 +86,14 @@
               <p>
                 {{ $t('pPresale.endTime_') }}
               </p>
-              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 truncate'>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
               </p>
 
               <p class='mt-2 md:mt-4'>
                 {{ $t('global.latestBlockNumber') }}
               </p>
-              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 truncate'>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 #<CBN :value='$store.state.bsc.blockNumber' />
               </p>
 
@@ -629,7 +629,7 @@ export default {
 
 <style scoped lang='scss'>
 .hdf-timeline {
-  @apply mx-10 md:ml-14 lg:ml-20;
+  @apply mx-4 md:mx-6 lg:mx-14 xl:mx-20;
   @apply border-l border-gray-500;
   @apply pl-6 text-gray-400;
 }
