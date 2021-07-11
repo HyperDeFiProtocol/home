@@ -72,8 +72,7 @@ export const actions = {
   async SYNC_DATA({ rootState, state, commit, dispatch }) {
     await state.contract().methods.getStatus(rootState.wallet.account).call()
       .then(async function(data) {
-        console.log('>>> presale.data:', data)
-
+        // console.log('>>> presale.data:', data)
         await commit('SET_DATA', data)
       })
       .catch(error => {
