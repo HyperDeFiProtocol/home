@@ -20,7 +20,7 @@
         </div>
 
         <h4 class="mt-2 lg:mt-3 lg:w-full lg:mx-auto text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CTimeDuration v-if='!isZero($store.state.bsc.fomo.next)'
+          <CTimeDuration v-if='isZero($store.state.bsc.fomo.next)'
                          :milliseconds='$store.state.bsc.fomo.timestampStep * 1000'
                          :may-hide-hours='true' />
 
