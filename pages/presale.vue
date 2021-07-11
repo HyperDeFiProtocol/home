@@ -366,10 +366,6 @@ export default {
     busdAllowance() {
       return new BN(this.$store.state.presale.busdAllowance).div(new BN('1000000000000000000')).toString()
     },
-
-    tradeLaunchCountdown() {
-      return this.$store.state.bsc.global.launchCountdown
-    }
   },
   watch: {
     amount() {

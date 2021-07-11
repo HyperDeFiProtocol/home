@@ -13,5 +13,5 @@ export default {
   statReady: '就续',
 
   statLiquidityAddTransfers: '缓冲回流笔数',
-  liquidityAddHistory: '缓冲回流记录',
+  liquidityAddHistory: '笔缓冲回流记录',
 }

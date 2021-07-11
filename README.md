@@ -11,6 +11,8 @@ So, for now, the `alpha`, `testnet`, and `official home` are same same...
 
 ## Development
 
+[Project Main Board](https://github.com/orgs/HyperDeFiProtocol/projects/1)
+
 ### Build Setup
 
 ```bash
