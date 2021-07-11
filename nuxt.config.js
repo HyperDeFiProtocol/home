@@ -79,6 +79,13 @@ export default {
     'nuxt-i18n'
   ],
 
+
+  loadingIndicator: {
+    name: 'rectangle-bounce',
+    color: '#8B5CF6',
+    background: '#111827'
+  },
+
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
