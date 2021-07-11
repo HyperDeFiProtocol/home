@@ -207,7 +207,7 @@
                 <p>
                   {{ $t('pPresale.liquidityCreatedAt') }}
                 </p>
-                <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 truncate'>
+                <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                   {{ moment($store.state.bsc.presale.liquidityCreatedTimestamp * 1000) }}
                 </p>
               </div>
@@ -241,7 +241,7 @@
                 <p>
                   {{ $t('pPresale.yourPortion') }}
                 </p>
-                <p class='mt-2 text-lg md:text-xl text-gray-200 truncate'>
+                <p class='mt-2 text-lg md:text-xl text-gray-200'>
                   <CBN :value='$store.state.presale.portion' :token='true' /> HyperDeFi
                   <span v-if='redeemable'>
                     {{ $t('pPresale.notRedeemed') }}
@@ -452,20 +452,18 @@ export default {
       console.log('>>> onTransactionHash:', txHash)
     },
     async onApproveReceipt(receipt) {
-      console.log('>>> onReceipt:', receipt)
-
       if (receipt.status) {
-        //
-      } else {
-        //
-      }
-    },
-    async onApproveConfirmation(confirmation) {
-      if (confirmation === 3) {
         await this.syncData()
         await this.$store.dispatch('bsc/SYNC_DATA')
         this.pendingApprove = false
       }
+    },
+    async onApproveConfirmation(confirmation) {
+      // if (confirmation === 3) {
+      //   await this.syncData()
+      //   await this.$store.dispatch('bsc/SYNC_DATA')
+      //   this.pendingApprove = false
+      // }
       // console.log('>>> onConfirmation:', confirmation)
     },
     async onApproveError(error) {
@@ -527,20 +525,18 @@ export default {
       console.log('>>> onTransactionHash:', txHash)
     },
     async onDepositReceipt(receipt) {
-      console.log('>>> onReceipt:', receipt)
-
       if (receipt.status) {
-        //
-      } else {
-        //
-      }
-    },
-    async onDepositConfirmation(confirmation) {
-      if (confirmation === 3) {
         await this.syncData()
         await this.$store.dispatch('bsc/SYNC_DATA')
         this.pendingDeposit = false
       }
+    },
+    async onDepositConfirmation(confirmation) {
+      // if (confirmation === 3) {
+      //   await this.syncData()
+      //   await this.$store.dispatch('bsc/SYNC_DATA')
+      //   this.pendingDeposit = false
+      // }
       // console.log('>>> onConfirmation:', confirmation)
     },
     async onDepositError(error) {
@@ -599,20 +595,18 @@ export default {
       console.log('>>> onTransactionHash:', txHash)
     },
     async onRedeemReceipt(receipt) {
-      console.log('>>> onReceipt:', receipt)
-
       if (receipt.status) {
-        //
-      } else {
-        //
-      }
-    },
-    async onRedeemConfirmation(confirmation) {
-      if (confirmation === 3) {
         await this.syncData()
         await this.$store.dispatch('bsc/SYNC_DATA')
         this.pendingDeposit = false
       }
+    },
+    async onRedeemConfirmation(confirmation) {
+      // if (confirmation === 3) {
+      //   await this.syncData()
+      //   await this.$store.dispatch('bsc/SYNC_DATA')
+      //   this.pendingDeposit = false
+      // }
       // console.log('>>> onConfirmation:', confirmation)
     },
     async onRedeemError(error) {
