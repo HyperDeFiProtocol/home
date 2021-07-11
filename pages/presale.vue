@@ -147,8 +147,8 @@
                       <span>
                         {{ $t('pPresale.approved') }}
                       </span>
-                      <span v-if='this.$store.state.presale.busdAllowance > "0"'>
-                        <CBN :value='$store.state.presale.busdAllowance' :decimals='18' /> BUSD
+                      <span v-if='busdAllowance > "0"'>
+                        {{ busdAllowance }} BUSD
                       </span>
                       <IconDiceHyperSpin v-show='pendingApprove' class='inline w-6 h-6' />
                     </button>
