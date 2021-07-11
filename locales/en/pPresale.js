@@ -7,6 +7,8 @@ export default {
   deploy: 'Deploy the Presale Contract',
   contractAddress_: 'Contract Address (without admin):',
 
+  depositWarning: 'Do not send BUSD directly to the contract address nor from an exchange, otherwise you will lost the fund.',
+
   mint: 'Mint 3% of the HyperDeFi Total Supply Cap to the Presale Contract',
   sameTx__: 'It is the same transaction as the HyperDeFi main contract creation.',
   review: 'Click to review.',

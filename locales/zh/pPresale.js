@@ -7,6 +7,8 @@ export default {
   deploy: '部署预售合约',
   contractAddress_: '合约地址（无管理员）：',
 
+  depositWarning: '不要直接发送 BUSD 到合约地址，也不要从交易所提币到合约地址，否则您会失去那些资金。',
+
   mint: '铸币 HyperDeFi 总量上限的 3% 存入预售合约',
   sameTx__: '与 HyperDeFi 主合约创建是同一笔交易。',
   review: '点此回顾。',
