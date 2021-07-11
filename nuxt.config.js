@@ -79,7 +79,7 @@ export default {
     'nuxt-i18n'
   ],
 
-
+  // Loading indicator for spa  - https://nuxtjs.org/docs/2.x/features/loading
   loadingIndicator: {
     name: '~/assets/loading-indicator.html',
     color: '#8B5CF6',
