@@ -15,19 +15,32 @@
       <div class="mt-8 lg:mt-14 block w-4/5 lg:w-2/3 mx-auto">
         <div class="">
           <nav class="-mb-px flex" aria-label="Tabs">
-            <button class="flex-1 border-b-2 border-violet-300 py-4 px-1 text-violet-300 text-center font-medium text-sm">
-              {{ $t('pTrade.forPC') }}
+            <button class="btn-tab" :class='tabClass(0)' @click='conShow(0)'>
+              {{ $t('pTrade.tabPC') }}
             </button>
 
-            <button class="flex-1 border-b-2 border-gray-500 py-4 px-1 text-gray-500 hover:text-gray-300 hover:border-gray-300 text-center font-medium text-sm">
-              {{ $t('pTrade.forMobile') }}
+            <button class="btn-tab" :class='tabClass(1)' @click='conShow(1)'>
+              {{ $t('pTrade.tabMobile') }}
             </button>
           </nav>
         </div>
       </div>
 
       <!--  pc  -->
-      <div class='mt-24 prose xl:prose-xl text-gray-400 mx-auto'>
+      <div class='con' v-show='tab === 0'>
+        <h3>
+          Desktop
+        </h3>
+        <p>
+          TBC...
+        </p>
+      </div>
+
+      <!--  mobile  -->
+      <div class='con' v-show='tab === 1'>
+        <h3>
+          Mobile
+        </h3>
         <p>
           TBC...
         </p>
@@ -38,10 +51,55 @@
 
 <script>
 export default {
-  name: 'trade'
+  name: 'trade',
+  data() {
+    return {
+      tab: 1,
+    }
+  },
+  computed: {
+    //
+  },
+  methods: {
+    tabClass(index) {
+      if (this.tab === index) {
+        return 'tab-current'
+      }
+
+      return null
+    },
+    conShow(index) {
+      this.tab = index
+    }
+  },
+
 }
+
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
+.btn-tab {
+  @apply flex-1;
+  @apply border-b-2 py-4 px-1;
+  @apply font-medium text-sm text-center;
+  @apply border-gray-500 text-gray-500;
+  @apply hover:text-gray-300 hover:border-gray-300;
 
+  &.tab-current {
+    @apply border-violet-300 text-violet-300;
+  }
+}
+
+.con {
+  @apply mt-10 lg:mt-16 xl:mt-20 mx-auto text-gray-400;
+  @apply prose xl:prose-xl;
+
+  h2, h3, h4, h5, h6 {
+    @apply text-gray-300;
+  }
+
+  p {
+    @apply text-gray-400;
+  }
+}
 </style>

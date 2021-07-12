@@ -3,8 +3,8 @@ export default {
   title: 'How to trade HyperDeFi',
   desc: 'Desc',
 
-  forPC: 'For Desktop PC/Laptop',
-  forMobile: 'For Mobile',
+  tabPC: 'For Desktop PC/Laptop',
+  tabMobile: 'For Mobile',
 
   key: 'Text',
 }
