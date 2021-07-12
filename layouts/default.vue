@@ -20,6 +20,7 @@ html {
 </style>
 <script>
 export default {
+  scrollToTop: true,
   computed: {
     notProductionMode() {
       return process.env.mode !== 'production'

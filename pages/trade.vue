@@ -54,7 +54,7 @@ export default {
   name: 'trade',
   data() {
     return {
-      tab: 1,
+      tab: 0,
     }
   },
   computed: {
