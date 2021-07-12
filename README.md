@@ -34,10 +34,11 @@ $ yarn generate
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [WebStorm](https://lp.jetbrains.com/webstorm-ide/) as the main IDE
-- [Remix](http://remix.ethereum.org/) as Ethereum IDE
+- [Remix](http://remix.ethereum.org/) as the Ethereum IDE
 - [Node.js](https://nodejs.org/)
 - [Vue2](https://vuejs.org/)
 - [Nuxt.js](https://nuxtjs.org/) as the Main Framework
+- [web3.js](https://web3js.readthedocs.io/en/v1.4.0/) as the web3 support provider
 - [TailwindCSS](https://tailwindcss.com/) and [TailwindUI](https://tailwindui.com/) for the styles and UI
 - [HeroIcons](https://heroicons.com/) as icons resource
 - [Ico Generator](https://favicon.io/) for generating favicons

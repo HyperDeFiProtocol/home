@@ -1,5 +1,6 @@
 import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
+import pTrade from '~/locales/zh/pTrade'
 import pPresale from '~/locales/zh/pPresale'
 
 import connectWallet from '~/locales/zh/btnConnectWallet'
@@ -37,6 +38,7 @@ import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 export default {
   global: global,
   siteNav: siteNav,
+  pTrade: pTrade,
   pPresale: pPresale,
 
   connectWallet: connectWallet,
