@@ -9,13 +9,6 @@ const sleepAWhile = async function() {
 }
 
 export default async function({ app, store }, inject) {
-  const throwInitWarning = async function() {
-    await store.dispatch('warning/SET_WARNING', {
-      title: 'Initialize web3: Failed',
-      message: 'Please visit with your Trust Wallet App'
-    })
-  }
-
   const setWeb3 = async function(web3) {
     app.web3 = web3
 
@@ -117,13 +110,13 @@ export default async function({ app, store }, inject) {
 
   const connect = async function(provider) {
     if (!provider) {
-      await throwInitWarning()
+      await store.dispatch('warning/SET_NO_WEB3_PROVIDER', true)
       return null
     }
 
     const web3 = new Web3(provider)
     if (!web3) {
-      await throwInitWarning()
+      await store.dispatch('warning/SET_NO_WEB3_PROVIDER', true)
       return null
     }
 

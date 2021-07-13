@@ -1,6 +1,8 @@
 export const state = () => ({
   title: null,
-  message: null
+  message: null,
+
+  noWeb3Provider: null,
 })
 
 
@@ -12,7 +14,11 @@ export const mutations = {
   async SET_CLOSE(state) {
     state.title = null
     state.message = null
-  }
+  },
+
+  async SET_NO_WEB3_PROVIDER(state, value) {
+    state.noWeb3Provider = value
+  },
 }
 
 
@@ -22,5 +28,9 @@ export const actions = {
   },
   async SET_CLOSE({ commit }) {
     await commit('SET_CLOSE')
-  }
+  },
+
+  async SET_NO_WEB3_PROVIDER({ commit }, value) {
+    await commit('SET_NO_WEB3_PROVIDER', value)
+  },
 }

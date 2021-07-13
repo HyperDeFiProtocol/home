@@ -6,7 +6,7 @@
     <SiteFooter />
 
     <ModalWarning v-if='$store.state.warning.title && $store.state.warning.message' />
-    <ModalNoWeb3Provider v-if='$store.state.wallet.noWeb3Provider' />
+    <ModalNoWeb3Provider />
     <ModalUnsupportedChainId />
     <ModalLang v-if='$store.state.lang.show' />
     <ModalConnectWallet />

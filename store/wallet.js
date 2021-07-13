@@ -3,8 +3,6 @@ import Web3 from 'web3'
 const BN = Web3.utils.BN
 
 export const state = () => ({
-  noWeb3Provider: null,
-
   chainId: null,
   account: null,
 
@@ -23,16 +21,11 @@ export const state = () => ({
 
 
 export const mutations = {
-  async SET_NO_WEB3_PROVIDER(state, value) {
-    state.noWeb3Provider = value
-    state.loading = null
-  },
   async SET_CHAIN_ID(state, chainId) {
     state.chainId = chainId
   },
   async SET_ACCOUNT(state, account) {
     state.account = account ? Web3.utils.toChecksumAddress(account) : null
-    state.loading = null
   },
   async SET_ACCOUNT_DATA(state, data) {
     state.isHolder = data.isHolder
@@ -51,9 +44,6 @@ export const mutations = {
 
 
 export const actions = {
-  async SET_NO_WEB3_PROVIDER({ commit }, value) {
-    await commit('SET_NO_WEB3_PROVIDER', value)
-  },
   async SET_CHAIN_ID({ commit }, chainId) {
     await commit('SET_CHAIN_ID', chainId)
   },
