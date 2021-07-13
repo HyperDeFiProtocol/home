@@ -9,8 +9,6 @@ const sleepAWhile = async function() {
 }
 
 export default async function({ app, store }, inject) {
-  console.log('>>> plugin: web3')
-
   const throwInitWarning = async function() {
     await store.dispatch('warning/SET_WARNING', {
       title: 'Initialize web3: Failed',
@@ -112,8 +110,6 @@ export default async function({ app, store }, inject) {
       await setWeb3(new Web3(process.env.web3RpcUrl))
       return false
     }
-
-    console.log('>>> MetaMask connected...')
 
     await setWeb3(web3)
     return true

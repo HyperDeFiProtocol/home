@@ -1,6 +1,4 @@
 export default async function({ app, store }, inject) {
-  console.log('>>> plugin: web3Init')
-
   // init
   const connected = await app.conn.init()
 
@@ -17,7 +15,6 @@ export default async function({ app, store }, inject) {
 
   if (connected) {
     await app.conn.tokenSyncKeep()
-    // await store.dispatch('bsc/KEEP_SYNC')
     return null
   }
 }
