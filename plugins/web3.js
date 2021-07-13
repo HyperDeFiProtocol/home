@@ -4,11 +4,67 @@ import tokenAbi from '~/utils/token.json'
 import presaleAbi from '~/utils/presale.json'
 import busdAbi from '~/utils/busd.json'
 
-const sleepAWhile = async function() {
-  await window.setTimeout('', 1000)
+const sleepAWhile = async function(milliseconds = 1000) {
+  await window.setTimeout('', milliseconds)
 }
 
 export default async function({ app, store }, inject) {
+  const getChainId = async function(provider) {
+    const chainIdHex = await provider.request({ method: 'eth_chainId' })
+      .catch(async function(error) {
+        console.error('>>> Plugin[web3] connect ~ eth_chainId:', error)
+      })
+
+    return Web3.utils.hexToNumber(chainIdHex)
+  }
+
+  const switchNetwork = async function(provider) {
+    await provider.request(
+      {
+        method: 'wallet_switchEthereumChain',
+        params: [
+          {
+            chainId: Web3.utils.numberToHex(process.env.chainId).toString()
+          }
+        ]
+      })
+      .catch(async function(error) {
+        if (error.code === 4902) {
+          console.warn('>>> Plugin[web3] connect ~ `wallet_switchEthereumChain` failed: try `wallet_addEthereumChain`')
+          await addNetwork(provider)
+        } else {
+          console.error('>>> Plugin[web3] connect ~ wallet_switchEthereumChain:', error)
+        }
+      })
+  }
+
+  const addNetwork = async function(provider) {
+    await provider.request(
+      {
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: Web3.utils.numberToHex(process.env.chainId).toString(),
+            chainName: process.env.chainName,
+            rpcUrls: [process.env.web3RpcUrl],
+            nativeCurrency: {
+              name: 'BNB',
+              symbol: 'BNB',
+              decimals: 18
+            },
+            blockExplorerUrls: [process.env.explorerBaseUrl]
+          }
+        ]
+      })
+      .catch(async function(error) {
+        console.error('>>> Plugin[web3] connect ~ wallet_addEthereumChain:', error)
+      })
+  }
+
+
+
+
+
   const setWeb3 = async function(web3) {
     app.web3 = web3
 
@@ -24,7 +80,7 @@ export default async function({ app, store }, inject) {
     )
   }
 
-  const tokenSyncKeep = async function () {
+  const tokenSyncKeep = async function() {
     await app.web3.eth.subscribe('newBlockHeaders').on('data', async blockHeader => {
       if (blockHeader.number > store.state.bsc.blockNumber + 5) {
         await store.dispatch('bsc/SET_BLOCK_NUMBER', blockHeader.number)
@@ -108,6 +164,7 @@ export default async function({ app, store }, inject) {
     return true
   }
 
+
   const connect = async function(provider) {
     if (!provider) {
       await store.dispatch('warning/SET_NO_WEB3_PROVIDER', true)
@@ -121,18 +178,18 @@ export default async function({ app, store }, inject) {
     }
 
     // get chain id
-    let chainId = await web3.eth.getChainId().catch(async function(error) {
-      console.error('>>> Plugin[web3] connect ~ getChainId:', error.message)
+    let chainId = await getChainId(provider)
 
-      await store.dispatch('warning/SET_WARNING', {
-        title: 'Error: Get Chain ID',
-        message: error.message
-      })
-      return false
-    })
+    // try switch or add network
+    if (process.env.chainId !== chainId && provider.isMetaMask) {
+      console.warn('>>> Plugin[web3] ~ MetaMask detected...')
+      await switchNetwork(provider)
+    }
 
-    await store.dispatch('wallet/SET_CHAIN_ID', chainId)
+    // re-get chain id
+    chainId = await getChainId(provider)
 
+    // verify chain id, if incorrect, roll back to preset
     if (process.env.chainId !== chainId) {
       await setWeb3(new Web3(process.env.web3RpcUrl))
     }
@@ -145,9 +202,6 @@ export default async function({ app, store }, inject) {
 
     // get account
     const accounts = await provider.request({ method: 'eth_requestAccounts' })
-      // .then(async function (accounts) {
-      //   account = accounts[0]
-      // })
       .catch(async function(error) {
         console.error('>>> Plugin[web3] connect ~ get accounts:', error)
 
@@ -173,8 +227,9 @@ export default async function({ app, store }, inject) {
     await setWeb3(web3)
 
     // on: Chain Changed
-    await provider.on('chainChanged', async function(chainId) {
-      await store.dispatch('wallet/SET_CHAIN_ID', parseInt(chainId))
+    await provider.on('chainChanged', async function(chainIdHex) {
+      const chainId = parseInt(chainIdHex)
+      await store.dispatch('wallet/SET_CHAIN_ID', chainId)
 
       // TODO: stop keep sync if chain Id is incorrect
     })
@@ -201,6 +256,6 @@ export default async function({ app, store }, inject) {
     tokenSync: tokenSync,
     presaleSync: presaleSync,
 
-    tokenSyncKeep: tokenSyncKeep,
+    tokenSyncKeep: tokenSyncKeep
   }
 }
