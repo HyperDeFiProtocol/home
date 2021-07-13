@@ -1,5 +1,5 @@
 import Web3 from 'web3'
-import detectEthereumProvider from '@metamask/detect-provider'
+// import detectEthereumProvider from '@metamask/detect-provider'
 import tokenAbi from '~/utils/token.json'
 import presaleAbi from '~/utils/presale.json'
 import busdAbi from '~/utils/busd.json'
@@ -91,12 +91,12 @@ export default async function({ app, store }, inject) {
   }
 
   const init = async function() {
-    const provider = await detectEthereumProvider()
-    if (!provider) {
-      return false
-    }
+    // const provider = await detectEthereumProvider().catch(console.error)
+    // if (!provider) {
+    //   return false
+    // }
 
-    const web3 = new Web3(provider)
+    const web3 = new Web3(window.ethereum)
     if (!web3) {
       return false
     }
