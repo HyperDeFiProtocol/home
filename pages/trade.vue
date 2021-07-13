@@ -128,7 +128,7 @@
         </p>
       </div>
 
-      <div class='mt-8 max-w-sm mx-auto'>
+      <div class='mt-8 max-w-sm mx-auto' v-show='tab === 0'>
         <CPancakeTo class='relative w-full inline-flex justify-center space-x-2 py-3 px-4 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
           <IconPancakeSwap class='inline w-6 h-6' />
           <span>
@@ -138,7 +138,7 @@
       </div>
 
 
-      <div class='con'>
+      <div class='con' v-show='tab === 0'>
         <p>
           If you are already there, you will see a <b>Import Token</b> tips,
           click <b>I understand</b>, and <b>Continue:</b>
