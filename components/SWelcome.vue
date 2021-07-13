@@ -43,8 +43,11 @@
                     </div>
                   </div>
                   <div>
-                    <CPancakeTo class='block w-full py-3 px-4 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
-                      {{ $t('sWelcome.buyOnPancakeSwap') }}
+                    <CPancakeTo class='w-full inline-flex space-x-2 py-3 px-4 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
+                      <IconPancakeSwap class='inline w-6 h-6' />
+                      <span>
+                        {{ $t('sWelcome.buyOnPancakeSwap') }}
+                      </span>
                     </CPancakeTo>
                   </div>
                 </div>

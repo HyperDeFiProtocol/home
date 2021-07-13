@@ -10,6 +10,10 @@
           Developing
         </template>
       </CH3>
+
+      <div class='mt-24 flex justify-center'>
+        <IconPancakeSwap class='w-80 h-80' />
+      </div>
     </LAutoWidth>
   </div>
 </template>
