@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       interval: null,
+      finished: false,
 
       h: 0,
       m: 0,
@@ -69,7 +70,10 @@ export default {
       const duration = moment.duration(moment(this.timestamp).diff(moment()))
 
       if (duration.asSeconds() > 0) {
-        this.finished = false
+        if (this.finished) {
+          return null
+        }
+
         this.$emit('finished', false)
 
         this.ds = Math.floor(duration.milliseconds() / 100)
