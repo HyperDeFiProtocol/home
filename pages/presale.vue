@@ -12,7 +12,7 @@
 
         <template #desc>
           {{ $t('pPresale.desc1') }}
-          <a target='_blank' :href='hdfLink.exploreToken($store.state.bsc.globalAccounts.BUSD)' class='hdf-a-colored'>
+          <a target='_blank' :href='hdfLink.exploreToken(busdAddress)' class='hdf-a-colored'>
             BUSD
           </a>
           {{ $t('pPresale.desc2') }}
@@ -333,6 +333,9 @@ export default {
     hdfLink() {
       return hdfLink
     },
+    busdAddress() {
+      return process.env.busdAddress
+    },
 
     theLastDeposit() {
       return this.$store.state.bsc.presale.liquidityCreatedTimestamp === '0' && this.countdownFinished
@@ -377,29 +380,22 @@ export default {
     },
     '$store.state.bsc.blockNumber': async function() {
       if (this.$store.state.wallet.account && this.$store.state.presale.liquidityCreatedTimestamp === '0') {
-        await this.syncData()
+        await this.$nuxt.context.app.conn.presaleSync()
       }
     },
     '$store.state.wallet.account': async function() {
       if (this.$store.state.wallet.account) {
-        await this.syncData()
+        await this.$nuxt.context.app.conn.presaleSync()
       }
     },
   },
   mounted: async function () {
-    await this.setContract()
     if (this.$store.state.wallet.account) {
-      await this.syncData()
+      await this.$store.dispatch('presale/SET_SYNC_STATUS', true)
+      await this.$nuxt.context.app.conn.presaleSync()
     }
   },
   methods: {
-    async setContract() {
-      await this.$store.dispatch('presale/SET_CONTRACT')
-    },
-    async syncData() {
-      await this.$store.dispatch('presale/SYNC_DATA')
-    },
-
     async setCountdownFinished(value) {
       this.countdownFinished = value
     },
@@ -436,40 +432,35 @@ export default {
 
       this.pendingApprove = true
 
-      await this.$store.state.bsc.busd().methods
-        .approve(this.$store.state.bsc.globalAccounts.presale, this.amount + '000000000000000000')
+      await this.$nuxt.context.app.busd.methods
+        .approve(this.$store.state.bsc.globalAccounts.presale, this.amountStr)
         .send({'from': this.$store.state.wallet.account})
-        .on('transactionHash', this.onApproveTransactionHash)
+        // .on('transactionHash', this.onApproveTransactionHash)
         .on('receipt', this.onApproveReceipt)
-        .on('confirmation', this.onApproveConfirmation)
+        // .on('confirmation', this.onApproveConfirmation)
         .on('error', this.onApproveError)
         .catch(this.onApproveError)
-
-      // await this.$store.dispatch('warning/SET_WARNING', {
-      //   title: 'Developing',
-      //   message: 'Coming soon...',
-      // })
     },
 
 
-    async onApproveTransactionHash(txHash) {
-      console.log('>>> onTransactionHash:', txHash)
-    },
+    // async onApproveTransactionHash(txHash) {
+    //   console.log('>>> onTransactionHash:', txHash)
+    // },
     async onApproveReceipt(receipt) {
       if (receipt.status) {
-        await this.syncData()
-        await this.$store.dispatch('bsc/SYNC_DATA')
+        await this.$nuxt.context.app.conn.presaleSync()
+        await this.$nuxt.context.app.conn.tokenSync()
         this.pendingApprove = false
       }
     },
-    async onApproveConfirmation(confirmation) {
-      // if (confirmation === 3) {
-      //   await this.syncData()
-      //   await this.$store.dispatch('bsc/SYNC_DATA')
-      //   this.pendingApprove = false
-      // }
-      // console.log('>>> onConfirmation:', confirmation)
-    },
+    // async onApproveConfirmation(confirmation) {
+    //   // if (confirmation === 3) {
+    //   //   await this.syncData()
+    //   //   await this.$nuxt.context.app.conn.tokenSync()
+    //   //   this.pendingApprove = false
+    //   // }
+    //   // console.log('>>> onConfirmation:', confirmation)
+    // },
     async onApproveError(error) {
       this.pendingApprove = false
 
@@ -514,35 +505,35 @@ export default {
       this.pendingDeposit = true
 
       // submit
-      await this.$store.state.presale.contract().methods
+      await this.$nuxt.context.app.presale.methods
         .deposit(this.amountStr)
         .send({'from': this.$store.state.wallet.account})
-        .on('transactionHash', this.onDepositTransactionHash)
+        // .on('transactionHash', this.onDepositTransactionHash)
         .on('receipt', this.onDepositReceipt)
-        .on('confirmation', this.onDepositConfirmation)
+        // .on('confirmation', this.onDepositConfirmation)
         .on('error', this.onDepositError)
         .catch(this.onDepositError)
     },
 
 
-    async onDepositTransactionHash(txHash) {
-      console.log('>>> onTransactionHash:', txHash)
-    },
+    // async onDepositTransactionHash(txHash) {
+    //   console.log('>>> onTransactionHash:', txHash)
+    // },
     async onDepositReceipt(receipt) {
       if (receipt.status) {
-        await this.syncData()
-        await this.$store.dispatch('bsc/SYNC_DATA')
+        await this.$nuxt.context.app.conn.presaleSync()
+        await this.$nuxt.context.app.conn.tokenSync()
         this.pendingDeposit = false
       }
     },
-    async onDepositConfirmation(confirmation) {
-      // if (confirmation === 3) {
-      //   await this.syncData()
-      //   await this.$store.dispatch('bsc/SYNC_DATA')
-      //   this.pendingDeposit = false
-      // }
-      // console.log('>>> onConfirmation:', confirmation)
-    },
+    // async onDepositConfirmation(confirmation) {
+    //   // if (confirmation === 3) {
+    //   //   await this.syncData()
+    //   //   await this.$nuxt.context.app.conn.tokenSync()
+    //   //   this.pendingDeposit = false
+    //   // }
+    //   // console.log('>>> onConfirmation:', confirmation)
+    // },
     async onDepositError(error) {
       this.pendingDeposit = false
 
@@ -586,33 +577,33 @@ export default {
 
       this.pendingRedeem = true
 
-      await this.$store.state.presale.contract().methods.redeem()
+      await this.$nuxt.context.app.presale.methods.redeem()
         .send({'from': this.$store.state.wallet.account})
-        .on('transactionHash', this.onRedeemTransactionHash)
+        // .on('transactionHash', this.onRedeemTransactionHash)
         .on('receipt', this.onRedeemReceipt)
-        .on('confirmation', this.onRedeemConfirmation)
+        // .on('confirmation', this.onRedeemConfirmation)
         .on('error', this.onRedeemError)
         .catch(this.onRedeemError)
     },
 
-    async onRedeemTransactionHash(txHash) {
-      console.log('>>> onTransactionHash:', txHash)
-    },
+    // async onRedeemTransactionHash(txHash) {
+    //   console.log('>>> onTransactionHash:', txHash)
+    // },
     async onRedeemReceipt(receipt) {
       if (receipt.status) {
-        await this.syncData()
-        await this.$store.dispatch('bsc/SYNC_DATA')
+        await this.$nuxt.context.app.conn.presaleSync()
+        await this.$nuxt.context.app.conn.tokenSync()
         this.pendingRedeem = false
       }
     },
-    async onRedeemConfirmation(confirmation) {
-      // if (confirmation === 3) {
-      //   await this.syncData()
-      //   await this.$store.dispatch('bsc/SYNC_DATA')
-      //   this.pendingDeposit = false
-      // }
-      // console.log('>>> onConfirmation:', confirmation)
-    },
+    // async onRedeemConfirmation(confirmation) {
+    //   // if (confirmation === 3) {
+    //   //   await this.syncData()
+    //   //   await this.$nuxt.context.app.conn.tokenSync()
+    //   //   this.pendingDeposit = false
+    //   // }
+    //   // console.log('>>> onConfirmation:', confirmation)
+    // },
     async onRedeemError(error) {
       this.pendingRedeem = false
 

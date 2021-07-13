@@ -58,7 +58,7 @@
                   {{ $t('sWelcome.of') }}
                   {{ chainName }},
                   {{ $t('sWelcome.chainId') }}
-                  #{{ $store.state.bsc.chainId }}
+                  #{{ chainId }}
                 </p>
               </div>
             </div>
@@ -82,7 +82,10 @@ export default {
   computed: {
     chainName() {
       return process.env.chainName
-    }
+    },
+    chainId() {
+      return process.env.chainId
+    },
   }
 }
 </script>

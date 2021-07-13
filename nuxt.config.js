@@ -3,9 +3,12 @@ import locales from './locales/conf'
 export default {
   env: {
     mode: process.env.mode,
-    tokenAddress: process.env.tokenAddress,
+    tokenAddress: process.env.tokenAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
+    presaleAddress: process.env.presaleAddress,
+    busdAddress: process.env.busdAddress || '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
     chainName: process.env.chainName || 'BSC Chain Mainnet',
+    chainId: parseInt(process.env.chainId) || 56,
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
     pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance',
 
@@ -53,7 +56,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/init-web3.js'
+    '~/plugins/web3.js',
+    // '~/plugins/web3MetaMask.js',
+    '~/plugins/web3Init.js',
   ],
 
   router: {

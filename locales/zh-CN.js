@@ -31,6 +31,7 @@ import defUser from '~/locales/zh/defUser'
 
 import modal from '~/locales/zh/modal'
 import modalLang from '~/locales/zh/modalLang'
+import modalConnectWallet from '~/locales/zh/modalConnectWallet'
 import modalNoWeb3 from '~/locales/zh/modalNoWeb3'
 import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 
@@ -69,6 +70,7 @@ export default {
 
   modal: modal,
   modalLang: modalLang,
+  modalConnectWallet: modalConnectWallet,
   modalNoWeb3: modalNoWeb3,
   modalUnsupportedChainId: modalUnsupportedChainId,
 }

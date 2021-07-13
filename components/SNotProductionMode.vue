@@ -7,7 +7,7 @@
           <p class="ml-3 font-medium text-rose-500">
             Working in
             <span class='font-bold text-white'>{{ mode }}, {{ chainName }}.</span>
-            Chain ID#{{ $store.state.bsc.chainId }}
+            Chain ID#{{ chainId }}
           </p>
         </div>
       </div>
@@ -24,6 +24,9 @@ export default {
     },
     chainName() {
       return process.env.chainName
+    },
+    chainId() {
+      return process.env.chainId
     },
   },
 }

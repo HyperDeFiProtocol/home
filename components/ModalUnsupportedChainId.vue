@@ -1,12 +1,15 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div v-if='$store.state.wallet.chainId && $store.state.wallet.chainId !== chainId'
+       class="fixed z-10 inset-0 overflow-y-auto"
+       aria-labelledby="modal-title"
+       role="dialog"
+       aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
       <div class="transition duration-300 ease-in-out fixed inset-0 bg-black bg-opacity-80 transition-opacity" aria-hidden="true"></div>
 
       <!-- This element is to trick the browser into centering the modal contents. -->
       <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
 
       <div class="transition duration-300 ease-in-out inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -45,7 +48,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -63,11 +65,11 @@ export default {
     chainName() {
       return process.env.chainName
     },
+    chainId() {
+      return process.env.chainId
+    }
   },
   methods: {
-    connectWallet() {
-      this.$store.dispatch('wallet/CONNECT_WALLET')
-    },
     close() {
       this.$store.dispatch('wallet/SET_CHAIN_ID', null)
     }

@@ -1,23 +1,27 @@
 <template>
   <div>
     <LAutoWidth class='py-16 px-4'>
-      <CH2>
-        A better crypto to HOLD
+      <CH3>
+        <span>
+          Demo Page for DEBUG
+        </span>
 
         <template #tag>
-          Haha
+          Developing
         </template>
-        <template #desc>
-          A social experiment of wealth
-        </template>
-      </CH2>
+      </CH3>
     </LAutoWidth>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'demo'
+  name: 'demo',
+  mounted: async function() {
+    // console.log('>>> window.BinanceChain:', window.BinanceChain)
+
+    // this.$nuxt.context.app.metamask.connect()
+  }
 }
 </script>
 

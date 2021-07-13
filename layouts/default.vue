@@ -7,9 +7,9 @@
 
     <ModalWarning v-if='$store.state.warning.title && $store.state.warning.message' />
     <ModalNoWeb3Provider v-if='$store.state.wallet.noWeb3Provider' />
-    <ModalUnsupportedChainId
-      v-if='$store.state.wallet.chainId && $store.state.wallet.chainId !== $store.state.bsc.chainId' />
+    <ModalUnsupportedChainId />
     <ModalLang v-if='$store.state.lang.show' />
+    <ModalConnectWallet />
   </div>
 </template>
 

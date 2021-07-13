@@ -18,7 +18,6 @@
     <SUsername />
     <SDApps />
     <SFAQ class='bg-gray-800' />
-<!--    <SData />-->
   </div>
 </template>
 

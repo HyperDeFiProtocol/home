@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     async loadHarvestHistory() {
-      const events = await this.$store.state.bsc.token().getPastEvents('Transfer', {
+      const events = await this.$nuxt.context.app.token.getPastEvents('Transfer', {
         filter: {
           from: this.$store.state.bsc.globalAccounts.tax,
           to: this.$store.state.wallet.account,

@@ -250,7 +250,7 @@ export default {
       this.timerStep.h = timerStep.hours()
 
       // out
-      const oEvents = await this.$store.state.bsc.token()
+      const oEvents = await this.$nuxt.context.app.token
         .getPastEvents('Transfer', {
           filter: {
             from: this.$store.state.bsc.globalAccounts.fomo
@@ -287,7 +287,7 @@ export default {
 
 
       // in
-      const iEvents = await this.$store.state.bsc.token()
+      const iEvents = await this.$nuxt.context.app.token
         .getPastEvents('Transfer', {
           filter: {
             to: this.$store.state.bsc.globalAccounts.fomo

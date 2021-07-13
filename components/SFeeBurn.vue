@@ -198,7 +198,7 @@ export default {
   },
   methods: {
     async load() {
-      const events = await this.$store.state.bsc.token()
+      const events = await this.$nuxt.context.app.token
         .getPastEvents('Transfer', {
           filter: {
             to: this.$store.state.bsc.globalAccounts.burn

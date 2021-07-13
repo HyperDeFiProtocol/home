@@ -75,7 +75,8 @@ export default {
       this.pending = true
 
       // username exist check
-      const account = await this.$store.state.bsc.token().methods.getAccountByUsername(this.username).call()
+      const account = await this.$nuxt.context.app.token.methods
+        .getAccountByUsername(this.username).call()
         .catch(async function (error) {
           this.pending = false
 
@@ -96,33 +97,32 @@ export default {
       }
 
       // submit
-      await this.$store.state.bsc.token().methods.setUsername(this.username)
+      await this.$nuxt.context.app.token.methods
+        .setUsername(this.username)
         .send({'from': this.$store.state.wallet.account})
-        .on('transactionHash', this.onTransactionHash)
+        // .on('transactionHash', this.onTransactionHash)
         .on('receipt', this.onReceipt)
-        .on('confirmation', this.onConfirmation)
+        // .on('confirmation', this.onConfirmation)
         .on('error', this.onError)
         .catch(this.onError)
     },
-    async onTransactionHash(txHash) {
-      console.log('>>> onTransactionHash:', txHash)
-    },
+    // async onTransactionHash(txHash) {
+    //   console.log('>>> onTransactionHash:', txHash)
+    // },
     async onReceipt(receipt) {
       console.log('>>> onReceipt:', receipt)
 
       if (receipt.status) {
-        //
-      } else {
-        //
+        await this.$nuxt.context.app.conn.tokenSync()
       }
     },
-    async onConfirmation(confirmation) {
-      if (confirmation === 3) {
-        await this.$store.dispatch('bsc/SYNC_DATA')
-        // this.pending = false
-      }
-      // console.log('>>> onConfirmation:', confirmation)
-    },
+    // async onConfirmation(confirmation) {
+    //   if (confirmation === 3) {
+    //     await this.$nuxt.context.app.conn.tokenSync()
+    //     // this.pending = false
+    //   }
+    //   // console.log('>>> onConfirmation:', confirmation)
+    // },
     async onError(error) {
       this.pending = false
 

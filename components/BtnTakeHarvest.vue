@@ -16,7 +16,7 @@ export default {
   methods: {
     async getHarvest() {
       this.pending = true
-      await this.$store.state.bsc.token().methods.takeHarvest()
+      await this.$nuxt.context.app.token.methods.takeHarvest()
         .send({'from': this.$store.state.wallet.account})
         .on('transactionHash', this.onTransactionHash)
         .on('receipt', this.onReceipt)
