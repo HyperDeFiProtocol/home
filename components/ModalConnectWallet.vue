@@ -38,7 +38,7 @@
                 <span>
                   Binance Chain Wallet
                 </span>
-                <IconBinance class='inline w-6 h-6 bg-gray-900 rounded' :class='{"animate-bounce": connecting.binanceChainWallet}'/>
+                <IconBinanceChainWallet class='inline w-6 h-6 bg-gray-900 rounded' :class='{"animate-bounce": connecting.binanceChainWallet}'/>
               </button>
               <button @click.stop='connect()'>
                 <span>
