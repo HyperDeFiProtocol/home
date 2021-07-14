@@ -11,8 +11,7 @@
         </template>
 
         <template #desc>
-          A step by step guide on how to trade HyperDeFi via PancakeSwap. This will take approximately 15-30 minutes if
-          you're new.
+          A step by step guide on how to trade HyperDeFi via PancakeSwap.
         </template>
       </CH3>
 
@@ -31,13 +30,17 @@
         </div>
       </div>
 
+
+      <p class='mt-8 lg:mt-10 xl:mt-12 text-rose-500 text-lg'>
+        This will take approximately 15-30 minutes if you're new.
+      </p>
+
       <!--
         -------- -------- -------- -------- -------- -------- pc
       -->
       <div class='con' v-show='tab === 0'>
-
-        <div class='flex space-x-4'>
-          <div class='w-2/3 divide-y divide-gray-600'>
+        <div class='con-inner'>
+          <div class='con-body'>
             <div class='step'>
               <h3>
                 Step.1 Create a Wallet
@@ -82,10 +85,9 @@
                 The wallet will auto-load for you. Then, <b>Next</b> and <b>Done</b>.
               </p>
 
-
-              <!--              <p>-->
-              <!--                <img class='mx-auto border border-gray-400 shadow-2xl' src="~/assets/images/metamask/main.png"  alt='Main'/>-->
-              <!--              </p>-->
+              <div class='snaps-narrow'>
+                <img src='~/assets/images/metamask/add-token.png' alt='Add Token' />
+              </div>
 
               <h4>
                 For Binance Chain Wallet:
@@ -99,29 +101,16 @@
                 icon; it is similar to MetaMask.
               </p>
             </div>
-
           </div>
 
-          <div class='w-1/3'>
+          <div class='con-snaps-wide'>
             <img src='~/assets/images/metamask/add-token.png' alt='Add Token' />
           </div>
-
         </div>
-
-
-        <!--        <h3>-->
-        <!--          Step.2 Make sure you are on the right chain-->
-        <!--        </h3>-->
-
-        <!--        <p>-->
-        <!--          The real HyperDeFi Protocol is created and trading on BSC Chain (Binance Smart Chain), mainnet.-->
-        <!--          So, just make sure your wallet is working on the right chain.-->
-        <!--        </p>-->
-
 
         <div class='step'>
           <h3>
-            Step.3 Deposit BNB, or any other tokens
+            Step.3 Deposit BNB, or any other tokens on BSC
           </h3>
 
           <p>
@@ -129,21 +118,24 @@
           </p>
         </div>
 
-        <div class='flex space-x-4 pt-6'>
-          <div class='w-2/3 divide-y divide-gray-600'>
+        <div class='con-inner'>
+          <div class='con-body'>
             <div class='step'>
               <h3>
                 Step.4 Swap to HyperDeFi, and start holding
               </h3>
 
-              <p>
-                Tips: if you intend to swap another token to HyperDeFi, make sure you are keeping a small amount of BNB
-                to execute the transaction.
-              </p>
+              <div class='mt-6 flex space-x-3'>
+                <HeroIconOutlineBell class='w-8 h-8'/>
+                <span>
+                  If you intend to swap other tokens to HyperDeFi,
+                  make sure you are keeping a small amount of BNB to execute the transaction.
+                </span>
+              </div>
 
               <p>
                 Visit PancakeSwap, easily click
-                <a target='_blank' :href='hdfLink.pancakeSwapTo()'>
+                <a target='_blank' :href='hdfLink.pancakeSwapTo()' class='break-all'>
                   https://pancakeswap.finance/#/swap?outputCurrency={{ tokenAddress }}
                 </a>, or this button:
               </p>
@@ -158,10 +150,13 @@
               </div>
 
               <p>
-                If you are already there, you will see a <b>Import Token</b> tips,
+                If you are already there, you can see a <b>Import Token</b> tips,
                 click <b>I understand</b>, and <b>Continue:</b>
               </p>
 
+              <div class='snaps-narrow'>
+                <img src='~/assets/images/pancakeswap/import-token.png' alt='Import Token' />
+              </div>
 
               <ol>
                 <li>
@@ -177,36 +172,26 @@
                 </li>
               </ol>
 
-
-              <!--              <p>-->
-              <!--                <img class='mx-auto border border-gray-400 shadow-2xl' src="~/assets/images/pancakeswap/unconnected.png"  alt='Unconnected'/>-->
-              <!--              </p>-->
-
-              <!--              <p>-->
-              <!--                Choose the wallet you are using:-->
-              <!--              </p>-->
-
-              <!--              <p>-->
-              <!--                <img class='mx-auto border border-gray-400 shadow-2xl' src="~/assets/images/pancakeswap/connect.png"  alt='Connect to a wallet'/>-->
-              <!--              </p>-->
-
-              <!--              <p>-->
-              <!--                -->
-              <!--              </p>-->
-
-              <div class='mt-6 mb-8 w-11/12 flex space-x-2'>
-                <div class='w-5/12'>
+              <div class='mt-6 mb-8 mx-auto md:mx-0 w-2/3 sm:w-1/2 md:w-11/12 flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0'>
+                <div class='md:w-5/12'>
                   <img src="~/assets/images/pancakeswap/main.png" alt='Main'/>
                 </div>
-                <div class='w-7/12'>
+                <div class='md:w-7/12'>
                   <img src='~/assets/images/pancakeswap/slippage.png' alt='Slippage Tolerance' />
                 </div>
               </div>
 
               <p>
-                Once the slippage is set, and you have the BNB amount set that you wish to swap for HyperDeFi as shown,
-                just click Swap and wait patiently for the transaction to clear. This process may not be instant and can
-                take anywhere from a few minutes up to an hour sometimes, depending on traffic.
+                Once the slippage is set, and you have the BNB amount set that you wish to swap for HyperDeFi as shown.
+              </p>
+
+              <div class='snaps-narrow'>
+                <img src='~/assets/images/pancakeswap/swap.png' alt='Swap' />
+              </div>
+
+              <p>
+                Just click Swap and wait patiently for the transaction to clear. This process may not be instant and can
+                take anywhere from a few seconds (usually) up to 10-15 minutes sometimes, depending on traffic.
               </p>
 
               <p>
@@ -218,7 +203,7 @@
               </p>
             </div>
           </div>
-          <div class='w-1/3 space-y-4'>
+          <div class='con-snaps-wide'>
             <img src='~/assets/images/pancakeswap/import-token.png' alt='Import Token' />
             <img src='~/assets/images/pancakeswap/swap.png' alt='Swap' />
           </div>
@@ -232,83 +217,196 @@
         -------- -------- -------- -------- -------- -------- mobile
       -->
       <div class='con' v-show='tab === 1'>
-        <h3>
-          Step.1 Create a Wallet
-        </h3>
-        <p>
-          Just pick one from below:
-        </p>
-        <ul>
-          <li>
-            TrustWallet
-          </li>
-          <li>
-            TokenPocket
-          </li>
-        </ul>
 
-        <p>
-          Just create a Wallet; and keep your phrase (or your private key) a secret! Never, never share it with anyone
-          and store it properly!
-        </p>
+        <div class='con-inner'>
+          <div class='con-body'>
+            <div class='step'>
+              <h3>
+                Step.1 Create a Wallet
+              </h3>
+              <p>
+                Just pick one from below:
+              </p>
+              <ul>
+                <li>
+                  TrustWallet
+                </li>
+                <li>
+                  TokenPocket
+                </li>
+              </ul>
 
-        <p>
-          Make sure to copy and save the HyperDeFi contract address below, for keeping you away from the scammers.
-        </p>
+              <p>
+                Just create a Wallet; and keep your phrase (or your private key) a secret! Never, never share it with
+                anyone and store it properly!
+              </p>
 
-        <p>
-          0x...
-        </p>
+              <p>
+                Make sure to copy and save the HyperDeFi contract address below, for keeping you away from the scammers.
+              </p>
 
-        <h3>
-          Step.2 Make sure you are on the right chain
-        </h3>
+              <p>
+                0x...
+              </p>
+            </div>
 
-        <p>
-          The real HyperDeFi Protocol is created and trading on BSC Chain (Binance Smart Chain), mainnet.
-          So, just make sure your wallet is working on the right chain.
-        </p>
+            <div class='step'>
+              <h3>
+                Step.2 Add HyperDeFi to the Wallet
+              </h3>
 
-        <h3>
-          Step.3 Add HyperDeFi to the Wallet
-        </h3>
 
-        <h4>
-          For TrustWallet:
-        </h4>
+              <h4>
+                For Truest Wallet:
+              </h4>
 
-        <p>
-          Click the
-          <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
-            <HeroIconOutlineAdjustments class='inline w-5 h-5 transform rotate-90' />
-          </span>
-          icon;
-          <b>Add Custom Token</b>
-          enter the contract address,
-          the Wallet App will auto-load for you.
-        </p>
+              <p>
+                Tap the icon in the top-right and search for <b>HyperDeFi</b>.
+              </p>
 
-        <h4>
-          For TokenPocket:
-        </h4>
+              <p>
+                If it's not there, tap <b>Add Custom Token</b>.
+                At the top, tap <b>Ethereum</b> next to Network, change it to <b>Smart Chain</b>.
+                Copy the contract address above on this page and put it in the Contract Address box,
+                with the Name as <b>HyperDeFi</b>, Symbol as <b>HyperDeFi</b>, Decimals as <b>2</b>,
+                then tap <b>Finish</b> and go back, you will see it listed in your assets.
+              </p>
 
-        <p>
-          Click the
-          <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
-            <HeroIconSolidPlusSm class='inline w-5 h-5' />
-          </span>
-          icon; then enter the contract address...
-        </p>
+              <h4>
+                For TokenPocket:
+              </h4>
 
-        <h3>
-          Step.4 Buy BNB
-        </h3>
+              <p>
+                Click the
+                <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
+                  <HeroIconSolidPlusSm class='inline w-5 h-5' />
+                </span>
+                icon, <b>Custom token</b>, <b>Add token</b>, enter the <b>contract address</b>.
+                The wallet will auto-load for you, then tap <b>Confirm</b>.
+              </p>
 
-        <p>
-          Click <code>Buy</code> button,
-          choose <b>Smart Chain</b> (that's the BNB on BSC Chain),
-          the follow the wizard to get some.
-        </p>
+              <div class='snaps-narrow'>
+                <img src='~/assets/images/metamask/add-token.png' alt='Add Token' />
+              </div>
+
+            </div>
+          </div>
+
+          <div class='con-snaps-wide'>
+            <img src='~/assets/images/metamask/add-token.png' alt='Add Token' />
+          </div>
+        </div>
+
+        <div class='step'>
+          <h3>
+            Step.3 Buy or deposit BNB
+          </h3>
+
+          <p>
+            Click <b>Buy</b> button, choose <b>Smart Chain</b>
+            (that's the native token <b>BNB</b> on Binance Smart Chain),
+            then follow the wizard to get some.
+            Or you can deposit BNB to your wallet by withdrawing from an exchange.
+          </p>
+        </div>
+
+        <div class='con-inner'>
+          <div class='con-body'>
+            <div class='step'>
+              <h3>
+                Step.4 Swap to HyperDeFi, and start holding
+              </h3>
+
+              <div class='mt-6 flex space-x-3'>
+                <HeroIconOutlineBell class='w-8 h-8'/>
+                <span>
+                  If you intend to swap other tokens to HyperDeFi,
+                  make sure you are keeping a small amount of BNB to execute the transaction.
+                </span>
+              </div>
+
+
+<!--              <p>-->
+<!--                Visit PancakeSwap, easily click-->
+<!--                <a target='_blank' :href='hdfLink.pancakeSwapTo()' class='break-all'>-->
+<!--                  https://pancakeswap.finance/#/swap?outputCurrency={{ tokenAddress }}-->
+<!--                </a>, or this button:-->
+<!--              </p>-->
+
+<!--              <div class='mt-6 mb-10 max-w-sm mx-auto'>-->
+<!--                <CPancakeTo class='btn-pancake-swap'>-->
+<!--                  <IconPancakeSwap class='inline w-6 h-6' />-->
+<!--                  <span>-->
+<!--                    {{ $t('sWelcome.buyOnPancakeSwap') }}-->
+<!--                  </span>-->
+<!--                </CPancakeTo>-->
+<!--              </div>-->
+
+<!--              <p>-->
+<!--                If you are already there, you can see a <b>Import Token</b> tips,-->
+<!--                click <b>I understand</b>, and <b>Continue:</b>-->
+<!--              </p>-->
+
+<!--              <div class='snaps-narrow'>-->
+<!--                <img src='~/assets/images/pancakeswap/import-token.png' alt='Import Token' />-->
+<!--              </div>-->
+
+<!--              <ol>-->
+<!--                <li>-->
+<!--                  Click <b>Connect</b> or <b>Unlock Wallet</b>, then <b>Connect</b> to start-->
+<!--                </li>-->
+
+<!--                <li>-->
+<!--                  Click the-->
+<!--                  <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>-->
+<!--                    <HeroIconOutlineAdjustments class='inline w-5 h-5 transform rotate-90' />-->
+<!--                  </span>-->
+<!--                  icon, set the <b>Slippage Tolerance</b> to <b>45%</b>-->
+<!--                </li>-->
+<!--              </ol>-->
+
+<!--              <div class='mt-6 mb-8 mx-auto md:mx-0 w-2/3 sm:w-1/2 md:w-11/12 flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0'>-->
+<!--                <div class='md:w-5/12'>-->
+<!--                  <img src="~/assets/images/pancakeswap/main.png" alt='Main'/>-->
+<!--                </div>-->
+<!--                <div class='md:w-7/12'>-->
+<!--                  <img src='~/assets/images/pancakeswap/slippage.png' alt='Slippage Tolerance' />-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--              <p>-->
+<!--                Once the slippage is set, and you have the BNB amount set that you wish to swap for HyperDeFi as shown.-->
+<!--              </p>-->
+
+<!--              <div class='snaps-narrow'>-->
+<!--                <img src='~/assets/images/pancakeswap/swap.png' alt='Swap' />-->
+<!--              </div>-->
+
+<!--              <p>-->
+<!--                Just click Swap and wait patiently for the transaction to clear. This process may not be instant and can-->
+<!--                take anywhere from a few seconds (usually) up to 10-15 minutes sometimes, depending on traffic.-->
+<!--              </p>-->
+
+<!--              <p>-->
+<!--                Once the transaction has been cleared, you should have HyperDeFi in your Wallet!-->
+<!--              </p>-->
+
+<!--              <p>-->
+<!--                Now all that's left is to HODL!-->
+<!--              </p>-->
+            </div>
+          </div>
+          <div class='con-snaps-wide'>
+<!--            <img src='~/assets/images/pancakeswap/import-token.png' alt='Import Token' />-->
+<!--            <img src='~/assets/images/pancakeswap/swap.png' alt='Swap' />-->
+          </div>
+        </div>
+
+
+
+
+
+
       </div>
     </LAutoWidth>
   </div>
@@ -364,9 +462,39 @@ export default {
 }
 
 .con {
-  @apply mt-10 lg:mt-16 xl:mt-20 mx-auto text-gray-400;
+  @apply mt-8 lg:mt-10 xl:mt-12;
+  @apply mx-auto text-gray-400;
   //@apply prose xl:prose-xl;
   @apply divide-y divide-gray-600;
+
+
+
+  .con-inner {
+    @apply pt-6;
+    @apply lg:flex lg:items-start lg:space-x-4;
+
+    &:first-child {
+      @apply pt-0;
+    }
+  }
+
+  .con-body {
+    @apply flex-grow divide-y divide-gray-600;
+  }
+
+  img {
+    @apply mx-auto border border-gray-400;
+  }
+
+  .snaps-narrow {
+    @apply lg:hidden;
+
+    @apply my-6 w-2/3 sm:w-1/2 md:w-5/12 mx-auto;
+  }
+
+  .con-snaps-wide {
+    @apply flex-shrink-0 hidden lg:block lg:w-5/12 xl:w-1/3 flex flex-col items-start justify-center space-y-4;
+  }
 
   .step {
     @apply py-6;
@@ -394,17 +522,15 @@ export default {
       @apply list-decimal;
     }
 
-    img {
-      @apply mx-auto border border-gray-400 shadow-2xl;
-    }
+
   }
 
   h3 {
-    @apply mb-4 leading-relaxed text-2xl text-violet-400;
+    @apply mb-4 leading-relaxed font-semibold text-2xl text-violet-400;
   }
 
   h4 {
-    @apply my-4 mb-4 leading-relaxed text-xl border-l-8 border-gray-700 pl-4 py-1;
+    @apply my-6 leading-relaxed text-xl border-l-8 border-gray-700 pl-4 py-1;
   }
 
   p, ul {
