@@ -43,12 +43,15 @@
                     </div>
                   </div>
                   <div>
-                    <CPancakeTo class='w-full inline-flex space-x-2 py-3 px-4 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
+                    <CPancakeTo v-if='$store.state.bsc.presale.liquidityCreatedTimestamp > "0"' class='w-full inline-flex justify-center space-x-2 py-3 px-4 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
                       <IconPancakeSwap class='inline w-6 h-6' />
                       <span>
                         {{ $t('sWelcome.buyOnPancakeSwap') }}
                       </span>
                     </CPancakeTo>
+                    <nuxt-link v-else :to='localePath("/presale")' class='w-full inline-flex justify-center space-x-2 py-3 px-10 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
+                      {{ $t('sWelcome.visitPresale') }}
+                    </nuxt-link>
                   </div>
                 </div>
                 <p class='mt-3 text-sm text-gray-300 sm:mt-4'>

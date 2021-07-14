@@ -34,6 +34,7 @@ export const state = () => ({
   supply: {
     cap: '0',
     gate: '0',
+
     totalSupply: '0',
     totalTax: '0',
     circulating: '0',
@@ -87,18 +88,19 @@ export const state = () => ({
   },
 
   globalAccounts: {
+    zero: '0x0000000000000000000000000000000000000000',
+
     pancake: null,
+    WBNB: null,
+    USDT: null,
     pair: null,
-    BUSD: null,
-    tax: null,
     buffer: null,
+
+    tax: null,
     airdrop: null,
     fomo: null,
     fund: null,
-    zero: null,
     burn: null,
-
-    presale: null,
   },
 
   fomo: {
@@ -197,15 +199,15 @@ export const mutations = {
     state.gasPrice = gasPrice
   },
   async SET_METADATA(state, data) {
-    state.metadata.tokenName = data.tokenName
-    state.metadata.tokenSymbol = data.tokenSymbol
-    state.metadata.tokenDecimals = data.tokenDecimals
+    state.metadata.tokenName = data.tokenNames[0]
+    state.metadata.tokenSymbol = data.tokenSymbols[0]
+    state.metadata.tokenDecimals = data.tokenDecimals[0]
 
-    state.metadata.priceName = data.priceName
-    state.metadata.priceSymbol = data.priceSymbol
-    state.metadata.priceDecimals = data.priceDecimals
+    state.metadata.priceName = data.tokenNames[1]
+    state.metadata.priceSymbol = data.tokenSymbols[1]
+    state.metadata.priceDecimals = data.tokenDecimals[1]
 
-    state.metadata.price = data.price
+    state.metadata.price = data.tokenPrices[2]
     state.metadata.bnPrice = new BN(state.metadata.price)
     let strDiv = '1'
     for (let i = 0; i < parseInt(state.metadata.tokenDecimals); i++) {
@@ -221,6 +223,7 @@ export const mutations = {
     state.supply.gate = data.supplies[1]
     state.supply.totalSupply = data.supplies[2]
     state.supply.totalTax = data.supplies[3]
+
     state.supply.liquidity = data.supplies[4]
     state.supply.buffer = data.supplies[5]
     state.supply.tax = data.supplies[6]
@@ -241,18 +244,16 @@ export const mutations = {
 
     // accounts
     state.globalAccounts.pancake = data.accounts[0]
-    state.globalAccounts.pair = data.accounts[1]
+    state.globalAccounts.WBNB = data.accounts[1]
     state.globalAccounts.BUSD = data.accounts[2]
-    state.globalAccounts.tax = data.accounts[3]
+    state.globalAccounts.pair = data.accounts[3]
     state.globalAccounts.buffer = data.accounts[4]
-    state.globalAccounts.airdrop = data.accounts[5]
-    state.globalAccounts.fomo = data.accounts[6]
-    state.globalAccounts.fund = data.accounts[7]
-    state.globalAccounts.zero = data.accounts[8]
+
+    state.globalAccounts.tax = data.accounts[5]
+    state.globalAccounts.airdrop = data.accounts[6]
+    state.globalAccounts.fomo = data.accounts[7]
+    state.globalAccounts.fund = data.accounts[8]
     state.globalAccounts.burn = data.accounts[9]
-
-    state.globalAccounts.presale = data.accounts[10]
-
   },
 
   async SET_GLOBAL(state, data) {

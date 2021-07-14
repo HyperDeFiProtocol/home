@@ -72,12 +72,12 @@ export default async function({ app, store }, inject) {
     app.token = new Contract(
       tokenAbi, process.env.tokenAddress
     )
-    app.presale = new Contract(
-      presaleAbi, process.env.presaleAddress
-    )
-    app.busd = new Contract(
-      busdAbi, process.env.busdAddress
-    )
+    // app.presale = new Contract(
+    //   presaleAbi, process.env.presaleAddress
+    // )
+    // app.busd = new Contract(
+    //   busdAbi, process.env.busdAddress
+    // )
   }
 
   const tokenSyncKeep = async function() {
@@ -85,10 +85,6 @@ export default async function({ app, store }, inject) {
       if (blockHeader.number > store.state.bsc.blockNumber + 5) {
         await store.dispatch('bsc/SET_BLOCK_NUMBER', blockHeader.number)
         await tokenSync()
-        if (store.state.wallet.account && store.state.presale.syncStatus) {
-          await presaleSync()
-        }
-
         await sleepAWhile()
         return null
       }
@@ -126,17 +122,6 @@ export default async function({ app, store }, inject) {
           console.error('>>> Plugin[web3] tokenSync - getAccount:', error.message)
         })
     }
-  }
-
-  const presaleSync = async function() {
-    app.presale.methods.getStatus(store.state.wallet.account).call()
-      .then(async function(data) {
-        // console.log('>>> presale.getStatus:', data)
-        await store.dispatch('presale/SET_DATA', data)
-      })
-      .catch(error => {
-        console.error('>>> Plugin[web3] presaleSync - getStatus:', error.message)
-      })
   }
 
   const init = async function() {
@@ -254,8 +239,6 @@ export default async function({ app, store }, inject) {
     connect: connect,
 
     tokenSync: tokenSync,
-    presaleSync: presaleSync,
-
     tokenSyncKeep: tokenSyncKeep
   }
 }

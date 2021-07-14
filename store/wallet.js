@@ -17,6 +17,11 @@ export const state = () => ({
 
   totalHarvest: '0',
   totalTaxSnap: '0',
+
+  bnbBalance: '0',
+  presaleDeposit: '0',
+  presalePortion: '0',
+  presaleRedeemed: false,
 })
 
 
@@ -39,6 +44,11 @@ export const mutations = {
 
     state.totalHarvest = data.totalHarvest
     state.totalTaxSnap = data.totalTaxSnap
+
+    state.bnbBalance = data.bnbBalance
+    state.presaleDeposit = data.presaleDeposit
+    state.presalePortion = data.presalePortion
+    state.presaleRedeemed = data.presaleRedeemed
   },
 }
 

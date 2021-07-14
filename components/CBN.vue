@@ -1,7 +1,6 @@
 <template>
   <span class='cbn-number'>
-    <span class='cbn-integer'>{{ display.a }}</span><span class='cbn-dot' v-if='display.b.length'>.</span><span
-    class='cbn-decimal' v-for='part in display.b'>{{ part }}</span>
+    <span class='cbn-integer'>{{ display.a }}</span><span class='cbn-dot' v-if='display.b.length'>.</span><span class='cbn-decimal' v-for='part in display.b'>{{ part }}</span>
   </span>
 </template>
 
@@ -125,7 +124,7 @@ export default {
 
 <style scoped lang='scss'>
 .cbn-decimal {
-  margin-right: 0.25rem;
+  margin-right: 0.2rem;
   font-size: 90%;
 
   &:last-child {

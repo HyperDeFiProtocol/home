@@ -11,11 +11,7 @@
         </template>
 
         <template #desc>
-          {{ $t('pPresale.desc1') }}
-          <a target='_blank' :href='hdfLink.exploreToken(busdAddress)' class='hdf-a-colored'>
-            BUSD
-          </a>
-          {{ $t('pPresale.desc2') }}
+          {{ $t('pPresale.desc') }}
         </template>
       </CH3>
 
@@ -36,11 +32,11 @@
               </p>
 
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 break-all'>
-                {{ $store.state.bsc.globalAccounts.presale }}
+                {{ tokenAddress }}
               </p>
 
               <p class='mt-2 md:mt-4'>
-                <a target='_blank' :href='hdfLink.exploreAddress($store.state.bsc.globalAccounts.presale)' class='a-track'>
+                <a target='_blank' :href='hdfLink.exploreAddress(tokenAddress)' class='a-track'>
                   <HeroIconSolidCursorClick class="h-5 w-5" />
                   <span>
                     {{ $t('global.trackWithBSCScan') }}
@@ -115,10 +111,10 @@
               <dl class='hdf-stat lg:max-w-full grid grid-cols-1 lg:grid-cols-2'>
                 <div>
                   <dt>
-                    {{ $t('pPresale.depositedBUSDAmount') }}
+                    {{ $t('pPresale.depositedBNBAmount') }}
                   </dt>
                   <dd>
-                    $<CBN :value='$store.state.bsc.presale.fund' :decimals='18' :padding='3' />
+                    <CBN :value='$store.state.bsc.presale.fund' :decimals='18' :padding='6' />
                   </dd>
                 </div>
 
@@ -135,42 +131,29 @@
               <div class='my-14 md:my-20' v-if='liquidityNotCreatedAsDepositAllowed'>
                 <div v-if='$store.state.wallet.account' class='mx-auto max-w-xl space-y-2'>
                   <div class='min-w-0 flex-1'>
-                    <label for='deposit-amount' class='sr-only'>
-                      {{ $t('sUsername.sr') }}
+                    <label for='deposit-amount'>
+                      {{ $t('pPresale.bnbBalance_') }}
+                      <CBN class='font-semibold' :value='$store.state.wallet.bnbBalance' :decimals='18' :padding='6' />
                     </label>
-                    <div class='relative'>
+                    <div class='mt-1 relative'>
                       <input id='deposit-amount'
                              type='text'
                              autocomplete='off'
-                             maxlength='15'
-                             class='block w-full border-0 rounded-md pl-7 md:pl-10 pr-10 py-4 font-mono text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
+                             class='block w-full border-0 rounded-md pl-14 pr-10 py-4 font-mono text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
                              v-model='amount'
                              :placeholder='$t("pPresale.amountToDeposit")' />
-                      <span class='absolute top-4 left-3 md:left-5 text-base text-gray-500'>$</span>
-                      <span class='absolute top-4 right-3 md:right-5 pl-2 bg-white text-base text-gray-500'>BUSD</span>
+                      <IconBNB class='absolute bottom-4 left-4 w-6 h-6 bg-yellow-500 rounded-full text-white' />
+                      <span class='absolute bottom-4 right-4 pl-2 bg-white text-base text-gray-500'>BNB</span>
                     </div>
                   </div>
-                  <div class='flex space-x-2'>
-                    <button class='btn-add btn-approved' disabled v-if='approved'>
-                      <span>
-                        {{ $t('pPresale.approved') }}
+                  <div>
+                    <button class='btn-add'
+                            :class='{"bg-violet-600 hover:bg-violet-700 focus:ring-offset-violet-600": !insufficientBNB, "bg-rose-600 hover:bg-rose-700 focus:ring-offset-rose-600": insufficientBNB}'
+                            @click='deposit'>
+                      <span v-if='insufficientBNB'>
+                        {{ $t('pPresale.insufficientBNBBalance') }}
                       </span>
-                      <span v-if='busdAllowance > "0"'>
-                        {{ busdAllowance }} BUSD
-                      </span>
-                      <IconDiceHyperSpin v-show='pendingApprove' class='inline w-6 h-6' />
-                    </button>
-                    <button class='btn-add btn-approve' @click='approve' v-else-if='this.amount'>
-                      <span>
-                        {{ $t('pPresale.approve') }}
-                      </span>
-                      <span v-if='this.amount'>
-                        {{ amount }} BUSD
-                      </span>
-                      <IconDiceHyperSpin v-show='pendingApprove' class='inline w-6 h-6' />
-                    </button>
-                    <button class='btn-add btn-deposit' @click='deposit'>
-                      <span>
+                      <span v-else>
                         {{ $t('pPresale.deposit') }}
                       </span>
                       <IconDiceHyperSpin v-show='pendingDeposit' class='inline w-6 h-6' />
@@ -206,8 +189,12 @@
           <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
 
           <div class='hdf-timeline-inner'>
-            <h3 class='text-2xl'>
-              {{ $t('pPresale.createLiquidity') }}
+            <h3 class='text-2xl hidden sm:block'>
+              {{ $t('pPresale.createLiquidity1') }}<br>
+              {{ $t('pPresale.createLiquidity2') }}
+            </h3>
+            <h3 class='text-2xl sm:hidden'>
+              {{ $t('pPresale.createLiquidity1') }}{{ $t('pPresale.createLiquidity2') }}
             </h3>
 
             <div class='hdf-timeline-body'>
@@ -245,12 +232,12 @@
             </h3>
 
             <div class='hdf-timeline-body' v-if='$store.state.wallet.account'>
-              <div v-if='$store.state.presale.portion > "0"'>
+              <div v-if='$store.state.wallet.presalePortion > "0"'>
                 <p>
                   {{ $t('pPresale.yourPortion') }}
                 </p>
                 <p class='mt-2 text-lg md:text-xl text-gray-200'>
-                  <CBN :value='$store.state.presale.portion' :token='true' /> HyperDeFi
+                  <CBN :value='$store.state.wallet.presalePortion' :token='true' /> HyperDeFi
                   <span v-if='redeemable'>
                     {{ $t('pPresale.notRedeemed') }}
                   </span>
@@ -265,7 +252,7 @@
                     <span>
                       {{ $t('pPresale.redeem') }}
                     </span>
-                    <CBN :value='$store.state.presale.portion' :token='true' />
+                    <CBN :value='$store.state.wallet.presalePortion' :token='true' />
                     <span>
                       HyperDeFi
                     </span>
@@ -306,6 +293,7 @@
 </template>
 
 <script>
+import BigNumber from 'bignumber.js'
 import Web3 from 'web3'
 import moment from 'moment'
 import hdfLink from '~/utils/hdfLink'
@@ -326,6 +314,20 @@ export default {
       pendingRedeem: false,
     }
   },
+  watch: {
+    amount() {
+      let amount = this.amount
+        .replace('。', '.')
+        .replace(/[^\d.]/g, '')
+        .replace(/\.{2,}/g, '.')
+        .replace('.', '#')
+        .replace(/\./g, '')
+        .replace('#', '.')
+        .replace(new RegExp('^(\\d+)\\.(\\d{0,6}).*$' ), '$1.$2')
+
+      this.amount = amount
+    },
+  },
   computed: {
     moment() {
       return moment
@@ -333,8 +335,8 @@ export default {
     hdfLink() {
       return hdfLink
     },
-    busdAddress() {
-      return process.env.busdAddress
+    tokenAddress() {
+      return process.env.tokenAddress
     },
 
     theLastDeposit() {
@@ -352,125 +354,25 @@ export default {
       return !this.liquidityNotCreatedAsDepositAllowed && this.countdownFinished
     },
     redeemable() {
-      return this.$store.state.presale.portion > '0' && !this.$store.state.presale.redeemed
+      return this.$store.state.wallet.presalePortion > '0' && !this.$store.state.wallet.presaleRedeemed
     },
 
     amountStr() {
       if (this.amount) {
-        return new BN(this.amount).mul(new BN('1000000000000000000')).toString()
+        return new BigNumber(this.amount).multipliedBy('1000000000000000000').toString()
       }
 
       return '0'
     },
 
-    approved() {
-      return this.amount && parseInt(this.amount) <= parseInt(this.busdAllowance)
+    insufficientBNB() {
+      return new BN(this.amountStr).gt(new BN(this.$store.state.wallet.bnbBalance))
     },
-
-    busdBalance() {
-      return new BN(this.$store.state.presale.busdBalance).div(new BN('1000000000000000000')).toString()
-    },
-    busdAllowance() {
-      return new BN(this.$store.state.presale.busdAllowance).div(new BN('1000000000000000000')).toString()
-    },
-  },
-  watch: {
-    amount() {
-      this.amount = this.amount.trim().replace(/[^0-9]/g, '')
-    },
-    '$store.state.bsc.blockNumber': async function() {
-      if (this.$store.state.wallet.account && this.$store.state.presale.liquidityCreatedTimestamp === '0') {
-        await this.$nuxt.context.app.conn.presaleSync()
-      }
-    },
-    '$store.state.wallet.account': async function() {
-      if (this.$store.state.wallet.account) {
-        await this.$nuxt.context.app.conn.presaleSync()
-      }
-    },
-  },
-  mounted: async function () {
-    if (this.$store.state.wallet.account) {
-      await this.$store.dispatch('presale/SET_SYNC_STATUS', true)
-      await this.$nuxt.context.app.conn.presaleSync()
-    }
   },
   methods: {
     async setCountdownFinished(value) {
       this.countdownFinished = value
     },
-
-    async approve() {
-      // pending check
-      if (this.pendingApprove) {
-        await this.$store.dispatch('warning/SET_WARNING', {
-          title: this.$t('modal.info'),
-          message: this.$t('modal.pending'),
-        })
-
-        return
-      }
-
-      // balance check
-      if (!this.amount) {
-        await this.$store.dispatch('warning/SET_WARNING', {
-          title: this.$t('modal.info'),
-          message: this.$t('modal.amountEmpty'),
-        })
-
-        return
-      }
-
-      if (this.amount && parseInt(this.amount) > parseInt(this.busdBalance)) {
-        await this.$store.dispatch('warning/SET_WARNING', {
-          title: this.$t('modal.info'),
-          message: this.$t('pPresale.insufficientBusdBalance'),
-        })
-
-        return
-      }
-
-      this.pendingApprove = true
-
-      await this.$nuxt.context.app.busd.methods
-        .approve(this.$store.state.bsc.globalAccounts.presale, this.amountStr)
-        .send({'from': this.$store.state.wallet.account})
-        // .on('transactionHash', this.onApproveTransactionHash)
-        .on('receipt', this.onApproveReceipt)
-        // .on('confirmation', this.onApproveConfirmation)
-        .on('error', this.onApproveError)
-        .catch(this.onApproveError)
-    },
-
-
-    // async onApproveTransactionHash(txHash) {
-    //   console.log('>>> onTransactionHash:', txHash)
-    // },
-    async onApproveReceipt(receipt) {
-      if (receipt.status) {
-        await this.$nuxt.context.app.conn.presaleSync()
-        await this.$nuxt.context.app.conn.tokenSync()
-        this.pendingApprove = false
-      }
-    },
-    // async onApproveConfirmation(confirmation) {
-    //   // if (confirmation === 3) {
-    //   //   await this.syncData()
-    //   //   await this.$nuxt.context.app.conn.tokenSync()
-    //   //   this.pendingApprove = false
-    //   // }
-    //   // console.log('>>> onConfirmation:', confirmation)
-    // },
-    async onApproveError(error) {
-      this.pendingApprove = false
-
-      await this.$store.dispatch('warning/SET_WARNING', {
-        title: this.$t('modal.txError') + ' #' + error.code,
-        message: error.message,
-      })
-    },
-
-
 
     async deposit() {
       // pending check
@@ -483,7 +385,7 @@ export default {
         return
       }
 
-      // balance check
+      // amount check
       if (!this.amount) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
@@ -492,11 +394,12 @@ export default {
 
         return
       }
-      // approved check
-      if (!this.approved) {
+
+      // insufficient BNB balance check
+      if (this.insufficientBNB) {
         await this.$store.dispatch('warning/SET_WARNING', {
-          title: this.$t('pPresale.notApproved'),
-          message: this.$t('pPresale.notApproved__'),
+          title: this.$t('modal.info'),
+          message: this.$t('pPresale.insufficientBNBBalance'),
         })
 
         return
@@ -505,9 +408,9 @@ export default {
       this.pendingDeposit = true
 
       // submit
-      await this.$nuxt.context.app.presale.methods
-        .deposit(this.amountStr)
-        .send({'from': this.$store.state.wallet.account})
+      await this.$nuxt.context.app.token.methods
+        .deposit()
+        .send({from: this.$store.state.wallet.account, value: this.amountStr})
         // .on('transactionHash', this.onDepositTransactionHash)
         .on('receipt', this.onDepositReceipt)
         // .on('confirmation', this.onDepositConfirmation)
@@ -521,7 +424,6 @@ export default {
     // },
     async onDepositReceipt(receipt) {
       if (receipt.status) {
-        await this.$nuxt.context.app.conn.presaleSync()
         await this.$nuxt.context.app.conn.tokenSync()
         this.pendingDeposit = false
       }
@@ -566,7 +468,7 @@ export default {
       }
 
       // portion check
-      if (this.$store.state.presale.portion === '0') {
+      if (this.$store.state.wallet.presalePortion === '0') {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.error'),
           message: this.$t('pPresale.noPortion'),
@@ -577,7 +479,7 @@ export default {
 
       this.pendingRedeem = true
 
-      await this.$nuxt.context.app.presale.methods.redeem()
+      await this.$nuxt.context.app.token.methods.redeem()
         .send({'from': this.$store.state.wallet.account})
         // .on('transactionHash', this.onRedeemTransactionHash)
         .on('receipt', this.onRedeemReceipt)
@@ -591,7 +493,6 @@ export default {
     // },
     async onRedeemReceipt(receipt) {
       if (receipt.status) {
-        await this.$nuxt.context.app.conn.presaleSync()
         await this.$nuxt.context.app.conn.tokenSync()
         this.pendingRedeem = false
       }

@@ -5,7 +5,6 @@ export default {
     mode: process.env.mode,
     tokenAddress: process.env.tokenAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
     presaleAddress: process.env.presaleAddress,
-    busdAddress: process.env.busdAddress || '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
     chainName: process.env.chainName || 'BSC Chain Mainnet',
     chainId: parseInt(process.env.chainId) || 56,
