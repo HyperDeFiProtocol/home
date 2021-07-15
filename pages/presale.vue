@@ -44,9 +44,9 @@
                 </a>
               </p>
 
-              <p class='mt-12 py-6 px-4 md:px-8 border-l-8 border-amber-600 bg-amber-100 rounded-r-xl leading-relaxed text-base lg:text-lg text-amber-700'>
-                {{ $t('pPresale.depositWarning') }}
-              </p>
+<!--              <p class='mt-12 py-6 px-4 md:px-8 border-l-8 border-amber-600 bg-amber-100 rounded-r-xl leading-relaxed text-base lg:text-lg text-amber-700'>-->
+<!--                {{ $t('pPresale.depositWarning') }}-->
+<!--              </p>-->
             </div>
           </div>
         </div>
