@@ -1,9 +1,6 @@
 import Web3 from 'web3'
 // import moment from 'moment'
 
-import tokenAbi from '~/utils/token.json'
-import busdAbi from '~/utils/busd.json'
-
 const BN = Web3.utils.BN
 
 const sleepAWhile = async function() {

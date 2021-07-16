@@ -39,7 +39,7 @@
                 <div class='xl:flex space-y-3 xl:space-x-3 xl:space-y-0'>
                   <div class='min-w-0 flex-1'>
                     <div class='block w-full px-4 py-3 rounded-md border-0 bg-white font-mono text-base text-gray-900 hover:bg-violet-600 hover:text-white'>
-                      $ <CBN :value='String($store.state.bsc.metadata.price)' :price='true' :padding='18' /> BUSD
+                      $ <CBN :value='String($store.state.bsc.metadata.price)' :price='true' :padding='18' /> USD
                     </div>
                   </div>
                   <div>

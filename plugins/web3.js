@@ -1,8 +1,6 @@
 import Web3 from 'web3'
 // import detectEthereumProvider from '@metamask/detect-provider'
 import tokenAbi from '~/utils/token.json'
-import presaleAbi from '~/utils/presale.json'
-import busdAbi from '~/utils/busd.json'
 
 const sleepAWhile = async function(milliseconds = 1000) {
   await window.setTimeout('', milliseconds)
@@ -72,12 +70,6 @@ export default async function({ app, store }, inject) {
     app.token = new Contract(
       tokenAbi, process.env.tokenAddress
     )
-    // app.presale = new Contract(
-    //   presaleAbi, process.env.presaleAddress
-    // )
-    // app.busd = new Contract(
-    //   busdAbi, process.env.busdAddress
-    // )
   }
 
   const tokenSyncKeep = async function() {

@@ -77,7 +77,7 @@
           </div>
         </div>
 
-        <!--  deposit BUSD  -->
+        <!--  deposit  -->
         <div class='hdf-timeline-item' :class='{ "doing": liquidityNotCreatedAsDepositAllowed, "done": !liquidityNotCreatedAsDepositAllowed }'>
           <HeroIconSolidFire v-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
           <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
