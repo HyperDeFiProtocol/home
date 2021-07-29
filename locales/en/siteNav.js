@@ -4,4 +4,6 @@ export default {
   presale: 'Pre-sale',
   documentation: 'Documentation',
   documentationHref: 'https://docs.hyperdefi.org/',
+  forum: 'Forum',
+  forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
 }
