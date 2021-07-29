@@ -2,13 +2,13 @@
   <header class='relative'>
     <LAutoWidth class='relative pt-6 flex items-center justify-between px-4 sm:px-6' aria-label='Global'>
       <div class='flex items-center flex-1'>
-        <div class='flex items-center justify-between w-full md:w-auto'>
+        <div class='flex items-center justify-between w-full lg:w-auto'>
           <nuxt-link :to='localePath("/")' class='text-violet-500 hover:text-violet-600'>
             <span class='sr-only'>HyperDeFi Home</span>
             <IconDiceHyper class='h-8 w-auto sm:h-10' />
           </nuxt-link>
 
-          <div class='md:hidden'>
+          <div class='lg:hidden'>
             <a v-if='$store.state.wallet.account'
                target='_blank'
                :href='hdfLink.exploreToken4address($store.state.wallet.account)'
@@ -22,7 +22,7 @@
                class='inline-flex items-center px-4 py-1 border border-transparent text-base font-medium rounded-md text-emerald-300 bg-emerald-900 hover:bg-emerald-800 focus:outline-none' />
           </div>
 
-          <div class='-mr-2 flex items-center space-x-4 md:hidden'>
+          <div class='-mr-2 flex items-center space-x-4 lg:hidden'>
             <BtnTranslate class='text-gray-500 hover:text-gray-200 focus:outline-none' />
 
             <button type='button'
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <div class='hidden space-x-8 md:flex md:ml-10'>
+        <div class='hidden space-x-8 lg:flex lg:ml-10'>
           <nuxt-link v-for='item in navigation' :key='item.name' :to='localePath(item.href)'
                      class='font-medium text-white hover:text-gray-300'>
             {{ $t('siteNav.' + item.name) }}
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <div class='hidden md:flex md:items-center md:space-x-6'>
+      <div class='hidden lg:flex lg:items-center lg:space-x-6'>
         <BtnTranslate class='text-gray-500 hover:text-gray-200 focus:outline-none' />
 
         <a v-if='$store.state.wallet.account' class='btn-md-account space-x-2 font-mono'
@@ -68,7 +68,7 @@
     </LAutoWidth>
 
     <!--  Menu Mobile  -->
-    <div v-show='$store.state.nav.menuMobi' class='transition duration-300 ease-in-out absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden'>
+    <div v-show='$store.state.nav.menuMobi' class='transition duration-300 ease-in-out absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden'>
       <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
         <div class='px-5 pt-4 flex items-center justify-between'>
           <div>
