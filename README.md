@@ -4,45 +4,6 @@
 [![Testnet](https://github.com/HyperDeFiProtocol/home/actions/workflows/testnet.yml/badge.svg)](https://testnet.hyperdefi.org/)
 [![Alpha Test](https://github.com/HyperDeFiProtocol/home/actions/workflows/alpha.yml/badge.svg)](https://alpha.hyperdefi.org/)
 
-Just visit [https://hyperdefi.org/](https://hyperdefi.org/) for preview and test, after the contracts deployed on
-mainnet, this will work in production mode.
+Visit https://docs.hyperdefi.org/dev to learn more...
 
-So, for now, the `alpha`, `testnet`, and `official home` are same same...
-
-## Forum (talk and share)
-
-- [Discussions](https://github.com/HyperDeFiProtocol/home/discussions) Provided by GitHub
-
-## Development
-
-- [Project Main Board](https://github.com/orgs/HyperDeFiProtocol/projects/1)
-
-### Build Setup
-
-```bash
-# install dependencies
-$ yarn
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# generate static project to `./dist`
-$ yarn generate
-```
-
-### What we are using
-
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [WebStorm](https://lp.jetbrains.com/webstorm-ide/) as the main IDE
-- [Remix](http://remix.ethereum.org/) as the Ethereum IDE
-- [Node.js](https://nodejs.org/)
-- [Vue2](https://vuejs.org/)
-- [Nuxt.js](https://nuxtjs.org/) as the Main Framework
-- [web3.js](https://web3js.readthedocs.io/en/v1.4.0/) as the web3 support provider
-- [TailwindCSS](https://tailwindcss.com/) and [TailwindUI](https://tailwindui.com/) for the styles and UI
-- [HeroIcons](https://heroicons.com/) as icons resource
-- [Ico Generator](https://favicon.io/) for generating favicons
-- [Affinity](https://affinity.serif.com/) as designing tools:
-  [Affinity Photo](https://affinity.serif.com/en-gb/photo/) for jpg, and
-  [Affinity Designer](https://affinity.serif.com/en-gb/designer/) for vector.
-- [GitHub Actions](https://github.com/features/actions) for CI
+中文文档 https://docs.hyperdefi.org/zh/dev
