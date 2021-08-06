@@ -20,7 +20,7 @@
     "nuxt-i18n": "^6.28.1",
     "vue-fragment": "^1.5.2",
     "vue-qr": "^2.5.0",
-    "web3": "^1.5.0"
+    "web3": "^1.5.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
