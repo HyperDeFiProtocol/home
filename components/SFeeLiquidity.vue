@@ -191,7 +191,7 @@ export default {
   name: 'SFeeLiquidity',
   data() {
     return {
-      transactions: []
+      transactions: [],
     }
   },
   computed: {

@@ -24,7 +24,6 @@
 <script>
 export default {
   name: 'Index',
-
   watch: {
     '$store.state.bsc.blockNumber': async function() {
       await this.sync()

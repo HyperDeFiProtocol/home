@@ -1,7 +1,7 @@
 import Dexie from 'dexie'
 import BN from 'bn.js'
 
-const VERSION = 0.2
+const VERSION = 0.3
 const FROM_BLOCK = 10593970
 const BLOCK_STEP = 4999
 
@@ -18,21 +18,43 @@ export default async function({ app, store }, inject) {
       liquidity: '++id',
       transfer: '++id, fromAccount, toAccount',
 
-      points: 'name',
+      points: 'name'
     })
 
-  app.syncTx = async function() {
-    const latestBlockNumber = store.state.bsc.blockNumber
-
+  const getFromBlockViaPoint = async function(name) {
     let fromBlock = FROM_BLOCK
 
-    await app.db.points.get('tx').then(async function(point) {
-      if (point) {
-        fromBlock = point.blockNumber + 1
-      }
-    })
+    await app.db.points.get(name)
+      .then(async function(point) {
+        if (point) {
+          fromBlock = point.blockNumber + 1
+        }
+      })
 
+    return fromBlock
+  }
+
+  const putBlockPoint = async function (name, blockNumber) {
+    await app.db.points.put({ name: name, blockNumber: blockNumber }).catch(e => {
+      console.error('putBlockPoint:', name, e)
+    })
+  }
+
+  /**
+   * sync tx
+   */
+  app.syncTx = async function() {
+    if (store.state.sync.tx) {
+      return
+    }
+
+    await store.dispatch('sync/SET_TX', true)
+
+    const latestBlockNumber = store.state.bsc.blockNumber
+
+    let fromBlock = await getFromBlockViaPoint('tx')
     let toBlock = fromBlock
+
     while (fromBlock < latestBlockNumber) {
       await store.dispatch('points/SET_TX_FROM_BLOCK_NUMBER', fromBlock)
 
@@ -41,7 +63,7 @@ export default async function({ app, store }, inject) {
         toBlock = latestBlockNumber
       }
 
-      // console.log('sync tx:', fromBlock, toBlock)
+      console.log('sync tx:', fromBlock, toBlock)
 
       const events = await app.token
         .getPastEvents('Tx', {
@@ -53,7 +75,7 @@ export default async function({ app, store }, inject) {
           // break
         })
 
-      if (events) {
+      if (events.length) {
         let transactions = []
         for (let i = 0; i < events.length; i++) {
           if (transactions.length) {
@@ -89,28 +111,28 @@ export default async function({ app, store }, inject) {
         })
       }
 
-      fromBlock = toBlock
-
-      await app.db.points.put({ name: 'tx', blockNumber: toBlock }).catch(e => {
-        console.error(e)
-      })
+      fromBlock = toBlock + 1
+      await putBlockPoint('tx', toBlock)
     }
+
+    await store.dispatch('sync/SET_TX', false)
   }
 
-
-
+  /**
+   * sync airdrop
+   */
   app.syncAirdrop = async function() {
+    if (store.state.sync.airdrop) {
+      return
+    }
+
+    await store.dispatch('sync/SET_AIRDROP', true)
+
     const latestBlockNumber = store.state.bsc.blockNumber
 
-    let fromBlock = FROM_BLOCK
-
-    await app.db.points.get('airdrop').then(async function(point) {
-      if (point) {
-        fromBlock = point.blockNumber + 1
-      }
-    })
-
+    let fromBlock = await getFromBlockViaPoint('airdrop')
     let toBlock = fromBlock
+
     while (fromBlock < latestBlockNumber) {
       await store.dispatch('points/SET_AIRDROP_FROM_BLOCK_NUMBER', fromBlock)
 
@@ -134,7 +156,7 @@ export default async function({ app, store }, inject) {
           // break
         })
 
-      if (events) {
+      if (events.length) {
         let transactions = []
         for (let i = 0; i < events.length; i++) {
           transactions.push({
@@ -142,7 +164,7 @@ export default async function({ app, store }, inject) {
             txHash: events[i].transactionHash,
 
             account: events[i].returnValues.to,
-            amount: events[i].returnValues.value,
+            amount: events[i].returnValues.value
           })
         }
 
@@ -152,32 +174,30 @@ export default async function({ app, store }, inject) {
         })
       }
 
-      fromBlock = toBlock
-
-      await app.db.points.put({ name: 'airdrop', blockNumber: toBlock }).catch(e => {
-        console.error(e)
-      })
+      fromBlock = toBlock + 1
+      await putBlockPoint('airdrop', toBlock)
     }
 
     const airdrops = await app.db.airdrop.toArray()
     await store.dispatch('stat/SET_AIRDROPS', airdrops)
+    await store.dispatch('sync/SET_AIRDROP', false)
   }
 
-
-
-
+  /**
+   * sync lotto
+   */
   app.syncLotto = async function() {
+    if (store.state.sync.lotto) {
+      return
+    }
+
+    await store.dispatch('sync/SET_LOTTO', true)
+
     const latestBlockNumber = store.state.bsc.blockNumber
 
-    let fromBlock = FROM_BLOCK
-
-    await app.db.points.get('lotto').then(async function(point) {
-      if (point) {
-        fromBlock = point.blockNumber + 1
-      }
-    })
-
+    let fromBlock = await getFromBlockViaPoint('lotto')
     let toBlock = fromBlock
+
     while (fromBlock < latestBlockNumber) {
       await store.dispatch('points/SET_LOTTO_FROM_BLOCK_NUMBER', fromBlock)
 
@@ -198,7 +218,7 @@ export default async function({ app, store }, inject) {
           // break
         })
 
-      if (events) {
+      if (events.length) {
         let transactions = []
         for (let i = 0; i < events.length; i++) {
           transactions.push({
@@ -206,7 +226,7 @@ export default async function({ app, store }, inject) {
             txHash: events[i].transactionHash,
 
             account: events[i].returnValues.account,
-            amount: events[i].returnValues.amount,
+            amount: events[i].returnValues.amount
           })
         }
 
@@ -216,36 +236,30 @@ export default async function({ app, store }, inject) {
         })
       }
 
-      fromBlock = toBlock
-
-      await app.db.points.put({ name: 'lotto', blockNumber: toBlock }).catch(e => {
-        console.error(e)
-      })
+      fromBlock = toBlock + 1
+      await putBlockPoint('lotto', toBlock)
     }
 
     const lottos = await app.db.lotto.toArray()
     await store.dispatch('stat/SET_LOTTOS', lottos)
+    await store.dispatch('sync/SET_LOTTO', false)
   }
 
-
-
-
-
-
-
-
+  /**
+   * sync liquidity
+   */
   app.syncLiquidity = async function() {
+    if (store.state.sync.liquidity) {
+      return
+    }
+
+    await store.dispatch('sync/SET_LIQUIDITY', true)
+
     const latestBlockNumber = store.state.bsc.blockNumber
 
-    let fromBlock = FROM_BLOCK
-
-    await app.db.points.get('liquidity').then(async function(point) {
-      if (point) {
-        fromBlock = point.blockNumber + 1
-      }
-    })
-
+    let fromBlock = await getFromBlockViaPoint('liquidity')
     let toBlock = fromBlock
+
     while (fromBlock < latestBlockNumber) {
       await store.dispatch('points/SET_LOTTO_FROM_BLOCK_NUMBER', fromBlock)
 
@@ -266,7 +280,7 @@ export default async function({ app, store }, inject) {
           // break
         })
 
-      if (events) {
+      if (events.length) {
         let transactions = []
         for (let i = 0; i < events.length; i++) {
           transactions.push({
@@ -274,9 +288,13 @@ export default async function({ app, store }, inject) {
             txHash: events[i].transactionHash,
 
             busdAdded: events[i].returnValues.busdAdded,
-            tokenAdded: events[i].returnValues.tokenAdded,
+            tokenAdded: events[i].returnValues.tokenAdded
           })
         }
+
+        // console.log('sync liquidity, from~to:', fromBlock, toBlock)
+        // console.log('events:', events)
+        // console.log('transactions:', transactions)
 
         await app.db.liquidity.bulkAdd(transactions).catch(e => {
           console.error('Ooops:', e)
@@ -284,43 +302,30 @@ export default async function({ app, store }, inject) {
         })
       }
 
-      fromBlock = toBlock
-
-      await app.db.points.put({ name: 'liquidity', blockNumber: toBlock }).catch(e => {
-        console.error(e)
-      })
+      fromBlock = toBlock + 1
+      await putBlockPoint('liquidity', toBlock)
     }
 
     const liquidityTxs = await app.db.liquidity.toArray()
     await store.dispatch('stat/SET_LIQUIDITY', liquidityTxs)
+    await store.dispatch('sync/SET_LIQUIDITY', false)
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  /**
+   * sync transfer
+   */
   app.syncTransfer = async function() {
+    if (store.state.sync.transfer) {
+      return
+    }
+
+    await store.dispatch('sync/SET_TRANSFER', true)
+
     const latestBlockNumber = store.state.bsc.blockNumber
 
-    let fromBlock = FROM_BLOCK
-
-    await app.db.points.get('transfer').then(async function(point) {
-      if (point) {
-        fromBlock = point.blockNumber + 1
-      }
-    })
-
+    let fromBlock = await getFromBlockViaPoint('transfer')
     let toBlock = fromBlock
+
     while (fromBlock < latestBlockNumber) {
       // await store.dispatch('points/SET_LOTTO_FROM_BLOCK_NUMBER', fromBlock)
 
@@ -341,7 +346,7 @@ export default async function({ app, store }, inject) {
           // break
         })
 
-      if (events) {
+      if (events.length) {
         let transactions = []
         for (let i = 0; i < events.length; i++) {
           transactions.push({
@@ -360,11 +365,8 @@ export default async function({ app, store }, inject) {
         })
       }
 
-      fromBlock = toBlock
-
-      await app.db.points.put({ name: 'transfer', blockNumber: toBlock }).catch(e => {
-        console.error(e)
-      })
+      fromBlock = toBlock + 1
+      await putBlockPoint('transfer', toBlock)
     }
 
     const fomoTxsIn = await app.db.transfer.where({
@@ -386,22 +388,6 @@ export default async function({ app, store }, inject) {
     await store.dispatch('stat/SET_FOMO_IN', fomoTxsIn)
     await store.dispatch('stat/SET_FOMO_OUT', fomoTxsOut)
     await store.dispatch('stat/SET_BURN', burnTxs)
+    await store.dispatch('sync/SET_TRANSFER', false)
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
