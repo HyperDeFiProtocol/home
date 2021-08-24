@@ -24,8 +24,22 @@
 <script>
 export default {
   name: 'Index',
-  components: {
+
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.sync()
+    }
   },
+
+  async mounted() {
+    await this.sync()
+  },
+
+  methods: {
+    async sync() {
+      await this.$nuxt.context.app.syncTransfer()
+    },
+  }
 }
 </script>
 

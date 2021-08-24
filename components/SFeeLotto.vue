@@ -45,12 +45,12 @@
             </span>
           </p>
 
-          <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
+          <div v-if='$store.state.stat.lotto.count' class='mt-5 inline-flex rounded-md shadow'>
             <a href='#' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
-                {{ counter }}
+                {{ $store.state.stat.lotto.count }}
                 {{ $t('sFeeLotto.trackLottoTransfers') }}
               </span>
             </a>
@@ -58,7 +58,7 @@
         </div>
       </main>
 
-      <dl v-if='counter' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
+      <dl v-if='$store.state.stat.lotto.count' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
 
 
         <!--        <div>-->
@@ -75,7 +75,7 @@
             {{ $t('sFeeLotto.statTotalLotto') }}
           </dt>
           <dd>
-            <CBN :value='amount' :token='true' />
+            <CBN :value='$store.state.stat.lotto.amount' :token='true' />
           </dd>
         </div>
 
@@ -84,7 +84,7 @@
             {{ $t('sFeeLotto.statLottoTransfers') }}
           </dt>
           <dd>
-            <CBN :value='counter' />
+            <CBN :value='$store.state.stat.lotto.count' />
           </dd>
         </div>
       </dl>
@@ -166,26 +166,19 @@
         </div>
       </div>
 
-
     </LAutoWidth>
   </div>
 </template>
 
 <script>
-import Web3 from 'web3'
 import hdfLink from '~/utils/hdfLink'
-
-const BN = Web3.utils.BN
 
 export default {
   name: 'SFeeLotto',
   data() {
     return {
-      counter: 0,
-      amount: '0',
+      transactions: [],
       marketValue: '0',
-
-      transactions: []
     }
   },
   computed: {
@@ -195,52 +188,16 @@ export default {
   },
   watch: {
     '$store.state.bsc.blockNumber': async function() {
-      await this.load()
+      await this.sync()
     }
   },
   async mounted() {
-    await this.load()
+    await this.sync()
   },
   methods: {
-    async load() {
-
-      const events = await this.$nuxt.context.app.token
-        .getPastEvents('Lotto', {
-          // filter: {
-          //   to: this.$store.state.bsc.globalAccounts.zero
-          // },
-          fromBlock: 0,
-          toBlock: 'latest'
-        })
-        .catch(async function(error) {
-          console.error('>>> SFeeLotto:', error)
-        })
-
-      if (events) {
-        events.reverse()
-        // console.log(events)
-
-        let amount = new BN()
-        let transactions = []
-        for (let i = 0; i < events.length; i++) {
-          amount = amount.add(new BN(events[i].returnValues.amount))
-
-          if (i < 10) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              account: events[i].returnValues.account,
-              amount: events[i].returnValues.amount
-            })
-          }
-        }
-
-        this.transactions = transactions
-        this.counter = events.length
-        this.amount = amount.toString()
-        this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
-      }
+    async sync() {
+      await this.$nuxt.context.app.syncLotto()
+      this.transactions = await this.$nuxt.context.app.db.lotto.reverse().limit(10).toArray()
     }
   }
 }

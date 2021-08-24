@@ -39,7 +39,8 @@
             {{ $t('sFeeLiquidity.thenDeposit1__') }}
             <CBN :value='$store.state.bsc.global.autoSwapAmountMin' :token='true' /> HyperDeFi
             {{ $t('sFeeLiquidity.thenDeposit2__') }}
-            {{ $store.state.bsc.global.autoSwapNumeratorMin }}/<CBN :value='$store.state.bsc.global.autoSwapDenominator' />{{ $t('sFeeLiquidity.thenDeposit3__') }}
+            {{ $store.state.bsc.global.autoSwapNumeratorMin }}/<CBN :value='$store.state.bsc.global.autoSwapDenominator' />
+            {{ $t('sFeeLiquidity.thenDeposit3__') }}
 <!--            max limit is <CBN :value='$store.state.bsc.global.autoSwapAmountMax' :token='true' />-->
           </p>
 
@@ -51,7 +52,7 @@
 
       <dl v-if='$store.state.bsc.supply.liquidity > "0"'
           class='hdf-stat grid grid-cols-1 xl:max-w-7xl'
-          :class='{"xl:grid-cols-3": counter, "xl:grid-cols-2": !counter}'>
+          :class='{"xl:grid-cols-3": $store.state.stat.liquidity.count, "xl:grid-cols-2": !$store.state.stat.liquidity.count}'>
 
 <!--        <div>-->
 <!--          <dt>-->
@@ -85,12 +86,12 @@
           </dd>
         </div>
 
-        <div v-if='counter'>
+        <div v-if='$store.state.stat.liquidity.count'>
           <dt>
             {{ $t('sFeeLiquidity.statLiquidityAddTransfers') }}
           </dt>
           <dd>
-            <CBN :value='counter' />
+            <CBN :value='$store.state.stat.liquidity.count' />
           </dd>
         </div>
       </dl>
@@ -179,24 +180,17 @@
           </div>
         </div>
       </div>
-
     </LAutoWidth>
   </div>
 </template>
 
 <script>
-import Web3 from 'web3'
 import hdfLink from '~/utils/hdfLink'
-
-const BN = Web3.utils.BN
 
 export default {
   name: 'SFeeLiquidity',
   data() {
     return {
-      counter: 0,
-      amount: '0',
-
       transactions: []
     }
   },
@@ -207,51 +201,16 @@ export default {
   },
   watch: {
     '$store.state.bsc.blockNumber': async function() {
-      await this.load()
+      await this.sync()
     }
   },
   async mounted() {
-    await this.load()
+    await this.sync()
   },
   methods: {
-    async load() {
-
-      const events = await this.$nuxt.context.app.token
-        .getPastEvents('LiquidityAdded', {
-          // filter: {
-          //   to: this.$store.state.bsc.globalAccounts.zero
-          // },
-          fromBlock: 0,
-          toBlock: 'latest'
-        })
-        .catch(async function(error) {
-          console.error('>>> SFeeLiquidity:', error)
-        })
-
-      if (events) {
-        events.reverse()
-        // console.log(events)
-
-        let amount = new BN()
-        let transactions = []
-        for (let i = 0; i < events.length; i++) {
-          amount = amount.add(new BN(events[i].returnValues.tokenAdded))
-
-          if (i < 10) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              busdAdded: events[i].returnValues.busdAdded,
-              tokenAdded: events[i].returnValues.tokenAdded
-            })
-          }
-        }
-
-        this.transactions = transactions
-        this.counter = events.length
-        this.amount = amount.toString()
-      }
+    async sync() {
+      await this.$nuxt.context.app.syncLiquidity()
+      this.transactions = await this.$nuxt.context.app.db.liquidity.reverse().limit(10).toArray()
     }
   }
 }

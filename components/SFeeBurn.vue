@@ -39,14 +39,14 @@
             {{ $t('sFeeBurn.destroy__') }}
           </p>
 
-          <div v-if='counter' class='mt-5 inline-flex rounded-md shadow'>
+          <div v-if='$store.state.stat.burn.count' class='mt-5 inline-flex rounded-md shadow'>
             <a target='_blank'
                :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
                class='hdf-a-track bg-emerald-700 hover:bg-emerald-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
-                {{ counter }}
+                {{ $store.state.stat.burn.count }}
                 {{ $t('sFeeBurn.trackBurnTransfers') }}
               </span>
             </a>
@@ -54,7 +54,7 @@
         </div>
       </main>
 
-      <dl v-if='counter' class='hdf-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-2'>
+      <dl v-if='$store.state.stat.burn.count' class='hdf-stat lg:max-w-6xl grid grid-cols-1 sm:grid-cols-2'>
 
 
         <!--        <div>-->
@@ -80,11 +80,10 @@
             {{ $t('sFeeBurn.statBurnTransfers') }}
           </dt>
           <dd>
-            <CBN :value='counter' />
+            <CBN :value='$store.state.stat.burn.count' />
           </dd>
         </div>
       </dl>
-
 
       <div v-if='transactions.length'>
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-emerald-500 tracking-wide uppercase'>
@@ -141,8 +140,8 @@
                 <tbody>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>#
-                      <CBN :value='tx.blockNumber' />
+                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                      #<CBN :value='tx.blockNumber' />
                     </a>
                   </td>
                   <td class='font-mono'>
@@ -161,7 +160,6 @@
           </div>
         </div>
       </div>
-
     </LAutoWidth>
   </div>
 </template>
@@ -176,10 +174,7 @@ export default {
   name: 'SFeeBurn',
   data() {
     return {
-      counter: 0,
-      amount: '0',
       marketValue: '0',
-
       transactions: []
     }
   },
@@ -198,43 +193,11 @@ export default {
   },
   methods: {
     async load() {
-      const events = await this.$nuxt.context.app.token
-        .getPastEvents('Transfer', {
-          filter: {
-            to: this.$store.state.bsc.globalAccounts.burn
-          },
-          fromBlock: 0,
-          toBlock: 'latest'
-        })
-        .catch(async function(error) {
-          console.error('>>> SFeeBurn:', error)
-        })
+      this.transactions = await this.$nuxt.context.app.db.transfer.where({
+        toAccount: this.$store.state.bsc.globalAccounts.burn
+      }).toArray()
 
-      if (events) {
-        events.reverse()
-        // console.log(events)
-
-        let amount = new BN()
-        let transactions = []
-        for (let i = 0; i < events.length; i++) {
-          amount = amount.add(new BN(events[i].returnValues.value))
-
-          if (i < 10) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              account: events[i].returnValues.from,
-              amount: events[i].returnValues.value
-            })
-          }
-        }
-
-        this.transactions = transactions
-        this.counter = events.length
-        this.amount = amount.toString()
-        this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
-      }
+      //   this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
     }
   }
 }

@@ -50,7 +50,7 @@
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
-                {{ oCounter + iCounter }}
+                {{ $store.state.stat.fomo.out.count + $store.state.stat.fomo.in.count }}
                 {{ $t('sFeeFomo.trackFomoTransfers') }}
               </span>
             </a>
@@ -58,7 +58,7 @@
         </div>
       </main>
 
-      <dl v-if='oCounter > "0"' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
+      <dl v-if='$store.state.stat.fomo.out.count' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
         <div>
           <dt>
             {{ $t('sFeeFomo.statFomoPool') }}
@@ -73,40 +73,40 @@
             {{ $t('sFeeFomo.statFomoPrizeTransfers') }}
           </dt>
           <dd class='order-1 text-3xl font-extrabold text-white'>
-            <CBN :value='oCounter' />
+            <CBN :value='$store.state.stat.fomo.out.count' />
           </dd>
         </div>
       </dl>
 
 
-<!--      <div class='mt-10 md:mt-12'>-->
-<!--        <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>-->
-<!--          <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>-->
-<!--            {{ $t('sFeeFomo.prizeWinner') }}-->
-<!--          </span>-->
-<!--          <span v-else>-->
-<!--            {{ $t('sFeeFomo.nextWinner') }}-->
-<!--          </span>-->
-<!--        </h6>-->
+      <!--      <div class='mt-10 md:mt-12'>-->
+      <!--        <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>-->
+      <!--          <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>-->
+      <!--            {{ $t('sFeeFomo.prizeWinner') }}-->
+      <!--          </span>-->
+      <!--          <span v-else>-->
+      <!--            {{ $t('sFeeFomo.nextWinner') }}-->
+      <!--          </span>-->
+      <!--        </h6>-->
 
-<!--        <div class='mt-4'>-->
-<!--          <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>-->
-<!--            <span-->
-<!--              class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>-->
-<!--              {{ $t('sFeeFomo.address') }}-->
-<!--            </span>-->
-<!--            <div-->
-<!--              class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>-->
-<!--              <span v-if='!this.isZero(fomo.next)' class='font-bold text-orange-700'>-->
-<!--                {{ fomo.next }}-->
-<!--              </span>-->
-<!--              <span v-else class='font-normal text-gray-400'>-->
-<!--                {{ $t('sFeeFomo.nextBuyer') }} 0x...-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--        <div class='mt-4'>-->
+      <!--          <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>-->
+      <!--            <span-->
+      <!--              class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>-->
+      <!--              {{ $t('sFeeFomo.address') }}-->
+      <!--            </span>-->
+      <!--            <div-->
+      <!--              class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>-->
+      <!--              <span v-if='!this.isZero(fomo.next)' class='font-bold text-orange-700'>-->
+      <!--                {{ fomo.next }}-->
+      <!--              </span>-->
+      <!--              <span v-else class='font-normal text-gray-400'>-->
+      <!--                {{ $t('sFeeFomo.nextBuyer') }} 0x...-->
+      <!--              </span>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
 
       <div v-if='oTransactions.length'>
@@ -136,8 +136,8 @@
                   </p>
                 </div>
                 <p class='p-tx'>
-                  <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>
-                    {{ tx.account.slice(0, 8) }}...{{ tx.account.slice(-4) }}
+                  <a target='_blank' :href='explorer.exploreToken4address(tx.toAccount)'>
+                    {{ tx.toAccount.slice(0, 8) }}...{{ tx.toAccount.slice(-4) }}
                   </a>
                 </p>
               </div>
@@ -171,7 +171,7 @@
                     </a>
                   </td>
                   <td class='font-mono'>
-                    <a target='_blank' :href='explorer.exploreToken4address(tx.account)'>{{ tx.account }}</a>
+                    <a target='_blank' :href='explorer.exploreToken4address(tx.toAccount)'>{{ tx.toAccount }}</a>
                   </td>
                   <td>
                     <CBN :value='tx.amount' :token='true' :padding='2' />
@@ -249,72 +249,17 @@ export default {
       this.timerStep.m = timerStep.minutes()
       this.timerStep.h = timerStep.hours()
 
-      // out
-      const oEvents = await this.$nuxt.context.app.token
-        .getPastEvents('Transfer', {
-          filter: {
-            from: this.$store.state.bsc.globalAccounts.fomo
-          },
-          fromBlock: 0,
-          toBlock: 'latest'
-        })
-        .catch(async function(error) {
-          console.error('>>> SFeeFomo:', error)
-        })
+      this.oTransactions = await this.$nuxt.context.app.db.transfer.where({
+        fromAccount: this.$store.state.bsc.globalAccounts.fomo
+      }).limit(10).toArray()
 
-      if (oEvents) {
-        oEvents.reverse()
-        let burned = new BN()
-        let transactions = []
-        for (let i = 0; i < oEvents.length; i++) {
-          burned = burned.add(new BN(oEvents[i].returnValues.value))
-
-          if (i < 10) {
-            transactions.push({
-              blockNumber: String(oEvents[i].blockNumber),
-              txHash: oEvents[i].transactionHash,
-
-              account: oEvents[i].returnValues.to,
-              amount: oEvents[i].returnValues.value
-            })
-          }
-        }
-
-        this.oTransactions = transactions
-        this.oCounter = oEvents.length
-        this.oAmount = burned.toString()
-      }
-
-
-      // in
-      const iEvents = await this.$nuxt.context.app.token
-        .getPastEvents('Transfer', {
-          filter: {
-            to: this.$store.state.bsc.globalAccounts.fomo
-          },
-          fromBlock: 0,
-          toBlock: 'latest'
-        })
-        .catch(async function(error) {
-          console.error('>>> SFeeFomo:', error)
-        })
-
-      if (iEvents) {
-        iEvents.reverse()
-        let iAmount = new BN()
-        for (let i = 0; i < iEvents.length; i++) {
-          iAmount = iAmount.add(new BN(iEvents[i].returnValues.value))
-        }
-
-        this.iCounter = iEvents.length
-        this.iAmount = iAmount.toString()
-        this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
-      }
+      //   this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
     }
   }
 
 
-}</script>
+}
+</script>
 
 <style scoped lang='scss'>
 .hdf-stat div dt {
