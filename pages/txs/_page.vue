@@ -36,19 +36,19 @@
               </thead>
               <tbody class='divide-y divide-gray-700'>
               <tr v-if='showLoading && $store.state.points.txFromBlockNumber > 0' class='animate-pulse'>
-                <td colspan=6 class='loading'>
+                <td colspan='6' class='loading'>
                   <span>
                     Loading...
                   </span>
                   <span>
                     #<CBN :value='$store.state.points.txFromBlockNumber' />
-                    /
+                    to
                     #<CBN :value='$store.state.bsc.blockNumber' />
                   </span>
                 </td>
               </tr>
               <tr v-if='!showLoading && transactions.length === 0'>
-                <td colspan=6 class='loading'>
+                <td colspan='6' class='loading'>
                   No data...
                 </td>
               </tr>
@@ -87,6 +87,9 @@
           </div>
         </div>
       </div>
+
+      <CPagination class='mt-8 lg:mt-12'
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/txs' />
     </LAutoWidth>
   </div>
 </template>
@@ -103,12 +106,28 @@ export default {
   data() {
     return {
       showLoading: false,
-      transactions: []
+      transactions: [],
+
+      pageSize: 20,
+      pageRecords: 0,
     }
   },
   computed: {
     explorer() {
       return explorer
+    },
+    pageNumber() {
+      if (this.$route.params.page && this.$route.params.page > '1') {
+        const pageNumber = parseInt(this.$route.params.page)
+        if (pageNumber > 1) {
+          return pageNumber
+        }
+      }
+
+      return 1
+    },
+    pageOffset() {
+      return this.pageSize * (this.pageNumber - 1)
     },
   },
   // watch: {
@@ -117,19 +136,28 @@ export default {
   //   }
   // },
   async mounted() {
-    await this.load()
+    await this.sync()
   },
   methods: {
-    async load() {
-      this.transactions = await this.$nuxt.context.app.db.tx.reverse().limit(50).toArray()
+    async sync() {
+      await this.load()
 
       if (this.$nuxt.context.app.db) {
         this.showLoading = true
         await this.$nuxt.context.app.syncTx()
+        this.pageRecords = await this.$nuxt.context.app.db.tx.count().catch(e => {
+          console.error(e)
+        })
         this.showLoading = false
       }
 
-      this.transactions = await this.$nuxt.context.app.db.tx.reverse().limit(50).toArray()
+      await this.load()
+    },
+    async load() {
+      this.transactions = await this.$nuxt.context.app.db.tx.reverse()
+        .offset(this.pageOffset)
+        .limit(this.pageSize)
+        .toArray()
     },
 
     txName(txType) {
