@@ -54,7 +54,7 @@ export default async function({ app, store }, inject) {
             ) {
               transactions[transactions.length - 1].amount =
                 new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
-              transactions[this.transactions.length - 1].txAmount =
+              transactions[transactions.length - 1].txAmount =
                 new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
               continue
             }
