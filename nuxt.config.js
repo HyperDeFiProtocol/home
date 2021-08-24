@@ -58,6 +58,7 @@ export default {
     '~/plugins/web3.js',
     // '~/plugins/web3MetaMask.js',
     '~/plugins/web3Init.js',
+    '~/plugins/db.js',
   ],
 
   router: {

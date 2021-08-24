@@ -9,9 +9,7 @@
         </template>
       </CH3>
 
-      <CLoading class='mt-32' :show='showLoading' />
-
-      <div v-show='transactions.length' class='mt-10 lg:mt-24 overflow-x-auto'>
+      <div class='mt-10 lg:mt-24 overflow-x-auto'>
         <div class='align-middle inline-block min-w-full'>
           <div class='shadow overflow-hidden border-b border-gray-700'>
             <table class='min-w-full divide-y divide-gray-700'>
@@ -37,10 +35,27 @@
               </tr>
               </thead>
               <tbody class='divide-y divide-gray-700'>
+              <tr v-if='showLoading && $store.state.points.txFromBlockNumber > 0' class='animate-pulse'>
+                <td colspan=6 class='loading'>
+                  <span>
+                    Loading...
+                  </span>
+                  <span>
+                    #<CBN :value='$store.state.points.txFromBlockNumber' />
+                    /
+                    #<CBN :value='$store.state.bsc.blockNumber' />
+                  </span>
+                </td>
+              </tr>
+              <tr v-if='!showLoading && transactions.length === 0'>
+                <td colspan=6 class='loading'>
+                  No data...
+                </td>
+              </tr>
               <tr v-for='tx in transactions' :class='txName(tx.txType)'>
                 <td class='hash'>
-                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>#
-                    <CBN :value='tx.blockNumber' />
+                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
+                    #<CBN :value='tx.blockNumber' />
                   </a>
                 </td>
                 <td class='type capitalize'>
@@ -73,7 +88,6 @@
         </div>
       </div>
     </LAutoWidth>
-
   </div>
 </template>
 
@@ -88,7 +102,7 @@ export default {
   name: 'txs',
   data() {
     return {
-      showLoading: true,
+      showLoading: false,
       transactions: []
     }
   },
@@ -96,7 +110,6 @@ export default {
     explorer() {
       return explorer
     },
-
   },
   // watch: {
   //   '$store.state.bsc.blockNumber': async function() {
@@ -108,56 +121,17 @@ export default {
   },
   methods: {
     async load() {
-      const events = await this.$nuxt.context.app.token
-        .getPastEvents('Tx',
-          {
-            // filter: {
-            //   to: this.$store.state.bsc.globalAccounts.burn
-            // },
-            fromBlock: 10000000,
-            toBlock: 'latest'
-          })
+      this.transactions = await this.$nuxt.context.app.db.tx.reverse().limit(50).toArray()
 
-
-      if (events) {
-        events.reverse()
-        // console.log(events)
-
-        let transactions = []
-        for (let i = 0; i < events.length; i++) {
-          if (transactions.length) {
-            let tx = transactions[transactions.length - 1]
-            if (tx.txHash === events[i].transactionHash &&
-              tx.txType === events[i].returnValues.txType &&
-              tx.sender === events[i].returnValues.sender &&
-              tx.recipient === events[i].returnValues.recipient
-            ) {
-              transactions[transactions.length - 1].amount =
-                new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
-              transactions[this.transactions.length - 1].txAmount =
-                new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
-
-              continue
-            }
-          }
-
-          transactions.push({
-            blockNumber: events[i].blockNumber,
-            txHash: events[i].transactionHash,
-
-            txType: events[i].returnValues.txType,
-            sender: events[i].returnValues.sender,
-            recipient: events[i].returnValues.recipient,
-            amount: events[i].returnValues.amount,
-            txAmount: events[i].returnValues.txAmount
-          })
-
-          this.transactions = transactions
-        }
+      if (this.$nuxt.context.app.db) {
+        this.showLoading = true
+        await this.$nuxt.context.app.syncTx()
+        this.showLoading = false
       }
 
-      this.showLoading = false
+      this.transactions = await this.$nuxt.context.app.db.tx.reverse().limit(50).toArray()
     },
+
     txName(txType) {
       switch (txType) {
         case '0':
@@ -253,6 +227,10 @@ tbody {
 
     td:last-child {
       @apply text-right text-gray-200;
+    }
+
+    td.loading {
+      @apply space-x-8 font-mono text-gray-400 text-center;
     }
 
     .amount-ori {
