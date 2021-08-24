@@ -44,11 +44,11 @@ export default async function({ app, store }, inject) {
    * sync tx
    */
   app.syncTx = async function() {
-    if (store.state.sync.tx) {
+    if (store.state.syncLock.tx) {
       return
     }
 
-    await store.dispatch('sync/SET_TX', true)
+    await store.dispatch('syncLock/SET_TX', true)
 
     const latestBlockNumber = store.state.bsc.blockNumber
 
@@ -115,18 +115,18 @@ export default async function({ app, store }, inject) {
       await putBlockPoint('tx', toBlock)
     }
 
-    await store.dispatch('sync/SET_TX', false)
+    await store.dispatch('syncLock/SET_TX', false)
   }
 
   /**
    * sync airdrop
    */
   app.syncAirdrop = async function() {
-    if (store.state.sync.airdrop) {
+    if (store.state.syncLock.airdrop) {
       return
     }
 
-    await store.dispatch('sync/SET_AIRDROP', true)
+    await store.dispatch('syncLock/SET_AIRDROP', true)
 
     const latestBlockNumber = store.state.bsc.blockNumber
 
@@ -180,18 +180,18 @@ export default async function({ app, store }, inject) {
 
     const airdrops = await app.db.airdrop.toArray()
     await store.dispatch('stat/SET_AIRDROPS', airdrops)
-    await store.dispatch('sync/SET_AIRDROP', false)
+    await store.dispatch('syncLock/SET_AIRDROP', false)
   }
 
   /**
    * sync lotto
    */
   app.syncLotto = async function() {
-    if (store.state.sync.lotto) {
+    if (store.state.syncLock.lotto) {
       return
     }
 
-    await store.dispatch('sync/SET_LOTTO', true)
+    await store.dispatch('syncLock/SET_LOTTO', true)
 
     const latestBlockNumber = store.state.bsc.blockNumber
 
@@ -242,18 +242,18 @@ export default async function({ app, store }, inject) {
 
     const lottos = await app.db.lotto.toArray()
     await store.dispatch('stat/SET_LOTTOS', lottos)
-    await store.dispatch('sync/SET_LOTTO', false)
+    await store.dispatch('syncLock/SET_LOTTO', false)
   }
 
   /**
    * sync liquidity
    */
   app.syncLiquidity = async function() {
-    if (store.state.sync.liquidity) {
+    if (store.state.syncLock.liquidity) {
       return
     }
 
-    await store.dispatch('sync/SET_LIQUIDITY', true)
+    await store.dispatch('syncLock/SET_LIQUIDITY', true)
 
     const latestBlockNumber = store.state.bsc.blockNumber
 
@@ -308,18 +308,18 @@ export default async function({ app, store }, inject) {
 
     const liquidityTxs = await app.db.liquidity.toArray()
     await store.dispatch('stat/SET_LIQUIDITY', liquidityTxs)
-    await store.dispatch('sync/SET_LIQUIDITY', false)
+    await store.dispatch('syncLock/SET_LIQUIDITY', false)
   }
 
   /**
    * sync transfer
    */
   app.syncTransfer = async function() {
-    if (store.state.sync.transfer) {
+    if (store.state.syncLock.transfer) {
       return
     }
 
-    await store.dispatch('sync/SET_TRANSFER', true)
+    await store.dispatch('syncLock/SET_TRANSFER', true)
 
     const latestBlockNumber = store.state.bsc.blockNumber
 
@@ -388,6 +388,6 @@ export default async function({ app, store }, inject) {
     await store.dispatch('stat/SET_FOMO_IN', fomoTxsIn)
     await store.dispatch('stat/SET_FOMO_OUT', fomoTxsOut)
     await store.dispatch('stat/SET_BURN', burnTxs)
-    await store.dispatch('sync/SET_TRANSFER', false)
+    await store.dispatch('syncLock/SET_TRANSFER', false)
   }
 }
