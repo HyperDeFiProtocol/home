@@ -2,6 +2,7 @@
   <div @click='hideNavMenu'>
     <SNotProductionMode v-if='notProductionMode' />
     <SiteNav class='bg-gray-900' />
+    <SLoading />
     <Nuxt />
     <SiteFooter />
 
@@ -21,6 +22,14 @@ html {
 <script>
 export default {
   scrollToTop: true,
+  mounted: async function() {
+    await this.sync()
+  },
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.sync()
+    }
+  },
   computed: {
     notProductionMode() {
       return process.env.mode !== 'production'
@@ -29,6 +38,9 @@ export default {
   methods: {
     hideNavMenu() {
       this.$store.dispatch('nav/HIDE_ALL')
+    },
+    async sync() {
+      await this.$nuxt.context.app.sync.all()
     }
   }
 }

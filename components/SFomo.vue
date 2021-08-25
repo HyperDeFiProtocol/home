@@ -72,7 +72,7 @@
 import moment from 'moment'
 
 export default {
-  name: 'sFomo',
+  name: 'SFomo',
   data() {
     return {
       countdownFinished: true

@@ -9,7 +9,7 @@
         </template>
       </CH3>
 
-      <div class='mt-10 lg:mt-24 overflow-x-auto'>
+      <div v-if='transactions.length' class='mt-10 lg:mt-24 overflow-x-auto'>
         <div class='align-middle inline-block min-w-full'>
           <div class='shadow overflow-hidden border-b border-gray-700'>
             <table class='min-w-full divide-y divide-gray-700'>
@@ -35,23 +35,6 @@
               </tr>
               </thead>
               <tbody class='divide-y divide-gray-700'>
-              <tr v-if='showLoading && $store.state.points.txFromBlockNumber > 0' class='animate-pulse'>
-                <td colspan='6' class='loading'>
-                  <span>
-                    Loading...
-                  </span>
-                  <span>
-                    #<CBN :value='$store.state.points.txFromBlockNumber' />
-                    to
-                    #<CBN :value='$store.state.bsc.blockNumber' />
-                  </span>
-                </td>
-              </tr>
-              <tr v-if='!showLoading && transactions.length === 0'>
-                <td colspan='6' class='loading'>
-                  No data...
-                </td>
-              </tr>
               <tr v-for='tx in transactions' :class='txName(tx.txType)'>
                 <td class='hash'>
                   <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
@@ -105,7 +88,6 @@ export default {
   name: 'txs',
   data() {
     return {
-      showLoading: false,
       transactions: [],
 
       pageSize: 20,
@@ -130,29 +112,15 @@ export default {
       return this.pageSize * (this.pageNumber - 1)
     },
   },
-  // watch: {
-  //   '$store.state.bsc.blockNumber': async function() {
-  //     await this.load()
-  //   }
-  // },
+  watch: {
+    '$store.state.bsc.synchronizing': async function() {
+      await this.load()
+    }
+  },
   async mounted() {
-    await this.sync()
+    await this.load()
   },
   methods: {
-    async sync() {
-      await this.load()
-
-      if (this.$nuxt.context.app.db) {
-        this.showLoading = true
-        await this.$nuxt.context.app.syncTx()
-        this.pageRecords = await this.$nuxt.context.app.db.tx.count().catch(e => {
-          console.error(e)
-        })
-        this.showLoading = false
-      }
-
-      await this.load()
-    },
     async load() {
       this.transactions = await this.$nuxt.context.app.db.tx.reverse()
         .offset(this.pageOffset)
@@ -255,10 +223,6 @@ tbody {
 
     td:last-child {
       @apply text-right text-gray-200;
-    }
-
-    td.loading {
-      @apply space-x-8 font-mono text-gray-400 text-center;
     }
 
     .amount-ori {

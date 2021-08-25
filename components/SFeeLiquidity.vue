@@ -200,16 +200,15 @@ export default {
     }
   },
   watch: {
-    '$store.state.bsc.blockNumber': async function() {
-      await this.sync()
+    '$store.state.bsc.synchronizing': async function() {
+      await this.load()
     }
   },
   async mounted() {
-    await this.sync()
+    await this.load()
   },
   methods: {
-    async sync() {
-      await this.$nuxt.context.app.syncLiquidity()
+    async load() {
       this.transactions = await this.$nuxt.context.app.db.liquidity.reverse().limit(10).toArray()
     }
   }

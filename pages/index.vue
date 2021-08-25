@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <SWelcome />
     <SFomo v-if='$store.state.bsc.fomo.amount > "0"' />
     <SFeatures class='bg-gray-800' />
@@ -24,21 +25,6 @@
 <script>
 export default {
   name: 'Index',
-  watch: {
-    '$store.state.bsc.blockNumber': async function() {
-      await this.sync()
-    }
-  },
-
-  async mounted() {
-    await this.sync()
-  },
-
-  methods: {
-    async sync() {
-      await this.$nuxt.context.app.syncTransfer()
-    },
-  }
 }
 </script>
 

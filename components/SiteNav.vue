@@ -1,6 +1,6 @@
 <template>
   <header class='relative'>
-    <LAutoWidth class='relative pt-6 flex items-center justify-between px-4 sm:px-6' aria-label='Global'>
+    <LAutoWidth class='relative py-6 flex items-center justify-between px-4 sm:px-6' aria-label='Global'>
       <div class='flex items-center flex-1'>
         <div class='flex items-center justify-between w-full lg:w-auto'>
           <nuxt-link :to='localePath("/")' class='text-violet-500 hover:text-violet-600'>

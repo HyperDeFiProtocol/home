@@ -1,13 +1,16 @@
-import Web3 from 'web3'
-// import moment from 'moment'
-
-const BN = Web3.utils.BN
+import BN from 'bn.js'
 
 const sleepAWhile = async function() {
-  await window.setTimeout('', 1000)
+  window.setTimeout('', 1000)
+  return null
 }
 
 export const state = () => ({
+  synchronizing: {
+    fromBlock: 0,
+    toBlock: 0
+  },
+
   blockNumber: 0,
   gasPrice: '0',
 
@@ -43,7 +46,7 @@ export const state = () => ({
     fomo: '0',
     burned: '0',
 
-    burnedRatio: '0',
+    burnedRatio: '0'
   },
 
   total: {
@@ -97,14 +100,14 @@ export const state = () => ({
     airdrop: null,
     fomo: null,
     fund: null,
-    burn: null,
+    burn: null
   },
 
   fomo: {
     next: null,
     amount: '0',
     timestamp: '0',
-    timestampStep: '0',
+    timestampStep: '0'
 
     // countdown: {
     //   interval: null,
@@ -183,12 +186,15 @@ export const state = () => ({
     liquidityCreatedTimestamp: '0',
     presaleAmount: '0',
     balance: '0',
-    fund: '0',
-  },
+    fund: '0'
+  }
 })
 
 
 export const mutations = {
+  async SET_SYNCHRONIZING(state, synchronizing) {
+    state.synchronizing = synchronizing
+  },
   async SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
   },
@@ -341,11 +347,14 @@ export const mutations = {
     state.presale.presaleAmount = data.i256[13]
     state.presale.balance = data.i256[14]
     state.presale.fund = data.i256[15]
-  },
+  }
 }
 
 
 export const actions = {
+  async SET_SYNCHRONIZING({ commit }, synchronizing = { from: 0, to: 0 }) {
+    await commit('SET_SYNCHRONIZING', synchronizing)
+  },
   async SET_BLOCK_NUMBER({ commit }, blockNumber) {
     await commit('SET_BLOCK_NUMBER', blockNumber)
   },
@@ -364,5 +373,5 @@ export const actions = {
   },
   async SET_GLOBAL({ commit }, data) {
     await commit('SET_GLOBAL', data)
-  },
+  }
 }
