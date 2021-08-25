@@ -352,7 +352,7 @@ export const mutations = {
 
 
 export const actions = {
-  async SET_SYNCHRONIZING({ commit }, synchronizing = { from: 0, to: 0 }) {
+  async SET_SYNCHRONIZING({ commit }, synchronizing = { fromBlock: 0, toBlock: 0 }) {
     await commit('SET_SYNCHRONIZING', synchronizing)
   },
   async SET_BLOCK_NUMBER({ commit }, blockNumber) {

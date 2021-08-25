@@ -14,10 +14,11 @@ let queryOption = {
 export default async function({ app, store }, inject) {
   const all = async function() {
     if (store.state.bsc.synchronizing.fromBlock) {
-      console.log(
-        'Synchronizing in progress block #'
+      console.warn(
+        'Synchronizing in progress blocks: #'
         + store.state.bsc.synchronizing.fromBlock
-        + '-' + store.state.bsc.synchronizing.toBlock
+        + ' - '
+        + store.state.bsc.synchronizing.toBlock
       )
       return
     }
@@ -46,7 +47,7 @@ export default async function({ app, store }, inject) {
        * sync tx
        */
       const syncTx = new Promise(async function(resolve) {
-        console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
+        // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
           .getPastEvents('Tx', queryOption)
@@ -96,7 +97,7 @@ export default async function({ app, store }, inject) {
        * sync airdrop
        */
       const syncAirdrop = new Promise(async function(resolve) {
-        console.log('syncAirdrop:', queryOption.fromBlock, queryOption.toBlock)
+        // console.log('syncAirdrop:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
           .getPastEvents('Transfer', {
@@ -137,7 +138,7 @@ export default async function({ app, store }, inject) {
        * sync lotto
        */
       const syncLotto = new Promise(async function(resolve) {
-        console.log('syncLotto:', queryOption.fromBlock, queryOption.toBlock)
+        // console.log('syncLotto:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
           .getPastEvents('Lotto', queryOption)
@@ -172,7 +173,7 @@ export default async function({ app, store }, inject) {
        * sync liquidity
        */
       const syncLiquidity = new Promise(async function(resolve) {
-        console.log('syncLiquidity:', queryOption.fromBlock, queryOption.toBlock)
+        // console.log('syncLiquidity:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
           .getPastEvents('LiquidityAdded', queryOption)
@@ -207,7 +208,7 @@ export default async function({ app, store }, inject) {
        * sync transfer
        */
       const syncTransfer = new Promise(async function(resolve) {
-        console.log('syncTransfer:', queryOption.fromBlock, queryOption.toBlock)
+        // console.log('syncTransfer:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
           .getPastEvents('Transfer', queryOption)
@@ -252,6 +253,8 @@ export default async function({ app, store }, inject) {
         resolve(queryOption)
       })
 
+
+      console.log('Synchronizing blocks: #' + queryOption.fromBlock + ' - ' + queryOption.toBlock)
 
       /**
        * promise all

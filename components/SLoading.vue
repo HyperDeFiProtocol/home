@@ -1,28 +1,46 @@
 <template>
-  <div>
-    <LAutoWidth class='px-6'>
-      <div class='bg-gray-800 rounded-md py-2 px-4 font-mono text-gray-400'
-           :class='{ "animate-pulse": $store.state.bsc.synchronizing.fromBlock }'
-      >
-        <div v-if='$store.state.bsc.synchronizing.fromBlock'>
-          Synchronizing:
-          from #<CBN :value='$store.state.bsc.synchronizing.fromBlock' />
-          to #<CBN :value='$store.state.bsc.blockNumber' />...
-        </div>
-        <div v-else>
-          Latest Block: #<CBN :value='$store.state.bsc.blockNumber' />
-        </div>
+<!--  <div class='s-loading'>-->
+  <div v-show='counter < 1 && $store.state.bsc.synchronizing.fromBlock'
+       class='s-loading transition ease-in-out duration-700'
+  >
+    <div class='bg-violet-900 rounded-md pt-6 pb-4 px-4 lg:px-6 font-mono text-gray-400'>
+      <div>
+        <IconDiceHyper class='animate-bounce w-8 h-8 text-violet-500' />
       </div>
-    </LAutoWidth>
+      <div>
+        Synchronizing...
+      </div>
+      <div class='mt-2 text-sm'>
+        Block: #{{ $store.state.bsc.synchronizing.fromBlock }} - {{ $store.state.bsc.blockNumber }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SLoading',
+  data() {
+    return {
+      show: true,
+      counter: 0,
+    }
+  },
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      if (this.$store.state.bsc.synchronizing.fromBlock === 0) {
+        this.counter++
+      }
+    }
+  },
 }
 </script>
 
 <style scoped lang='scss'>
-
+.s-loading {
+  //@apply w-full;
+  @apply fixed z-10 animate-pulse;
+  //@apply flex items-center justify-center;
+  @apply bottom-4 right-4 lg:right-8;
+}
 </style>

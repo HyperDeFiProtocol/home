@@ -9,7 +9,7 @@ export default {
   name: 'CBN',
   props: {
     value: {
-      type: [String, Number],
+      // type: [String, Number, undefined],
       required: true
     },
     decimals: {
