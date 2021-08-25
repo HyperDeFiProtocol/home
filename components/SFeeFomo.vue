@@ -251,7 +251,7 @@ export default {
 
       this.oTransactions = await this.$nuxt.context.app.db.transfer.where({
         fromAccount: this.$store.state.bsc.globalAccounts.fomo
-      }).limit(10).toArray()
+      }).reverse().limit(10).toArray()
 
       //   this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()
     }
