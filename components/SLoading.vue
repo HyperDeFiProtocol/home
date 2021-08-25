@@ -38,9 +38,7 @@ export default {
 
 <style scoped lang='scss'>
 .s-loading {
-  //@apply w-full;
   @apply fixed z-10 animate-pulse;
-  //@apply flex items-center justify-center;
   @apply bottom-4 right-4 lg:right-8;
 }
 </style>
