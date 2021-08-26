@@ -22,6 +22,11 @@ export default async function({ app, store }, inject) {
       return
     }
 
+    await store.dispatch('bsc/SET_SYNCHRONIZING', {
+      fromBlock: queryOption.fromBlock,
+      toBlock: queryOption.toBlock
+    })
+
     await app.db.points.get('sync')
       .then(point => {
         if (point) {
