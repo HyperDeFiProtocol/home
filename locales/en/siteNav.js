@@ -9,4 +9,7 @@ export default {
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
   lottoHistory: 'Lotto History',
+  fomoHistory: 'Fomo History',
+  fomoAccumulateHistory: 'FOMO Accumulate History',
+  fomoWinnerHistory: 'FOMO Winner History',
 }

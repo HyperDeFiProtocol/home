@@ -9,4 +9,8 @@ export default {
   address: 'Address',
   amount: 'Amount',
   BUSD: 'BUSD',
+
+  accumulate: 'Accumulate',
+  distribute: 'Distribute',
+  winner: 'Winner',
 }
