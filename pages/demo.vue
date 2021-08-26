@@ -12,9 +12,16 @@
         </template>
       </CH3>
 
-      <div class='mt-24 flex justify-center'>
+      <div class='mt-24 flex justify-center' v-show='true' @click='show = !show'>
         <IconPancakeSwap class='w-80 h-80' />
       </div>
+
+      <transition name="fade">
+        <div class='mt-24 flex justify-center test' v-show='show'>
+          <IconPancakeSwap class='w-80 h-80' />
+        </div>
+      </transition>
+
     </LAutoWidth>
   </div>
 </template>
@@ -22,6 +29,11 @@
 <script>
 export default {
   name: 'demo',
+  data() {
+    return {
+      show: true,
+    }
+  },
   mounted: async function() {
     // console.log('>>> window.BinanceChain:', window.BinanceChain)
 
@@ -50,6 +62,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
+
+
+
+
+
+
+
+
+
+
 
 </style>

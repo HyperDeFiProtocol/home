@@ -1,18 +1,20 @@
 <template>
-  <div v-if='show' class='transform-gpu transition duration-500 ease-in-out'>
-    <div class='mt-2 sm:mt-3 lg:mt-4 flex justify-center'>
-      <!--      <IconDiceHyperSpin class='inline w-32 h-32 text-violet-500' />-->
-      <IconDiceHyper class='animate-bounce w-10 h-10 text-violet-500 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20' />
-    </div>
-    <div class='loading-text'>
-      <div>
-        Loading
+  <transition name="fade">
+    <div class='transform-gpu transition duration-500 ease-in-out'>
+      <div class='mt-2 sm:mt-3 lg:mt-4 flex justify-center'>
+        <!--      <IconDiceHyperSpin class='inline w-32 h-32 text-violet-500' />-->
+        <IconDiceHyper class='animate-bounce w-10 h-10 text-violet-500 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20' />
       </div>
-      <div>
-        {{ dots[i] }}
+      <div class='loading-text'>
+        <div>
+          Loading
+        </div>
+        <div>
+          {{ dots[i] }}
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
