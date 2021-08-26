@@ -6,4 +6,5 @@ export default {
   documentationHref: 'https://docs.hyperdefi.org/zh/',
   forum: '论坛',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
+  burnHistory: '销毁记录',
 }

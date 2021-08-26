@@ -72,7 +72,7 @@
       </div>
 
       <CPagination class='mt-8 lg:mt-12'
-                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/txs' />
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/txs' />
     </LAutoWidth>
   </div>
 </template>
@@ -82,7 +82,7 @@ import explorer from '~/utils/hdfLink'
 
 export default {
   scrollToTop: true,
-  name: 'txs',
+  name: 'HistoryTxs',
   data() {
     return {
       transactions: [],
@@ -123,6 +123,8 @@ export default {
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
+
+      this.pageRecords = await this.$nuxt.context.app.db.tx.count()
     },
 
     txName(txType) {
