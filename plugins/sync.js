@@ -1,4 +1,3 @@
-import Dexie from 'dexie'
 import BN from 'bn.js'
 import fn from '../utils/functions'
 
@@ -44,7 +43,7 @@ export default async function({ app, store }, inject) {
       })
 
       /**
-       * sync tx
+       * sync txs
        */
       const syncTx = new Promise(async function(resolve) {
         // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
@@ -254,7 +253,7 @@ export default async function({ app, store }, inject) {
       })
 
 
-      console.log('Synchronizing blocks: #' + queryOption.fromBlock + ' - ' + queryOption.toBlock)
+      console.log('Synchronize blocks: #' + queryOption.fromBlock + ' - ' + queryOption.toBlock)
 
       /**
        * promise all

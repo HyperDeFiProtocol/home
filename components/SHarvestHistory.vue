@@ -21,7 +21,8 @@
               </h4>
               <p class='text-sm text-gray-500'>
                 <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                  #<CBN :value='tx.blockNumber' />
+                  #
+                  <CBN :value='tx.blockNumber' />
                 </a>
               </p>
             </div>
@@ -55,7 +56,8 @@
             <tr v-for='tx in transactions'>
               <td>
                 <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                  #<CBN :value='tx.blockNumber' />
+                  #
+                  <CBN :value='tx.blockNumber' />
                 </a>
               </td>
               <td class='font-mono'>
@@ -93,60 +95,33 @@ export default {
   computed: {
     hdfLink() {
       return hdfLink
-    },
+    }
   },
   watch: {
     '$store.state.wallet.account': async function() {
-      await this.loadHarvestHistory()
+      await this.load()
     },
     '$store.state.bsc.blockNumber': async function() {
       if (this.$store.state.wallet.account) {
-        await this.loadHarvestHistory()
-      }
-    },
-  },
-  async mounted() {
-    await this.loadHarvestHistory()
-  },
-  methods: {
-    async loadHarvestHistory() {
-      const events = await this.$nuxt.context.app.token.getPastEvents('Transfer', {
-        filter: {
-          from: this.$store.state.bsc.globalAccounts.tax,
-          to: this.$store.state.wallet.account,
-        },
-        fromBlock: 0,
-        toBlock: 'latest'
-      })
-        .catch(async function(error) {
-          console.error('>>> SAirdrop:', error)
-        })
-
-      if (events) {
-        events.reverse()
-        // console.log(events)
-        let amount = new BN()
-        let transactions = []
-        for (let i = 0; i < events.length; i++) {
-          amount = amount.add(new BN(events[i].returnValues.value))
-
-          if (i < 10) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              account: events[i].returnValues.to,
-              amount: events[i].returnValues.value
-            })
-          }
-        }
-
-        this.transactions = transactions
-        this.counter = events.length
-        this.amount = amount.toString()
+        await this.load()
       }
     }
   },
+  async mounted() {
+    await this.load()
+  },
+  methods: {
+    async load() {
+      this.transactions = await this.$nuxt.context.app.db.transfer.where({
+        fromAccount: this.$store.state.bsc.globalAccounts.tax,
+        toAccount: this.$store.state.wallet.account
+      }).reverse().limit(10).toArray()
+
+      //   this.transactions = transactions
+      //   this.counter = events.length
+      //   this.amount = amount.toString()
+    }
+  }
 }
 </script>
 

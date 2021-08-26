@@ -119,7 +119,7 @@ const navigation = [
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
   { name: 'trade', href: '/trade' },
-  { name: 'txExplorer', href: '/txs' },
+  { name: 'txExplorer', href: '/history/txs' },
   { name: 'presale', href: '/presale' },
 ]
 

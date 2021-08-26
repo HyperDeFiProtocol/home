@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 
-const VERSION = 0.4
+const VERSION = 0.5
 
 export default async function({ app, store }, inject) {
   app.db = await new Dexie('database')
@@ -13,7 +13,7 @@ export default async function({ app, store }, inject) {
       airdrop: '++id',
       lotto: '++id',
       liquidity: '++id',
-      transfer: '++id, fromAccount, toAccount',
+      transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
 
       points: 'name'
     })

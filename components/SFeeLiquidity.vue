@@ -166,7 +166,7 @@
                     </a>
                   </td>
 <!--                  <td>-->
-<!--                    <CBN :value='tx.busdAdded' :decimals='18' :padding='6' />-->
+<!--                    <CBN :value='txs.busdAdded' :decimals='18' :padding='6' />-->
 <!--                    BUSD-->
 <!--                  </td>-->
                   <td>

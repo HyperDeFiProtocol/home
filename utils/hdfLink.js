@@ -24,7 +24,7 @@ const exploreBlock = function(blockNumber) {
 }
 
 const exploreTx = function(txHash) {
-  return process.env.explorerBaseUrl + '/tx/' + txHash
+  return process.env.explorerBaseUrl + '/txs/' + txHash
 }
 
 const exploreAddress = function(address) {

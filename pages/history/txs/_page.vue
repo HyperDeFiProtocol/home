@@ -78,7 +78,6 @@
 </template>
 
 <script>
-import BN from 'bn.js'
 import explorer from '~/utils/hdfLink'
 
 export default {
@@ -145,7 +144,7 @@ export default {
     markClass(tx, account) {
       switch (account) {
         case 'sender':
-          // if (tx.recipient === this.$store.state.bsc.globalAccounts.pair) {
+          // if (txs.recipient === this.$store.state.bsc.globalAccounts.pair) {
           //   return 'mark'
           // }
 

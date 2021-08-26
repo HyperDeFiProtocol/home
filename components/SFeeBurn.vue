@@ -111,8 +111,8 @@
                     </a>
                   </p>
                 </div>
-<!--                <p class='p-tx'>-->
-<!--                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 20) }}...</a>-->
+<!--                <p class='p-txs'>-->
+<!--                  <a target='_blank' :href='hdfLink.exploreTx(txs.txHash)'>{{ txs.txHash.slice(0, 20) }}...</a>-->
 <!--                </p>-->
               </div>
             </li>
