@@ -8,4 +8,5 @@ export default {
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
+  lottoHistory: 'Lotto History',
 }

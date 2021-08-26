@@ -12,7 +12,7 @@
       <div v-if='transactions.length' class='mt-10 lg:mt-24 overflow-x-auto'>
         <div class='align-middle inline-block min-w-full'>
           <div class='shadow overflow-hidden border-b border-gray-700'>
-            <table class='min-w-full divide-y divide-gray-700'>
+            <table class='table-history'>
               <thead>
               <tr>
                 <th scope='col'>
@@ -116,52 +116,5 @@ export default {
 
 
 <style scoped lang='scss'>
-thead {
-  th {
-    @apply px-3 py-3 text-xs text-gray-100 text-left;
-    @apply uppercase tracking-wider;
 
-    &:last-child {
-      @apply text-center;
-    }
-  }
-}
-
-tbody {
-  tr {
-    @apply text-xs text-gray-400;
-
-    &:nth-child(odd) {
-      @apply bg-gray-800;
-    }
-
-    td {
-      @apply px-3 py-4 whitespace-nowrap text-sm;
-    }
-
-    td:not(:last-child) {
-      @apply truncate;
-    }
-
-    td:last-child {
-      @apply text-right text-gray-200;
-    }
-
-    &:hover {
-      @apply bg-violet-900;
-
-      td {
-        @apply text-violet-200;
-      }
-
-      .amount-ori {
-        @apply block inline;
-      }
-
-      .amount-tx {
-        @apply hidden inline;
-      }
-    }
-  }
-}
 </style>

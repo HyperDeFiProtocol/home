@@ -215,3 +215,56 @@
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+.table-history {
+  @apply min-w-full divide-y divide-gray-700;
+
+  thead {
+    th {
+      @apply px-3 py-3 text-xs text-gray-100 text-left;
+      @apply uppercase tracking-wider;
+
+      &:last-child {
+        @apply text-center;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      @apply text-xs text-gray-400;
+
+      &:nth-child(odd) {
+        @apply bg-gray-800;
+      }
+
+      td {
+        @apply px-3 py-4 whitespace-nowrap text-sm;
+      }
+
+      td:not(:last-child) {
+        @apply truncate;
+      }
+
+      td:last-child {
+        @apply text-right text-gray-200;
+      }
+
+      &:hover {
+        @apply bg-violet-900;
+
+        td {
+          @apply text-violet-200;
+        }
+
+        .amount-ori {
+          @apply block inline;
+        }
+
+        .amount-tx {
+          @apply hidden inline;
+        }
+      }
+    }
+  }
+}

@@ -8,4 +8,5 @@ export default {
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
   burnHistory: '销毁记录',
   airdropHistory: '空投记录',
+  lottoHistory: '乐透记录',
 }

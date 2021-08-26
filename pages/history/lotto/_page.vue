@@ -2,7 +2,7 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.burnHistory') }}
+        {{ $t('siteNav.lottoHistory') }}
 
         <template #tag>
           On Chain
@@ -19,7 +19,7 @@
                   {{ $t('txTable.block') }}
                 </th>
                 <th scope='col'>
-                  Hash
+                  {{ $t('txTable.address') }}
                 </th>
                 <th scope='col'>
                   {{ $t('txTable.amount') }}
@@ -35,7 +35,7 @@
                 </td>
                 <td class='font-mono'>
                   <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                    {{ tx.txHash.slice(0, 36) }}...{{ tx.txHash.slice(-4) }}
+                    {{ tx.account }}
                   </a>
                 </td>
                 <td>
@@ -50,7 +50,7 @@
       </div>
 
       <CPagination class='mt-8 lg:mt-12'
-                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/burn' />
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/lotto' />
     </LAutoWidth>
   </div>
 </template>
@@ -61,7 +61,7 @@ import hdfLink from '~/utils/hdfLink'
 
 export default {
   scrollToTop: true,
-  name: 'HistoryBurn',
+  name: 'HistoryLotto',
   data() {
     return {
       transactions: [],
@@ -101,20 +101,13 @@ export default {
   },
   methods: {
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.transfer
-        .where({
-          toAccount: this.$store.state.bsc.globalAccounts.burn
-        })
+      this.transactions = await this.$nuxt.context.app.db.lotto
         .reverse()
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
 
-      this.pageRecords = await this.$nuxt.context.app.db.transfer
-        .where({
-          toAccount: this.$store.state.bsc.globalAccounts.burn
-        })
-        .count()
+      this.pageRecords = await this.$nuxt.context.app.db.lotto.count()
     },
   }
 
