@@ -294,11 +294,10 @@
 
 <script>
 import BigNumber from 'bignumber.js'
-import Web3 from 'web3'
+import BN from 'bn.js'
 import moment from 'moment'
 import hdfLink from '~/utils/hdfLink'
 
-const BN = Web3.utils.BN
 
 export default {
   name: 'presale',
@@ -316,7 +315,7 @@ export default {
   },
   watch: {
     amount() {
-      let amount = this.amount
+      this.amount = this.amount
         .replace('。', '.')
         .replace(/[^\d.]/g, '')
         .replace(/\.{2,}/g, '.')
@@ -324,8 +323,6 @@ export default {
         .replace(/\./g, '')
         .replace('#', '.')
         .replace(new RegExp('^(\\d+)\\.(\\d{0,6}).*$' ), '$1.$2')
-
-      this.amount = amount
     },
   },
   computed: {

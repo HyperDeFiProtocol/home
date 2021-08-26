@@ -78,10 +78,8 @@
 </template>
 
 <script>
-import Web3 from 'web3'
+import BN from 'bn.js'
 import explorer from '~/utils/hdfLink'
-
-const BN = Web3.utils.BN
 
 export default {
   scrollToTop: true,

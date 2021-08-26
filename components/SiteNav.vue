@@ -68,44 +68,46 @@
     </LAutoWidth>
 
     <!--  Menu Mobile  -->
-    <div v-show='$store.state.nav.menuMobi' class='transition duration-300 ease-in-out absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden'>
-      <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
-        <div class='px-5 pt-4 flex items-center justify-between'>
-          <div>
-            <IconDiceHyper class='h-8 w-auto sm:h-10 text-violet-600' />
+    <transition name="fade">
+      <div v-show='$store.state.nav.menuMobi' class='transition duration-300 ease-in-out absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden'>
+        <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
+          <div class='px-5 pt-4 flex items-center justify-between'>
+            <div>
+              <IconDiceHyper class='h-8 w-auto sm:h-10 text-violet-600' />
+            </div>
+            <div class='-mr-2'>
+              <button type='button'
+                      class='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600'
+                      @click='toggleMenuMobi'>
+                <span class='sr-only'>Close menu</span>
+                <HeroIconOutlineX class='h-6 w-6' />
+              </button>
+            </div>
           </div>
-          <div class='-mr-2'>
-            <button type='button'
-                    class='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600'
-                    @click='toggleMenuMobi'>
-              <span class='sr-only'>Close menu</span>
-              <HeroIconOutlineX class='h-6 w-6' />
-            </button>
-          </div>
-        </div>
-        <div class='pt-5 pb-6'>
-          <div class='px-2 space-y-1'>
-            <nuxt-link v-for='item in navigation' :key='item.name' :to='localePath(item.href)'
-                       class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
-              {{ $t('siteNav.' + item.name) }}
-            </nuxt-link>
-            <a target='_blank' :href='$t("siteNav.documentationHref")'
-               class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
-              {{ $t('siteNav.documentation') }}
-            </a>
-            <a target='_blank' :href='$t("siteNav.forumHref")'
-               class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
-              {{ $t('siteNav.forum') }}
-            </a>
-          </div>
-          <div class='mt-6 px-5'>
-            <p class='text-center text-base font-medium text-gray-500'>Open-sourced on
-              <a target='_blank' :href='hdfLink.github()' class='text-violet-700 hover:text-violet-900 hover:underline'>GitHub</a>
-            </p>
+          <div class='pt-5 pb-6'>
+            <div class='px-2 space-y-1'>
+              <nuxt-link v-for='item in navigation' :key='item.name' :to='localePath(item.href)'
+                         class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
+                {{ $t('siteNav.' + item.name) }}
+              </nuxt-link>
+              <a target='_blank' :href='$t("siteNav.documentationHref")'
+                 class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
+                {{ $t('siteNav.documentation') }}
+              </a>
+              <a target='_blank' :href='$t("siteNav.forumHref")'
+                 class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
+                {{ $t('siteNav.forum') }}
+              </a>
+            </div>
+            <div class='mt-6 px-5'>
+              <p class='text-center text-base font-medium text-gray-500'>Open-sourced on
+                <a target='_blank' :href='hdfLink.github()' class='text-violet-700 hover:text-violet-900 hover:underline'>GitHub</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </header>
 </template>
 

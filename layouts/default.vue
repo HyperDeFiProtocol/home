@@ -9,7 +9,7 @@
     <ModalWarning v-if='$store.state.warning.title && $store.state.warning.message' />
     <ModalNoWeb3Provider />
     <ModalUnsupportedChainId />
-    <ModalLang v-if='$store.state.lang.show' />
+    <ModalLang />
     <ModalConnectWallet />
   </div>
 </template>
