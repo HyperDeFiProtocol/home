@@ -26,7 +26,7 @@
                 </th>
               </tr>
               </thead>
-              <tbody class='divide-y divide-gray-700'>
+              <tbody>
               <tr v-for='tx in transactions'>
                 <td>
                   <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
