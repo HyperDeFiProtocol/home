@@ -7,4 +7,5 @@ export default {
   forum: 'Forum',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
   burnHistory: 'Burn History',
+  airdropHistory: 'Airdrop History',
 }

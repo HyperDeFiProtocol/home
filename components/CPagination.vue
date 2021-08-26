@@ -1,7 +1,7 @@
 <template>
   <div v-if='pages > 1' class='c-pagination'>
     <div class='flex items-center justify-start'>
-      <nuxt-link v-if='pathToPrevious' :to='pathToPrevious'>
+      <nuxt-link v-if='pathToPrevious' :to=localeLocation(pathToPrevious)>
         Previous Page
       </nuxt-link>
     </div>
@@ -13,7 +13,7 @@
     </div>
 
     <div class='flex items-center justify-end'>
-      <nuxt-link v-if='pathToNext' :to='pathToNext'>
+      <nuxt-link v-if='pathToNext' :to='localeLocation(pathToNext)'>
         Next Page
       </nuxt-link>
     </div>
