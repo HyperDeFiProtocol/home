@@ -176,7 +176,9 @@ export default {
   },
   watch: {
     '$store.state.wallet.account': async function() {
-      await this.load()
+      if (this.$store.state.wallet.account) {
+        await this.load()
+      }
     },
     '$store.state.bsc.blockNumber': async function() {
       if (this.$store.state.wallet.account) {
