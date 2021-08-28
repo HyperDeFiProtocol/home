@@ -12,4 +12,5 @@ export default {
   fomoHistory: 'FOMO 记录',
   fomoAccumulateHistory: 'FOMO 滚存记录',
   fomoWinnerHistory: 'FOMO 获奖记录',
+  taxHarvestHistory: '税收/挖矿记录',
 }

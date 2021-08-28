@@ -12,4 +12,5 @@ export default {
   fomoHistory: 'Fomo History',
   fomoAccumulateHistory: 'FOMO Accumulate History',
   fomoWinnerHistory: 'FOMO Winner History',
+  taxHarvestHistory: 'Tax/Harvest History',
 }

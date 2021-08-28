@@ -13,4 +13,5 @@ export default {
   accumulate: '滚存',
   distribute: '发放',
   winner: '获奖',
+  harvest: '收矿',
 }

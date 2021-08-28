@@ -13,4 +13,5 @@ export default {
   accumulate: 'Accumulate',
   distribute: 'Distribute',
   winner: 'Winner',
+  harvest: 'Harvest',
 }
