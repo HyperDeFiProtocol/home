@@ -46,14 +46,14 @@
           </p>
 
           <div v-if='$store.state.stat.lotto.count' class='mt-5 inline-flex rounded-md shadow'>
-            <a href='#' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
+            <nuxt-link :to='localeLocation("/history/lotto")' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
                 {{ $store.state.stat.lotto.count }}
                 {{ $t('sFeeLotto.trackLottoTransfers') }}
               </span>
-            </a>
+            </nuxt-link>
           </div>
         </div>
       </main>

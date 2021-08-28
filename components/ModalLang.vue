@@ -8,13 +8,13 @@
          @click='close'
     >
       <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="transition duration-300 ease-in-out fixed inset-0 bg-black bg-opacity-80 transition-opacity" aria-hidden="true"></div>
+        <div class="fixed inset-0 bg-black bg-opacity-80 transition-opacity" aria-hidden="true"></div>
 
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
 
-        <div class="transition duration-300 ease-in-out inline-block align-bottom w-full bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg">
+        <div class="inline-block align-bottom w-full bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg">
           <div class='bg-white pt-8 px-4 pb-6'>
             <div class="flex flex-col justify-center">
 

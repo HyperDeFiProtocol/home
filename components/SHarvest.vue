@@ -1,5 +1,5 @@
 <template>
-  <LAutoWidth class="transition duration-300 ease-in-out mt-12 pb-12 sm:pb-24">
+  <LAutoWidth class="mt-12 pb-12 sm:pb-24">
     <div class='border-t-2 border-gray-700 pt-12 px-4 sm:px-8'>
       <CH3>
         <span>
@@ -83,7 +83,7 @@
     </div>
 
     <!--  harvest history  -->
-    <div v-if='$store.state.wallet.account && transactions.length' class="transition duration-300 ease-in-out pt-12 px-4">
+    <div v-if='$store.state.wallet.account && transactions.length' class="pt-12 px-4">
       <h6 class='ml-2 text-sm font-semibold text-violet-400 tracking-wide uppercase'>
         {{ $t('txTable.latest') }}
         {{ transactions.length }}

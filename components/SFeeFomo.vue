@@ -44,8 +44,7 @@
           </p>
 
           <div v-if='$store.state.bsc.supply.fomo > "0"' class='mt-5 inline-flex rounded-md shadow'>
-            <a target='_blank'
-               :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.fomo)'
+            <nuxt-link :to='localeLocation("/history/fomo")'
                class='hdf-a-track bg-yellow-700 hover:bg-yellow-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
@@ -53,7 +52,7 @@
                 {{ $store.state.stat.fomo.out.count + $store.state.stat.fomo.in.count }}
                 {{ $t('sFeeFomo.trackFomoTransfers') }}
               </span>
-            </a>
+            </nuxt-link>
           </div>
         </div>
       </main>

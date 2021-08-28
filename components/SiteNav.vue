@@ -69,7 +69,7 @@
 
     <!--  Menu Mobile  -->
     <transition name="fade">
-      <div v-show='$store.state.nav.menuMobi' class='transition duration-300 ease-in-out absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden'>
+      <div v-show='$store.state.nav.menuMobi' class='absolute top-0 inset-x-0 p-2 transition transform origin-top lg:hidden'>
         <div class='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
           <div class='px-5 pt-4 flex items-center justify-between'>
             <div>

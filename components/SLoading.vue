@@ -2,18 +2,16 @@
   <!--  <div class='s-loading'>-->
   <transition name='s-loading'>
     <div v-show='$store.state.bsc.synchronizing.fromBlock'
-         class='s-loading transition ease-in-out duration-700'
-         :class='{ "animate-pulse": $store.state.bsc.synchronizing.fromBlock }'
-    >
+         class='s-loading transition ease-in-out duration-700'>
       <div class='bg-violet-900 rounded-md pt-6 pb-4 px-4 lg:px-6 font-mono text-gray-400'>
         <div>
           <IconDiceHyper class='animate-bounce w-8 h-8 text-violet-500' />
         </div>
         <template v-if='$store.state.bsc.synchronizing.fromBlock'>
-          <div>
+          <div class='animate-pulse'>
             Synchronizing...
           </div>
-          <div class='mt-2 text-sm'>
+          <div class='animate-pulse mt-2 text-sm'>
             Block: #{{ $store.state.bsc.synchronizing.fromBlock }} / {{ $store.state.bsc.blockNumber }}
           </div>
         </template>

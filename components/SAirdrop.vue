@@ -61,10 +61,14 @@
 
         <div v-if='$store.state.stat.airdrop.count'>
           <dt>
-            {{ $t('sAirdrop.airdropTransfer') }}
+            <nuxt-link :to='localeLocation("/history/airdrop")'>
+              {{ $t('sAirdrop.airdropTransfer') }}
+            </nuxt-link>
           </dt>
           <dd>
-            <CBN :value='$store.state.stat.airdrop.count' />
+            <nuxt-link :to='localeLocation("/history/airdrop")'>
+              <CBN :value='$store.state.stat.airdrop.count' />
+            </nuxt-link>
           </dd>
         </div>
       </dl>

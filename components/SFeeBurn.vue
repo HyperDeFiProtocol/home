@@ -40,8 +40,7 @@
           </p>
 
           <div v-if='$store.state.stat.burn.count' class='mt-5 inline-flex rounded-md shadow'>
-            <a target='_blank'
-               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+            <nuxt-link :to='localeLocation("/history/burn")'
                class='hdf-a-track bg-emerald-700 hover:bg-emerald-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
@@ -49,7 +48,7 @@
                 {{ $store.state.stat.burn.count }}
                 {{ $t('sFeeBurn.trackBurnTransfers') }}
               </span>
-            </a>
+            </nuxt-link>
           </div>
         </div>
       </main>
