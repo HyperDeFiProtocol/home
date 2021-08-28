@@ -9,59 +9,7 @@
         </template>
       </CH3>
 
-      <div v-if='transactions.length' class='mt-10 lg:mt-24 overflow-x-auto'>
-        <div class='align-middle inline-block min-w-full'>
-          <div class='shadow overflow-hidden border-b border-gray-700'>
-            <table class='table-history'>
-              <thead>
-              <tr>
-                <th scope='col'>
-                  {{ $t('txTable.block') }}
-                </th>
-                <th scope='col'>
-                  {{ $t('txTable.type') }}
-                </th>
-                <th scope='col'>
-                  {{ $t('txTable.address') }}
-                </th>
-                <th scope='col'>
-                  {{ $t('txTable.amount') }}
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr v-for='tx in transactions'>
-                <td>
-                  <a target='_blank' :href='explorer.exploreTx(tx.txHash)'>
-                    #<CBN :value='tx.blockNumber' />
-                  </a>
-                </td>
-                <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.fomo' class='text-emerald-400'>
-                  {{ $t('txTable.winner') }}
-                </td>
-                <td v-else>
-                  {{ $t('txTable.accumulate') }}
-                </td>
-                <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.fomo' class='font-mono text-emerald-400'>
-                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                    <CAddress :value='tx.toAccount' />
-                  </a>
-                </td>
-                <td v-else class='font-mono'>
-                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                    <CAddress :value='tx.fromAccount' />
-                  </a>
-                </td>
-                <td>
-                  <CBN :value='tx.amount' :token='true' :padding='2' />
-                  HyperDeFi
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <CTableFomo :transactions='transactions' class='mt-10 lg:mt-24' />
 
       <CPagination class='mt-8 lg:mt-12'
                    :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/fomo' />
@@ -70,9 +18,6 @@
 </template>
 
 <script>
-import explorer from '~/utils/hdfLink'
-import hdfLink from '~/utils/hdfLink'
-
 export default {
   scrollToTop: true,
   name: 'HistoryFomo',
@@ -85,12 +30,6 @@ export default {
     }
   },
   computed: {
-    explorer() {
-      return explorer
-    },
-    hdfLink() {
-      return hdfLink
-    },
     pageNumber() {
       if (this.$route.params.page && this.$route.params.page > '1') {
         const pageNumber = parseInt(this.$route.params.page)
