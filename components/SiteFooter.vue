@@ -69,7 +69,7 @@
 <!--        </a>-->
       </div>
       <p class="mt-8 text-center text-base text-gray-400">
-        &copy; 2021 HyperDeFi LAB, All rights reserved.
+        &copy; {{ yearRange }} HyperDeFi LAB, All rights reserved.
       </p>
     </LAutoWidth>
   </footer>
@@ -87,7 +87,18 @@ export default {
     },
     telegramChannel() {
       return process.env.telegramChannel
-    }
+    },
+    yearRange() {
+      const startYear = '2021'
+      const date = new Date()
+      const thisYear = date.getFullYear().toString()
+
+      if (thisYear === startYear) {
+        return startYear
+      }
+
+      return startYear + '-' + thisYear
+    },
   }
   // mounted() {
   //   console.log('::: process.env.tokenAddress:', process.env.tokenAddress)

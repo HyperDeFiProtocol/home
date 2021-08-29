@@ -1,7 +1,7 @@
 <template>
   <LAutoWidth class='p-24 text-gray-500'>
     <div>
-      <HeroIconOutlineExclamation class='h-16 w-16' />
+      <HeroIconOutlineExclamation class='h-20 w-20' />
     </div>
 
     <h1 class='mt-10 font-mono font-bold text-4xl'>
@@ -9,7 +9,12 @@
     </h1>
 
     <h2 class='mt-6 text-2xl'>
-      A username must start with a `@`...
+      <span>
+        A username must start with "@"
+      </span>
+      <span v-if='$route.query.username'>
+        but got "{{ $route.query.username }}".
+      </span>
     </h2>
   </LAutoWidth>
 </template>
