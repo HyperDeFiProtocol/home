@@ -270,3 +270,9 @@
     }
   }
 }
+
+.btn-violet {
+  @apply inline-flex items-center px-5 py-3 border border-transparent rounded-md;
+  @apply font-medium text-base text-white bg-violet-600 hover:bg-violet-700;
+  @apply focus:outline-none;
+}

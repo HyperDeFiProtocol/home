@@ -1,0 +1,66 @@
+<template>
+  <LAutoWidth class='py-10 md:py-20'>
+    <CH3>
+      <span>
+        Clear Cache
+      </span>
+
+      <template #tag>
+        On Chain
+      </template>
+    </CH3>
+
+    <div class='mt-10 lg:mt-24 w-full max-w-xl mx-auto flex items-center justify-center'>
+      <button v-if='allowed' class='btn-clear-cache' @click='clear'>
+        Clear and rebuild cache
+      </button>
+      <button v-else class='btn-clear-cache animate-pulse'>
+        Rebuilding...
+      </button>
+    </div>
+  </LAutoWidth>
+</template>
+
+<script>
+export default {
+  name: 'cache',
+  layout: 'withoutCache',
+  data() {
+    return {
+      allowed: true
+    }
+  },
+  methods: {
+    async clear() {
+      this.allowed = false
+      await this.$nuxt.context.app.db.pointers.clear()
+      await this.$nuxt.context.app.db.holder.clear()
+      await this.$nuxt.context.app.db.tx.clear()
+      await this.$nuxt.context.app.db.airdrop.clear()
+      await this.$nuxt.context.app.db.lotto.clear()
+      await this.$nuxt.context.app.db.liquidity.clear()
+      await this.$nuxt.context.app.db.transfer.clear()
+      await this.$nuxt.context.app.sync.all()
+      await this.$nuxt.context.app.sync.holders()
+      this.allowed = true
+    }
+  }
+}
+</script>
+
+<style scoped lang='scss'>
+.btn-clear-cache {
+  @apply w-full inline-flex items-center justify-center;
+  @apply py-8 border border-transparent rounded-md;
+  @apply font-mono font-medium text-xl text-gray-500 bg-gray-800;
+  @apply uppercase;
+
+  &:hover {
+    @apply bg-gray-700;
+  }
+
+  &:focus {
+    @apply outline-none;
+  }
+}
+</style>
