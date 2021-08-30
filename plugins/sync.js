@@ -4,12 +4,10 @@ import fn from '../utils/functions'
 const FROM_BLOCK = 10593970
 const BLOCK_STEP_RANGE = { min: 4900, max: 4999 }
 
-let syncTxsOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
-let syncHoldersOption = { fromId: '0', toId: '0' }
-
-
 export default async function({ app, store }, inject) {
   const all = async function() {
+    let syncTxsOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+
     if (store.state.bsc.synchronizing.fromBlock) {
       console.warn(
         'Txs synchronizing in progress blocks: #'
@@ -277,6 +275,8 @@ export default async function({ app, store }, inject) {
 
 
   const holders = async function() {
+    let syncHoldersOption = { fromId: '0', toId: '0' }
+
     if (store.state.bsc.synchronizing.fromHolderId !== null) {
       console.warn(
         'Holders synchronizing in progress from id: #'

@@ -13,8 +13,8 @@
         <span v-if='$store.state.bsc.synchronizing.fromHolderId !== null' class='animate-pulse'>
           Updating... #{{ $store.state.bsc.synchronizing.fromHolderId }}
         </span>
-        <span v-else>
-          Click to Refresh (TODO)
+        <span v-else @click='refresh'>
+          Click to Refresh
         </span>
       </template>
     </CH3>
@@ -79,6 +79,11 @@ export default {
 
       this.pageRecords = await this.$nuxt.context.app.db.holder
         .count()
+    },
+    async refresh() {
+      await this.$nuxt.context.app.db.pointers.delete('holder')
+      await this.$nuxt.context.app.db.holder.clear()
+      await this.$nuxt.context.app.sync.holders()
     },
   }
 }
