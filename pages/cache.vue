@@ -6,7 +6,7 @@
       </span>
 
       <template #tag>
-        On Chain
+        Indexed DB
       </template>
     </CH3>
 
