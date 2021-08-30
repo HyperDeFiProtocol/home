@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <div v-else class='sm:mx-auto sm:max-w-lg sm:flex'>
-                  <NuxtLink :to='localePath("/user/" + $store.state.wallet.username)'>
+                  <NuxtLink :to='localePath("/user/@" + $store.state.wallet.username)'>
                     @{{ $store.state.wallet.username }}
                     {{ $t('sUsername._sDashboard') }}
                   </NuxtLink>

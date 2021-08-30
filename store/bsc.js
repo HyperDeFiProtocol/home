@@ -8,7 +8,9 @@ const sleepAWhile = async function() {
 export const state = () => ({
   synchronizing: {
     fromBlock: 0,
-    toBlock: 0
+    toBlock: 0,
+
+    fromHolderId: null,
   },
 
   blockNumber: 0,
@@ -192,8 +194,12 @@ export const state = () => ({
 
 
 export const mutations = {
-  async SET_SYNCHRONIZING(state, synchronizing) {
-    state.synchronizing = synchronizing
+  async SET_SYNCHRONIZING_TX(state, synchronizing) {
+    state.synchronizing.fromBlock = synchronizing.fromBlock
+    state.synchronizing.toBlock = synchronizing.toBlock
+  },
+  async SET_SYNCHRONIZING_FROM_HOLDER_ID(state, fromHolderId) {
+    state.synchronizing.fromHolderId = fromHolderId
   },
   async SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
@@ -352,8 +358,11 @@ export const mutations = {
 
 
 export const actions = {
-  async SET_SYNCHRONIZING({ commit }, synchronizing = { fromBlock: 0, toBlock: 0 }) {
-    await commit('SET_SYNCHRONIZING', synchronizing)
+  async SET_SYNCHRONIZING_TX({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
+    await commit('SET_SYNCHRONIZING_TX', syncTxsOption)
+  },
+  async SET_SYNCHRONIZING_FROM_HOLDER_ID({ commit }, fromHolderId= null) {
+    await commit('SET_SYNCHRONIZING_FROM_HOLDER_ID', fromHolderId)
   },
   async SET_BLOCK_NUMBER({ commit }, blockNumber) {
     await commit('SET_BLOCK_NUMBER', blockNumber)

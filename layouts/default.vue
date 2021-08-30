@@ -41,6 +41,7 @@ export default {
     },
     async sync() {
       await this.$nuxt.context.app.sync.all()
+      await this.$nuxt.context.app.sync.holders()
     }
   }
 }

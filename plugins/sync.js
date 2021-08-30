@@ -4,17 +4,15 @@ import fn from '../utils/functions'
 const FROM_BLOCK = 10593970
 const BLOCK_STEP_RANGE = { min: 4900, max: 4999 }
 
-let queryOption = {
-  fromBlock: FROM_BLOCK,
-  toBlock: FROM_BLOCK
-}
+let syncTxsOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+let syncHoldersOption = { fromId: '0', toId: '0' }
 
 
 export default async function({ app, store }, inject) {
   const all = async function() {
     if (store.state.bsc.synchronizing.fromBlock) {
       console.warn(
-        'Synchronizing in progress blocks: #'
+        'Txs synchronizing in progress blocks: #'
         + store.state.bsc.synchronizing.fromBlock
         + ' - '
         + store.state.bsc.synchronizing.toBlock
@@ -22,30 +20,26 @@ export default async function({ app, store }, inject) {
       return
     }
 
-    await store.dispatch('bsc/SET_SYNCHRONIZING', {
-      fromBlock: queryOption.fromBlock,
-      toBlock: queryOption.toBlock
-    })
+    await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
 
-    await app.db.points.get('sync')
-      .then(point => {
-        if (point) {
-          queryOption.fromBlock = point.blockNumber + 1
+    await app.db.pointers.get('sync')
+      .then(pointer => {
+        if (pointer) {
+          syncTxsOption.fromBlock = pointer.blockNumber + 1
         }
       })
 
-    queryOption.toBlock = queryOption.fromBlock
+    syncTxsOption.toBlock = syncTxsOption.fromBlock
 
-    while (queryOption.fromBlock < store.state.bsc.blockNumber) {
-      queryOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
-      if (queryOption.toBlock > store.state.bsc.blockNumber) {
-        queryOption.toBlock = store.state.bsc.blockNumber
+    while (syncTxsOption.fromBlock < store.state.bsc.blockNumber) {
+      syncTxsOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
+      if (syncTxsOption.toBlock > store.state.bsc.blockNumber) {
+        syncTxsOption.toBlock = store.state.bsc.blockNumber
       }
 
-      await store.dispatch('bsc/SET_SYNCHRONIZING', {
-        fromBlock: queryOption.fromBlock,
-        toBlock: queryOption.toBlock
-      })
+      await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
+
+      console.log('Synchronize blocks: #' + syncTxsOption.fromBlock + ' - ' + syncTxsOption.toBlock)
 
       /**
        * sync txs
@@ -54,7 +48,7 @@ export default async function({ app, store }, inject) {
         // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('Tx', queryOption)
+          .getPastEvents('Tx', syncTxsOption)
           .catch(e => {
             console.error('>>> sync, syncTx:', e)
           })
@@ -94,7 +88,7 @@ export default async function({ app, store }, inject) {
           })
         }
 
-        resolve(queryOption)
+        resolve(syncTxsOption)
       })
 
       /**
@@ -108,7 +102,7 @@ export default async function({ app, store }, inject) {
             filter: {
               from: store.state.bsc.globalAccounts.airdrop
             },
-            ...queryOption
+            ...syncTxsOption
           })
           .catch(e => {
             console.error('>>> sync, syncAirdrop:', e)
@@ -134,7 +128,7 @@ export default async function({ app, store }, inject) {
         const transactions = await app.db.airdrop.toArray()
         await store.dispatch('stat/SET_AIRDROPS', transactions)
 
-        resolve(queryOption)
+        resolve(syncTxsOption)
       })
 
 
@@ -145,7 +139,7 @@ export default async function({ app, store }, inject) {
         // console.log('syncLotto:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('Lotto', queryOption)
+          .getPastEvents('Lotto', syncTxsOption)
           .catch(e => {
             console.error('>>> sync, syncLiquidity:', e)
           })
@@ -170,7 +164,7 @@ export default async function({ app, store }, inject) {
         const transactions = await app.db.lotto.toArray()
         await store.dispatch('stat/SET_LOTTOS', transactions)
 
-        resolve(queryOption)
+        resolve(syncTxsOption)
       })
 
       /**
@@ -180,7 +174,7 @@ export default async function({ app, store }, inject) {
         // console.log('syncLiquidity:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('LiquidityAdded', queryOption)
+          .getPastEvents('LiquidityAdded', syncTxsOption)
           .catch(e => {
             console.error('>>> sync, syncLiquidity:', e)
           })
@@ -205,7 +199,7 @@ export default async function({ app, store }, inject) {
         const transactions = await app.db.liquidity.toArray()
         await store.dispatch('stat/SET_LIQUIDITY', transactions)
 
-        resolve(queryOption)
+        resolve(syncTxsOption)
       })
 
       /**
@@ -215,7 +209,7 @@ export default async function({ app, store }, inject) {
         // console.log('syncTransfer:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('Transfer', queryOption)
+          .getPastEvents('Transfer', syncTxsOption)
           .catch(e => {
             console.error('>>> sync, syncTransfer:', e)
           })
@@ -254,11 +248,8 @@ export default async function({ app, store }, inject) {
         await store.dispatch('stat/SET_FOMO_OUT', fomoTxsOut)
         await store.dispatch('stat/SET_BURN', burnTxs)
 
-        resolve(queryOption)
+        resolve(syncTxsOption)
       })
-
-
-      console.log('Synchronize blocks: #' + queryOption.fromBlock + ' - ' + queryOption.toBlock)
 
       /**
        * promise all
@@ -271,21 +262,87 @@ export default async function({ app, store }, inject) {
         syncTransfer
       ])
 
-      queryOption.fromBlock = queryOption.toBlock + 1
-      await app.db.points.put({ name: 'sync', blockNumber: queryOption.toBlock }).catch(e => {
+      syncTxsOption.fromBlock = syncTxsOption.toBlock + 1
+      await app.db.pointers.put({ name: 'sync', blockNumber: syncTxsOption.toBlock }).catch(e => {
         console.error('putBlockPoint:', e)
       })
     }
 
-    await store.dispatch('bsc/SET_SYNCHRONIZING')
+    await store.dispatch('bsc/SET_SYNCHRONIZING_TX')
 
-    return queryOption
+    return syncTxsOption
     //
     // return range
   }
 
+
+  const holders = async function() {
+    if (store.state.bsc.synchronizing.fromHolderId !== null) {
+      console.warn(
+        'Holders synchronizing in progress from id: #'
+        + store.state.bsc.synchronizing.fromHolderId
+      )
+      return
+    }
+
+    await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID', syncHoldersOption.fromId)
+
+    await app.db.pointers.get('holder')
+      .then(point => {
+        if (point) {
+          syncHoldersOption.fromId = point.id
+        }
+      })
+
+    syncHoldersOption.toId = syncHoldersOption.fromId
+    if (syncHoldersOption.fromId > '0') {
+      syncHoldersOption.fromId = new BN(syncHoldersOption.fromId).addn(1).toString()
+    }
+
+    while (syncHoldersOption.fromId < new BN(store.state.bsc.metadata.holders).subn(1).toString()) {
+      await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID', syncHoldersOption.fromId)
+
+      console.log('Synchronize holders: #' + syncHoldersOption.fromId)
+
+      const data = await app.token.methods.getHolders(syncHoldersOption.fromId).call()
+        .catch(e => {
+          console.error('>>> sync, syncHolders:', e)
+        })
+
+      let holders = []
+      for (let i = 0; i < data.ids.length; i++) {
+        if (data.holders[i] !== store.state.bsc.globalAccounts.zero) {
+          holders.push({
+            id: data.ids[i],
+            address: data.holders[i],
+            username: data.usernames[i],
+            balance: data.balances[i],
+            isWhale: data.isWhales[i]
+          })
+
+          syncHoldersOption.toId = data.ids[i]
+        }
+      }
+
+      syncHoldersOption.fromId = new BN(syncHoldersOption.toId).addn(1).toString()
+
+      await app.db.holder.bulkAdd(holders).catch(e => {
+        console.error('>>> sync, syncHolders, bulkAdd:', e)
+      })
+
+      await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')
+
+      await app.db.pointers.put({ name: 'holder', id: syncHoldersOption.toId }).catch(e => {
+        console.error('putHolderIdPoint:', e)
+      })
+    }
+
+    await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')
+  }
+
   app.sync = {
-    all: all
+    all: all,
+    holders: holders
   }
 }
 
