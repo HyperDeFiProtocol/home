@@ -11,8 +11,11 @@
     </CH3>
 
     <div class='mt-10 lg:mt-24 w-full max-w-xl mx-auto flex items-center justify-center'>
-      <button v-if='allowed' class='btn-clear-cache' @click='clear'>
-        Clear and rebuild cache
+      <button v-if='allowed' class='btn-clear-cache space-x-4' @click='clear'>
+        <HeroIconSolidDatabase class='h-6 w-6' />
+        <span>
+          Clear and rebuild cache
+        </span>
       </button>
       <button v-else class='btn-clear-cache animate-pulse'>
         Rebuilding...
