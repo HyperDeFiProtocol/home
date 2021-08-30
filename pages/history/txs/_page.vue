@@ -110,7 +110,7 @@ export default {
     },
   },
   watch: {
-    '$store.state.bsc.synchronizing': async function() {
+    '$store.state.bsc.synchronizing.fromBlock': async function() {
       await this.load()
     }
   },
