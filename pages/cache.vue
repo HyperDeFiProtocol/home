@@ -11,14 +11,17 @@
     </CH3>
 
     <div class='mt-10 lg:mt-24 w-full max-w-xl mx-auto flex items-center justify-center'>
-      <button v-if='allowed' class='btn-clear-cache space-x-4' @click='clear'>
+      <button v-if='allowed' class='btn-clear-cache' @click='clear'>
         <HeroIconSolidDatabase class='h-6 w-6' />
         <span>
           Clear and rebuild cache
         </span>
       </button>
       <button v-else class='btn-clear-cache animate-pulse'>
-        Rebuilding...
+        <HeroIconSolidDatabase class='h-6 w-6 animate-bounce' />
+        <span>
+          Rebuilding...
+        </span>
       </button>
     </div>
   </LAutoWidth>
@@ -57,6 +60,7 @@ export default {
   @apply py-8 border border-transparent rounded-md;
   @apply font-mono font-medium text-xl text-gray-500 bg-gray-800;
   @apply uppercase;
+  @apply space-x-4;
 
   &:hover {
     @apply bg-gray-700;
