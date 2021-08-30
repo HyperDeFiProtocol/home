@@ -121,6 +121,7 @@ const navigation = [
   { name: 'trade', href: '/trade' },
   { name: 'txExplorer', href: '/history/txs' },
   { name: 'presale', href: '/presale' },
+  { name: 'topAccount', href: '/holders' },
 ]
 
 
