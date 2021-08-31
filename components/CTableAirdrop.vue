@@ -25,7 +25,7 @@
             </td>
             <td class='font-mono'>
               <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                {{ tx.account }}
+                <CAddress :value='tx.account' />
               </a>
             </td>
             <td>

@@ -7,6 +7,7 @@ export default {
 
   deployer: '合约部署',
 
+  mainContract: 'HyperDeFi 合约',
   burn: '黑洞',
   zero: '零地址',
   presale: '预售合约',

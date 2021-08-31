@@ -7,6 +7,7 @@ export default {
 
   deployer: 'Deployer',
 
+  mainContract: 'HyperDeFi Contract',
   burn: 'Black-hole',
   zero: 'Zero Address',
   presale: 'Presale Contract',

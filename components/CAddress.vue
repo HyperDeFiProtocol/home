@@ -1,5 +1,5 @@
 <template>
-  <span>{{ display }}</span>
+  <span>{{ displayText }}</span>
 </template>
 
 <script>
@@ -16,19 +16,11 @@ export default {
       required: true
     },
   },
-  computed: {
-    display() {
-      const text = this.addressName(this.value)
-
-      if (text) {
-        return this.$t('user.' + text)
-      }
-
-      return this.value
-    },
+  mounted: async function() {
+    await this.setDisplayText()
   },
   methods: {
-    addressName(address) {
+    presetName(address) {
       switch (address) {
         case this.$store.state.bsc.globalAccounts.pair:
           return 'liquidity'
@@ -36,16 +28,36 @@ export default {
           return 'buffer'
         case this.$store.state.bsc.globalAccounts.presale:
           return 'presale'
-        case this.$store.state.bsc.globalAccounts.fund:
-          return 'fund'
+        // case this.$store.state.bsc.globalAccounts.fund:
+        //   return 'fund'
+
         case this.$store.state.bsc.globalAccounts.zero:
           return 'zero'
         case this.$store.state.bsc.globalAccounts.burn:
           return 'burn'
+        case process.env.tokenAddress:
+          return 'mainContract'
         default:
           return null
       }
-    }
+    },
+    async setDisplayText() {
+      const text = this.presetName(this.value)
+
+      if (text) {
+        this.displayText = this.$t('user.' + text)
+        return
+      }
+
+      const holder = await this.$nuxt.context.app.db.holder.where('address').equals(this.value).first()
+
+      if (holder && holder.username) {
+        this.displayText = 'User: @' + holder.username
+        return
+      }
+
+      return this.displayText = this.value
+    },
   },
 }
 </script>

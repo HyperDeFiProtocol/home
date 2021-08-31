@@ -65,6 +65,8 @@ export default {
   methods: {
     async load() {
       this.holders = await this.$nuxt.context.app.db.holder
+        // .where('id')
+        // .above('0')
         .orderBy('balance')
         .reverse()
         .offset(this.pageOffset)
