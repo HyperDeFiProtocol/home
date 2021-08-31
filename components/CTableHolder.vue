@@ -33,7 +33,7 @@
               <IconWhale v-if='holder.isWhale' class='h-5 w-5' />
             </td>
             <td class='font-mono'>
-              <CAddress :value='holder.address' />
+              {{ holder.address }}
             </td>
             <td>
               <CBN :value='holder.balance' :token='true' :padding='2' />
