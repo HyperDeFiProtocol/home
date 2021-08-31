@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import BN from 'bn.js'
+
 export default {
   name: 'demo',
   data() {
@@ -35,6 +37,9 @@ export default {
     }
   },
   mounted: async function() {
+    await this.$nuxt.context.app.sync.presaleDeposit()
+    await this.$nuxt.context.app.sync.presaleRedeem()
+
     // console.log('>>> window.BinanceChain:', window.BinanceChain)
 
     // this.$nuxt.context.app.metamask.connect()

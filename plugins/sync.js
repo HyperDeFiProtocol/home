@@ -340,9 +340,183 @@ export default async function({ app, store }, inject) {
     await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')
   }
 
+  const presaleDeposit = async function() {
+    let syncOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+
+    if (store.state.bsc.synchronizing.presaleDepositFrom) {
+      console.warn(
+        'Pre-sale deposit synchronizing in progress blocks: #'
+        + store.state.bsc.synchronizing.presaleDepositFrom
+        + ' - '
+        + store.state.bsc.synchronizing.presaleDepositTo
+      )
+      return
+    }
+
+    await store.dispatch('bsc/SET_SYNCHRONIZING_PD', syncOption)
+
+    await app.db.pointers.get('syncPresaleDeposit')
+      .then(pointer => {
+        if (pointer) {
+          syncOption.fromBlock = pointer.blockNumber + 1
+        }
+      })
+
+    syncOption.toBlock = syncOption.fromBlock
+
+    while (syncOption.fromBlock < store.state.bsc.blockNumber) {
+      syncOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
+      if (syncOption.toBlock > store.state.bsc.blockNumber) {
+        syncOption.toBlock = store.state.bsc.blockNumber
+      }
+
+      await store.dispatch('bsc/SET_SYNCHRONIZING_PD', syncOption)
+
+      console.log('Synchronize pre-sale deposit blocks: #' + syncOption.fromBlock + ' - ' + syncOption.toBlock)
+
+      /**
+       * sync deposit
+       */
+      const syncDeposit = new Promise(async function(resolve) {
+        // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
+
+        const events = await app.token
+          .getPastEvents('PresaleDeposit', syncOption)
+          .catch(e => {
+            console.error('>>> sync, syncPresaleDeposit:', e)
+          })
+
+        if (events.length) {
+          let transactions = []
+          for (let i = 0; i < events.length; i++) {
+            transactions.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
+
+              account: events[i].returnValues.account,
+              bnbAmount: events[i].returnValues.bnbAmount,
+            })
+          }
+
+          await app.db.presaleDeposit.bulkAdd(transactions).catch(e => {
+            console.error('>>> sync, syncPresaleDeposit, bulkAdd:', e)
+          })
+        }
+
+        resolve(syncOption)
+      })
+
+      /**
+       * promise all
+       */
+      await Promise.all([
+        syncDeposit,
+      ])
+
+      syncOption.fromBlock = syncOption.toBlock + 1
+      await app.db.pointers.put({ name: 'syncPresaleDeposit', blockNumber: syncOption.toBlock }).catch(e => {
+        console.error('putBlockPoint:', e)
+      })
+    }
+
+    await store.dispatch('bsc/SET_SYNCHRONIZING_PD')
+
+    return syncOption
+    //
+    // return range
+  }
+
+  const presaleRedeem = async function() {
+    let syncOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+
+    if (store.state.bsc.synchronizing.presaleRedeemFrom) {
+      console.warn(
+        'Pre-sale redeem synchronizing in progress blocks: #'
+        + store.state.bsc.synchronizing.presaleRedeemFrom
+        + ' - '
+        + store.state.bsc.synchronizing.presaleRedeemTo
+      )
+      return
+    }
+
+    await store.dispatch('bsc/SET_SYNCHRONIZING_PR', syncOption)
+
+    await app.db.pointers.get('syncPresaleRedeem')
+      .then(pointer => {
+        if (pointer) {
+          syncOption.fromBlock = pointer.blockNumber + 1
+        }
+      })
+
+    syncOption.toBlock = syncOption.fromBlock
+
+    while (syncOption.fromBlock < store.state.bsc.blockNumber) {
+      syncOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
+      if (syncOption.toBlock > store.state.bsc.blockNumber) {
+        syncOption.toBlock = store.state.bsc.blockNumber
+      }
+
+      await store.dispatch('bsc/SET_SYNCHRONIZING_PR', syncOption)
+
+      console.log('Synchronize pre-sale redeem blocks: #' + syncOption.fromBlock + ' - ' + syncOption.toBlock)
+
+      /**
+       * sync deposit
+       */
+      const syncDeposit = new Promise(async function(resolve) {
+        // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
+
+        const events = await app.token
+          .getPastEvents('PresaleDeposit', syncOption)
+          .catch(e => {
+            console.error('>>> sync, syncPresaleRedeem:', e)
+          })
+
+        if (events.length) {
+          let transactions = []
+          for (let i = 0; i < events.length; i++) {
+            transactions.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
+
+              account: events[i].returnValues.account,
+              tokenAmount: events[i].returnValues.tokenAmount,
+            })
+          }
+
+          await app.db.presaleRedeem.bulkAdd(transactions).catch(e => {
+            console.error('>>> sync, syncPresaleRedeem, bulkAdd:', e)
+          })
+        }
+
+        resolve(syncOption)
+      })
+
+      /**
+       * promise all
+       */
+      await Promise.all([
+        syncDeposit,
+      ])
+
+      syncOption.fromBlock = syncOption.toBlock + 1
+      await app.db.pointers.put({ name: 'syncPresaleRedeem', blockNumber: syncOption.toBlock }).catch(e => {
+        console.error('putBlockPoint:', e)
+      })
+    }
+
+    await store.dispatch('bsc/SET_SYNCHRONIZING_PR')
+
+    return syncOption
+    //
+    // return range
+  }
+
   app.sync = {
     all: all,
-    holders: holders
+    holders: holders,
+    presaleDeposit: presaleDeposit,
+    presaleRedeem: presaleRedeem,
   }
 }
 

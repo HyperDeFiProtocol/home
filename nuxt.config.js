@@ -17,6 +17,8 @@ export default {
     telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
+
+    fromBlock: parseInt(process.env.fromBlock) || 0,
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

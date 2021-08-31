@@ -11,6 +11,12 @@ export const state = () => ({
     toBlock: 0,
 
     fromHolderId: null,
+
+    presaleDepositFrom: 0,
+    presaleDepositTo: 0,
+
+    presaleRedeemFrom: 0,
+    presaleRedeemTo: 0,
   },
 
   blockNumber: 0,
@@ -201,6 +207,14 @@ export const mutations = {
   async SET_SYNCHRONIZING_FROM_HOLDER_ID(state, fromHolderId) {
     state.synchronizing.fromHolderId = fromHolderId
   },
+  async SET_SYNCHRONIZING_PD(state, syncOption) {
+    state.synchronizing.presaleDepositFrom = syncOption.fromBlock
+    state.synchronizing.presaleDepositTo = syncOption.toBlock
+  },
+  async SET_SYNCHRONIZING_PR(state, syncOption) {
+    state.synchronizing.presaleRedeemFrom = syncOption.fromBlock
+    state.synchronizing.presaleRedeemTo = syncOption.toBlock
+  },
   async SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
   },
@@ -363,6 +377,12 @@ export const actions = {
   },
   async SET_SYNCHRONIZING_FROM_HOLDER_ID({ commit }, fromHolderId= null) {
     await commit('SET_SYNCHRONIZING_FROM_HOLDER_ID', fromHolderId)
+  },
+  async SET_SYNCHRONIZING_PD({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
+    await commit('SET_SYNCHRONIZING_PD', syncTxsOption)
+  },
+  async SET_SYNCHRONIZING_PR({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
+    await commit('SET_SYNCHRONIZING_PR', syncTxsOption)
   },
   async SET_BLOCK_NUMBER({ commit }, blockNumber) {
     await commit('SET_BLOCK_NUMBER', blockNumber)
