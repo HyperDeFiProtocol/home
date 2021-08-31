@@ -11,16 +11,17 @@
     </CH3>
 
     <div class='mt-10 lg:mt-24 w-full max-w-xl mx-auto flex items-center justify-center'>
-      <button v-if='allowed' class='btn-clear-cache' @click='clear'>
-        <HeroIconSolidDatabase class='h-6 w-6' />
-        <span>
-          Clear and rebuild cache
-        </span>
-      </button>
-      <button v-else class='btn-clear-cache animate-pulse'>
+      <button v-if='showRebuilding' class='btn-clear-cache animate-pulse'>
         <HeroIconSolidDatabase class='h-6 w-6 animate-bounce' />
         <span>
           Rebuilding...
+        </span>
+
+      </button>
+      <button v-else class='btn-clear-cache' @click='clear'>
+        <HeroIconSolidDatabase class='h-6 w-6' />
+        <span>
+          Clear and rebuild cache
         </span>
       </button>
     </div>
@@ -33,12 +34,17 @@ export default {
   layout: 'withoutCache',
   data() {
     return {
-      allowed: true
+      rebuilding: false
+    }
+  },
+  computed: {
+    showRebuilding() {
+      return this.rebuilding || this.$store.state.bsc.synchronizing.fromBlock || this.$store.state.bsc.synchronizing.fromHolderId !== null
     }
   },
   methods: {
     async clear() {
-      this.allowed = false
+      this.rebuilding = true
       await this.$nuxt.context.app.db.pointers.clear()
       await this.$nuxt.context.app.db.holder.clear()
       await this.$nuxt.context.app.db.tx.clear()
@@ -48,7 +54,7 @@ export default {
       await this.$nuxt.context.app.db.transfer.clear()
       await this.$nuxt.context.app.sync.all()
       await this.$nuxt.context.app.sync.holders()
-      this.allowed = true
+      this.rebuilding = false
     }
   }
 }

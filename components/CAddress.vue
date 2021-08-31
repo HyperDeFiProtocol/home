@@ -5,6 +5,11 @@
 <script>
 export default {
   name: 'CAddress',
+  data() {
+    return {
+      displayText: '',
+    }
+  },
   props: {
     value: {
       type: String,
