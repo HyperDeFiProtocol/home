@@ -2,7 +2,7 @@
   <LAutoWidth class='py-10 md:py-20'>
     <CH3>
       <span>
-        {{ $t('siteNav.holders') }}
+        {{ $t('siteNav.topAccount') }}
       </span>
 
       <template #tag>
@@ -19,7 +19,7 @@
       </template>
     </CH3>
 
-    <CTableHolder :holders='holders' class='mt-10 lg:mt-24' />
+    <CTableHolderTop :holders='holders' class='mt-10 lg:mt-24' />
 
     <CPagination class='mt-8 lg:mt-12'
                  :records='pageRecords' :size='pageSize' :number='pageNumber' path='/holders' />
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import BN from 'bn.js'
+
 export default {
   scrollToTop: true,
   name: 'Holders',
@@ -56,7 +58,7 @@ export default {
   },
   watch: {
     '$store.state.bsc.synchronizing.fromHolderId': async function() {
-      await this.load()
+      if (this.$store.state.bsc.synchronizing.fromHolderId === '0') await this.load()
     }
   },
   async mounted() {
@@ -64,17 +66,48 @@ export default {
   },
   methods: {
     async load() {
-      this.holders = await this.$nuxt.context.app.db.holder
-        // .where('balance')
-        // .above('0')
-        // .orderBy('balance')
-        .reverse()
-        .offset(this.pageOffset)
-        .limit(this.pageSize)
-        .toArray()
+      this.pageRecords = await this.$nuxt.context.app.db.holder.count()
 
-      this.pageRecords = await this.$nuxt.context.app.db.holder
-        .count()
+      const compareBalance = function() {
+        return function(x, y) {
+          const m = new BN(x['balance'])
+          const n = new BN(y['balance'])
+
+          if (m.lt(n)) {
+            return 1
+          }
+
+          if (m.gt(n)) {
+            return -1
+          }
+
+          return 0
+        }
+      }
+
+      if (this.pageRecords > this.pageSize * (this.pageNumber - 1)) {
+        let holders = await this.$nuxt.context.app.db.holder
+          .toCollection()
+          .sortBy('balance', function(arr) {
+            return arr.sort(compareBalance())
+          })
+
+        if (holders.length > this.pageOffset) {
+          holders = holders.slice(this.pageOffset)
+        }
+
+        if (holders.length > this.pageSize) {
+          holders = holders.slice(0, this.pageSize)
+        }
+
+        let rank = this.pageOffset
+        for (let i = 0; i < holders.length; i++) {
+          rank++
+          holders[i].rank = rank
+        }
+
+        this.holders = holders
+      }
     },
     async refresh() {
       await this.$nuxt.context.app.db.pointers.delete('holder')
