@@ -68,28 +68,24 @@ export default {
     async load() {
       this.pageRecords = await this.$nuxt.context.app.db.holder.count()
 
-      const compareBalance = function() {
-        return function(x, y) {
-          const m = new BN(x['balance'])
-          const n = new BN(y['balance'])
-
-          if (m.lt(n)) {
-            return 1
-          }
-
-          if (m.gt(n)) {
-            return -1
-          }
-
-          return 0
-        }
-      }
-
       if (this.pageRecords > this.pageSize * (this.pageNumber - 1)) {
         let holders = await this.$nuxt.context.app.db.holder
           .toCollection()
           .sortBy('balance', function(arr) {
-            return arr.sort(compareBalance())
+            return arr.sort(function(x, y) {
+              const m = new BN(x['balance'])
+              const n = new BN(y['balance'])
+
+              if (m.lt(n)) {
+                return 1
+              }
+
+              if (m.gt(n)) {
+                return -1
+              }
+
+              return 0
+            })
           })
 
         if (holders.length > this.pageOffset) {
