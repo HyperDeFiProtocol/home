@@ -3,6 +3,7 @@ export default {
   maker: 'maker',
   whale: 'whale',
   robber: 'robber',
+  redeem: 'redeem',
   flat: '',
 
   deployer: 'Deployer',

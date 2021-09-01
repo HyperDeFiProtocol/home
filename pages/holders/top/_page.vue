@@ -2,7 +2,7 @@
   <LAutoWidth class='py-10 md:py-20'>
     <CH3>
       <span>
-        {{ $t('siteNav.holders') }}
+        {{ $t('siteNav.topAccount') }}
       </span>
 
       <template #tag>
@@ -30,7 +30,7 @@
 <script>
 export default {
   scrollToTop: true,
-  name: 'Holders',
+  name: 'HoldersTop',
   data() {
     return {
       holders: [],
@@ -67,11 +67,17 @@ export default {
       this.holders = await this.$nuxt.context.app.db.holder
         // .where('balance')
         // .above('0')
-        // .orderBy('balance')
+        .orderBy('balance')
         .reverse()
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
+
+      let rank = this.pageOffset
+      for (let i = 0; i < this.holders.length; i++) {
+        rank++
+        this.holders[i].rank = rank
+      }
 
       this.pageRecords = await this.$nuxt.context.app.db.holder
         .count()

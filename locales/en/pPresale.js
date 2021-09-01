@@ -8,6 +8,8 @@ export default {
 
   depositWarning: 'Do not send BUSD directly to the contract address nor from an exchange, otherwise you will lost the fund.',
 
+  listAllDeposit: 'List all pre-sale deposit',
+
   mint: 'Mint 3% of the HyperDeFi Total Supply Cap to the Contract Address, for Pre-sale',
   sameTx__: 'It is the same transaction as the HyperDeFi main contract creation.',
   review: 'Click to review.',

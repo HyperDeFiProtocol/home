@@ -6,7 +6,7 @@
           <thead>
           <tr>
             <th scope='col'>
-              {{ $t('txTable.rank') }}
+              {{ $t('txTable.id') }}
             </th>
             <th scope='col'>
               {{ $t('txTable.username') }}
@@ -24,7 +24,7 @@
           <tbody>
           <tr v-for='holder in holders'>
             <td>
-              {{ holder.rank }}
+              {{ holder.id }}
             </td>
             <td>
               {{ holder.username ? '@' + holder.username : '' }}

@@ -140,6 +140,8 @@ export default {
           return 'whale'
         case '4':
           return 'robber'
+        case '5':
+          return 'redeem'
         default:
           return ''
       }

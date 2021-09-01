@@ -35,7 +35,14 @@
                 {{ tokenAddress }}
               </p>
 
-              <p class='mt-2 md:mt-4'>
+              <p class='mt-2 md:mt-4 space-x-4'>
+                <nuxt-link :to='localeLocation("/history/presale")' class='a-list-deposit'>
+                  <HeroIconSolidMenuAlt2 class="h-5 w-5" />
+                  <span>
+                    {{ $t('pPresale.listAllDeposit') }}
+                  </span>
+                </nuxt-link>
+
                 <a target='_blank' :href='hdfLink.exploreAddress(tokenAddress)' class='a-track'>
                   <HeroIconSolidCursorClick class="h-5 w-5" />
                   <span>
@@ -44,9 +51,9 @@
                 </a>
               </p>
 
-<!--              <p class='mt-12 py-6 px-4 md:px-8 border-l-8 border-amber-600 bg-amber-100 rounded-r-xl leading-relaxed text-base lg:text-lg text-amber-700'>-->
-<!--                {{ $t('pPresale.depositWarning') }}-->
-<!--              </p>-->
+              <!--              <p class='mt-12 py-6 px-4 md:px-8 border-l-8 border-amber-600 bg-amber-100 rounded-r-xl leading-relaxed text-base lg:text-lg text-amber-700'>-->
+              <!--                {{ $t('pPresale.depositWarning') }}-->
+              <!--              </p>-->
             </div>
           </div>
         </div>
@@ -237,7 +244,7 @@
                   {{ $t('pPresale.yourPortion') }}
                 </p>
                 <p class='mt-2 text-lg md:text-xl text-gray-200'>
-                  <CBN :value='$store.state.wallet.presalePortion' :token='true' /> HyperDeFi
+                  <CBN :value='$store.state.wallet.presalePortion' :token='true' :padding='2' /> HyperDeFi
                   <span v-if='redeemable'>
                     {{ $t('pPresale.notRedeemed') }}
                   </span>
@@ -252,7 +259,7 @@
                     <span>
                       {{ $t('pPresale.redeem') }}
                     </span>
-                    <CBN :value='$store.state.wallet.presalePortion' :token='true' />
+                    <CBN :value='$store.state.wallet.presalePortion' :token='true' :padding='2' />
                     <span>
                       HyperDeFi
                     </span>
@@ -300,7 +307,7 @@ import hdfLink from '~/utils/hdfLink'
 
 
 export default {
-  name: 'presale',
+  name: 'Presale',
   data() {
     return {
       countdownFinished: false,
@@ -573,6 +580,13 @@ export default {
   @apply inline-flex items-center justify-center px-5 py-3 border border-transparent rounded-md;
   @apply bg-emerald-600 hover:bg-emerald-700 space-x-2;
   @apply font-medium text-base text-white;
+}
+
+.a-list-deposit {
+  @apply inline-flex items-center px-5 py-3 border border-transparent rounded-md;
+  @apply font-medium text-base text-white bg-orange-600 hover:bg-orange-700;
+  @apply focus:outline-none;
+  @apply space-x-2;
 }
 
 .connectWallet {

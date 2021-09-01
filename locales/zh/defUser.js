@@ -3,6 +3,7 @@ export default {
   maker: '贡献者',
   whale: '鲸鱼',
   robber: '掠食者',
+  redeem: '预售认领',
   flat: '',
 
   deployer: '合约部署',
