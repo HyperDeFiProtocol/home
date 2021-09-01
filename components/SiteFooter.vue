@@ -6,10 +6,7 @@
         <div class="px-5 py-2">
           <nuxt-link :to='localePath("/history/presale")' class="text-base text-gray-500 hover:text-gray-300">
             <span>
-              Presale
-            </span>
-            <span v-if='$store.state.bsc.presale.liquidityCreatedTimestamp > "0"'>
-              History
+              Presale History
             </span>
           </nuxt-link>
         </div>

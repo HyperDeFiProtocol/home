@@ -73,6 +73,7 @@
 
       <CPagination class='mt-8 lg:mt-12'
                    :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/txs' />
+
     </LAutoWidth>
   </div>
 </template>

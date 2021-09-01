@@ -1,7 +1,7 @@
 import BN from 'bn.js'
 import fn from '../utils/functions'
 
-const FROM_BLOCK = 10593970
+const FROM_BLOCK = process.env.fromBlock
 const BLOCK_STEP_RANGE = { min: 4900, max: 4999 }
 
 export default async function({ app, store }, inject) {
@@ -184,7 +184,7 @@ export default async function({ app, store }, inject) {
               blockNumber: events[i].blockNumber,
               txHash: events[i].transactionHash,
 
-              busdAdded: events[i].returnValues.busdAdded,
+              wbnbAdded: events[i].returnValues.wbnbAdded,
               tokenAdded: events[i].returnValues.tokenAdded
             })
           }

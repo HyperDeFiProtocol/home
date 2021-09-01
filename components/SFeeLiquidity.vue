@@ -146,7 +146,7 @@
                     {{ $t('txTable.txHash') }}
                   </th>
 <!--                  <th scope='col'>-->
-<!--                    {{ $t('txTable.BUSD') }}-->
+<!--                    {{ $t('txTable.BNB') }}-->
 <!--                  </th>-->
                   <th scope='col'>
                     {{ $t('txTable.amount') }}
@@ -167,7 +167,7 @@
                   </td>
 <!--                  <td>-->
 <!--                    <CBN :value='txs.busdAdded' :decimals='18' :padding='6' />-->
-<!--                    BUSD-->
+<!--                    BNB-->
 <!--                  </td>-->
                   <td>
                     <CBN :value='tx.tokenAdded' :token='true' :padding='2' />

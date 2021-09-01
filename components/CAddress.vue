@@ -30,10 +30,12 @@ export default {
           return 'presale'
         // case this.$store.state.bsc.globalAccounts.fund:
         //   return 'fund'
-        case this.$store.state.bsc.globalAccounts.zero:
-          return 'zero'
+        // case this.$store.state.bsc.globalAccounts.zero:
+        //   return 'zero'
         case this.$store.state.bsc.globalAccounts.burn:
           return 'burn'
+        case this.$store.state.bsc.globalAccounts.airdrop:
+          return 'airdrop'
         case process.env.tokenAddress:
           return 'mainContract'
         default:
