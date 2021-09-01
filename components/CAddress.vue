@@ -53,7 +53,7 @@ export default {
       const holder = await this.$nuxt.context.app.db.holder.where('address').equals(this.value).first()
 
       if (holder && holder.username) {
-        this.displayText = '@' + holder.username + ' ' + this.value.slice(0, 8) + '...' + this.value.slice(-4)
+        this.displayText = '@' + holder.username + ': ' + this.value.slice(0, 8) + '...' + this.value.slice(-4)
         return
       }
 
