@@ -164,10 +164,8 @@
 </template>
 
 <script>
-import Web3 from 'web3'
 import hdfLink from '~/utils/hdfLink'
-
-const BN = Web3.utils.BN
+import fn from '~/utils/functions'
 
 export default {
   name: 'SFeeBurn',
@@ -183,7 +181,8 @@ export default {
     }
   },
   watch: {
-    '$store.state.bsc.blockNumber': async function() {
+    '$store.state.bsc.synchronizing.fromBlock': async function() {
+      await fn.wait(1000)
       await this.load()
     }
   },

@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import fn from '~/utils/functions'
+
 export default {
   scrollToTop: true,
   name: 'HistoryBurn',
@@ -46,6 +48,7 @@ export default {
   },
   watch: {
     '$store.state.bsc.synchronizing.fromBlock': async function() {
+      await fn.wait(1000)
       await this.load()
     }
   },

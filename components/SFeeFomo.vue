@@ -188,12 +188,9 @@
 </template>
 
 <script>
-import Web3 from 'web3'
 import moment from 'moment'
 import hdfLink from '~/utils/hdfLink'
-
-
-const BN = Web3.utils.BN
+import fn from '~/utils/functions'
 
 export default {
   name: 'SFeeFomo',
@@ -232,6 +229,7 @@ export default {
   },
   watch: {
     '$store.state.bsc.blockNumber': async function() {
+      await fn.wait(1000)
       await this.load()
     }
   },

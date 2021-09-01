@@ -80,6 +80,7 @@
 
 <script>
 import explorer from '~/utils/hdfLink'
+import fn from '~/utils/functions'
 
 export default {
   scrollToTop: true,
@@ -112,6 +113,7 @@ export default {
   },
   watch: {
     '$store.state.bsc.synchronizing.fromBlock': async function() {
+      await fn.wait(1000)
       await this.load()
     }
   },

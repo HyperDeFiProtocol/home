@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import fn from '~/utils/functions'
+
 export default {
   scrollToTop: true,
   name: 'HistoryPresaleDeposit',
@@ -49,6 +51,7 @@ export default {
       await this.sync()
     },
     '$store.state.bsc.synchronizing.presaleDepositFrom': async function() {
+      await fn.wait(1000)
       await this.load()
     },
   },

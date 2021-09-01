@@ -155,6 +155,7 @@
 <script>
 import BN from 'bn.js'
 import hdfLink from '~/utils/hdfLink'
+import fn from '~/utils/functions'
 
 export default {
   name: 'SAirdrop',
@@ -178,7 +179,8 @@ export default {
     }
   },
   watch: {
-    '$store.state.bsc.synchronizing': async function() {
+    '$store.state.bsc.synchronizing.fromBlock': async function() {
+      await fn.wait(1000)
       await this.load()
     }
   },
