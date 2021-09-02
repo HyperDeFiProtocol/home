@@ -14,7 +14,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "bignumber.js": "^9.0.1",
     "bn.js": "^5.2.0",
-    "core-js": "^3.16.4",
+    "core-js": "^3.17.1",
     "detect-browser": "^5.2.0",
     "dexie": "^3.0.3",
     "moment": "^2.29.1",
