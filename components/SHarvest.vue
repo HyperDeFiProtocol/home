@@ -118,43 +118,7 @@
       </div>
 
       <!-- md: -->
-      <div class='hidden mt-4 overflow-x-auto md:block'>
-        <div class='align-middle inline-block min-w-full'>
-          <div class='shadow overflow-hidden border-b border-gray-700'>
-            <table class='min-w-full divide-y divide-gray-700'>
-              <thead>
-              <tr>
-                <th scope='col'>
-                  {{ $t('txTable.block') }}
-                </th>
-                <th scope='col'>
-                  {{ $t('txTable.txHash') }}
-                </th>
-                <th scope='col'>
-                  {{ $t('txTable.amount') }}
-                </th>
-              </tr>
-              </thead>
-              <tbody class='divide-y divide-gray-700'>
-              <tr v-for='tx in transactions'>
-                <td>
-                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                    #<CBN :value='tx.blockNumber' />
-                  </a>
-                </td>
-                <td class='font-mono'>
-                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
-                </td>
-                <td>
-                  <CBN :value='tx.amount' :token='true' :padding='2' />
-                  HyperDeFi
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <CTableHarvest :transactions='transactions' class='hidden mt-4 md:block' />
     </div>
   </LAutoWidth>
 </template>
@@ -202,42 +166,5 @@ export default {
 
 
 <style scoped lang='scss'>
-thead {
-  th {
-    @apply px-3 py-3 text-xs text-gray-100 text-left;
-    @apply uppercase tracking-wider;
 
-    &:nth-child(3) {
-      @apply text-center;
-    }
-  }
-}
-
-tbody {
-  tr {
-    &:nth-child(odd) {
-      @apply bg-gray-800;
-    }
-
-    td {
-      @apply px-3 py-4 whitespace-nowrap text-sm text-gray-400;
-    }
-
-    td:nth-child(1) {
-      @apply text-gray-500;
-    }
-
-    td:nth-child(3) {
-      @apply text-gray-300 text-right;
-    }
-
-    &:hover {
-      @apply bg-violet-900;
-
-      td {
-        @apply text-violet-200;
-      }
-    }
-  }
-}
 </style>

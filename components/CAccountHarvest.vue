@@ -1,0 +1,50 @@
+<template>
+  <div>
+    <CTableHarvest v-if='transactions.length' :transactions='transactions' />
+
+    <div v-else class='font-mono text-center text-gray-600'>
+      No data
+    </div>
+  </div>
+</template>
+
+<script>
+import fn from '~/utils/functions'
+
+export default {
+  name: 'CAccountHarvest',
+  props: {
+    'account': {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    '$store.state.bsc.synchronizing.fromBlock': async function() {
+      if (this.$store.state.bsc.synchronizing.fromBlock === 0) {
+        await this.load()
+      }
+    }
+  },
+  data() {
+    return {
+      transactions: []
+    }
+  },
+  mounted: async function () {
+    // await fn.wait(500)
+    await this.load()
+  },
+  methods: {
+    async load() {
+      this.transactions = await this.$nuxt.context.app.db.transfer
+        .where({
+          fromAccount: this.$store.state.bsc.globalAccounts.tax,
+          toAccount: this.account.address
+        })
+        .reverse()
+        .toArray()
+    }
+  }
+}
+</script>

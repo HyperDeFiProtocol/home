@@ -17,7 +17,7 @@
 
       <CSHeading class='mt-12 lg:mt-24'>
         <template>
-          Balance and harvest
+          Balance
         </template>
       </CSHeading>
 
@@ -29,9 +29,7 @@
         </template>
       </CSHeading>
 
-      <div class='mt-12'>
-        ...
-      </div>
+      <CAccountHarvest :account='account' class='mt-4' />
 
       <CSHeading class='mt-12 lg:mt-24'>
         <template>
@@ -39,9 +37,7 @@
         </template>
       </CSHeading>
 
-      <div class='mt-12'>
-        ...
-      </div>
+      <CAccountLotto :account='account' class='mt-4' />
 
       <CSHeading class='mt-12 lg:mt-24'>
         <template>
@@ -49,9 +45,8 @@
         </template>
       </CSHeading>
 
-      <div class='mt-12'>
-        ...
-      </div>
+      <CAccountFomo :account='account' class='mt-4' />
+
     </LAutoWidth>
   </div>
 </template>
@@ -82,6 +77,11 @@ export default {
       }
     }
   },
+  watch: {
+    '$store.state.bsc.blockNumber': async function() {
+      await this.sync()
+    }
+  },
   computed: {
     indexedUsername() {
       if (this.username.startsWith('@')) {
@@ -92,24 +92,29 @@ export default {
     }
   },
   mounted: async function () {
-    const data = await this.$nuxt.context.app.token.methods.getAccountByUsername(this.indexedUsername).call()
-      .catch(error => {
-        console.error('>>> P[/user/_username] getAccountByUsername:', error.message)
-      })
+    await this.sync()
+  },
+  methods: {
+    async sync() {
+      const data = await this.$nuxt.context.app.token.methods.getAccountByUsername(this.indexedUsername).call()
+        .catch(error => {
+          console.error('>>> P[/user/_username] getAccountByUsername:', error.message)
+        })
 
-    if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
-      this.account.address = data.account
+      if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
+        this.account.address = data.account
 
-      this.account.isHolder = data.isHolder
-      this.account.isWhale = data.isWhale
-      this.account.isFlat = data.isFlat
-      this.account.isSlot = data.isSlot
+        this.account.isHolder = data.isHolder
+        this.account.isWhale = data.isWhale
+        this.account.isFlat = data.isFlat
+        this.account.isSlot = data.isSlot
 
-      this.account.username = data.username
-      this.account.balance = data.balance
-      this.account.harvest = data.harvest
-      this.account.totalHarvest = data.totalHarvest
-      this.account.totalTaxSnap = data.totalTaxSnap
+        this.account.username = data.username
+        this.account.balance = data.balance
+        this.account.harvest = data.harvest
+        this.account.totalHarvest = data.totalHarvest
+        this.account.totalTaxSnap = data.totalTaxSnap
+      }
     }
   },
 }
