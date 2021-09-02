@@ -15,43 +15,14 @@
         </template>
       </CH3>
 
-      <CSHeading class='mt-12 lg:mt-24'>
-        <template>
-          Balance
-        </template>
-      </CSHeading>
-
-      <CAccountBalance :account='account' />
-
-      <CSHeading class='mt-12 lg:mt-24'>
-        <template>
-          Harvest History
-        </template>
-      </CSHeading>
-
-      <CAccountHarvest :account='account' class='mt-4' />
-
-      <CSHeading class='mt-12 lg:mt-24'>
-        <template>
-          Lotto History
-        </template>
-      </CSHeading>
-
-      <CAccountLotto :account='account' class='mt-4' />
-
-      <CSHeading class='mt-12 lg:mt-24'>
-        <template>
-          FOMO History
-        </template>
-      </CSHeading>
-
-      <CAccountFomo :account='account' class='mt-4' />
-
+      <SDashboard :account='account' />
     </LAutoWidth>
   </div>
 </template>
 
 <script>
+import fn from '~/utils/functions'
+
 export default {
   scrollToTop: true,
   name: 'UserUsername',
@@ -92,6 +63,7 @@ export default {
     }
   },
   mounted: async function () {
+    await fn.wait(500)
     await this.sync()
   },
   methods: {

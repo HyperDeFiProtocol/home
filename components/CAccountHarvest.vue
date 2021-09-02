@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import fn from '~/utils/functions'
-
 export default {
   name: 'CAccountHarvest',
   props: {
@@ -32,7 +30,6 @@ export default {
     }
   },
   mounted: async function () {
-    // await fn.wait(500)
     await this.load()
   },
   methods: {
