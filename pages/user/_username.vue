@@ -15,77 +15,42 @@
         </template>
       </CH3>
 
-      <div class='mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2'>
-        <p>
-          <span class="block text-2xl font-bold text-violet-300">
-            <CBN :value='account.balance' :token='true' /> HyperDeFi
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sHarvest.balance_') }}
-            </span>
-            {{ $t('sHarvest.inYourWallet') }}
-          </span>
-        </p>
+      <CSHeading class='mt-12 lg:mt-24'>
+        <template>
+          Balance and harvest
+        </template>
+      </CSHeading>
 
-        <p>
-          <span class="block text-2xl font-bold text-violet-300 inline-flex items-center space-x-2">
-            <HeroIconSolidFire v-if='account.harvest > "0"' class='inline w-6 h-6' />
-            <CBN :value='account.harvest' :token='true' />
-            <span>
-              HyperDeFi
-            </span>
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sHarvest.toHarvest_') }}
-            </span>
-            {{ $t('sHarvest.onBlockNumber') }}<CBN :value='$store.state.bsc.blockNumber' />
-          </span>
-        </p>
+      <CAccountBalance :account='account' />
 
-        <p v-if='account.harvest > "0"' class='transition duration-300 ease-out'>
-          <BtnTakeHarvest class='hdf-a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
-            <HeroIconSolidFire v-if='account.harvest > "0"' class='inline w-6 h-6' />
-            <span class='hidden lg:inline'>
-              {{ $t('sHarvest.clickHereTo') }}
-            </span>
-            <span>
-              {{ $t('sHarvest.harvestAll') }}
-            </span>
-          </BtnTakeHarvest>
-        </p>
+      <CSHeading class='mt-12 lg:mt-24'>
+        <template>
+          Harvest History
+        </template>
+      </CSHeading>
 
-        <p v-if='account.totalHarvest > "0"'>
-          <span class="block text-2xl font-bold text-violet-300">
-            <CBN :value='account.totalHarvest' :token='true' /> HyperDeFi
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sHarvest.total_') }}
-            </span>
-            {{ $t('sHarvest.alreadyHarvested') }}
-          </span>
-        </p>
+      <div class='mt-12'>
+        ...
       </div>
 
+      <CSHeading class='mt-12 lg:mt-24'>
+        <template>
+          Lotto History
+        </template>
+      </CSHeading>
 
-      <div class='mt-24'>
-        <ul>
-          <li>
-            Balance and All Harvest History
-          </li>
-          <li>
-            Lotto History
-          </li>
-          <li>
-            FOMO History
-          </li>
-        </ul>
+      <div class='mt-12'>
+        ...
       </div>
 
-      <div>
-        {{ account }}
+      <CSHeading class='mt-12 lg:mt-24'>
+        <template>
+          FOMO History
+        </template>
+      </CSHeading>
+
+      <div class='mt-12'>
+        ...
       </div>
     </LAutoWidth>
   </div>
