@@ -36,6 +36,8 @@ export default {
           return 'burn'
         case this.$store.state.bsc.globalAccounts.airdrop:
           return 'airdrop'
+        case this.$store.state.bsc.globalAccounts.tax:
+          return 'tax'
         case process.env.tokenAddress:
           return 'mainContract'
         default:

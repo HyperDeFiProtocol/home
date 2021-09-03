@@ -16,4 +16,5 @@ export default {
   fund: '基金',
   liquidity: 'PancakeSwap 流动池',
   buffer: '缓冲池',
+  tax: '税收矿池',
 }

@@ -16,4 +16,5 @@ export default {
   fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',
+  tax: 'Tax Pool',
 }
