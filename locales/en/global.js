@@ -3,4 +3,6 @@ export default {
 
   latestBlockNumber: 'Latest block number:',
   key: '',
+
+  loading: 'Loading...',
 }

@@ -3,4 +3,6 @@ export default {
 
   latestBlockNumber: '最新区块号：',
   key: '',
+
+  loading: '加载中...',
 }

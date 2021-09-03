@@ -58,7 +58,7 @@
 
         <nuxt-link v-if='$store.state.wallet.account && $store.state.wallet.username'
                    class='btn-md-account space-x-2 font-mono'
-                   :to='localeLocation("/address/" + $store.state.wallet.account)'
+                   :to='localeLocation("/user/@" + $store.state.wallet.username)'
         >
           <IconWhale v-if='$store.state.wallet.isWhale' class='inline h-6 w-6' />
           <span>

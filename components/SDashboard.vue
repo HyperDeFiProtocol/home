@@ -2,7 +2,7 @@
   <div>
     <CSHeading class='mt-12 lg:mt-24'>
       <template>
-        Balance
+        {{ $t('pUser.balance') }}
       </template>
     </CSHeading>
 
@@ -10,7 +10,7 @@
 
     <CSHeading class='mt-12 lg:mt-24'>
       <template>
-        Harvest History
+        {{ $t('pUser.harvestHistory') }}
       </template>
     </CSHeading>
 
@@ -18,7 +18,7 @@
 
     <CSHeading class='mt-12 lg:mt-24'>
       <template>
-        Lotto History
+        {{ $t('pUser.lottoHistory') }}
       </template>
     </CSHeading>
 
@@ -26,7 +26,7 @@
 
     <CSHeading class='mt-12 lg:mt-24'>
       <template>
-        FOMO History
+        {{ $t('pUser.fomoHistory') }}
       </template>
     </CSHeading>
 

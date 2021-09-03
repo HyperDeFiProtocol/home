@@ -1,9 +1,15 @@
 <template>
   <div>
-    <LAutoWidth v-if='account.isHolder' class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
+    <LAutoWidth v-if='!loaded' class='p-24 text-gray-500'>
+      <h1 class='mt-10 font-bold text-4xl animate-pulse'>
+        {{ $t('global.loading') }}
+      </h1>
+    </LAutoWidth>
+
+    <LAutoWidth v-else-if='account.isHolder' class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        <span v-if='account.username !== ""'>
-          Hello, "{{ account.username }}"
+        <span v-if='account.username'>
+          {{ $t('pUser.user') }}@{{ account.username }}
         </span>
         <span v-else>
           {{ $t('pUser.userDashboard') }}
@@ -29,22 +35,22 @@
       </div>
 
       <div v-if='checksumAddress'>
-        <h1 class='mt-10 font-mono font-bold text-4xl'>
-          Not a holder
+        <h1 class='mt-10 font-bold text-4xl'>
+          {{ $t('pUser.notAHolder') }}
         </h1>
 
         <h2 class='mt-6 text-2xl break-all'>
-          "{{ $route.params.address }}" is not a HyperDeFi holder
+          "{{ $route.params.address }}" {{ $t('pUser.isNotAHyperDeFiHolder') }}
         </h2>
       </div>
 
       <div v-else>
-        <h1 class='mt-10 font-mono font-bold text-4xl'>
-          Invalid address
+        <h1 class='mt-10 font-bold text-4xl'>
+          {{ $t('pUser.invalidAddress') }}
         </h1>
 
         <h2 class='mt-6 text-2xl break-all'>
-          "{{ $route.params.address }}" is not a valid address
+          "{{ $route.params.address }}" {{ $t('pUser.isNotAValidAddress') }}
         </h2>
       </div>
     </LAutoWidth>
@@ -64,6 +70,7 @@ export default {
   },
   data() {
     return {
+      loaded: false,
       account: {
         address: '',
         isHolder: false,
@@ -76,7 +83,7 @@ export default {
         harvest: '',
         totalHarvest: '',
         totalTaxSnap: '',
-      }
+      },
     }
   },
   watch: {
@@ -125,6 +132,8 @@ export default {
         this.account.totalHarvest = data.totalHarvest
         this.account.totalTaxSnap = data.totalTaxSnap
       }
+
+      this.loaded = true
     }
   },
 }
