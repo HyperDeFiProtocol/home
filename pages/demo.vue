@@ -40,6 +40,8 @@ export default {
     await this.$nuxt.context.app.sync.presaleDeposit()
     await this.$nuxt.context.app.sync.presaleRedeem()
 
+    console.log(this.$store.state.bsc.metadata)
+
     // console.log('>>> window.BinanceChain:', window.BinanceChain)
 
     // this.$nuxt.context.app.metamask.connect()
