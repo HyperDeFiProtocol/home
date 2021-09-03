@@ -69,7 +69,7 @@ export default async function({ app, store }, inject) {
             address: process.env.tokenAddress,
             symbol: store.state.bsc.metadata.tokenSymbol,
             decimals: parseInt(store.state.bsc.metadata.tokenDecimals),
-            image: 'https://hyperdefi.org/android-chrome-192x192.png'
+            image: 'https://hyperdefi.org/avatar.png'
           }
         }
       })
