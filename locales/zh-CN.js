@@ -2,6 +2,7 @@ import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
 import pTrade from '~/locales/zh/pTrade'
 import pPresale from '~/locales/zh/pPresale'
+import pUser from '~/locales/zh/pUser'
 
 import connectWallet from '~/locales/zh/btnConnectWallet'
 import getHarvest from '~/locales/zh/btnGetHarvest'
@@ -41,6 +42,7 @@ export default {
   siteNav: siteNav,
   pTrade: pTrade,
   pPresale: pPresale,
+  pUser: pUser,
 
   connectWallet: connectWallet,
   getHarvest: getHarvest,

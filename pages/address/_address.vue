@@ -6,7 +6,7 @@
           Hello, "{{ account.username }}"
         </span>
         <span v-else>
-          User Dashboard
+          {{ $t('pUser.userDashboard') }}
         </span>
 
         <template #tag>
