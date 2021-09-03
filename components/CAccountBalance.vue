@@ -13,15 +13,31 @@
     </p>
 
     <p>
-      <span class="block text-2xl font-bold text-violet-300">
-        <CBN :value='account.totalHarvest' :token='true' /> HyperDeFi
+      <span class="block text-2xl font-bold text-violet-300 inline-flex items-center space-x-2">
+        <HeroIconSolidFire v-if='account.harvest > "0"' class='inline w-6 h-6' />
+        <CBN :value='account.harvest' :token='true' />
+        <span>
+          HyperDeFi
+        </span>
       </span>
       <span class="mt-1 block text-base text-gray-300">
         <span class="font-medium text-white">
-          {{ $t('sHarvest.total_') }}
+          {{ $t('sHarvest.toHarvest_') }}
         </span>
-        {{ $t('sHarvest.alreadyHarvested') }}
+        {{ $t('sHarvest.onBlockNumber') }}<CBN :value='$store.state.bsc.blockNumber' />
       </span>
+    </p>
+
+    <p v-if='account.address === $store.state.wallet.account && account.harvest > "0"' class='transition duration-300 ease-out'>
+      <BtnTakeHarvest class='hdf-a-track bg-violet-600 hover:bg-violet-700 focus:outline-none uppercase'>
+        <HeroIconSolidFire v-if='account.harvest > "0"' class='inline w-6 h-6' />
+        <span class='hidden lg:inline'>
+          {{ $t('sHarvest.clickHereTo') }}
+        </span>
+        <span>
+          {{ $t('sHarvest.harvestAll') }}
+        </span>
+      </BtnTakeHarvest>
     </p>
   </div>
 </template>
