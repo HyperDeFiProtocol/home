@@ -2,7 +2,12 @@
   <div>
     <LAutoWidth v-if='account.isHolder' class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        User Dashboard
+        <span v-if='account.username !== ""'>
+          Hello, "{{ account.username }}"
+        </span>
+        <span v-else>
+          User Dashboard
+        </span>
 
         <template #tag>
           User Dashboard

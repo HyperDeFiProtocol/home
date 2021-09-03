@@ -56,13 +56,25 @@
       <div class='hidden lg:flex lg:items-center lg:space-x-6'>
         <BtnTranslate class='text-gray-500 hover:text-gray-200 focus:outline-none' />
 
-        <a v-if='$store.state.wallet.account' class='btn-md-account space-x-2 font-mono'
-           target='_blank' :href='hdfLink.exploreToken4address($store.state.wallet.account)'>
+        <nuxt-link v-if='$store.state.wallet.account && $store.state.wallet.username'
+                   class='btn-md-account space-x-2 font-mono'
+                   :to='localeLocation("/address/" + $store.state.wallet.account)'
+        >
+          <IconWhale v-if='$store.state.wallet.isWhale' class='inline h-6 w-6' />
+          <span>
+            @{{ $store.state.wallet.username }}
+          </span>
+        </nuxt-link>
+        <nuxt-link v-else-if='$store.state.wallet.account'
+                   class='btn-md-account space-x-2 font-mono'
+                   :to='localeLocation("/address/" + $store.state.wallet.account)'
+        >
           <IconWhale v-if='$store.state.wallet.isWhale' class='inline h-6 w-6' />
           <span>
             {{ $store.state.wallet.account.slice(0, 4) }}...{{ $store.state.wallet.account.slice(-4) }}
           </span>
-        </a>
+        </nuxt-link>
+
         <BtnConnectWallet v-else class='btn-md-account' />
       </div>
     </LAutoWidth>
