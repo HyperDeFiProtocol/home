@@ -2,6 +2,8 @@ import locales from './locales/conf'
 
 export default {
   env: {
+    baseUrl: process.env.baseUrl || 'https://hyperdefi.org',
+
     mode: process.env.mode,
     tokenAddress: process.env.tokenAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
     presaleAddress: process.env.presaleAddress,
