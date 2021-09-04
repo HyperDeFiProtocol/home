@@ -67,7 +67,7 @@
               </p>
 
               <p>
-                0x...
+                {{ tokenAddress }}
               </p>
             </div>
 
@@ -80,7 +80,15 @@
                 For MetaMask:
               </h4>
 
-              <p>
+              <p v-if='!$store.state.wallet.account || ($store.state.wallet.account && $nuxt.context.app.web3.currentProvider.isMetaMask)'>
+                <button v-if='$store.state.wallet.account' class='btn' @click='addToken'>
+                  Add HyperDeFi to Your Wallet
+                </button>
+
+                <BtnConnectWallet v-else class='btn' />
+              </p>
+
+              <p v-if='$store.state.wallet.account && !$nuxt.context.app.web3.currentProvider.isMetaMask'>
                 Click the <b>Add Token</b> button; enter the <b>contract address</b>.
                 The wallet will auto-load for you. Then, <b>Next</b> and <b>Done</b>.
               </p>
@@ -98,7 +106,9 @@
                 <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
                   <HeroIconSolidPlusSm class='inline w-5 h-5' />
                 </span>
-                icon; it is similar to MetaMask.
+                icon;
+                enter the <b>contract address</b>.
+                The wallet will auto-load for you. Then, <b>Next</b> and <b>Done</b>.
               </p>
             </div>
           </div>
@@ -246,7 +256,7 @@
               </p>
 
               <p>
-                0x...
+                {{ tokenAddress }}
               </p>
             </div>
 
@@ -441,6 +451,10 @@ export default {
     },
     conShow(index) {
       this.tab = index
+    },
+    async addToken() {
+      const tokenAdded = await this.$nuxt.context.app.conn.addToken(this.$nuxt.context.app.web3.currentProvider)
+      console.log('tokenAdded:', tokenAdded)
     }
   }
 

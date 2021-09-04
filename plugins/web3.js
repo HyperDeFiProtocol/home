@@ -80,6 +80,8 @@ export default async function({ app, store }, inject) {
     if (!tokenAdded) {
       console.error('Add token: FAILED')
     }
+
+    return tokenAdded
   }
 
   const setWeb3 = async function(web3) {
