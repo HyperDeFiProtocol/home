@@ -106,9 +106,9 @@
                 <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
                   <HeroIconSolidPlusSm class='inline w-5 h-5' />
                 </span>
-                icon;
-                enter the <b>contract address</b>.
-                The wallet will auto-load for you. Then, <b>Next</b> and <b>Done</b>.
+                icon at the bottom, <b>Custom Asset</b>;
+                enter the <b>contract address,</b>
+                it will auto-load for you; then, <b>Add asset.</b>
               </p>
             </div>
           </div>
