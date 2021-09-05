@@ -57,8 +57,8 @@ export default {
 
 <style scoped lang='scss'>
 input {
-  @apply block w-full rounded-none rounded-l-md px-4 border-gray-300;
-  @apply text-base sm:text-sm;
+  @apply block w-full rounded-none rounded-l-md py-3 px-4 border-gray-300;
+  @apply font-mono text-sm sm:text-base md:text-lg lg:text-xl text-violet-700;
 
   &:focus {
     @apply ring-gray-500 border-gray-500;
@@ -68,6 +68,7 @@ input {
 button {
   @apply -ml-px relative inline-flex items-center space-x-2 px-4 py-2;
   @apply border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50;
+  @apply text-sm sm:text-base md:text-lg lg:text-xl;
 
   &:hover {
     @apply bg-gray-100;
