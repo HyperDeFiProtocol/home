@@ -67,7 +67,7 @@
               </p>
 
               <p>
-                {{ tokenAddress }}
+                <CInputCopy :value='tokenAddress' title='token-address-desktop'/>
               </p>
             </div>
 
@@ -201,7 +201,7 @@
 
               <p>
                 Just click Swap and wait patiently for the transaction to clear. This process may not be instant and can
-                take anywhere from a few seconds (usually) up to 10-15 minutes sometimes, depending on traffic.
+                take anywhere from a few seconds (usually) up to 1-3 minutes sometimes, depending on traffic.
               </p>
 
               <p>
@@ -256,7 +256,7 @@
               </p>
 
               <p>
-                {{ tokenAddress }}
+                <CInputCopy :value='tokenAddress' title='token-address-mobi'/>
               </p>
             </div>
 
