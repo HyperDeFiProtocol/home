@@ -58,6 +58,11 @@ object-assign
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 
+//! moment.js
+
+//! moment.js locale configuration
+
+
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -86,11 +91,6 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-
-
-//! moment.js
-
-//! moment.js locale configuration
 
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
