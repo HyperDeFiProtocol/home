@@ -11,7 +11,7 @@
         </template>
 
         <template #desc>
-          A step by step guide on how to trade HyperDeFi via PancakeSwap.
+          {{ $t('pBuy.desc') }}
         </template>
       </CH3>
 
@@ -32,7 +32,7 @@
 
 
       <p class='mt-8 lg:mt-10 xl:mt-12 text-rose-500 text-lg'>
-        This will take approximately 15-30 minutes if you're new.
+        {{ $t('pBuy._readTime') }}
       </p>
 
       <div class='con'>
@@ -40,10 +40,10 @@
           <div class='con-body'>
             <div class='step'>
               <h3>
-                Step.1 Create a Wallet
+                {{ $t('pBuy.step1') }}
               </h3>
               <p>
-                Just pick one from below:
+                {{ $t('pBuy.justPick__') }}
               </p>
               <ul>
                 <li v-show='tab === 0'>
@@ -61,27 +61,26 @@
               </ul>
 
               <p>
-                Just create a Wallet; and keep your phrase (or your private key) a secret! Never, never share it with
-                anyone and store it properly!
+                {{ $t('pBuy.create__') }}
               </p>
 
               <p>
-                Make sure to copy and save the HyperDeFi contract address below, for keeping you away from the scammers.
+                {{ $t('pBuy.copyContractAddress__') }}
               </p>
 
               <p>
-                <CInputCopy label='HyperDeFi Contract Address' :value='tokenAddress' title='token-address-desktop'/>
+                <CInputCopy :label='$t("pBuy.HyperDeFiContractAddress")' :value='tokenAddress' title='token-address-desktop'/>
               </p>
             </div>
 
             <div class='step'>
               <h3>
-                Step.2 Add HyperDeFi to the Wallet
+                {{ $t('pBuy.step2') }}
               </h3>
 
               <div v-show='tab === 0'>
                 <h4>
-                  For MetaMask:
+                  {{ $t('pBuy.forMetaMask') }}
                 </h4>
 
                 <p v-if='!$store.state.wallet.account || ($store.state.wallet.account && $nuxt.context.app.web3.currentProvider.isMetaMask)'>
@@ -93,8 +92,14 @@
                 </p>
 
                 <p v-if='$store.state.wallet.account && !$nuxt.context.app.web3.currentProvider.isMetaMask'>
-                  Click the <b>Add Token</b> button; enter the <b>contract address</b>.
-                  The wallet will auto-load for you. Then, <b>Next</b> and <b>Done</b>.
+                  {{ $t('pBuy.ClickThe') }}
+                  <b>{{ $t('pBuy.AddToken') }}</b>
+                  {{ $t('pBuy.button_enterThe') }}
+                  <b>{{ $t('pBuy.contractAddress_') }}</b>
+                  {{ $t('pBuy.TheWalletWillAuto__') }}
+                  <b>{{ $t('pBuy.Next') }}</b>
+                  {{ $t('pBuy.and') }}
+                  <b>{{ $t('pBuy.Done_') }}</b>
                 </p>
 
                 <div class='snaps-narrow'>
@@ -102,27 +107,31 @@
                 </div>
 
                 <h4>
-                  For Binance Chain Wallet:
+                  {{ $t('pBuy.forBinanceChainWallet') }}
                 </h4>
 
                 <p>
-                  Just use the
+                  {{ $t('pBuy.JustUseThe') }}
                   <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
                     <HeroIconSolidPlusSm class='inline w-5 h-5' />
                   </span>
-                  icon at the bottom, <b>Custom Asset</b>;
-                  enter the <b>contract address,</b>
-                  it will auto-load for you; then, <b>Add asset.</b>
+                  {{ $t('pBuy.iconAtTheBottom') }}
+                  <b>{{ $t('pBuy.CustomAsset') }}</b>
+                  {{ $t('pBuy.enterThe') }}
+                  <b>{{ $t('pBuy.contractAddress_') }}</b>
+                  {{ $t('pBuy.TheWalletWillAuto__') }}
+                  <b>{{ $t('pBuy.AddAsset_') }}</b>
                 </p>
               </div>
 
               <div v-show='tab === 1'>
                 <h4>
-                  For Truest Wallet:
+                  {{ $t('pBuy.forTrustWallet') }}
                 </h4>
 
                 <p>
-                  Tap the icon in the top-right and search for <b>HyperDeFi</b>.
+                  {{ $t('pBuy.TapTheIconInTheTopRight__') }}
+                  <b>HyperDeFi.</b>
                 </p>
 
                 <p>
@@ -134,7 +143,7 @@
                 </p>
 
                 <h4>
-                  For TokenPocket:
+                  {{ $t('pBuy.forTokenPocket') }}
                 </h4>
 
                 <p>
@@ -160,24 +169,27 @@
 
         <div class='step' v-show='tab === 0'>
           <h3>
-            Step.3 Deposit BNB, or any other tokens on BSC
+            {{ $t('pBuy.step3PC') }}
           </h3>
 
           <p>
-            Transfer some BNB to your wallet (withdraw from an exchange).
+            {{ $t('pBuy.TransferSomeBNB__') }}
           </p>
         </div>
 
         <div class='step' v-show='tab === 1'>
           <h3>
-            Step.3 Buy or deposit BNB
+            {{ $t('pBuy.step3Mobile') }}
           </h3>
 
           <p>
-            Click <b>Buy</b> button, choose <b>Smart Chain</b>
-            (that's the native token <b>BNB</b> on Binance Smart Chain),
-            then follow the wizard to get some.
-            Or you can deposit BNB to your wallet by withdrawing from an exchange.
+            {{ $t('pBuy.ClickThe') }}
+            <b>{{ $t('pBuy.Buy') }}</b>
+            {{ $t('pBuy.button_chooseThe') }}
+            <b>Smart Chain</b>
+            {{ $t('pBuy._thatSTheNativeToken') }}
+            <b>BNB</b>
+            {{ $t('pBuy.onBinanceSmartChain__') }}
           </p>
         </div>
 
@@ -185,7 +197,7 @@
           <div class='con-body'>
             <div class='step'>
               <h3>
-                Step.4 Swap to HyperDeFi, and start holding
+                {{ $t('pBuy.step4') }}
               </h3>
 
               <div class='mt-6 flex space-x-3'>
