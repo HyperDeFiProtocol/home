@@ -3,11 +3,11 @@
     <LAutoWidth class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
         <span>
-          {{ $t('pTrade.title') }}
+          {{ $t('pBuy.title') }}
         </span>
 
         <template #tag>
-          {{ $t('pTrade.tag') }}
+          {{ $t('pBuy.tag') }}
         </template>
 
         <template #desc>
@@ -20,11 +20,11 @@
         <div class=''>
           <nav class='-mb-px flex' aria-label='Tabs'>
             <button class='btn-tab' :class='tabClass(0)' @click='conShow(0)'>
-              {{ $t('pTrade.tabPC') }}
+              {{ $t('pBuy.tabPC') }}
             </button>
 
             <button class='btn-tab' :class='tabClass(1)' @click='conShow(1)'>
-              {{ $t('pTrade.tabMobile') }}
+              {{ $t('pBuy.tabMobile') }}
             </button>
           </nav>
         </div>

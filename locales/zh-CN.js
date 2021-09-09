@@ -1,6 +1,6 @@
 import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
-import pTrade from '~/locales/zh/pTrade'
+import pBuy from '~/locales/zh/pBuy'
 import pPresale from '~/locales/zh/pPresale'
 import pUser from '~/locales/zh/pUser'
 
@@ -40,7 +40,7 @@ import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 export default {
   global: global,
   siteNav: siteNav,
-  pTrade: pTrade,
+  pBuy: pBuy,
   pPresale: pPresale,
   pUser: pUser,
 
