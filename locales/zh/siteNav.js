@@ -1,5 +1,6 @@
 export default {
   txExplorer: '交易浏览器',
+  howToBuy: '如何购买',
   trade: '如何交易',
   presale: '预售',
   documentation: '在线文档',

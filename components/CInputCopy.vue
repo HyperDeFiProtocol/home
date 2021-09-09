@@ -1,14 +1,14 @@
 <template>
   <div>
     <label :for="xHash" class="block text-sm font-medium text-gray-400">
-      HyperDeFi Contract Address
+      {{ label }}
     </label>
     <div class="mt-2 flex rounded-md shadow-sm">
       <div class="relative flex items-stretch flex-grow focus-within:z-10">
         <input type="text" :ref='xHash' :value='value' @click='copy' readonly />
       </div>
       <button type="button" @click='copy'>
-        <HeroIconOutlineClipboardCopy class='w-5 h-5 text-gray-500' />
+        <HeroIconOutlineClipboardCopy class='w-6 h-6 text-gray-500' />
         <span>
           Copy
         </span>
@@ -23,6 +23,10 @@ import sha256 from 'crypto-js/sha256'
 export default {
   name: 'CInputCopy',
   props: {
+    label: {
+      type: String,
+      required: true,
+    },
     value: {
       type: String | Number,
       required: true
@@ -69,6 +73,7 @@ button {
   @apply -ml-px relative inline-flex items-center space-x-2 px-4 py-2;
   @apply border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50;
   @apply text-sm sm:text-base md:text-lg lg:text-xl;
+  @apply uppercase;
 
   &:hover {
     @apply bg-gray-100;

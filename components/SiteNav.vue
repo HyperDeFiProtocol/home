@@ -130,7 +130,7 @@ const navigation = [
   // { name: 'Product', href: '#' },
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
-  { name: 'trade', href: '/trade' },
+  { name: 'howToBuy', href: '/buy' },
   { name: 'txExplorer', href: '/history/txs' },
   { name: 'presale', href: '/presale' },
   { name: 'topAccount', href: '/holders' },

@@ -23,8 +23,11 @@ module.exports = {
       lineHeight: {
         'extra-loose': '2.5rem',
         '12': '3rem',
+      },
+      rotate: {
+        '270': '270deg',
       }
-    }
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
