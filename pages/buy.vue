@@ -135,11 +135,21 @@
                 </p>
 
                 <p>
-                  If it's not there, tap <b>Add Custom Token</b>.
-                  At the top, tap <b>Ethereum</b> next to Network, change it to <b>Smart Chain</b>.
-                  Copy the contract address above on this page and put it in the Contract Address box,
-                  with the Name as <b>HyperDeFi</b>, Symbol as <b>HyperDeFi</b>, Decimals as <b>2</b>,
-                  then tap <b>Finish</b> and go back, you will see it listed in your assets.
+                  {{ $t('pBuy.IfItSNotThere__') }}
+                  <b>{{ $t('pBuy.AddCustomToken_') }}</b>
+                  {{ $t('pBuy.AtTheTop_tap') }}
+                  <b>Ethereum</b>
+                  {{ $t('pBuy.nextToNetwork_change__') }}
+                  <b>Smart Chain.</b>
+                  {{ $t('pBuy.CopyTheContractAddress__') }}
+                  <b>HyperDeFi</b>,
+                  {{ $t('pBuy.SymbolAs') }}
+                  <b>HyperDeFi</b>,
+                  {{ $t('pBuy.DecimalsAs') }}
+                  <b>2</b>,
+                  {{ $t('pBuy.thenTap') }}
+                  <b>{{ $t('pBuy.Finish') }}</b>
+                  {{ $t('pBuy.andGoBack__') }}
                 </p>
 
                 <h4>
@@ -201,16 +211,15 @@
               </h3>
 
               <div class='mt-6 flex space-x-3'>
-                <HeroIconOutlineBell class='w-8 h-8'/>
+                <HeroIconOutlineBell class='w-6 h-6'/>
                 <span>
-                  If you intend to swap other tokens to HyperDeFi,
-                  make sure you are keeping a small amount of BNB to execute the transaction.
+                  {{ $t('pBuy.IfYouIntendToSwapOther__') }}
                 </span>
               </div>
 
               <div v-show='tab === 0'>
                 <p>
-                  Copy the URL and visit in your browser:
+                  {{ $t('pBuy.CopyTheURL_browser__') }}
                 </p>
 
                 <p>
@@ -218,7 +227,7 @@
                 </p>
 
                 <p>
-                  Or just click this button:
+                  {{ $t('pBuy.OrJustClickThisButton_') }}
                 </p>
 
                 <div class='mt-6 mb-10 max-w-sm mx-auto'>
@@ -235,7 +244,7 @@
 
                 <div v-if='$store.state.wallet.account'>
                   <p>
-                    Just click this button:
+                    {{ $t('pBuy.JustClickThisButton_') }}
                   </p>
 
                   <div class='mt-6 mb-10 max-w-sm mx-auto'>
@@ -249,7 +258,7 @@
                 </div>
                 <div v-else>
                   <p>
-                    Copy the URL and visit in your wallet APP DApp browser:
+                    {{ $t('pBuy.CopyTheURL_app__') }}
                   </p>
 
                   <p>
@@ -257,7 +266,7 @@
                   </p>
 
                   <p>
-                    Or just scan this qrCode:
+                    {{ $t('pBuy.OrJustScanThisQrCode_') }}
                   </p>
 
                   <p class="mx-auto w-1/3">

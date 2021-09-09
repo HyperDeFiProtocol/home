@@ -40,6 +40,16 @@ export default {
   forTrustWallet: 'For Trust Wallet:',
 
   TapTheIconInTheTopRight__: 'Tap the icon in the top-right and search for',
+  IfItSNotThere__: 'If it\'s not there, tap',
+  AddCustomToken_: 'Add Custom Token.',
+  AtTheTop_tap: 'At the top, tap',
+  nextToNetwork_change__: 'next to Network, change it to',
+  CopyTheContractAddress__: 'Copy the contract address above on this page and put it in the Contract Address box, with the Name as',
+  SymbolAs: 'Symbol as',
+  DecimalsAs: 'Decimals as',
+  thenTap: 'then tap',
+  Finish: 'Finish',
+  andGoBack__: 'and go back, you will see it listed in your assets.',
 
   forTokenPocket: 'For TokenPocket:',
 
@@ -57,6 +67,14 @@ export default {
   onBinanceSmartChain__: 'on Binance Smart Chain), then follow the wizard to get some. Or you can deposit BNB to your wallet by withdrawing from an exchange.',
 
   step4: 'Step.4 Swap to HyperDeFi, and start holding',
+
+  IfYouIntendToSwapOther__: 'If you intend to swap other tokens to HyperDeFi, make sure you are keeping a small amount of BNB to execute the transaction.',
+
+  CopyTheURL_browser__: 'Copy the URL and visit in your browser:',
+  OrJustClickThisButton_: 'Or just click this button:',
+  JustClickThisButton_: 'Just click this button:',
+  CopyTheURL_app__: 'Copy the URL and visit in your wallet APP DApp browser:',
+  OrJustScanThisQrCode_: 'Or just scan this qrCode:',
 
   key: 'Text',
 }

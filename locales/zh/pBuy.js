@@ -40,6 +40,16 @@ export default {
   forTrustWallet: 'Trust Wallet 操作：',
 
   TapTheIconInTheTopRight__: '点击右上角的图标并搜索',
+  IfItSNotThere__: '如果那里没有，点击',
+  AddCustomToken_: '添加自定义 Token。',
+  AtTheTop_tap: '在顶部，点击',
+  nextToNetwork_change__: '与网络相邻，切换到',
+  CopyTheContractAddress__: '复制本页上方的合约地址，把它填入合约地址栏，名称设为',
+  SymbolAs: '符号设为',
+  DecimalsAs: '小数位数设为',
+  thenTap: '然后点击',
+  Finish: '完成',
+  andGoBack__: '然后返回，它应该已经在你的资产列表里了。',
 
   forTokenPocket: 'TokenPocket 操作：',
 
@@ -55,6 +65,14 @@ export default {
   onBinanceSmartChain__: '币安智能链上的原生 Token），然后跟随向导操作购买一些。或者你从交易所提币 BNB 存入向你的钱包。',
 
   step4: '第 4 步：换成 HyperDeFi 并开始持有',
+
+  IfYouIntendToSwapOther__: '如果你打算将其他代币换成 HyperDeFi，确保你保留少量的 BNB 来执行交易。',
+
+  CopyTheURL_browser__: '复制链接并在你的浏览器中访问：',
+  OrJustClickThisButton_: '或只需点击这个按钮：',
+  JustClickThisButton_: '只需点击这个按钮：',
+  CopyTheURL_app__: '复制链接并在你的钱包应用中 DApp 浏览器中访问：',
+  OrJustScanThisQrCode_: '或只需扫描这个二维码：',
 
   key: 'Text',
 }
