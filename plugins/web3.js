@@ -59,31 +59,6 @@ export default async function({ app, store }, inject) {
       })
   }
 
-  const addToken = async function(provider) {
-    const tokenAdded = await provider.request(
-      {
-        method: 'wallet_watchAsset',
-        params: {
-          type: 'ERC20',
-          options: {
-            address: process.env.tokenAddress,
-            symbol: store.state.bsc.metadata.tokenSymbol,
-            decimals: parseInt(store.state.bsc.metadata.tokenDecimals),
-            image: process.env.baseUrl + '/avatar.png'
-          }
-        }
-      })
-      .catch(async function(error) {
-        console.error('>>> Plugin[web3] addToken ~ wallet_watchAsset:', error)
-      })
-
-    if (!tokenAdded) {
-      console.error('Add token: FAILED')
-    }
-
-    return tokenAdded
-  }
-
   const setWeb3 = async function(web3) {
     app.web3 = web3
 
@@ -253,7 +228,5 @@ export default async function({ app, store }, inject) {
 
     tokenSync: tokenSync,
     tokenSyncKeep: tokenSyncKeep,
-
-    addToken: addToken
   }
 }
