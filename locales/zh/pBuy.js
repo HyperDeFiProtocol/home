@@ -40,7 +40,7 @@ export default {
   forTrustWallet: 'Trust Wallet 操作：',
 
   TapTheIconInTheTopRight__: '点击右上角的图标并搜索',
-  IfItSNotThere__: '如果那里没有，点击',
+  IfItSNotThere__: '如果没有，点击',
   AddCustomToken_: '添加自定义 Token。',
   AtTheTop_tap: '在顶部，点击',
   nextToNetwork_change__: '与网络相邻，切换到',

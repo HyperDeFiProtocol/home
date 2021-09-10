@@ -82,8 +82,6 @@ export default {
           provider = await detectEthereumProvider()
           await this.$nuxt.context.app.conn.connect(provider)
           this.connecting.metamask = false
-
-          // await this.$nuxt.context.app.conn.addToken(provider)
           break
         case 'Binance Chain Wallet':
           // this.connecting.binanceChainWallet = true
