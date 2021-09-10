@@ -53,9 +53,9 @@ export default {
 
   forTokenPocket: 'TokenPocket 操作：',
 
-  step3PC: '第 3 步：存入 BNB，或在 BSC 上的其它 Token',
+  step3PC: '第 3 步：存入 BNB，或 BSC 上的其它 Token',
 
-  TransferSomeBNB__: '向你的钱包转入 BNB （从交易所提币）。',
+  TransferSomeBNB__: '向你的钱包转入 BNB （从交易所提币到钱包地址）',
 
   step3Mobile: '第 3 步：购买 BNB 或存入 BNB',
 
@@ -72,7 +72,7 @@ export default {
   OrJustClickThisButton_: '或只需点击这个按钮：',
   JustClickThisButton_: '只需点击这个按钮：',
   CopyTheURL_app__: '复制链接并在你的钱包应用中 DApp 浏览器中访问：',
-  OrJustScanThisQrCode_: '或只需扫描这个二维码：',
+  OrJustScanThisQrCode_: '或扫描这个二维码：',
 
   IfYouAreAlreadyThere__: '如果你已经在页面上了，可以看到一个',
   tips_click: '提示，点击',
@@ -89,7 +89,7 @@ export default {
   isSet_and__: '设定好，并且你已经填写了你希望换取 HyperDeFi 的 BNB 数量，如图所示。',
 
   JustClick: '只要点击',
-  andWaitPatiently__: '并耐心等待交易完成。这个过程可能不是即时的，可能需要几秒钟（通常），有时需要 1-3 分钟，这取决于网络繁忙情况。',
+  andWaitPatiently__: '并耐心等待交易完成。这个过程可能不是即时的，通常需要几秒钟，有时需要 1-3 分钟，这取决于网络繁忙情况。',
 
   OnceTheTx__: '一旦交易被结算，你的钱包里应该有 HyperDeFi 了！',
   Now__HODL: '现在剩下的就是长期持有，享受自动挖矿！',
