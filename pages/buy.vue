@@ -280,8 +280,12 @@
               </div>
 
               <p>
-                If you are already there, you can see a <b>Import Token</b> tips,
-                click <b>I understand</b>, and <b>Continue:</b>
+                {{ $t('pBuy.IfYouAreAlreadyThere__') }}
+                <b>Import Token,</b>
+                {{ $t('pBuy.tips_click') }}
+                <b>I understand</b>
+                {{ $t('pBuy.and') }}
+                <b>Import:</b>
               </p>
 
               <div class='snaps-narrow'>
@@ -290,15 +294,24 @@
 
               <ol>
                 <li>
-                  Click <b>Connect</b> or <b>Unlock Wallet</b>, then <b>Connect</b> to start
+                  {{ $t('pBuy.Click') }}
+                  <b>Connect</b>
+                  {{ $t('pBuy.or') }}
+                  <b>Unlock Wallet,</b>
+                  {{ $t('pBuy.then') }}
+                  <b>Connect</b>
+                  {{ $t('pBuy.toStart') }}
                 </li>
 
                 <li>
-                  Click the
+                  {{ $t('pBuy.ClickThe') }}
                   <span class='inline-flex px-1 py-1 bg-gray-700 rounded'>
                     <HeroIconOutlineAdjustments class='inline w-5 h-5 transform rotate-270' />
                   </span>
-                  icon, set the <b>Slippage Tolerance</b> to <b>45%</b>
+                  {{ $t('pBuy.icon_setThe') }}
+                  <b>Slippage Tolerance</b>
+                  {{ $t('pBuy.to') }}
+                  <b>45%</b>
                 </li>
               </ol>
 
@@ -312,7 +325,9 @@
               </div>
 
               <p>
-                Once the slippage is set, and you have the BNB amount set that you wish to swap for HyperDeFi as shown.
+                {{ $t('pBuy.OnceThe') }}
+                <b>slippage</b>
+                {{ $t('pBuy.isSet_and__') }}
               </p>
 
               <div class='snaps-narrow'>
@@ -320,16 +335,17 @@
               </div>
 
               <p>
-                Just click Swap and wait patiently for the transaction to clear. This process may not be instant and can
-                take anywhere from a few seconds (usually) up to 1-3 minutes sometimes, depending on traffic.
+                {{ $t('pBuy.JustClick') }}
+                <b>Swap</b>
+                {{ $t('pBuy.andWaitPatiently__') }}
               </p>
 
               <p>
-                Once the transaction has been cleared, you should have HyperDeFi in your Wallet!
+                {{ $t('pBuy.OnceTheTx__') }}
               </p>
 
               <p>
-                Now all that's left is to HODL!
+                {{ $t('pBuy.Now__HODL') }}
               </p>
             </div>
           </div>

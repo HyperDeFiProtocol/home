@@ -74,5 +74,23 @@ export default {
   CopyTheURL_app__: '复制链接并在你的钱包应用中 DApp 浏览器中访问：',
   OrJustScanThisQrCode_: '或只需扫描这个二维码：',
 
-  key: 'Text',
+  IfYouAreAlreadyThere__: '如果你已经在页面上了，可以看到一个',
+  tips_click: '提示，点击',
+
+  Click: '点击',
+  or: '或者',
+  then: '然后',
+  toStart: '开始',
+
+  icon_setThe: '图标，设置',
+  to: '到',
+
+  OnceThe: '一旦',
+  isSet_and__: '设定好，并且你已经填写了你希望换取 HyperDeFi 的 BNB 数量，如图所示。',
+
+  JustClick: '只要点击',
+  andWaitPatiently__: '并耐心等待交易完成。这个过程可能不是即时的，可能需要几秒钟（通常），有时需要 1-3 分钟，这取决于网络繁忙情况。',
+
+  OnceTheTx__: '一旦交易被结算，你的钱包里应该有 HyperDeFi 了！',
+  Now__HODL: '现在剩下的就是长期持有，享受自动挖矿！',
 }

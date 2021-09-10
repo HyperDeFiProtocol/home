@@ -76,5 +76,22 @@ export default {
   CopyTheURL_app__: 'Copy the URL and visit in your wallet APP DApp browser:',
   OrJustScanThisQrCode_: 'Or just scan this qrCode:',
 
-  key: 'Text',
+  IfYouAreAlreadyThere__: 'If you are already there, you can see a',
+  tips_click: 'tips, click',
+
+  Click: 'Click',
+  or: 'or',
+  then: 'then',
+  toStart: 'to start',
+
+  icon_setThe: 'icon, set the',
+  to: 'to',
+
+  OnceThe: 'Once the',
+  isSet_and__: 'and you have the BNB amount set that you wish to swap for HyperDeFi as shown.',
+  JustClick: 'Just click',
+  andWaitPatiently__: 'and wait patiently for the transaction to clear. This process may not be instant and can take anywhere from a few seconds (usually) up to 1-3 minutes sometimes, depending on traffic.',
+
+  OnceTheTx__: 'Once the transaction has been cleared, you should have HyperDeFi in your Wallet!',
+  Now__HODL: 'Now all that\'s left is to HODL, enjoy the auto-farming!',
 }
