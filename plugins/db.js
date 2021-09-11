@@ -28,7 +28,7 @@ export default async function({ app, store }, inject) {
   await app.db.pointers.get('tokenAddress')
     .then(pointer => {
       if (pointer) {
-        tokenAddress = pointer.address
+        tokenAddress = pointer.value
       }
     })
 
@@ -43,7 +43,7 @@ export default async function({ app, store }, inject) {
     await app.db.transfer.clear()
   }
 
-  await app.db.pointers.put({ name: 'tokenAddress', address: process.env.tokenAddress }).catch(e => {
+  await app.db.pointers.put({ name: 'tokenAddress', value: process.env.tokenAddress }).catch(e => {
     console.error('putTokenAddress:', e)
   })
 }
