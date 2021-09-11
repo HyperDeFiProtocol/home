@@ -23,8 +23,8 @@ export default async function({ app, store }, inject) {
       presaleRedeem: '++id, account',
     })
 
+  // clear IndexedDB if token address changed
   let tokenAddress
-
   await app.db.pointers.get('tokenAddress')
     .then(pointer => {
       if (pointer) {
@@ -32,9 +32,8 @@ export default async function({ app, store }, inject) {
       }
     })
 
-  if (tokenAddress && process.env.tokenAddress !== tokenAddress) {
-    console.warn('>>> Cached Contract Address Changed...')
-
+  if (process.env.tokenAddress !== tokenAddress) {
+    console.warn('>>> Contract Address Changed...')
     await app.db.pointers.clear()
     await app.db.holder.clear()
     await app.db.tx.clear()
