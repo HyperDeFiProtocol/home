@@ -2,6 +2,7 @@ import Dexie from 'dexie'
 
 const VERSION = 0.9
 
+
 export default async function({ app, store }, inject) {
   app.db = await new Dexie('database')
 
@@ -21,4 +22,29 @@ export default async function({ app, store }, inject) {
       presaleDeposit: '++id, account',
       presaleRedeem: '++id, account',
     })
+
+  let tokenAddress
+
+  await app.db.pointers.get('tokenAddress')
+    .then(pointer => {
+      if (pointer) {
+        tokenAddress = pointer.address
+      }
+    })
+
+  if (tokenAddress && process.env.tokenAddress !== tokenAddress) {
+    console.warn('>>> Cached Contract Address Changed...')
+
+    await app.db.pointers.clear()
+    await app.db.holder.clear()
+    await app.db.tx.clear()
+    await app.db.airdrop.clear()
+    await app.db.lotto.clear()
+    await app.db.liquidity.clear()
+    await app.db.transfer.clear()
+  }
+
+  await app.db.pointers.put({ name: 'tokenAddress', address: process.env.tokenAddress }).catch(e => {
+    console.error('putTokenAddress:', e)
+  })
 }
