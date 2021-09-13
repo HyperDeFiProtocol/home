@@ -61,6 +61,11 @@
           <IconTwitter class="h-6 w-6" />
         </a>
 
+        <a target='_blank' :href='hdfLink.discord()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Discord</span>
+          <IconDiscord class="h-6 w-6" />
+        </a>
+
         <a target='_blank' :href='hdfLink.github()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">GitHub</span>
           <IconGithub class="h-6 w-6" />
