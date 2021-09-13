@@ -19,4 +19,7 @@ export default {
 
   holders: 'Holders List',
   topAccount: 'Top Account',
+  community: 'Community',
+
+  telegramChannel: 'Telegram Channel',
 }

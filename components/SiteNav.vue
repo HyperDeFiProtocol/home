@@ -47,9 +47,9 @@
 <!--          <a target='_blank' :href='$t("siteNav.documentationHref")' class='font-medium text-white hover:text-gray-300'>-->
 <!--            {{ $t('siteNav.documentation') }}-->
 <!--          </a>-->
-          <a target='_blank' :href='$t("siteNav.forumHref")' class='font-medium text-white hover:text-gray-300'>
-            {{ $t('siteNav.forum') }}
-          </a>
+<!--          <a target='_blank' :href='$t("siteNav.forumHref")' class='font-medium text-white hover:text-gray-300'>-->
+<!--            {{ $t('siteNav.forum') }}-->
+<!--          </a>-->
         </div>
       </div>
 
@@ -106,10 +106,10 @@
 <!--                 class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>-->
 <!--                {{ $t('siteNav.documentation') }}-->
 <!--              </a>-->
-              <a target='_blank' :href='$t("siteNav.forumHref")'
-                 class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
-                {{ $t('siteNav.forum') }}
-              </a>
+<!--              <a target='_blank' :href='$t("siteNav.forumHref")'-->
+<!--                 class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>-->
+<!--                {{ $t('siteNav.forum') }}-->
+<!--              </a>-->
             </div>
             <div class='mt-6 px-5'>
               <p class='text-center text-base font-medium text-gray-500'>Open-sourced on
@@ -134,6 +134,7 @@ const navigation = [
   { name: 'txExplorer', href: '/history/txs' },
   { name: 'presale', href: '/presale' },
   { name: 'topAccount', href: '/holders' },
+  { name: 'community', href: '/community' },
 ]
 
 

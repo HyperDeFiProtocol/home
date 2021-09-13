@@ -19,4 +19,7 @@ export default {
 
   holders: '持有者列表',
   topAccount: '富豪榜',
+  community: '社区',
+
+  telegramChannel: 'Telegram 频道',
 }

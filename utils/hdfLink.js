@@ -6,10 +6,17 @@ const githubToRepo = function(repoName) {
   return 'https://github.com/' + process.env.githubUsername + '/' + repoName
 }
 
+const githubToForum = function(repoName = 'home') {
+  return 'https://github.com/' + process.env.githubUsername + '/' + repoName + '/' + 'discussions'
+}
+
 const githubToWiki = function(repoName, path) {
   return 'https://github.com/' + process.env.githubUsername + '/' + repoName + '/wiki/' + path
 }
 
+const discord = function() {
+  return 'https://discord.gg/' + process.env.discordInvite
+}
 
 const twitter = function(username=process.env.twitterUsername) {
   return 'https://twitter.com/' + username
@@ -51,9 +58,11 @@ const pancakeSwapTo = function(outputCurrency = process.env.tokenAddress) {
 export default {
   github: github,
   githubToRepo: githubToRepo,
+  githubToForum: githubToForum,
   githubToWiki: githubToWiki,
   twitter: twitter,
   telegram: telegram,
+  discord: discord,
 
   exploreBlock: exploreBlock,
   exploreTx: exploreTx,
