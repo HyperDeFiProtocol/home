@@ -18,6 +18,10 @@ const discord = function() {
   return 'https://discord.gg/' + process.env.discordInvite
 }
 
+const reddit = function() {
+  return 'https://www.reddit.com/' + process.env.redditUsername
+}
+
 const twitter = function(username=process.env.twitterUsername) {
   return 'https://twitter.com/' + username
 }
@@ -61,8 +65,9 @@ export default {
   githubToForum: githubToForum,
   githubToWiki: githubToWiki,
   twitter: twitter,
-  telegram: telegram,
   discord: discord,
+  reddit: reddit,
+  telegram: telegram,
 
   exploreBlock: exploreBlock,
   exploreTx: exploreTx,

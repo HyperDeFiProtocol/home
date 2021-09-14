@@ -45,6 +45,20 @@
 <!--          <span class="sr-only">Instagram</span>-->
 <!--          <IconInstagram class="h-6 w-6" />-->
 <!--        </a>-->
+        <a target='_blank' :href='hdfLink.twitter()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Twitter</span>
+          <IconTwitter class="h-6 w-6" />
+        </a>
+
+        <a target='_blank' :href='hdfLink.discord()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Discord</span>
+          <IconDiscord class="h-6 w-6" />
+        </a>
+
+        <a target='_blank' :href='hdfLink.reddit()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Reddit</span>
+          <IconReddit class="h-6 w-6" />
+        </a>
 
         <a target='_blank' :href='hdfLink.telegram(telegramChannel)' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Telegram Channel</span>
@@ -56,15 +70,9 @@
           <IconTelegram class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.twitter()' class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Twitter</span>
-          <IconTwitter class="h-6 w-6" />
-        </a>
 
-        <a target='_blank' :href='hdfLink.discord()' class="text-gray-400 hover:text-gray-500">
-          <span class="sr-only">Discord</span>
-          <IconDiscord class="h-6 w-6" />
-        </a>
+
+
 
         <a target='_blank' :href='hdfLink.github()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">GitHub</span>

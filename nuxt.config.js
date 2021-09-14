@@ -13,11 +13,12 @@ export default {
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
     pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance',
 
-    githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
     twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
+    discordInvite: process.env.discordInvite || 'X4pkxBx3bf',
+    redditUsername: process.env.redditUsername || 'r/HyperDeFiProtocol',
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
     telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
-    discordInvite: process.env.discordInvite || 'X4pkxBx3bf',
+    githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
 
