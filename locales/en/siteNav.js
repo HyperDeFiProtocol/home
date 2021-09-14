@@ -5,7 +5,6 @@ export default {
   presale: 'Pre-sale',
   documentation: 'Documentation',
   documentationHref: 'https://docs.hyperdefi.org/',
-  forum: 'Forum',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
@@ -22,4 +21,6 @@ export default {
   community: 'Community',
 
   telegramChannel: 'Telegram Channel',
+  telegramGroup: 'Telegram Group',
+  githubForum: 'GitHub Forum',
 }

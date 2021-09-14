@@ -5,7 +5,7 @@ export default {
   presale: '预售',
   documentation: '在线文档',
   documentationHref: 'https://docs.hyperdefi.org/zh/',
-  forum: '论坛',
+
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
   burnHistory: '销毁记录',
   airdropHistory: '空投记录',
@@ -22,4 +22,6 @@ export default {
   community: '社区',
 
   telegramChannel: 'Telegram 频道',
+  telegramGroup: 'Telegram 群组',
+  githubForum: 'GitHub 论坛',
 }
