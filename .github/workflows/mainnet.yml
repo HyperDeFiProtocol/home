@@ -55,6 +55,6 @@ jobs:
       - name: Deploy 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          commit-message: "@{{ github.sha }}"
+          commit-message: "@${{ github.sha }}"
           branch: gh-pages
           folder: dist
