@@ -20,7 +20,6 @@ export default async function({ app, store }, inject) {
       transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
 
       presaleDeposit: '++id, account',
-      presaleRedeem: '++id, account',
     })
 
   // clear IndexedDB if token address changed

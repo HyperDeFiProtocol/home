@@ -102,6 +102,13 @@
               </p>
 
               <p class='mt-2 md:mt-4'>
+                BNB deposit cap:
+              </p>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
+                <CBN :value='$store.state.bsc.presale.depositCap' :price='true' /> BNB
+              </p>
+
+              <p class='mt-2 md:mt-4'>
                 {{ $t('global.latestBlockNumber') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
@@ -125,7 +132,7 @@
                   </dd>
                 </div>
 
-                <div>
+                <div v-if='$store.state.bsc.presale.liquidityCreatedTimestamp === "0"'>
                   <dt>
                     {{ $t('pPresale.countdown') }}
                   </dt>
@@ -483,7 +490,7 @@ export default {
 
       this.pendingRedeem = true
 
-      await this.$nuxt.context.app.token.methods.redeem()
+      await this.$nuxt.context.app.token.methods.presaleRedeem()
         .send({'from': this.$store.state.wallet.account})
         // .on('transactionHash', this.onRedeemTransactionHash)
         .on('receipt', this.onRedeemReceipt)

@@ -190,6 +190,7 @@ export const state = () => ({
   },
 
   presale: {
+    depositCap: '0',
     endTimestamp: '0',
     liquidityCreatedTimestamp: '0',
     presaleAmount: '0',
@@ -362,11 +363,12 @@ export const mutations = {
     state.specials.slots = data.slots
 
     // presale
-    state.presale.endTimestamp = data.i256[11]
-    state.presale.liquidityCreatedTimestamp = data.i256[12]
-    state.presale.presaleAmount = data.i256[13]
-    state.presale.balance = data.i256[14]
-    state.presale.fund = data.i256[15]
+    state.presale.depositCap = data.i256[11]
+    state.presale.endTimestamp = data.i256[12]
+    state.presale.liquidityCreatedTimestamp = data.i256[13]
+    state.presale.presaleAmount = data.i256[14]
+    state.presale.balance = data.i256[15]
+    state.presale.fund = data.i256[16]
   }
 }
 
