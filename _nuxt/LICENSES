@@ -1,6 +1,24 @@
-//! moment.js
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
 
-//! moment.js locale configuration
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * v2.1.4-104-gc868b3a
+ * 
+ */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 
 /*!
@@ -38,29 +56,6 @@
  * (c) 2021 Evan You
  * @license MIT
  */
-
-
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-/*!
- * The buffer module from node.js, for the browser.
- *
- * @author   Feross Aboukhadijeh <http://feross.org>
- * @license  MIT
- */
-
-/*!
- * v2.1.4-104-gc868b3a
- * 
- */
-
-/*! https://mths.be/punycode v1.4.1 by @mathias */
-
-/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -112,3 +107,8 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
+
+
+//! moment.js
+
+//! moment.js locale configuration
