@@ -8,10 +8,10 @@ export default {
 
   depositWarning: 'Do not send BUSD directly to the contract address nor from an exchange, otherwise you will lost the fund.',
 
-  listAllDeposit: 'List all pre-sale deposit',
+  listAllDeposit: 'List all Genesis Deposit',
 
   mint: 'Mint',
-  mint2__: 'of the HyperDeFi Total Supply Cap to the Contract Address, for Pre-sale',
+  mint2__: 'of the HyperDeFi Total Supply Cap to the Contract Address, for Genesis Distribution',
   sameTx__: 'It is the same transaction as the HyperDeFi main contract creation.',
   review: 'Click to review.',
   amount_: 'Amount:',
@@ -28,7 +28,7 @@ export default {
   initialLiquidityCreated: 'Initial liquidity created',
   depositedBNBAmount: 'Deposited BNB Amount',
 
-  connectWalletToDeposit: 'Connect wallet to participate the presale.',
+  connectWalletToDeposit: 'Connect wallet to participate the Genesis Deposit.',
 
   bnbBalance_: 'Your BNB balance:',
   amountToDeposit: 'Amount to deposit',
@@ -46,11 +46,11 @@ export default {
   createLiquidity3: 'create the initial PancakeSwap Liquidity with all the deposited BNB above.',
   liquidityCreatedAt: 'The initial PancakeSwap Liquidity has been created at:',
 
-  createLi1__: 'The team don\'t have the right to take the deposited BNB of presale.',
+  createLi1__: 'The team don\'t have the right to take the deposited BNB of Genesis.',
   createLi2__: 'All processes are executed automatically by the contract, with no human intervention.',
 
   // redeem
-  redeemTitle: 'Users who participated in the pre-sale redeem their share proportionally of HyperDeFi.',
+  redeemTitle: 'Users who participated in the Genesis Deposit, redeem their share proportionally of HyperDeFi.',
   yourPortion: 'Your portion:',
   notRedeemed: '(Not Redeemed)',
   redeemed: '(Redeemed)',

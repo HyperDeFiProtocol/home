@@ -2,7 +2,7 @@ export default {
   txExplorer: '交易浏览器',
   howToBuy: '如何购买',
   trade: '如何交易',
-  presale: '预售',
+  genesis: '创世纪',
   documentation: '在线文档',
   documentationHref: 'https://docs.hyperdefi.org/zh/',
 

@@ -11,7 +11,7 @@
         </h3>
         <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
           <span v-if='$store.state.bsc.presale.liquidityCreatedTimestamp === "0" && this.presaleCountdownFinished'>
-            {{ $t('pPresale.theLastDeposit') }}
+            {{ $t('pGenesis.theLastDeposit') }}
           </span>
           <span v-else>
             {{ $t('sMarketValue.presaleText') }}

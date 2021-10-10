@@ -2,7 +2,7 @@ export default {
   txExplorer: 'Tx Explorer',
   howToBuy: 'How to buy',
   trade: 'How to trade',
-  presale: 'Pre-sale',
+  genesis: 'Genesis',
   documentation: 'Documentation',
   documentationHref: 'https://docs.hyperdefi.org/',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',

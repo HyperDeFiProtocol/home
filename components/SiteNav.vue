@@ -132,7 +132,7 @@ const navigation = [
   // { name: 'Marketplace', href: '#' },
   { name: 'howToBuy', href: '/buy' },
   { name: 'txExplorer', href: '/history/txs' },
-  { name: 'presale', href: '/presale' },
+  { name: 'genesis', href: '/genesis' },
   { name: 'topAccount', href: '/holders' },
   { name: 'community', href: '/community' },
 ]

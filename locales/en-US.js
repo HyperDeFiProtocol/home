@@ -1,7 +1,7 @@
 import global from '~/locales/en/global'
 import siteNav from '~/locales/en/siteNav'
 import pBuy from '~/locales/en/pBuy'
-import pPresale from '~/locales/en/pPresale'
+import pGenesis from '~/locales/en/pGenesis'
 import pUser from '~/locales/en/pUser'
 
 import connectWallet from '~/locales/en/btnConnectWallet'
@@ -40,7 +40,7 @@ export default {
   global: global,
   siteNav: siteNav,
   pBuy: pBuy,
-  pPresale: pPresale,
+  pGenesis: pGenesis,
   pUser: pUser,
 
   connectWallet: connectWallet,
