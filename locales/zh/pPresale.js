@@ -17,6 +17,7 @@ export default {
   txHash_: '交易 Hash：',
 
   depositAllowed: '允许存入 BNB',
+  startTime_: '开始时间：',
   endTime_: '结束时间：',
   theLastDeposit: '现在，允许最后一笔存入；PancakeSwap 流动池将在存入完成同时建立。',
 

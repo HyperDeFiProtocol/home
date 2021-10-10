@@ -95,6 +95,13 @@
             </h3>
             <div class='hdf-timeline-body'>
               <p>
+                {{ $t('pPresale.startTime_') }}
+              </p>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
+                {{ moment($store.state.bsc.presale.startTimestamp * 1000) }}
+              </p>
+
+              <p class='mt-2 md:mt-4'>
                 {{ $t('pPresale.endTime_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>

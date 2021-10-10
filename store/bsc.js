@@ -73,8 +73,6 @@ export const state = () => ({
     //   ss: '00'
     // },
 
-    airdropMax: '0',
-
     liquidityBottom: '0',
 
     whaleFractionA: '0',
@@ -291,28 +289,25 @@ export const mutations = {
     state.global.autoSwapNumeratorMin = data.i16[3]
     state.global.autoSwapNumeratorMax = data.i16[4]
     state.global.autoSwapDenominator = data.i16[5]
-    state.global.autoSwapAmountMin = data.i256[6]
-    state.global.autoSwapAmountMax = data.i256[7]
+    state.global.autoSwapAmountMin = data.i256[5]
+    state.global.autoSwapAmountMax = data.i256[6]
 
     // launch timestamp
     state.global.launchTimestamp = data.i256[0]
 
-    // airdrop
-    state.global.airdropMax = data.i256[1]
-
     // liquidity amount
-    state.global.liquidityBottom = data.i256[2]
+    state.global.liquidityBottom = data.i256[1]
 
     // thresholds
-    state.global.airdropThreshold = data.i256[3]
-    state.global.whaleThreshold = data.i256[4]
-    state.global.robberThreshold = data.i256[5]
+    state.global.airdropThreshold = data.i256[2]
+    state.global.whaleThreshold = data.i256[3]
+    state.global.robberThreshold = data.i256[4]
 
     // fomo
     state.fomo.next = data.fomoNext
-    state.fomo.amount = data.i256[8]
-    state.fomo.timestamp = data.i256[9]
-    state.fomo.timestampStep = data.i256[10]
+    state.fomo.amount = data.i256[7]
+    state.fomo.timestamp = data.i256[8]
+    state.fomo.timestampStep = data.i256[9]
     // state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerFee
@@ -360,7 +355,8 @@ export const mutations = {
     state.specials.slots = data.slots
 
     // presale
-    state.presale.depositCap = data.i256[11]
+    state.presale.depositCap = data.i256[10]
+    state.presale.startTimestamp = data.i256[11]
     state.presale.endTimestamp = data.i256[12]
     state.presale.liquidityCreatedTimestamp = data.i256[13]
     state.presale.presaleAmount = data.i256[14]

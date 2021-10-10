@@ -17,6 +17,7 @@ export default {
   txHash_: 'Tx Hash:',
 
   depositAllowed: 'Deposit BNB is allowed',
+  startTime_: 'Start Time:',
   endTime_: 'End Time:',
   theLastDeposit: 'Now, the last deposit is allowed; the PancakeSwap Liquidity will be created once the last deposit is finished.',
 
