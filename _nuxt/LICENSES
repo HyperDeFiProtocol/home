@@ -1,24 +1,27 @@
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
-/*!
- * The buffer module from node.js, for the browser.
+/**
+ * [js-sha3]{@link https://github.com/emn178/js-sha3}
  *
- * @author   Feross Aboukhadijeh <http://feross.org>
- * @license  MIT
+ * @version 0.5.7
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2015-2016
+ * @license MIT
  */
 
-/*!
- * v2.1.4-104-gc868b3a
- * 
+/**
+ * [js-sha3]{@link https://github.com/emn178/js-sha3}
+ *
+ * @version 0.8.0
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2015-2018
+ * @license MIT
  */
 
-/*! https://mths.be/punycode v1.4.1 by @mathias */
 
-/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
+//! moment.js
+
+//! moment.js locale configuration
 
 
 /*!
@@ -58,27 +61,6 @@ object-assign
  */
 
 
-/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
-
-/**
- * [js-sha3]{@link https://github.com/emn178/js-sha3}
- *
- * @version 0.5.7
- * @author Chen, Yi-Cyuan [emn178@gmail.com]
- * @copyright Chen, Yi-Cyuan 2015-2016
- * @license MIT
- */
-
-/**
- * [js-sha3]{@link https://github.com/emn178/js-sha3}
- *
- * @version 0.8.0
- * @author Chen, Yi-Cyuan [emn178@gmail.com]
- * @copyright Chen, Yi-Cyuan 2015-2018
- * @license MIT
- */
-
-
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -109,6 +91,24 @@ PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
 
-//! moment.js
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
 
-//! moment.js locale configuration
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * v2.1.4-104-gc868b3a
+ * 
+ */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
