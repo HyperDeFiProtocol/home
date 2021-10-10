@@ -44,7 +44,7 @@
 import hdfLink from '~/utils/hdfLink'
 
 export default {
-  name: 'CTablePresale',
+  name: 'CTableGenesis',
   props: {
     transactions: {
       type: Array,

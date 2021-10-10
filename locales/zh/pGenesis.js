@@ -24,6 +24,8 @@ export default {
   theLastDeposit: '现在，允许最后一笔存入；PancakeSwap 流动池将在存入完成同时建立。',
 
   countdown: '倒计时',
+  startCountdown: '开始倒计时',
+  endCountdown: '结束倒计时',
   finished: '已结束',
   initialLiquidityCreated: '初始流动池已建立',
   depositedBNBAmount: '已收到的 BNB 总量',
@@ -37,8 +39,8 @@ export default {
   approved: '已授权',
   deposit: '存入',
 
-  // presale close
-  presaleClose: '预售关闭',
+  // genesis close
+  genesisClose: '预售关闭',
 
   // add liquidity
   createLiquidity1: '铸币 HyperDeFi 总量上限的',
@@ -62,6 +64,7 @@ export default {
   launch: '交易启动',
 
   // modal
+  notStarted: '创世存入尚未开始。',
   amountEmpty: '存入数量不能为空。',
   insufficientBNBBalance: 'BNB 余额不足',
   notApproved: '未授权',

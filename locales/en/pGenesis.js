@@ -24,6 +24,8 @@ export default {
   theLastDeposit: 'Now, the last deposit is allowed; the PancakeSwap Liquidity will be created once the last deposit is finished.',
 
   countdown: 'Countdown',
+  startCountdown: 'Start Countdown',
+  endCountdown: 'End Countdown',
   finished: 'Finished',
   initialLiquidityCreated: 'Initial liquidity created',
   depositedBNBAmount: 'Deposited BNB Amount',
@@ -37,8 +39,8 @@ export default {
   approved: 'Approved',
   deposit: 'Deposit',
 
-  // presale close
-  presaleClose: 'Presale Close',
+  // genesis close
+  genesisClose: 'Genesis Close',
 
   // add liquidity
   createLiquidity1: 'Mint',
@@ -64,13 +66,14 @@ export default {
   launch: 'Trading launched.',
 
   // modal
+  notStarted: 'Genesis deposit is not started.',
   amountEmpty: 'Deposit amount cannot be empty.',
   insufficientBNBBalance: 'In sufficient BNB balance',
   notApproved: 'Not Approved',
   notApproved__: 'Please finish the approval first.',
   tooEarly: 'Too Early',
   redeemNotAllowedBefore__: 'You can redeem after the PancakeSwap Liquidity is created.',
-  noPortion: 'You haven\'t participated in the Presale.' ,
+  noPortion: 'You haven\'t participated in the Genesis.' ,
 
   key: '',
 }

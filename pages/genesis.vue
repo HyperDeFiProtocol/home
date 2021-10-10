@@ -36,7 +36,7 @@
               </p>
 
               <p class='mt-2 md:mt-4 space-x-4'>
-                <nuxt-link :to='localeLocation("/history/presale")' class='a-list-deposit'>
+                <nuxt-link :to='localeLocation("/history/genesis")' class='a-list-deposit'>
                   <HeroIconSolidMenuAlt2 class="h-5 w-5" />
                   <span>
                     {{ $t('pGenesis.listAllDeposit') }}
@@ -65,7 +65,7 @@
           <div class='hdf-timeline-inner'>
             <h3>
               {{ $t('pGenesis.mint') }}
-              <CBN :value='$store.state.bsc.presale.presalePercent' />%
+              <CBN :value='$store.state.bsc.genesis.genesisPercent' />%
               {{ $t('pGenesis.mint2__') }}
             </h3>
             <div class='hdf-timeline-body'>
@@ -80,15 +80,16 @@
                 {{ $t('pGenesis.amount_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
-                <CBN :value='$store.state.bsc.presale.presaleAmount' :token='true' /> HyperDeFi
+                <CBN :value='$store.state.bsc.genesis.genesisAmount' :token='true' /> HyperDeFi
               </p>
             </div>
           </div>
         </div>
 
         <!--  deposit  -->
-        <div class='hdf-timeline-item' :class='{ "doing": liquidityNotCreatedAsDepositAllowed, "done": !liquidityNotCreatedAsDepositAllowed }'>
-          <HeroIconSolidFire v-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
+        <div class='hdf-timeline-item' :class='{ "doing": genesisStarted && liquidityNotCreatedAsDepositAllowed, "done": !liquidityNotCreatedAsDepositAllowed }'>
+          <HeroIconOutlineClock v-if='!genesisStarted' class='hdf-timeline-icon' />
+          <HeroIconSolidFire v-else-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
           <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
 
           <div class='hdf-timeline-inner'>
@@ -100,16 +101,16 @@
                 {{ $t('pGenesis.startTime_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
-                {{ moment($store.state.bsc.presale.startTimestamp * 1000) }}
+                {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
               </p>
 
               <p class='mt-2 md:mt-4'>
                 {{ $t('pGenesis.endTime_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
-                {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
+                {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
                 {{ $t('pGenesis.or') }}
-                <CBN :value='$store.state.bsc.presale.depositCap' :price='true' /> BNB
+                <CBN :value='$store.state.bsc.genesis.depositCap' :price='true' /> BNB
               </p>
 
               <p class='mt-2 md:mt-4'>
@@ -132,16 +133,25 @@
                     {{ $t('pGenesis.depositedBNBAmount') }}
                   </dt>
                   <dd>
-                    <CBN :value='$store.state.bsc.presale.fund' :decimals='18' :padding='6' />
+                    <CBN :value='$store.state.bsc.genesis.fund' :decimals='18' :padding='6' />
                   </dd>
                 </div>
 
-                <div v-if='$store.state.bsc.presale.liquidityCreatedTimestamp === "0"'>
+                <div v-if='!genesisStarted'>
                   <dt>
-                    {{ $t('pGenesis.countdown') }}
+                    {{ $t('pGenesis.startCountdown') }}
                   </dt>
                   <dd>
-                    <CCountdown :timestamp='$store.state.bsc.presale.endTimestamp * 1000' :show-ds='true' v-on:finished='setCountdownFinished' />
+                    <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000' :show-ds='true' />
+                  </dd>
+                </div>
+
+                <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>
+                  <dt>
+                    {{ $t('pGenesis.endCountdown') }}
+                  </dt>
+                  <dd>
+                    <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000' :show-ds='true' v-on:finished='setCountdownFinished' />
                   </dd>
                 </div>
                 <div v-else>
@@ -206,7 +216,7 @@
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl hidden sm:block'>
               {{ $t('pGenesis.createLiquidity1') }}
-              <CBN :value='$store.state.bsc.presale.liquidityPercent' />%
+              <CBN :value='$store.state.bsc.genesis.initLiquidityPercent' />%
               {{ $t('pGenesis.createLiquidity2') }}<br>
               {{ $t('pGenesis.createLiquidity3') }}
             </h3>
@@ -215,12 +225,12 @@
             </h3>
 
             <div class='hdf-timeline-body'>
-              <div v-if='$store.state.bsc.presale.liquidityCreatedTimestamp > "0"'>
+              <div v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'>
                 <p>
                   {{ $t('pGenesis.liquidityCreatedAt') }}
                 </p>
                 <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
-                  {{ moment($store.state.bsc.presale.liquidityCreatedTimestamp * 1000) }}
+                  {{ moment($store.state.bsc.genesis.liquidityCreatedTimestamp * 1000) }}
                 </p>
               </div>
 
@@ -249,12 +259,12 @@
             </h3>
 
             <div class='hdf-timeline-body' v-if='$store.state.wallet.account'>
-              <div v-if='$store.state.wallet.presalePortion > "0"'>
+              <div v-if='$store.state.wallet.genesisPortion > "0"'>
                 <p>
                   {{ $t('pGenesis.yourPortion') }}
                 </p>
                 <p class='mt-2 text-lg md:text-xl text-gray-200'>
-                  <CBN :value='$store.state.wallet.presalePortion' :token='true' :padding='2' /> HyperDeFi
+                  <CBN :value='$store.state.wallet.genesisPortion' :token='true' :padding='2' /> HyperDeFi
                   <span v-if='redeemable'>
                     {{ $t('pGenesis.notRedeemed') }}
                   </span>
@@ -269,7 +279,7 @@
                     <span>
                       {{ $t('pGenesis.redeem') }}
                     </span>
-                    <CBN :value='$store.state.wallet.presalePortion' :token='true' :padding='2' />
+                    <CBN :value='$store.state.wallet.genesisPortion' :token='true' :padding='2' />
                     <span>
                       HyperDeFi
                     </span>
@@ -353,22 +363,25 @@ export default {
       return process.env.tokenAddress
     },
 
+    genesisStarted() {
+      return new BN(Math.floor(new Date().getTime()/1000.0).toString()).lt(this.$store.state.bsc.genesis.startTimestamp)
+    },
     theLastDeposit() {
-      return this.$store.state.bsc.presale.liquidityCreatedTimestamp === '0' && this.countdownFinished
+      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp === '0' && this.countdownFinished
     },
 
     // depositAllowed() {
     liquidityNotCreatedAsDepositAllowed() {
-      return this.$store.state.bsc.presale.liquidityCreatedTimestamp === '0'
+      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp === '0'
     },
     redeeming() {
-      return !this.liquidityNotCreatedAsDepositAllowed && this.$store.state.bsc.presale.balance > '0'
+      return !this.liquidityNotCreatedAsDepositAllowed && this.$store.state.bsc.genesis.balance > '0'
     },
     tradeAllowed() {
       return !this.liquidityNotCreatedAsDepositAllowed && this.countdownFinished
     },
     redeemable() {
-      return this.$store.state.wallet.presalePortion > '0' && !this.$store.state.wallet.presaleRedeemed
+      return this.$store.state.wallet.genesisPortion > '0' && !this.$store.state.wallet.genesisRedeemed
     },
 
     amountStr() {
@@ -389,6 +402,18 @@ export default {
     },
 
     async deposit() {
+
+      // genesisStarted
+      if (!this.genesisStarted) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.info'),
+          message: this.$t('pGenesis.notStarted'),
+        })
+
+        return
+      }
+
+
       // pending check
       if (this.pendingDeposit) {
         await this.$store.dispatch('warning/SET_WARNING', {
@@ -482,7 +507,7 @@ export default {
       }
 
       // portion check
-      if (this.$store.state.wallet.presalePortion === '0') {
+      if (this.$store.state.wallet.genesisPortion === '0') {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.error'),
           message: this.$t('pGenesis.noPortion'),
@@ -493,7 +518,7 @@ export default {
 
       this.pendingRedeem = true
 
-      await this.$nuxt.context.app.token.methods.presaleRedeem()
+      await this.$nuxt.context.app.token.methods.genesisRedeem()
         .send({'from': this.$store.state.wallet.account})
         // .on('transactionHash', this.onRedeemTransactionHash)
         .on('receipt', this.onRedeemReceipt)

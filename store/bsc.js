@@ -12,11 +12,11 @@ export const state = () => ({
 
     fromHolderId: null,
 
-    presaleDepositFrom: 0,
-    presaleDepositTo: 0,
+    genesisDepositFrom: 0,
+    genesisDepositTo: 0,
 
-    presaleRedeemFrom: 0,
-    presaleRedeemTo: 0,
+    genesisRedeemFrom: 0,
+    genesisRedeemTo: 0,
   },
 
   blockNumber: 0,
@@ -73,7 +73,7 @@ export const state = () => ({
     //   ss: '00'
     // },
 
-    liquidityBottom: '0',
+    initLiquidity: '0',
 
     whaleFractionA: '0',
     whaleFractionB: '0',
@@ -187,14 +187,14 @@ export const state = () => ({
     totalTax: '0'
   },
 
-  presale: {
+  genesis: {
     depositMax: '0',
     depositCap: '0',
     startTimestamp: '0',
     endTimestamp: '0',
     liquidityCreatedTimestamp: '0',
-    presaleAmount: '0',
-    presalePercent: '0',
+    genesisAmount: '0',
+    genesisPercent: '0',
     balance: '0',
     fund: '0'
   }
@@ -210,12 +210,12 @@ export const mutations = {
     state.synchronizing.fromHolderId = fromHolderId
   },
   async SET_SYNCHRONIZING_PD(state, syncOption) {
-    state.synchronizing.presaleDepositFrom = syncOption.fromBlock
-    state.synchronizing.presaleDepositTo = syncOption.toBlock
+    state.synchronizing.genesisDepositFrom = syncOption.fromBlock
+    state.synchronizing.genesisDepositTo = syncOption.toBlock
   },
   async SET_SYNCHRONIZING_PR(state, syncOption) {
-    state.synchronizing.presaleRedeemFrom = syncOption.fromBlock
-    state.synchronizing.presaleRedeemTo = syncOption.toBlock
+    state.synchronizing.genesisRedeemFrom = syncOption.fromBlock
+    state.synchronizing.genesisRedeemTo = syncOption.toBlock
   },
   async SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
@@ -299,7 +299,7 @@ export const mutations = {
     state.global.launchTimestamp = data.i256[0]
 
     // liquidity amount
-    state.global.liquidityBottom = data.i256[1]
+    state.global.initLiquidity = data.i256[1]
 
     // thresholds
     state.global.airdropThreshold = data.i256[2]
@@ -357,19 +357,19 @@ export const mutations = {
     state.specials.flats = data.flats
     state.specials.slots = data.slots
 
-    // presale
-    state.presale.depositMax = data.i256[10]
-    state.presale.depositCap = data.i256[11]
-    state.presale.startTimestamp = data.i256[12]
-    state.presale.endTimestamp = data.i256[13]
-    state.presale.liquidityCreatedTimestamp = data.i256[14]
-    state.presale.presaleAmount = data.i256[15]
-    state.presale.balance = data.i256[16]
-    state.presale.fund = data.i256[17]
+    // genesis
+    state.genesis.depositMax = data.i256[10]
+    state.genesis.depositCap = data.i256[11]
+    state.genesis.startTimestamp = data.i256[12]
+    state.genesis.endTimestamp = data.i256[13]
+    state.genesis.liquidityCreatedTimestamp = data.i256[14]
+    state.genesis.genesisAmount = data.i256[15]
+    state.genesis.balance = data.i256[16]
+    state.genesis.fund = data.i256[17]
 
-    state.presale.presalePercent = new BN(state.presale.presaleAmount).muln(100).div(new BN(state.supply.cap))
+    state.genesis.genesisPercent = new BN(state.genesis.genesisAmount).muln(100).div(new BN(state.supply.cap))
 
-    state.presale.liquidityPercent = new BN(state.global.liquidityBottom).muln(100).div(new BN(state.supply.cap))
+    state.genesis.initLiquidityPercent = new BN(state.global.initLiquidity).muln(100).div(new BN(state.supply.cap))
   }
 }
 

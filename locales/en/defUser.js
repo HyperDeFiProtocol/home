@@ -12,7 +12,7 @@ export default {
   airdrop: 'Airdrop Pool',
   burn: 'Black-hole',
   zero: 'Zero Address',
-  presale: 'Presale Contract',
+  genesis: 'Genesis Contract',
   fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',

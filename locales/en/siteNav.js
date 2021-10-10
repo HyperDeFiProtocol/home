@@ -12,8 +12,8 @@ export default {
   fomoAccumulateHistory: 'FOMO Accumulate History',
   fomoWinnerHistory: 'FOMO Winner History',
   taxHarvestHistory: 'Tax/Harvest History',
-  presaleHistory: 'Presale History',
-  presaleRedeemHistory: 'Presale Redeem History',
+  genesisHistory: 'Genesis History',
+  genesisRedeemHistory: 'Genesis Redeem History',
 
   holders: 'Holders List',
   topAccount: 'Top Account',

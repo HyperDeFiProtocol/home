@@ -1,7 +1,7 @@
 export default {
-  presaleTag: 'Presale Ongoing',
-  presaleText: 'Deposit is allowed before',
-  visitPresale: 'Visit Presale',
+  genesisTag: 'Genesis Ongoing',
+  genesisText: 'Deposit is allowed before',
+  visitGenesis: 'Visit Genesis',
 
   launchTag: 'Launch Time',
   launchText: 'Trading is allowed after',

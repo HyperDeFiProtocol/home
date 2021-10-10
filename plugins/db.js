@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 
-const VERSION = 1.0
+const VERSION = 1.1
 
 
 export default async function({ app, store }, inject) {
@@ -18,7 +18,7 @@ export default async function({ app, store }, inject) {
       liquidity: '++id',
       transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
 
-      presaleDeposit: '++id, account',
+      genesisDeposit: '++id, account',
     })
 
   // clear IndexedDB if token address changed
@@ -38,7 +38,7 @@ export default async function({ app, store }, inject) {
     await app.db.airdrop.clear()
     await app.db.liquidity.clear()
     await app.db.transfer.clear()
-    await app.db.presaleDeposit.clear()
+    await app.db.genesisDeposit.clear()
   }
 
   await app.db.pointers.put({ name: 'tokenAddress', value: process.env.tokenAddress }).catch(e => {

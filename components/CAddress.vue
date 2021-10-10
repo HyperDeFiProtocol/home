@@ -26,8 +26,8 @@ export default {
           return 'liquidity'
         case this.$store.state.bsc.globalAccounts.buffer:
           return 'buffer'
-        case this.$store.state.bsc.globalAccounts.presale:
-          return 'presale'
+        case this.$store.state.bsc.globalAccounts.genesis:
+          return 'genesis'
         // case this.$store.state.bsc.globalAccounts.fund:
         //   return 'fund'
         // case this.$store.state.bsc.globalAccounts.zero:

@@ -1,29 +1,29 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-show='$store.state.bsc.presale.liquidityCreatedTimestamp === "0"' class="mb-12 md:mb-20 text-center">
+      <div v-show='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
-          {{ $t('sMarketValue.presaleTag') }}
+          {{ $t('sMarketValue.genesisTag') }}
         </h2>
         <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CCountdown :timestamp='$store.state.bsc.presale.endTimestamp * 1000'
-                      :show-ds='true' v-on:finished='setPresaleCountdownFinished' />
+          <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
+                      :show-ds='true' v-on:finished='setGenesisCountdownFinished' />
         </h3>
         <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
-          <span v-if='$store.state.bsc.presale.liquidityCreatedTimestamp === "0" && this.presaleCountdownFinished'>
+          <span v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0" && this.genesisCountdownFinished'>
             {{ $t('pGenesis.theLastDeposit') }}
           </span>
           <span v-else>
-            {{ $t('sMarketValue.presaleText') }}
-            {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
+            {{ $t('sMarketValue.genesisText') }}
+            {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
           </span>
-          <nuxt-link :to='localePath("/presale")' class='hdf-a-colored'>
-            {{ $t('sMarketValue.visitPresale') }}
+          <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
+            {{ $t('sMarketValue.visitGenesis') }}
           </nuxt-link>
         </p>
       </div>
 
-      <div v-show='presaleCountdownFinished && !launchCountdownFinished' class="mb-12 md:mb-20 text-center">
+      <div v-show='genesisCountdownFinished && !launchCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.launchTag') }}
         </h2>
@@ -158,12 +158,12 @@
       </div>
 
       <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'
-           v-if='$store.state.bsc.presale.liquidityCreatedTimestamp > "0"'>
+           v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'>
         <p>
           {{ $t('sMarketValue.thereIsA__') }}
           <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi
           {{ $t('sMarketValue.willBeMinted__') }}
-          <CBN :value='$store.state.bsc.global.liquidityBottom' :token='true' /> HyperDeFi
+          <CBN :value='$store.state.bsc.global.initLiquidity' :token='true' /> HyperDeFi
           {{ $t('sMarketValue.executeByContract__') }}
           <a class='hover:text-gray-300' target='_blank'
              :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.zero)'>
@@ -226,7 +226,7 @@ export default {
   data() {
     return {
       launchCountdownFinished: false,
-      presaleCountdownFinished: false,
+      genesisCountdownFinished: false,
     }
   },
   computed: {
@@ -244,8 +244,8 @@ export default {
     setLaunchCountdownFinished(value) {
       this.launchCountdownFinished = value
     },
-    setPresaleCountdownFinished(value) {
-      this.presaleCountdownFinished = value
+    setGenesisCountdownFinished(value) {
+      this.genesisCountdownFinished = value
     },
   }
 }

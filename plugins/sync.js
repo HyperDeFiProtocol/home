@@ -298,22 +298,22 @@ export default async function({ app, store }, inject) {
     await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')
   }
 
-  const presaleDeposit = async function() {
+  const genesisDeposit = async function() {
     let syncOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
 
-    if (store.state.bsc.synchronizing.presaleDepositFrom) {
+    if (store.state.bsc.synchronizing.genesisDepositFrom) {
       console.warn(
         'Pre-sale deposit synchronizing in progress blocks: #'
-        + store.state.bsc.synchronizing.presaleDepositFrom
+        + store.state.bsc.synchronizing.genesisDepositFrom
         + ' - '
-        + store.state.bsc.synchronizing.presaleDepositTo
+        + store.state.bsc.synchronizing.genesisDepositTo
       )
       return
     }
 
     await store.dispatch('bsc/SET_SYNCHRONIZING_PD', syncOption)
 
-    await app.db.pointers.get('syncPresaleDeposit')
+    await app.db.pointers.get('syncGenesisDeposit')
       .then(pointer => {
         if (pointer) {
           syncOption.fromBlock = pointer.blockNumber + 1
@@ -339,9 +339,9 @@ export default async function({ app, store }, inject) {
         // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('PresaleDeposit', syncOption)
+          .getPastEvents('GenesisDeposit', syncOption)
           .catch(e => {
-            console.error('>>> sync, syncPresaleDeposit:', e)
+            console.error('>>> sync, syncGenesisDeposit:', e)
           })
 
         if (events.length) {
@@ -356,8 +356,8 @@ export default async function({ app, store }, inject) {
             })
           }
 
-          await app.db.presaleDeposit.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncPresaleDeposit, bulkAdd:', e)
+          await app.db.genesisDeposit.bulkAdd(transactions).catch(e => {
+            console.error('>>> sync, syncGenesisDeposit, bulkAdd:', e)
           })
         }
 
@@ -372,7 +372,7 @@ export default async function({ app, store }, inject) {
       ])
 
       syncOption.fromBlock = syncOption.toBlock + 1
-      await app.db.pointers.put({ name: 'syncPresaleDeposit', blockNumber: syncOption.toBlock }).catch(e => {
+      await app.db.pointers.put({ name: 'syncGenesisDeposit', blockNumber: syncOption.toBlock }).catch(e => {
         console.error('putBlockPoint:', e)
       })
     }
@@ -384,22 +384,22 @@ export default async function({ app, store }, inject) {
     // return range
   }
 
-  // const presaleRedeem = async function() {
+  // const genesisRedeem = async function() {
   //   let syncOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
   //
-  //   if (store.state.bsc.synchronizing.presaleRedeemFrom) {
+  //   if (store.state.bsc.synchronizing.genesisRedeemFrom) {
   //     console.warn(
   //       'Pre-sale redeem synchronizing in progress blocks: #'
-  //       + store.state.bsc.synchronizing.presaleRedeemFrom
+  //       + store.state.bsc.synchronizing.genesisRedeemFrom
   //       + ' - '
-  //       + store.state.bsc.synchronizing.presaleRedeemTo
+  //       + store.state.bsc.synchronizing.genesisRedeemTo
   //     )
   //     return
   //   }
   //
   //   await store.dispatch('bsc/SET_SYNCHRONIZING_PR', syncOption)
   //
-  //   await app.db.pointers.get('syncPresaleRedeem')
+  //   await app.db.pointers.get('syncGenesisRedeem')
   //     .then(pointer => {
   //       if (pointer) {
   //         syncOption.fromBlock = pointer.blockNumber + 1
@@ -425,9 +425,9 @@ export default async function({ app, store }, inject) {
   //       // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
   //
   //       const events = await app.token
-  //         .getPastEvents('PresaleDeposit', syncOption)
+  //         .getPastEvents('GenesisDeposit', syncOption)
   //         .catch(e => {
-  //           console.error('>>> sync, syncPresaleRedeem:', e)
+  //           console.error('>>> sync, syncGenesisRedeem:', e)
   //         })
   //
   //       if (events.length) {
@@ -442,8 +442,8 @@ export default async function({ app, store }, inject) {
   //           })
   //         }
   //
-  //         await app.db.presaleRedeem.bulkAdd(transactions).catch(e => {
-  //           console.error('>>> sync, syncPresaleRedeem, bulkAdd:', e)
+  //         await app.db.genesisRedeem.bulkAdd(transactions).catch(e => {
+  //           console.error('>>> sync, syncGenesisRedeem, bulkAdd:', e)
   //         })
   //       }
   //
@@ -458,7 +458,7 @@ export default async function({ app, store }, inject) {
   //     ])
   //
   //     syncOption.fromBlock = syncOption.toBlock + 1
-  //     await app.db.pointers.put({ name: 'syncPresaleRedeem', blockNumber: syncOption.toBlock }).catch(e => {
+  //     await app.db.pointers.put({ name: 'syncGenesisRedeem', blockNumber: syncOption.toBlock }).catch(e => {
   //       console.error('putBlockPoint:', e)
   //     })
   //   }
@@ -473,7 +473,7 @@ export default async function({ app, store }, inject) {
   app.sync = {
     all: all,
     holders: holders,
-    presaleDeposit: presaleDeposit,
-    // presaleRedeem: presaleRedeem,
+    genesisDeposit: genesisDeposit,
+    // genesisRedeem: genesisRedeem,
   }
 }

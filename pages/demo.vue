@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted: async function() {
-    await this.$nuxt.context.app.sync.presaleDeposit()
+    await this.$nuxt.context.app.sync.genesisDeposit()
 
     console.log(this.$store.state.bsc.metadata)
 

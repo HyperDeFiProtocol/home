@@ -2,17 +2,17 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.presaleHistory') }}
+        {{ $t('siteNav.genesisHistory') }}
 
         <template #tag>
           On Chain
         </template>
       </CH3>
 
-      <CTablePresale :transactions='transactions' class='mt-10 lg:mt-24' />
+      <CTableGenesis :transactions='transactions' class='mt-10 lg:mt-24' />
 
       <CPagination class='mt-8 lg:mt-12'
-                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/presale' />
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/genesis' />
     </LAutoWidth>
   </div>
 </template>
@@ -22,7 +22,7 @@ import fn from '~/utils/functions'
 
 export default {
   scrollToTop: true,
-  name: 'HistoryPresaleDeposit',
+  name: 'HistoryGenesisDeposit',
   data() {
     return {
       transactions: [],
@@ -50,7 +50,7 @@ export default {
     '$store.state.bsc.blockNumber': async function() {
       await this.sync()
     },
-    '$store.state.bsc.synchronizing.presaleDepositFrom': async function() {
+    '$store.state.bsc.synchronizing.genesisDepositFrom': async function() {
       await fn.wait(1000)
       await this.load()
     },
@@ -61,16 +61,16 @@ export default {
   },
   methods: {
     async sync() {
-      await this.$nuxt.context.app.sync.presaleDeposit()
+      await this.$nuxt.context.app.sync.genesisDeposit()
     },
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.presaleDeposit
+      this.transactions = await this.$nuxt.context.app.db.genesisDeposit
         .reverse()
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
 
-      this.pageRecords = await this.$nuxt.context.app.db.presaleDeposit.count()
+      this.pageRecords = await this.$nuxt.context.app.db.genesisDeposit.count()
     },
   }
 
