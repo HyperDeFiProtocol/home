@@ -18,7 +18,7 @@ export default {
 
   depositAllowed: '允许存入 BNB',
   startTime_: '开始时间：',
-  endTime_: '结束时间或存入上限：',
+  endTime_: '结束时间或总存入上限：',
   or: '或',
   theLastDeposit: '现在，允许最后一笔存入；PancakeSwap 流动池将在存入完成同时建立。',
 
