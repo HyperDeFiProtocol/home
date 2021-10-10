@@ -90,7 +90,7 @@ export const state = () => ({
 
     tradeAmountMax: '0',
 
-    lottoThreshold: '0',
+    airdropThreshold: '0',
     whaleThreshold: '0',
     robberThreshold: '0'
   },
@@ -130,7 +130,7 @@ export const state = () => ({
 
   takerFee: {
     tax: '0',
-    lotto: '0',
+    airdrop: '0',
     fomo: '0',
     liquidity: '0',
     fund: '0',
@@ -141,7 +141,7 @@ export const state = () => ({
 
   makerFee: {
     tax: '0',
-    lotto: '0',
+    airdrop: '0',
     fomo: '0',
     liquidity: '0',
     fund: '0',
@@ -152,7 +152,7 @@ export const state = () => ({
 
   whaleFee: {
     tax: '0',
-    lotto: '0',
+    airdrop: '0',
     fomo: '0',
     liquidity: '0',
     fund: '0',
@@ -163,7 +163,7 @@ export const state = () => ({
 
   robberFee: {
     tax: '0',
-    lotto: '0',
+    airdrop: '0',
     fomo: '0',
     liquidity: '0',
     fund: '0',
@@ -251,9 +251,8 @@ export const mutations = {
     state.supply.liquidity = data.supplies[4]
     state.supply.buffer = data.supplies[5]
     state.supply.tax = data.supplies[6]
-    state.supply.airdrop = data.supplies[7]
-    state.supply.fomo = data.supplies[8]
-    state.supply.burned = data.supplies[9]
+    state.supply.fomo = data.supplies[7]
+    state.supply.burned = data.supplies[8]
     state.supply.burnedRatio = new BN(state.supply.burned).mul(new BN('100000')).div(new BN(state.supply.cap)).toString()
     state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
 
@@ -262,7 +261,6 @@ export const mutations = {
     state.marketValue.liquidity = new BN(state.supply.liquidity).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.buffer = new BN(state.supply.buffer).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.tax = new BN(state.supply.tax).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
-    state.marketValue.airdrop = new BN(state.supply.airdrop).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.fomo = new BN(state.supply.fomo).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.burned = new BN(state.supply.burned).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
 
@@ -274,10 +272,9 @@ export const mutations = {
     state.globalAccounts.buffer = data.accounts[4]
 
     state.globalAccounts.tax = data.accounts[5]
-    state.globalAccounts.airdrop = data.accounts[6]
-    state.globalAccounts.fomo = data.accounts[7]
-    state.globalAccounts.fund = data.accounts[8]
-    state.globalAccounts.burn = data.accounts[9]
+    state.globalAccounts.fomo = data.accounts[6]
+    state.globalAccounts.fund = data.accounts[7]
+    state.globalAccounts.burn = data.accounts[8]
   },
 
   async SET_GLOBAL(state, data) {
@@ -307,7 +304,7 @@ export const mutations = {
     state.global.liquidityBottom = data.i256[2]
 
     // thresholds
-    state.global.lottoThreshold = data.i256[3]
+    state.global.airdropThreshold = data.i256[3]
     state.global.whaleThreshold = data.i256[4]
     state.global.robberThreshold = data.i256[5]
 
@@ -320,7 +317,7 @@ export const mutations = {
 
     // takerFee
     state.takerFee.tax = data.takerFees[0]
-    state.takerFee.lotto = data.takerFees[1]
+    state.takerFee.airdrop = data.takerFees[1]
     state.takerFee.fomo = data.takerFees[2]
     state.takerFee.liquidity = data.takerFees[3]
     state.takerFee.fund = data.takerFees[4]
@@ -330,7 +327,7 @@ export const mutations = {
 
     // makerFee
     state.makerFee.tax = data.makerFees[0]
-    state.makerFee.lotto = data.makerFees[1]
+    state.makerFee.airdrop = data.makerFees[1]
     state.makerFee.fomo = data.makerFees[2]
     state.makerFee.liquidity = data.makerFees[3]
     state.makerFee.fund = data.makerFees[4]
@@ -340,7 +337,7 @@ export const mutations = {
 
     // whaleFee
     state.whaleFee.tax = data.whaleFees[0]
-    state.whaleFee.lotto = data.whaleFees[1]
+    state.whaleFee.airdrop = data.whaleFees[1]
     state.whaleFee.fomo = data.whaleFees[2]
     state.whaleFee.liquidity = data.whaleFees[3]
     state.whaleFee.fund = data.whaleFees[4]
@@ -350,7 +347,7 @@ export const mutations = {
 
     // robberFee
     state.robberFee.tax = data.robberFees[0]
-    state.robberFee.lotto = data.robberFees[1]
+    state.robberFee.airdrop = data.robberFees[1]
     state.robberFee.fomo = data.robberFees[2]
     state.robberFee.liquidity = data.robberFees[3]
     state.robberFee.fund = data.robberFees[4]

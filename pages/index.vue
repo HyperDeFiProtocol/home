@@ -2,13 +2,12 @@
   <div>
 
     <SWelcome />
-    <SFomo v-if='$store.state.bsc.fomo.amount > "0"' />
-    <SFeatures class='bg-gray-800' />
-    <SMarketValue />
-    <SAirdrop class='bg-gray-800' />
+    <SFomo v-if='$store.state.bsc.fomo.amount > "0"' class='bg-gray-800' />
+    <SFeatures />
+    <SMarketValue class='bg-gray-800' />
     <SFee />
     <SFeeTax class='bg-gray-800' />
-    <SFeeLotto />
+    <SFeeAirdrop />
     <SFeeFomo class='bg-gray-800' />
     <SFeeLiquidity />
     <SFeeFund class='bg-gray-800' />

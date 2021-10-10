@@ -10,10 +10,10 @@
       <main>
         <div class='header2'>
           <h2 class='text-teal-400'>
-            {{ $t('sFeeLotto.title') }}
+            {{ $t('sFeeAirdrop.title') }}
           </h2>
           <p>
-            {{ $t('sFeeLotto.text') }}
+            {{ $t('sFeeAirdrop.text') }}
           </p>
         </div>
 
@@ -24,41 +24,41 @@
 
           <p>
             {{ $t('sFee.take') }}
-            <span v-if='$store.state.bsc.takerFee.lotto > "0"'>
-              {{ $store.state.bsc.takerFee.lotto }}%
+            <span v-if='$store.state.bsc.takerFee.airdrop > "0"'>
+              {{ $store.state.bsc.takerFee.airdrop }}%
               {{ $t('sFee.fromTaker') }}
             </span>
-            <span v-if='$store.state.bsc.makerFee.lotto > "0"'>
-              {{ $store.state.bsc.makerFee.lotto }}%
+            <span v-if='$store.state.bsc.makerFee.airdrop > "0"'>
+              {{ $store.state.bsc.makerFee.airdrop }}%
               {{ $t('sFee.fromMaker') }}
             </span>
-            <span v-if='$store.state.bsc.whaleFee.lotto > "0"'>
-              {{ $store.state.bsc.whaleFee.lotto }}%
+            <span v-if='$store.state.bsc.whaleFee.airdrop > "0"'>
+              {{ $store.state.bsc.whaleFee.airdrop }}%
               {{ $t('sFee.fromWhale') }}
             </span>
-            {{ $t('sFeeLotto.takeThen__') }}
-            <CBN :value='String($store.state.bsc.global.lottoThreshold)' :token='true' />
-            HyperDeFi{{ $t('sFeeLotto.takeThen2__') }}
+            {{ $t('sFeeAirdrop.takeThen__') }}
+            <CBN :value='String($store.state.bsc.global.airdropThreshold)' :token='true' />
+            HyperDeFi{{ $t('sFeeAirdrop.takeThen2__') }}
             <span v-if='$store.state.bsc.metadata.holders > "0"'>
-              {{ $t('sFeeLotto.now__') }} 1/<CBN :value='String($store.state.bsc.metadata.holders)' />
-              {{ $t('sFeeLotto.chance__') }}
+              {{ $t('sFeeAirdrop.now__') }} 1/<CBN :value='String($store.state.bsc.metadata.holders)' />
+              {{ $t('sFeeAirdrop.chance__') }}
             </span>
           </p>
 
-          <div v-if='$store.state.stat.lotto.count' class='mt-5 inline-flex rounded-md shadow'>
-            <nuxt-link :to='localeLocation("/history/lotto")' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
+          <div v-if='$store.state.stat.airdrop.count' class='mt-5 inline-flex rounded-md shadow'>
+            <nuxt-link :to='localeLocation("/history/airdrop")' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sFee.trackAll') }}
-                {{ $store.state.stat.lotto.count }}
-                {{ $t('sFeeLotto.trackLottoTransfers') }}
+                {{ $store.state.stat.airdrop.count }}
+                {{ $t('sFeeAirdrop.trackAirdropTransfers') }}
               </span>
             </nuxt-link>
           </div>
         </div>
       </main>
 
-      <dl v-if='$store.state.stat.lotto.count' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
+      <dl v-if='$store.state.stat.airdrop.count' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
 
 
         <!--        <div>-->
@@ -72,19 +72,19 @@
 
         <div>
           <dt>
-            {{ $t('sFeeLotto.statTotalLotto') }}
+            {{ $t('sFeeAirdrop.statTotalAirdrop') }}
           </dt>
           <dd>
-            <CBN :value='$store.state.stat.lotto.amount' :token='true' />
+            <CBN :value='$store.state.stat.airdrop.amount' :token='true' />
           </dd>
         </div>
 
         <div>
           <dt>
-            {{ $t('sFeeLotto.statLottoTransfers') }}
+            {{ $t('sFeeAirdrop.statAirdropTransfers') }}
           </dt>
           <dd>
-            <CBN :value='$store.state.stat.lotto.count' />
+            <CBN :value='$store.state.stat.airdrop.count' />
           </dd>
         </div>
       </dl>
@@ -94,7 +94,7 @@
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-teal-500 tracking-wide uppercase'>
           {{ $t('txTable.latest') }}
           {{ transactions.length }}
-          {{ $t('sFeeLotto.lottoHistory') }}
+          {{ $t('sFeeAirdrop.airdropHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -175,7 +175,7 @@ import hdfLink from '~/utils/hdfLink'
 import fn from '~/utils/functions'
 
 export default {
-  name: 'SFeeLotto',
+  name: 'SFeeAirdrop',
   data() {
     return {
       transactions: [],
@@ -198,7 +198,7 @@ export default {
   },
   methods: {
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.lotto.reverse().limit(10).toArray()
+      this.transactions = await this.$nuxt.context.app.db.airdrop.reverse().limit(10).toArray()
     }
   }
 }

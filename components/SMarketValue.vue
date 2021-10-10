@@ -157,7 +157,7 @@
         </p>
       </div>
 
-      <div class='mt-6 border-l-8 border-gray-800 py-4 px-4 leading-6 text-base text-gray-500'
+      <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'
            v-if='$store.state.bsc.presale.liquidityCreatedTimestamp > "0"'>
         <p>
           {{ $t('sMarketValue.thereIsA__') }}

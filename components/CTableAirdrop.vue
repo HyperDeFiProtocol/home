@@ -8,7 +8,10 @@
             <th scope='col'>
               {{ $t('txTable.block') }}
             </th>
-            <th scope='col'>
+            <th v-if='hash' scope='col'>
+              {{ $t('txTable.txHash') }}
+            </th>
+            <th v-else scope='col'>
               {{ $t('txTable.address') }}
             </th>
             <th scope='col'>
@@ -23,7 +26,12 @@
                 #<CBN :value='tx.blockNumber' />
               </a>
             </td>
-            <td class='font-mono'>
+            <td v-if='hash' class='font-mono'>
+              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                {{ tx.txHash.slice(0, 44) }}...
+              </a>
+            </td>
+            <td v-else class='font-mono'>
               <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
                 <CAddress :value='tx.account' />
               </a>
@@ -50,6 +58,10 @@ export default {
       type: Array,
       required: true
     },
+    hash: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
     hdfLink() {

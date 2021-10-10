@@ -14,7 +14,7 @@ import sHarvest from '~/locales/en/sHarvest'
 import sAirdrop from '~/locales/en/sAirdrop'
 import sFee from '~/locales/en/sFee'
 import sFeeTax from '~/locales/en/sFeeTax'
-import sFeeLotto from '~/locales/en/sFeeLotto'
+import sFeeAirdrop from '~/locales/en/sFeeAirdrop'
 import sFeeFomo from '~/locales/en/sFeeFomo'
 import sFeeLiquidity from '~/locales/en/sFeeLiquidity'
 import sFeeFund from '~/locales/en/sFeeFund'
@@ -57,7 +57,7 @@ export default {
   sAirdrop: sAirdrop,
   sFee: sFee,
   sFeeTax: sFeeTax,
-  sFeeLotto: sFeeLotto,
+  sFeeAirdrop: sFeeAirdrop,
   sFeeFomo: sFeeFomo,
   sFeeLiquidity: sFeeLiquidity,
   sFeeFund: sFeeFund,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CTableLotto v-if='transactions.length' :transactions='transactions' :hash='true' />
+    <CTableAirdrop v-if='transactions.length' :transactions='transactions' :hash='true' />
 
     <div v-else class='font-mono text-center text-gray-600'>
       No data
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'CAccountLotto',
+  name: 'CAccountAirdrop',
   props: {
     'account': {
       type: Object,
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.lotto
+      this.transactions = await this.$nuxt.context.app.db.airdrop
         .where('account')
         .equals(this.account.address)
         .reverse()

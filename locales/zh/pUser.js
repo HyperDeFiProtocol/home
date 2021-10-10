@@ -15,6 +15,6 @@ export default {
 
   balance: '余额',
   harvestHistory: '收矿记录',
-  lottoHistory: 'LOTTO 记录',
+  airdropHistory: '空投记录',
   fomoHistory: 'FOMO 记录',
 }

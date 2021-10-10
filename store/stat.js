@@ -5,10 +5,6 @@ export const state = () => ({
     count: 0,
     amount: '0'
   },
-  lotto: {
-    count: 0,
-    amount: '0'
-  },
   fomo: {
     in: {
       count: 0,
@@ -39,15 +35,6 @@ export const mutations = {
       amount = amount.add(new BN(transactions[i].amount))
     }
     state.airdrop.amount = amount.toString()
-  },
-  SET_LOTTOS(state, transactions) {
-    state.lotto.count = transactions.length
-
-    let amount = new BN('0')
-    for (let i = 0; i < transactions.length; i++) {
-      amount = amount.add(new BN(transactions[i].amount))
-    }
-    state.lotto.amount = amount.toString()
   },
   SET_FOMO_IN(state, transactions) {
     state.fomo.in.count = transactions.length
@@ -91,9 +78,6 @@ export const mutations = {
 export const actions = {
   SET_AIRDROPS({ commit }, transactions) {
     commit('SET_AIRDROPS', transactions)
-  },
-  SET_LOTTOS({ commit }, transactions) {
-    commit('SET_LOTTOS', transactions)
   },
   SET_FOMO_IN({ commit }, transactions) {
     commit('SET_FOMO_IN', transactions)

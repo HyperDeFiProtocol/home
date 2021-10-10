@@ -99,27 +99,27 @@
 
           <tr>
             <th class='th-item' scope='row'>
-              {{ $t('sFee.lotto') }}
+              {{ $t('sFee.airdrop') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.lotto > "0"'>
-                {{ $store.state.bsc.takerFee.lotto }}%
+              <span v-if='$store.state.bsc.takerFee.airdrop > "0"'>
+                {{ $store.state.bsc.takerFee.airdrop }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sFee.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.lotto > "0"'>
-                {{ $store.state.bsc.makerFee.lotto }}%
+              <span v-if='$store.state.bsc.makerFee.airdrop > "0"'>
+                {{ $store.state.bsc.makerFee.airdrop }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sFee.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.lotto > "0"'>
-                {{ $store.state.bsc.whaleFee.lotto }}%
+              <span v-if='$store.state.bsc.whaleFee.airdrop > "0"'>
+                {{ $store.state.bsc.whaleFee.airdrop }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sFee.freeForWhale') }}
@@ -297,7 +297,6 @@
               <dd class='mt-2 ml-16 text-base text-gray-500'>
                 {{ $t('sFee.definitionsWhaleWho__') }}
                 <span v-if='$store.state.bsc.global.whaleThreshold > "0"'>
-                  {{ $t('sFee.definitionsWhaleMoreThan') }}
                   <CBN :value='$store.state.bsc.global.whaleThreshold' :token='true' /> HyperDeFi
                 </span>
                 <span v-else>
@@ -341,8 +340,8 @@
             {{ $store.state.bsc.robberFee.tax }}%
 
             {{ $t('sFee.script4Tax_') }}
-            {{ $store.state.bsc.robberFee.lotto }}%
-            {{ $t('sFee.script4Lotto_') }}
+            {{ $store.state.bsc.robberFee.airdrop }}%
+            {{ $t('sFee.script4Airdrop_') }}
             {{ $store.state.bsc.robberFee.fomo }}%
             {{ $t('sFee.script4FOMO_') }}
             {{ $store.state.bsc.robberFee.liquidity }}%

@@ -96,48 +96,7 @@ export default async function({ app, store }, inject) {
         // console.log('syncAirdrop:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('Transfer', {
-            filter: {
-              from: store.state.bsc.globalAccounts.airdrop
-            },
-            ...syncTxsOption
-          })
-          .catch(e => {
-            console.error('>>> sync, syncAirdrop:', e)
-          })
-
-        if (events.length) {
-          let transactions = []
-          for (let i = 0; i < events.length; i++) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              account: events[i].returnValues.to,
-              amount: events[i].returnValues.value
-            })
-          }
-
-          await app.db.airdrop.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncAirdrop, bulkAdd:', e)
-          })
-        }
-
-        const transactions = await app.db.airdrop.toArray()
-        await store.dispatch('stat/SET_AIRDROPS', transactions)
-
-        resolve(syncTxsOption)
-      })
-
-
-      /**
-       * sync lotto
-       */
-      const syncLotto = new Promise(async function(resolve) {
-        // console.log('syncLotto:', queryOption.fromBlock, queryOption.toBlock)
-
-        const events = await app.token
-          .getPastEvents('Lotto', syncTxsOption)
+          .getPastEvents('Airdrop', syncTxsOption)
           .catch(e => {
             console.error('>>> sync, syncLiquidity:', e)
           })
@@ -154,13 +113,13 @@ export default async function({ app, store }, inject) {
             })
           }
 
-          await app.db.lotto.bulkAdd(transactions).catch(e => {
+          await app.db.airdrop.bulkAdd(transactions).catch(e => {
             console.error('>>> sync, syncLiquidity, bulkAdd:', e)
           })
         }
 
-        const transactions = await app.db.lotto.toArray()
-        await store.dispatch('stat/SET_LOTTOS', transactions)
+        const transactions = await app.db.airdrop.toArray()
+        await store.dispatch('stat/SET_AIRDROPS', transactions)
 
         resolve(syncTxsOption)
       })
@@ -255,7 +214,6 @@ export default async function({ app, store }, inject) {
       await Promise.all([
         syncTx,
         syncAirdrop,
-        syncLotto,
         syncLiquidity,
         syncTransfer
       ])

@@ -15,6 +15,6 @@ export default {
 
   balance: 'Balance',
   harvestHistory: 'Harvest History',
-  lottoHistory: 'Lotto History',
+  airdropHistory: 'Airdrop History',
   fomoHistory: 'FOMO History',
 }

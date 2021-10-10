@@ -18,11 +18,11 @@
 
     <CSHeading class='mt-12 lg:mt-24'>
       <template>
-        {{ $t('pUser.lottoHistory') }}
+        {{ $t('pUser.airdropHistory') }}
       </template>
     </CSHeading>
 
-    <CAccountLotto :account='account' class='mt-4' />
+    <CAccountAirdrop :account='account' class='mt-4' />
 
     <CSHeading class='mt-12 lg:mt-24'>
       <template>
