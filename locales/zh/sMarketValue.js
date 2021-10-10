@@ -1,7 +1,7 @@
 export default {
-  genesisTag: '预售正在进行',
+  genesisTag: '创世存入正在进行',
   genesisText: '允许存入截止时间',
-  visitGenesis: '进入预售',
+  visitGenesis: '进入创世纪',
 
   launchTag: '启动时间',
   launchText: '交易开始时间',
