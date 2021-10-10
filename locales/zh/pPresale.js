@@ -10,7 +10,8 @@ export default {
 
   listAllDeposit: '查看所有预售存入',
 
-  mint: '铸币 HyperDeFi 总量上限的 3% 存入合约地址，用于预售',
+  mint: '铸币 HyperDeFi 总量上限的',
+  mint2__: '存入合约地址，用于预售',
   sameTx__: '与 HyperDeFi 主合约创建是同一笔交易。',
   review: '点此回顾。',
   amount_: '数量：',
@@ -23,6 +24,8 @@ export default {
   theLastDeposit: '现在，允许最后一笔存入；PancakeSwap 流动池将在存入完成同时建立。',
 
   countdown: '倒计时',
+  finished: '已结束',
+  initialLiquidityCreated: '初始流动池已建立',
   depositedBNBAmount: '已收到的 BNB 总量',
 
   connectWalletToDeposit: '连接钱包 参与预售',
@@ -38,8 +41,9 @@ export default {
   presaleClose: '预售关闭',
 
   // add liquidity
-  createLiquidity1: '铸币 HyperDeFi 总量上限的 10%，',
-  createLiquidity2: '并与以上所有存入的 BNB 一并创建 PancakeSwap 初始流动池。',
+  createLiquidity1: '铸币 HyperDeFi 总量上限的',
+  createLiquidity2: '，',
+  createLiquidity3: '并与以上所有存入的 BNB 一并创建 PancakeSwap 初始流动池。',
   liquidityCreatedAt: 'PancakeSwap 初始流动池已创建于：',
 
   createLi1__: '团队无权占有预售存入的 BNB',

@@ -10,7 +10,8 @@ export default {
 
   listAllDeposit: 'List all pre-sale deposit',
 
-  mint: 'Mint 3% of the HyperDeFi Total Supply Cap to the Contract Address, for Pre-sale',
+  mint: 'Mint',
+  mint2__: 'of the HyperDeFi Total Supply Cap to the Contract Address, for Pre-sale',
   sameTx__: 'It is the same transaction as the HyperDeFi main contract creation.',
   review: 'Click to review.',
   amount_: 'Amount:',
@@ -23,6 +24,8 @@ export default {
   theLastDeposit: 'Now, the last deposit is allowed; the PancakeSwap Liquidity will be created once the last deposit is finished.',
 
   countdown: 'Countdown',
+  finished: 'Finished',
+  initialLiquidityCreated: 'Initial liquidity created',
   depositedBNBAmount: 'Deposited BNB Amount',
 
   connectWalletToDeposit: 'Connect wallet to participate the presale.',
@@ -38,8 +41,9 @@ export default {
   presaleClose: 'Presale Close',
 
   // add liquidity
-  createLiquidity1: 'Mint 10% of the HyperDeFi Total Supply Cap,',
-  createLiquidity2: 'create the initial PancakeSwap Liquidity with all the deposited BNB above.',
+  createLiquidity1: 'Mint',
+  createLiquidity2: 'of the HyperDeFi Total Supply Cap,',
+  createLiquidity3: 'create the initial PancakeSwap Liquidity with all the deposited BNB above.',
   liquidityCreatedAt: 'The initial PancakeSwap Liquidity has been created at:',
 
   createLi1__: 'The team don\'t have the right to take the deposited BNB of presale.',

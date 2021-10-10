@@ -65,6 +65,8 @@
           <div class='hdf-timeline-inner'>
             <h3>
               {{ $t('pPresale.mint') }}
+              <CBN :value='$store.state.bsc.presale.presalePercent' />%
+              {{ $t('pPresale.mint2__') }}
             </h3>
             <div class='hdf-timeline-body'>
               <p>
@@ -142,6 +144,14 @@
                     <CCountdown :timestamp='$store.state.bsc.presale.endTimestamp * 1000' :show-ds='true' v-on:finished='setCountdownFinished' />
                   </dd>
                 </div>
+                <div v-else>
+                  <dt>
+                    {{ $t('pPresale.initialLiquidityCreated') }}
+                  </dt>
+                  <dd>
+                    {{ $t('pPresale.finished') }}
+                  </dd>
+                </div>
               </dl>
 
               <div class='my-14 md:my-20' v-if='liquidityNotCreatedAsDepositAllowed'>
@@ -188,17 +198,6 @@
           </div>
         </div>
 
-        <!--  presale close  -->
-        <div class='hdf-timeline-item' :class='{ "done": !liquidityNotCreatedAsDepositAllowed }'>
-          <HeroIconOutlineClock v-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
-          <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
-          <div class='hdf-timeline-inner'>
-            <h3 class='text-2xl capitalize'>
-              {{ $t('pPresale.presaleClose') }}
-            </h3>
-          </div>
-        </div>
-
         <!--  add liquidity  -->
         <div class='hdf-timeline-item' :class='{ "done": !liquidityNotCreatedAsDepositAllowed }'>
           <HeroIconOutlineClock v-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
@@ -206,8 +205,10 @@
 
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl hidden sm:block'>
-              {{ $t('pPresale.createLiquidity1') }}<br>
-              {{ $t('pPresale.createLiquidity2') }}
+              {{ $t('pPresale.createLiquidity1') }}
+              <CBN :value='$store.state.bsc.presale.liquidityPercent' />%
+              {{ $t('pPresale.createLiquidity2') }}<br>
+              {{ $t('pPresale.createLiquidity3') }}
             </h3>
             <h3 class='text-2xl sm:hidden'>
               {{ $t('pPresale.createLiquidity1') }}{{ $t('pPresale.createLiquidity2') }}

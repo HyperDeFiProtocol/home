@@ -188,10 +188,13 @@ export const state = () => ({
   },
 
   presale: {
+    depositMax: '0',
     depositCap: '0',
+    startTimestamp: '0',
     endTimestamp: '0',
     liquidityCreatedTimestamp: '0',
     presaleAmount: '0',
+    presalePercent: '0',
     balance: '0',
     fund: '0'
   }
@@ -363,6 +366,10 @@ export const mutations = {
     state.presale.presaleAmount = data.i256[15]
     state.presale.balance = data.i256[16]
     state.presale.fund = data.i256[17]
+
+    state.presale.presalePercent = new BN(state.presale.presaleAmount).muln(100).div(new BN(state.supply.cap))
+
+    state.presale.liquidityPercent = new BN(state.global.liquidityBottom).muln(100).div(new BN(state.supply.cap))
   }
 }
 
