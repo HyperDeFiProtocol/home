@@ -11,7 +11,6 @@ import sFomo from '~/locales/zh/sFomo'
 import sFeatures from '~/locales/zh/sFeatures'
 import sMarketValue from '~/locales/zh/sMarketValue'
 import sHarvest from '~/locales/zh/sHarvest'
-import sAirdrop from '~/locales/zh/sAirdrop'
 import sFee from '~/locales/zh/sFee'
 import sFeeTax from '~/locales/zh/sFeeTax'
 import sFeeAirdrop from '~/locales/zh/sFeeAirdrop'
@@ -54,7 +53,6 @@ export default {
   sFeatures: sFeatures,
   sMarketValue: sMarketValue,
   sHarvest: sHarvest,
-  sAirdrop: sAirdrop,
   sFee: sFee,
   sFeeTax: sFeeTax,
   sFeeAirdrop: sFeeAirdrop,

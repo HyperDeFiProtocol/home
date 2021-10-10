@@ -39,10 +39,7 @@
             {{ $t('sFeeAirdrop.takeThen__') }}
             <CBN :value='String($store.state.bsc.global.airdropThreshold)' :token='true' />
             HyperDeFi{{ $t('sFeeAirdrop.takeThen2__') }}
-            <span v-if='$store.state.bsc.metadata.holders > "0"'>
-              {{ $t('sFeeAirdrop.now__') }} 1/<CBN :value='String($store.state.bsc.metadata.holders)' />
-              {{ $t('sFeeAirdrop.chance__') }}
-            </span>
+            {{ $t('sFeeAirdrop.once_there__') }}
           </p>
 
           <div v-if='$store.state.stat.airdrop.count' class='mt-5 inline-flex rounded-md shadow'>

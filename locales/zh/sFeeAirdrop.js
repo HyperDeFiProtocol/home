@@ -4,8 +4,7 @@ export default {
 
   takeThen__: '然后随机发送给 1 位持有人（最低持有量',
   takeThen2__: '）。',
-  now__: '每一笔交易完成，都有一位持有人可以获得空投；目前机率为',
-  chance__: '。',
+  once_there__: '每一笔交易完成，都有一位持有人可以获得空投。',
 
   trackAirdropTransfers: '笔空投转账',
 

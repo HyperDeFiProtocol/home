@@ -4,8 +4,7 @@ export default {
 
   takeThen__: 'then randomly send to a holder (minimum holding',
   takeThen2__: ').',
-  now__: 'Once there is a transaction, there will be also a holder get the airdrop; currently, the chance is',
-  chance__: '.',
+  once_there__: 'Once there is a transaction, there will be also a holder get the airdrop.',
 
   trackAirdropTransfers: 'airdrop transfers',
   statTotalAirdrop: 'Total Airdrop',
