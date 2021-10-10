@@ -51,6 +51,7 @@ export default {
       await this.$nuxt.context.app.db.airdrop.clear()
       await this.$nuxt.context.app.db.liquidity.clear()
       await this.$nuxt.context.app.db.transfer.clear()
+      await this.$nuxt.context.app.db.presaleDeposit.clear()
       await this.$nuxt.context.app.sync.all()
       await this.$nuxt.context.app.sync.holders()
       this.rebuilding = false

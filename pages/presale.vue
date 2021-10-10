@@ -106,12 +106,7 @@
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 {{ moment($store.state.bsc.presale.endTimestamp * 1000) }}
-              </p>
-
-              <p class='mt-2 md:mt-4'>
-                BNB deposit cap:
-              </p>
-              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
+                {{ $t('pPresale.or') }}
                 <CBN :value='$store.state.bsc.presale.depositCap' :price='true' /> BNB
               </p>
 

@@ -38,6 +38,7 @@ export default async function({ app, store }, inject) {
     await app.db.airdrop.clear()
     await app.db.liquidity.clear()
     await app.db.transfer.clear()
+    await app.db.presaleDeposit.clear()
   }
 
   await app.db.pointers.put({ name: 'tokenAddress', value: process.env.tokenAddress }).catch(e => {

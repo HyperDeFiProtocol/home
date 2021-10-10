@@ -18,7 +18,8 @@ export default {
 
   depositAllowed: 'Deposit BNB is allowed',
   startTime_: 'Start Time:',
-  endTime_: 'End Time:',
+  endTime_: 'End Time or deposit cap:',
+  or: 'or',
   theLastDeposit: 'Now, the last deposit is allowed; the PancakeSwap Liquidity will be created once the last deposit is finished.',
 
   countdown: 'Countdown',
