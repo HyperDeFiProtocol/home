@@ -3,10 +3,8 @@ export default {
   title2: 'List',
   desc: 'Nobody can control the ZERO addresses (black-holes); and the only Buffer Contract we deployed has no owner nor admin.',
 
-  lpHolder: 'LP Token Holder',
-  burned: 'Burned',
-  buffer: 'Buffer Pool, no owner',
+  blackHole: 'Black-hole: burn and hold LP Token',
+  buffer: 'Buffer Pool: no owner',
   tax: 'Tax Farm',
-  fomo: 'FOMO pool',
-  airdrop: 'Airdrop Pool',
+  fomo: 'FOMO prize pool',
 }

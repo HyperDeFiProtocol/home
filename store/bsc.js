@@ -355,13 +355,14 @@ export const mutations = {
     state.specials.slots = data.slots
 
     // presale
-    state.presale.depositCap = data.i256[10]
-    state.presale.startTimestamp = data.i256[11]
-    state.presale.endTimestamp = data.i256[12]
-    state.presale.liquidityCreatedTimestamp = data.i256[13]
-    state.presale.presaleAmount = data.i256[14]
-    state.presale.balance = data.i256[15]
-    state.presale.fund = data.i256[16]
+    state.presale.depositMax = data.i256[10]
+    state.presale.depositCap = data.i256[11]
+    state.presale.startTimestamp = data.i256[12]
+    state.presale.endTimestamp = data.i256[13]
+    state.presale.liquidityCreatedTimestamp = data.i256[14]
+    state.presale.presaleAmount = data.i256[15]
+    state.presale.balance = data.i256[16]
+    state.presale.fund = data.i256[17]
   }
 }
 

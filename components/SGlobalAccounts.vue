@@ -21,31 +21,6 @@
       <div class="mt-8 sm:mt-16 rounded-lg bg-gray-700 overflow-hidden shadow divide-y divide-gray-700 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
         <div class="div-grid rounded-tl-lg rounded-tr-lg sm:rounded-tr-none">
           <div>
-            <span class="span-icon-wrapper bg-gray-50 text-gray-700">
-              <HeroIconOutlineCube class="h-6 w-6" />
-            </span>
-          </div>
-          <div class="mt-8">
-            <h3 class="text-lg font-bold">
-              <a target='_blank'
-                 :href='explorer.exploreTokenHolders($store.state.bsc.globalAccounts.pair)'
-                 class="focus:outline-none">
-                <!-- Extend touch target to entire panel -->
-                <span class="absolute inset-0" aria-hidden="true"></span>
-                {{ $t('sGlobalAccounts.lpHolder') }}
-              </a>
-            </h3>
-            <p class="p-address">
-              {{ $store.state.bsc.globalAccounts.burn.toLowerCase() }}
-            </p>
-          </div>
-          <span class="span-out-wrapper" aria-hidden="true">
-            <IconArrowOut class="h-6 w-6" />
-          </span>
-        </div>
-
-        <div class="div-grid sm:rounded-tr-lg">
-          <div>
             <span class="span-icon-wrapper bg-emerald-50 text-emerald-700">
               <HeroIconOutlineBreaker class="h-6 w-6" />
             </span>
@@ -53,11 +28,11 @@
           <div class="mt-8">
             <h3 class="text-lg font-bold">
               <a target='_blank'
-                 :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+                 :href='explorer.exploreAddress($store.state.bsc.globalAccounts.burn)'
                  class="focus:outline-none">
                 <!-- Extend touch target to entire panel -->
                 <span class="absolute inset-0" aria-hidden="true"></span>
-                {{ $t('sGlobalAccounts.burned') }}
+                {{ $t('sGlobalAccounts.blackHole') }}
               </a>
             </h3>
             <p class="p-address">
@@ -118,33 +93,6 @@
             <IconArrowOut class="h-6 w-6" />
           </span>
         </div>
-
-        <div class="div-grid sm:rounded-bl-lg">
-          <div>
-            <span class="span-icon-wrapper bg-violet-50 text-violet-700">
-              <HeroIconSolidGift class="h-6 w-6" />
-            </span>
-          </div>
-          <div class="mt-8">
-            <h3 class="text-lg font-bold">
-              <a target='_blank'
-                 :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.airdrop)'
-                 class="focus:outline-none">
-                <!-- Extend touch target to entire panel -->
-                <span class="absolute inset-0" aria-hidden="true"></span>
-                {{ $t('sGlobalAccounts.airdrop') }}
-              </a>
-            </h3>
-            <p class="p-address">
-              {{ $store.state.bsc.globalAccounts.airdrop }}
-            </p>
-          </div>
-          <span class="span-out-wrapper" aria-hidden="true">
-            <IconArrowOut class="h-6 w-6" />
-          </span>
-        </div>
-
-
 
         <div class="div-grid rounded-bl-lg rounded-br-lg sm:rounded-bl-none">
           <div>
