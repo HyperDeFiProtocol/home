@@ -10852,10 +10852,10 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-qr@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/vue-qr/-/vue-qr-3.1.0.tgz#7c2dc3af3e8789a810638145f72463fc17e8d276"
-  integrity sha512-NyftHiRS2DZcZCBO7ga7KAMpjtCdIZESAhanvQkYsvXduSEjYNQz8D8wsqzQ4A6NdUwX75w6jIiFKrPDn5tKdw==
+vue-qr@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/vue-qr/-/vue-qr-3.2.0.tgz#16a9839a018761b8e00c3c5196711460f2e8d9e6"
+  integrity sha512-oKrMGfAGE+ntrZquYmZBzWxy+aLwWAb+uw7m/bmBUjLbe2RQwSppsbw2uJVJ9PkYHjgVfiFJRIrHVrgj28zDmw==
   dependencies:
     canvas "^2.8.0"
     js-binary-schema-parser "^2.0.2"
