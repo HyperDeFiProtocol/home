@@ -4,16 +4,17 @@
       <CH2>
         {{ $t('sFee.title') }}
         <span class='text-violet-400'>
-          {{ $t('sFee.titleFees') }}
+          {{ $t('sFee.title2') }}
         </span>
 
         <template #tag>
           {{ $t('sFee.tag') }}
         </template>
-        <template #desc>
-          {{ $t('sFee.desc') }}
-        </template>
       </CH2>
+
+      <div class='mt-8 sm:mt-16 border-l-8 border-gray-700 rounded-r bg-gray-800 py-4 px-6 leading-9 text-xl text-gray-400'>
+        {{ $t('sFee.desc') }}
+      </div>
 
 
       <div class='mt-8 sm:mt-16 lg:grid lg:grid-cols-2 lg:gap-8'>
@@ -62,7 +63,7 @@
 
           <tr>
             <th class='py-3 pl-6 bg-gray-800 text-sm font-medium text-gray-400 text-left' colspan='4' scope='colgroup'>
-              {{ $t('sFee.fees') }}
+              {{ $t('sFee.tradeFees') }}
             </th>
           </tr>
 

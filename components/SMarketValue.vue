@@ -1,7 +1,7 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-show='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class="mb-12 md:mb-20 text-center">
+      <div v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.genesisTag') }}
         </h2>
@@ -23,7 +23,7 @@
         </p>
       </div>
 
-      <div v-show='genesisCountdownFinished && !launchCountdownFinished' class="mb-12 md:mb-20 text-center">
+      <div v-else-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sMarketValue.launchTag') }}
         </h2>

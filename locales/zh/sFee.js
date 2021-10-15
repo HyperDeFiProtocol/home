@@ -1,8 +1,8 @@
 export default {
-  title: '交易',
-  titleFees: '费用',
+  title: '全民',
+  title2: '分红',
   tag: '规则',
-  desc: '费用将在每笔交易中收取：空投、FOMO、流动池回收、基金、销毁、和全球税分享给每一位持有人',
+  desc: '费用将在每一笔交易中被收取（空投、税、FOMO、流动池回收、基金、销毁），用于反馈给所有持有人和长久增长，实现持续的全民分红。',
 
   tradeFees: '交易费用',
 
@@ -14,7 +14,7 @@ export default {
 
   total: '总计',
   fees: '费用',
-  tax: '税',
+  tax: '税收矿池',
   airdrop: '空投',
   fomo: 'FOMO',
   lpAcquisition: '流动池回收',
