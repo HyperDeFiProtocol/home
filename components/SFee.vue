@@ -3,9 +3,6 @@
     <LAutoWidth class='pt-12 pb-20 px-4 md:py-24 md:px-8'>
       <CH2>
         {{ $t('sFee.title') }}
-        <span class='text-violet-400'>
-          {{ $t('sFee.title2') }}
-        </span>
 
         <template #tag>
           {{ $t('sFee.tag') }}
