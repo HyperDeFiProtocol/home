@@ -1,7 +1,7 @@
 export default {
   title: 'Universal Dividend',
   tag: 'Rules',
-  desc: 'Trading fees will be taken from each transaction (Airdrop, Tax, FOMO, LP Acquisition, Fund and Burn), ' +
+  desc: 'Tax will be taken from each transaction (Farm, Airdrop, FOMO, LP Acquisition, Fund and Burn), ' +
     'will be used for all holders and long-term growth to achieve continuous universal dividend.',
 
   for: 'For',
