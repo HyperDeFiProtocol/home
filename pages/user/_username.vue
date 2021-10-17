@@ -75,10 +75,19 @@ export default {
         isSlot: false,
 
         username: '',
-        balance: '',
-        harvest: '',
-        totalHarvest: '',
-        totalTaxSnap: '',
+        balance: '0',
+        harvest: '0',
+        totalHarvest: '0',
+        totalTaxSnap: '0',
+
+        inviteUsed: '0',
+        invite: '0',
+        visitors: '0',
+
+        bnbBalance: '0',
+        genesisDeposit: '0',
+        genesisPortion: '0',
+        genesisRedeemed: false
       }
     }
   },

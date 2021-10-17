@@ -282,35 +282,35 @@ export const mutations = {
     state.global.autoSwapReady = data.autoSwapReady
 
     // whale
-    state.global.whaleFractionA = data.i16[0]
-    state.global.whaleFractionB = data.i16[1]
+    state.global.whaleFractionA = data.uint16s[0]
+    state.global.whaleFractionB = data.uint16s[1]
 
     // robber
-    state.global.robberPercentage = data.i16[2]
+    state.global.robberPercentage = data.uint16s[2]
 
     // auto swap
-    state.global.autoSwapNumeratorMin = data.i16[3]
-    state.global.autoSwapNumeratorMax = data.i16[4]
-    state.global.autoSwapDenominator = data.i16[5]
-    state.global.autoSwapAmountMin = data.i256[5]
-    state.global.autoSwapAmountMax = data.i256[6]
+    state.global.autoSwapNumeratorMin = data.uint16s[3]
+    state.global.autoSwapNumeratorMax = data.uint16s[4]
+    state.global.autoSwapDenominator = data.uint16s[5]
+    state.global.autoSwapAmountMin = data.uint256s[5]
+    state.global.autoSwapAmountMax = data.uint256s[6]
 
     // launch timestamp
-    state.global.launchTimestamp = data.i256[0]
+    state.global.launchTimestamp = data.uint256s[0]
 
     // liquidity amount
-    state.global.initLiquidity = data.i256[1]
+    state.global.initLiquidity = data.uint256s[1]
 
     // thresholds
-    state.global.airdropThreshold = data.i256[2]
-    state.global.whaleThreshold = data.i256[3]
-    state.global.robberThreshold = data.i256[4]
+    state.global.airdropThreshold = data.uint256s[2]
+    state.global.whaleThreshold = data.uint256s[3]
+    state.global.robberThreshold = data.uint256s[4]
 
     // fomo
     state.fomo.next = data.fomoNext
-    state.fomo.amount = data.i256[7]
-    state.fomo.timestamp = data.i256[8]
-    state.fomo.timestampStep = data.i256[9]
+    state.fomo.amount = data.uint256s[7]
+    state.fomo.timestamp = data.uint256s[8]
+    state.fomo.timestampStep = data.uint256s[9]
     // state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerFee
@@ -358,14 +358,14 @@ export const mutations = {
     state.specials.slots = data.slots
 
     // genesis
-    state.genesis.depositMax = data.i256[10]
-    state.genesis.depositCap = data.i256[11]
-    state.genesis.startTimestamp = data.i256[12]
-    state.genesis.endTimestamp = data.i256[13]
-    state.genesis.liquidityCreatedTimestamp = data.i256[14]
-    state.genesis.genesisAmount = data.i256[15]
-    state.genesis.balance = data.i256[16]
-    state.genesis.fund = data.i256[17]
+    state.genesis.depositMax = data.uint256s[10]
+    state.genesis.depositCap = data.uint256s[11]
+    state.genesis.startTimestamp = data.uint256s[12]
+    state.genesis.endTimestamp = data.uint256s[13]
+    state.genesis.liquidityCreatedTimestamp = data.uint256s[14]
+    state.genesis.genesisAmount = data.uint256s[15]
+    state.genesis.balance = data.uint256s[16]
+    state.genesis.fund = data.uint256s[17]
 
     state.genesis.genesisPercent = new BN(state.genesis.genesisAmount).muln(100).div(new BN(state.supply.cap))
 

@@ -79,10 +79,19 @@ export default {
         isSlot: false,
 
         username: '',
-        balance: '',
-        harvest: '',
-        totalHarvest: '',
-        totalTaxSnap: '',
+        balance: '0',
+        harvest: '0',
+        totalHarvest: '0',
+        totalTaxSnap: '0',
+
+        inviteUsed: '0',
+        invite: '0',
+        visitors: '0',
+
+        bnbBalance: '0',
+        genesisDeposit: '0',
+        genesisPortion: '0',
+        genesisRedeemed: false
       },
     }
   },
@@ -121,16 +130,37 @@ export default {
       if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
         this.account.address = this.checksumAddress
 
-        this.account.isHolder = data.isHolder
-        this.account.isWhale = data.isWhale
-        this.account.isFlat = data.isFlat
-        this.account.isSlot = data.isSlot
+        this.account.isHolder = data.bools[0]
+        this.account.isWhale = data.bools[1]
+        this.account.isFlat = data.bools[2]
+        this.account.isSlot = data.bools[3]
 
         this.account.username = data.username
-        this.account.balance = data.balance
-        this.account.harvest = data.harvest
-        this.account.totalHarvest = data.totalHarvest
-        this.account.totalTaxSnap = data.totalTaxSnap
+        this.account.balance = data.uint256s[0]
+        this.account.harvest = data.uint256s[1]
+
+        this.account.totalHarvest = data.uint256s[2]
+        this.account.totalTaxSnap = data.uint256s[3]
+
+        this.account.inviteUsed = data.uint256s[4]
+        this.account.invite = data.uint256s[5]
+        this.account.visitors = data.uint256s[6]
+
+        this.account.bnbBalance = data.uint256s[7]
+        this.account.genesisDeposit = data.uint256s[8]
+        this.account.genesisPortion = data.uint256s[9]
+        this.account.genesisRedeemed = data.bools[4]
+
+        // this.account.isHolder = data.isHolder
+        // this.account.isWhale = data.isWhale
+        // this.account.isFlat = data.isFlat
+        // this.account.isSlot = data.isSlot
+        //
+        // this.account.username = data.username
+        // this.account.balance = data.balance
+        // this.account.harvest = data.harvest
+        // this.account.totalHarvest = data.totalHarvest
+        // this.account.totalTaxSnap = data.totalTaxSnap
       }
 
       this.loaded = true

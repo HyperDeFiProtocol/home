@@ -18,6 +18,10 @@ export const state = () => ({
   totalHarvest: '0',
   totalTaxSnap: '0',
 
+  inviteUsed: '0',
+  invite: '0',
+  visitors: '0',
+
   bnbBalance: '0',
   genesisDeposit: '0',
   genesisPortion: '0',
@@ -33,22 +37,26 @@ export const mutations = {
     state.account = account ? Web3.utils.toChecksumAddress(account) : null
   },
   async SET_ACCOUNT_DATA(state, data) {
-    state.isHolder = data.isHolder
-    state.isWhale = data.isWhale
-    state.isFlat = data.isFlat
-    state.isSlot = data.isSlot
+    state.isHolder = data.bools[0]
+    state.isWhale = data.bools[1]
+    state.isFlat = data.bools[2]
+    state.isSlot = data.bools[3]
 
     state.username = data.username
-    state.balance = data.balance
-    state.harvest = data.harvest
+    state.balance = data.uint256s[0]
+    state.harvest = data.uint256s[1]
 
-    state.totalHarvest = data.totalHarvest
-    state.totalTaxSnap = data.totalTaxSnap
+    state.totalHarvest = data.uint256s[2]
+    state.totalTaxSnap = data.uint256s[3]
 
-    state.bnbBalance = data.bnbBalance
-    state.genesisDeposit = data.genesisDeposit
-    state.genesisPortion = data.genesisPortion
-    state.genesisRedeemed = data.genesisRedeemed
+    state.inviteUsed = data.uint256s[4]
+    state.invite = data.uint256s[5]
+    state.visitors = data.uint256s[6]
+
+    state.bnbBalance = data.uint256s[7]
+    state.genesisDeposit = data.uint256s[8]
+    state.genesisPortion = data.uint256s[9]
+    state.genesisRedeemed = data.bools[4]
   },
 }
 

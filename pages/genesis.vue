@@ -87,9 +87,9 @@
         </div>
 
         <!--  deposit  -->
-        <div class='hdf-timeline-item' :class='{ "doing": genesisStarted && liquidityNotCreatedAsDepositAllowed, "done": !liquidityNotCreatedAsDepositAllowed }'>
+        <div class='hdf-timeline-item' :class='{ "doing": genesisStarted && !tradeAllowed, "done": tradeAllowed }'>
           <HeroIconOutlineClock v-if='!genesisStarted' class='hdf-timeline-icon' />
-          <HeroIconSolidFire v-else-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
+          <HeroIconSolidFire v-else-if='!tradeAllowed' class='hdf-timeline-icon' />
           <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
 
           <div class='hdf-timeline-inner'>
@@ -120,9 +120,9 @@
                 #<CBN :value='$store.state.bsc.blockNumber' />
               </p>
 
-              <div v-if='theLastDeposit' class='mt-2 md:mt-4'>
+              <div v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0" && this.genesisEnded' class='mt-2 md:mt-4'>
                 <p class='font-bold text-rose-400'>
-                  {{ $t('pGenesis.theLastDeposit') }}
+                  {{ $t('pGenesis.nowTheLastDeposit') }}
                 </p>
               </div>
 
@@ -146,12 +146,21 @@
                   </dd>
                 </div>
 
-                <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>
+                <div v-else-if='!genesisEnded'>
+<!--                <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>-->
                   <dt>
                     {{ $t('pGenesis.endCountdown') }}
                   </dt>
                   <dd>
                     <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000' :show-ds='true' v-on:finished='setCountdownFinished' />
+                  </dd>
+                </div>
+                <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>
+                  <dt>
+                    {{ $t('pGenesis.waitForTheLastDeposit') }}
+                  </dt>
+                  <dd>
+                    {{ $t('pGenesis.closing') }}
                   </dd>
                 </div>
                 <div v-else>
@@ -164,7 +173,7 @@
                 </div>
               </dl>
 
-              <div class='my-14 md:my-20' v-if='liquidityNotCreatedAsDepositAllowed'>
+              <div class='my-14 md:my-20' v-if='!tradeAllowed'>
                 <div v-if='$store.state.wallet.account' class='mx-auto max-w-xl space-y-2'>
                   <div class='min-w-0 flex-1'>
                     <label for='deposit-amount'>
@@ -209,8 +218,8 @@
         </div>
 
         <!--  add liquidity  -->
-        <div class='hdf-timeline-item' :class='{ "done": !liquidityNotCreatedAsDepositAllowed }'>
-          <HeroIconOutlineClock v-if='liquidityNotCreatedAsDepositAllowed' class='hdf-timeline-icon' />
+        <div class='hdf-timeline-item' :class='{ "done": tradeAllowed }'>
+          <HeroIconOutlineClock v-if='!tradeAllowed' class='hdf-timeline-icon' />
           <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
 
           <div class='hdf-timeline-inner'>
@@ -249,7 +258,7 @@
 
         <!--  redeem  -->
         <div class='hdf-timeline-item' :class='{ "doing": redeeming, "done": tradeAllowed && !redeeming }'>
-          <HeroIconOutlineDotsCircleHrizontal v-if='!liquidityNotCreatedAsDepositAllowed && redeeming' class='hdf-timeline-icon' />
+          <HeroIconOutlineDotsCircleHrizontal v-if='tradeAllowed && redeeming' class='hdf-timeline-icon' />
           <HeroIconSolidBadgeCheck v-else-if='tradeAllowed && !redeeming' class='hdf-timeline-icon' />
           <HeroIconOutlineClock v-else class='hdf-timeline-icon' />
 
@@ -364,21 +373,17 @@ export default {
     },
 
     genesisStarted() {
-      return new BN(Math.floor(new Date().getTime()/1000.0).toString()).lt(this.$store.state.bsc.genesis.startTimestamp)
+      return new BN(Math.floor(new Date().getTime()/1000.0).toString()).gt(this.$store.state.bsc.genesis.startTimestamp)
     },
-    theLastDeposit() {
-      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp === '0' && this.countdownFinished
+    genesisEnded() {
+      return new BN(Math.floor(new Date().getTime()/1000.0).toString()).gt(this.$store.state.bsc.genesis.endTimestamp)
     },
 
-    // depositAllowed() {
-    liquidityNotCreatedAsDepositAllowed() {
-      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp === '0'
-    },
     redeeming() {
-      return !this.liquidityNotCreatedAsDepositAllowed && this.$store.state.bsc.genesis.balance > '0'
+      return this.tradeAllowed && this.$store.state.bsc.genesis.balance > '0'
     },
     tradeAllowed() {
-      return !this.liquidityNotCreatedAsDepositAllowed && this.countdownFinished
+      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
     },
     redeemable() {
       return this.$store.state.wallet.genesisPortion > '0' && !this.$store.state.wallet.genesisRedeemed
