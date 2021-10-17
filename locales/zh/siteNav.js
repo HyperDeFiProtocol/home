@@ -1,7 +1,7 @@
 export default {
   txExplorer: '交易浏览器',
   howToBuy: '如何购买',
-  coupon: '优惠码',
+  coupon: '税率折扣',
   trade: '如何交易',
   genesis: '创世纪',
   documentation: '在线文档',
