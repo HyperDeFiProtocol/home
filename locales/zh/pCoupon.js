@@ -1,6 +1,6 @@
 export default {
-  tag: '优惠码',
-  title: '优惠码（开发中）',
+  tag: '税率折扣',
+  title: '折扣码（开发中）',
   desc: 'Desc',
 
   key: 'Text',
