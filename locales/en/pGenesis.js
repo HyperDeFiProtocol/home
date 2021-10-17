@@ -41,8 +41,7 @@ export default {
   approved: 'Approved',
   deposit: 'Deposit',
 
-  // genesis close
-  genesisClose: 'Genesis Close',
+  genesisFinished: 'Genesis Finished',
 
   // add liquidity
   createLiquidity1: 'Mint',

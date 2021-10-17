@@ -14,8 +14,8 @@ export default {
   fomoAccumulateHistory: 'FOMO 滚存记录',
   fomoWinnerHistory: 'FOMO 获奖记录',
   taxHarvestHistory: '税收矿池/挖矿记录',
-  genesisHistory: '预售记录',
-  genesisRedeemHistory: '预售认领记录',
+  genesisHistory: '创世记录',
+  genesisRedeemHistory: '创世认领记录',
 
   holders: '持有者列表',
   topAccount: '富豪榜',

@@ -3,7 +3,7 @@ export default {
   title2: 'Restraint',
   desc: 'Long-term value is more important than immediate benefits',
 
-  s1: 'No reservations, no presale',
+  s1: 'No reservations, no pre-sale',
   s1__: 'The team has no initial set-aside, fair participation, and will grow along with the HyperDeFi ecology.',
 
   s2: 'Cannot remove the liquidity',

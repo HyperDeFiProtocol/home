@@ -1,6 +1,6 @@
 export default {
   title: '共同建设 PancakeSwap 流动性',
-  tag: '预售',
+  tag: '创世纪',
   desc: '只接受 BNB，所有存入将 100% 用于建设 PancakeSwap 上的 HyperDeFi/BNB 初始流动池',
 
   deploy: '部署 HyperDeFi 主合约',
@@ -41,8 +41,7 @@ export default {
   approved: '已授权',
   deposit: '存入',
 
-  // genesis close
-  genesisClose: '预售关闭',
+  genesisFinished: '创世完毕',
 
   // add liquidity
   createLiquidity1: '铸币 HyperDeFi 总量上限的',
