@@ -4,14 +4,14 @@
     <SWelcome />
     <SFomo v-if='$store.state.bsc.fomo.amount > "0"' class='bg-gray-800' />
     <SFeatures />
-    <SMarketValue class='bg-gray-800' />
-    <SFee />
-    <SFeeTax class='bg-gray-800' />
-    <SFeeAirdrop />
-    <SFeeFomo class='bg-gray-800' />
-    <SFeeLiquidity />
-    <SFeeFund class='bg-gray-800' />
-    <SFeeBurn />
+    <SDataBoard class='bg-gray-800' />
+    <STax />
+    <STaxFarm class='bg-gray-800' />
+    <STaxAirdrop />
+    <STaxFomo class='bg-gray-800' />
+    <STaxLiquidity />
+    <STaxFund class='bg-gray-800' />
+    <STaxBurn />
     <SRestraint class='bg-gray-800' />
     <SGlobalAccounts />
     <SReadyForDApps class='bg-gray-800' />

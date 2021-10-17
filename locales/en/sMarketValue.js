@@ -19,7 +19,7 @@ export default {
   providedBy: 'provided by',
 
   currentMarketValue_: 'Current Market Value,',
-  ofCurrentTotalSupply: 'of current total supply',
+  ofTotalSupplyCap: 'of total supply',
 
   currentTotalSupply_: 'Current Total Supply,',
   blackHoleIncluded: 'black-hold included',

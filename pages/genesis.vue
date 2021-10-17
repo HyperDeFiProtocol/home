@@ -120,7 +120,7 @@
                 #<CBN :value='$store.state.bsc.blockNumber' />
               </p>
 
-              <div v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0" && this.genesisEnded' class='mt-2 md:mt-4'>
+              <div v-if='this.genesisEnded && $store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class='mt-2 md:mt-4'>
                 <p class='font-bold text-rose-400'>
                   {{ $t('pGenesis.nowTheLastDeposit') }}
                 </p>
@@ -137,6 +137,7 @@
                   </dd>
                 </div>
 
+                <!-- not started -->
                 <div v-if='!genesisStarted'>
                   <dt>
                     {{ $t('pGenesis.startCountdown') }}
@@ -146,8 +147,8 @@
                   </dd>
                 </div>
 
+                <!-- not ended -->
                 <div v-else-if='!genesisEnded'>
-<!--                <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>-->
                   <dt>
                     {{ $t('pGenesis.endCountdown') }}
                   </dt>
@@ -155,6 +156,8 @@
                     <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000' :show-ds='true' v-on:finished='setCountdownFinished' />
                   </dd>
                 </div>
+
+                <!-- last deposit -->
                 <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>
                   <dt>
                     {{ $t('pGenesis.waitForTheLastDeposit') }}
@@ -163,6 +166,8 @@
                     {{ $t('pGenesis.closing') }}
                   </dd>
                 </div>
+
+                <!-- finished -->
                 <div v-else>
                   <dt>
                     {{ $t('pGenesis.initialLiquidityCreated') }}
@@ -296,7 +301,7 @@
                   </button>
                 </div>
               </div>
-              <p v-else>
+              <p v-else class='text-rose-400'>
                 {{ $t('pGenesis.noPortion') }}
               </p>
             </div>
@@ -372,18 +377,22 @@ export default {
       return process.env.tokenAddress
     },
 
+    bnTimestamp() {
+      return new BN(Math.floor(new Date().getTime()/1000.0).toString())
+    },
+
     genesisStarted() {
-      return new BN(Math.floor(new Date().getTime()/1000.0).toString()).gt(this.$store.state.bsc.genesis.startTimestamp)
+      return new BN(this.$store.state.bsc.genesis.startTimestamp).lt(this.bnTimestamp)
     },
     genesisEnded() {
-      return new BN(Math.floor(new Date().getTime()/1000.0).toString()).gt(this.$store.state.bsc.genesis.endTimestamp)
+      return new BN(this.$store.state.bsc.genesis.endTimestamp).lt(this.bnTimestamp)
+    },
+    tradeAllowed() {
+      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
     },
 
     redeeming() {
       return this.tradeAllowed && this.$store.state.bsc.genesis.balance > '0'
-    },
-    tradeAllowed() {
-      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
     },
     redeemable() {
       return this.$store.state.wallet.genesisPortion > '0' && !this.$store.state.wallet.genesisRedeemed

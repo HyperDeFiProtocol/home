@@ -18,8 +18,8 @@ export const state = () => ({
   totalHarvest: '0',
   totalTaxSnap: '0',
 
-  inviteUsed: '0',
-  invite: '0',
+  couponUsed: '0',
+  coupon: '0',
   visitors: '0',
 
   bnbBalance: '0',
@@ -49,8 +49,8 @@ export const mutations = {
     state.totalHarvest = data.uint256s[2]
     state.totalTaxSnap = data.uint256s[3]
 
-    state.inviteUsed = data.uint256s[4]
-    state.invite = data.uint256s[5]
+    state.couponUsed = data.uint256s[4]
+    state.coupon = data.uint256s[5]
     state.visitors = data.uint256s[6]
 
     state.bnbBalance = data.uint256s[7]

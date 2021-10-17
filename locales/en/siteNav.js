@@ -1,6 +1,7 @@
 export default {
   txExplorer: 'Tx Explorer',
   howToBuy: 'How to buy',
+  coupon: 'Coupon',
   trade: 'How to trade',
   genesis: 'Genesis',
   documentation: 'Documentation',

@@ -131,6 +131,7 @@ const navigation = [
   // { name: 'Features', href: '#' },
   // { name: 'Marketplace', href: '#' },
   { name: 'howToBuy', href: '/buy' },
+  { name: 'coupon', href: '/coupon' },
   { name: 'txExplorer', href: '/history/txs' },
   { name: 'genesis', href: '/genesis' },
   { name: 'topAccount', href: '/holders' },

@@ -10,33 +10,33 @@
       <main>
         <div class='header2'>
           <h2 class='text-emerald-500'>
-            {{ $t('sFeeBurn.title') }}
+            {{ $t('sTaxBurn.title') }}
           </h2>
           <p>
-            {{ $t('sFeeBurn.text') }}
+            {{ $t('sTaxBurn.text') }}
           </p>
         </div>
 
         <div class='body1 to-emerald-900 from-green-900 text-emerald-300'>
           <h3>
-            {{ $t('sFee.forEachTransaction') }}
+            {{ $t('sTax.forEachTransaction') }}
           </h3>
 
           <p>
-            {{ $t('sFeeBurn.burn') }}
+            {{ $t('sTaxBurn.burn') }}
             <span v-if='$store.state.bsc.takerFee.destroy > "0"'>
               {{ $store.state.bsc.takerFee.destroy }}%
-              {{ $t('sFee.fromTaker') }}
+              {{ $t('sTax.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.destroy > "0"'>
               {{ $store.state.bsc.makerFee.destroy }}%
-              {{ $t('sFee.fromMaker') }}
+              {{ $t('sTax.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.destroy > "0"'>
               {{ $store.state.bsc.whaleFee.destroy }}%
-              {{ $t('sFee.fromWhale') }}
+              {{ $t('sTax.fromWhale') }}
             </span>
-            {{ $t('sFeeBurn.destroy__') }}
+            {{ $t('sTaxBurn.destroy__') }}
           </p>
 
           <div v-if='$store.state.stat.burn.count' class='mt-5 inline-flex rounded-md shadow'>
@@ -44,9 +44,9 @@
                class='hdf-a-track bg-emerald-700 hover:bg-emerald-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
-                {{ $t('sFee.trackAll') }}
+                {{ $t('sTax.trackAll') }}
                 {{ $store.state.stat.burn.count }}
-                {{ $t('sFeeBurn.trackBurnTransfers') }}
+                {{ $t('sTaxBurn.trackBurnTransfers') }}
               </span>
             </nuxt-link>
           </div>
@@ -67,7 +67,7 @@
 
         <div>
           <dt>
-            {{ $t('sFeeBurn.statTotalBurned') }}
+            {{ $t('sTaxBurn.statTotalBurned') }}
           </dt>
           <dd>
             <CBN :value='$store.state.bsc.supply.burned' :token='true' />
@@ -76,7 +76,7 @@
 
         <div>
           <dt>
-            {{ $t('sFeeBurn.statBurnTransfers') }}
+            {{ $t('sTaxBurn.statBurnTransfers') }}
           </dt>
           <dd>
             <CBN :value='$store.state.stat.burn.count' />
@@ -88,7 +88,7 @@
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-emerald-500 tracking-wide uppercase'>
           {{ $t('txTable.latest') }}
           {{ transactions.length }}
-          {{ $t('sFeeBurn.burnHistory') }}
+          {{ $t('sTaxBurn.burnHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -168,7 +168,7 @@ import hdfLink from '~/utils/hdfLink'
 import fn from '~/utils/functions'
 
 export default {
-  name: 'SFeeBurn',
+  name: 'STaxBurn',
   data() {
     return {
       marketValue: '0',

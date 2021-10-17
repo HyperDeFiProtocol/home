@@ -10,45 +10,45 @@
       <main>
         <div class='header2'>
           <h2 class='text-teal-400'>
-            {{ $t('sFeeAirdrop.title') }}
+            {{ $t('sTaxAirdrop.title') }}
           </h2>
           <p>
-            {{ $t('sFeeAirdrop.text') }}
+            {{ $t('sTaxAirdrop.text') }}
           </p>
         </div>
 
         <div class='body1 to-blue-900 from-teal-900 text-teal-300'>
           <h3>
-            {{ $t('sFee.forEachTransaction') }}
+            {{ $t('sTax.forEachTransaction') }}
           </h3>
 
           <p>
-            {{ $t('sFee.take') }}
+            {{ $t('sTax.take') }}
             <span v-if='$store.state.bsc.takerFee.airdrop > "0"'>
               {{ $store.state.bsc.takerFee.airdrop }}%
-              {{ $t('sFee.fromTaker') }}
+              {{ $t('sTax.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.airdrop > "0"'>
               {{ $store.state.bsc.makerFee.airdrop }}%
-              {{ $t('sFee.fromMaker') }}
+              {{ $t('sTax.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.airdrop > "0"'>
               {{ $store.state.bsc.whaleFee.airdrop }}%
-              {{ $t('sFee.fromWhale') }}
+              {{ $t('sTax.fromWhale') }}
             </span>
-            {{ $t('sFeeAirdrop.takeThen__') }}
+            {{ $t('sTaxAirdrop.takeThen__') }}
             <CBN :value='String($store.state.bsc.global.airdropThreshold)' :token='true' />
-            HyperDeFi{{ $t('sFeeAirdrop.takeThen2__') }}
-            {{ $t('sFeeAirdrop.once_there__') }}
+            HyperDeFi{{ $t('sTaxAirdrop.takeThen2__') }}
+            {{ $t('sTaxAirdrop.once_there__') }}
           </p>
 
           <div v-if='$store.state.stat.airdrop.count' class='mt-5 inline-flex rounded-md shadow'>
             <nuxt-link :to='localeLocation("/history/airdrop")' class='hdf-a-track bg-teal-700 hover:bg-teal-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
-                {{ $t('sFee.trackAll') }}
+                {{ $t('sTax.trackAll') }}
                 {{ $store.state.stat.airdrop.count }}
-                {{ $t('sFeeAirdrop.trackAirdropTransfers') }}
+                {{ $t('sTaxAirdrop.trackAirdropTransfers') }}
               </span>
             </nuxt-link>
           </div>
@@ -69,7 +69,7 @@
 
         <div>
           <dt>
-            {{ $t('sFeeAirdrop.statTotalAirdrop') }}
+            {{ $t('sTaxAirdrop.statTotalAirdrop') }}
           </dt>
           <dd>
             <CBN :value='$store.state.stat.airdrop.amount' :token='true' />
@@ -78,7 +78,7 @@
 
         <div>
           <dt>
-            {{ $t('sFeeAirdrop.statAirdropTransfers') }}
+            {{ $t('sTaxAirdrop.statAirdropTransfers') }}
           </dt>
           <dd>
             <CBN :value='$store.state.stat.airdrop.count' />
@@ -91,7 +91,7 @@
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-teal-500 tracking-wide uppercase'>
           {{ $t('txTable.latest') }}
           {{ transactions.length }}
-          {{ $t('sFeeAirdrop.airdropHistory') }}
+          {{ $t('sTaxAirdrop.airdropHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -172,7 +172,7 @@ import hdfLink from '~/utils/hdfLink'
 import fn from '~/utils/functions'
 
 export default {
-  name: 'SFeeAirdrop',
+  name: 'STaxAirdrop',
   data() {
     return {
       transactions: [],

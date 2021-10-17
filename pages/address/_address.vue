@@ -84,8 +84,8 @@ export default {
         totalHarvest: '0',
         totalTaxSnap: '0',
 
-        inviteUsed: '0',
-        invite: '0',
+        couponUsed: '0',
+        coupon: '0',
         visitors: '0',
 
         bnbBalance: '0',
@@ -142,8 +142,8 @@ export default {
         this.account.totalHarvest = data.uint256s[2]
         this.account.totalTaxSnap = data.uint256s[3]
 
-        this.account.inviteUsed = data.uint256s[4]
-        this.account.invite = data.uint256s[5]
+        this.account.couponUsed = data.uint256s[4]
+        this.account.coupon = data.uint256s[5]
         this.account.visitors = data.uint256s[6]
 
         this.account.bnbBalance = data.uint256s[7]

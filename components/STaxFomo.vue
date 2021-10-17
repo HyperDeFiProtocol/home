@@ -10,37 +10,37 @@
       <main>
         <div class='header1'>
           <h2 class='text-orange-400'>
-            {{ $t('sFeeFomo.title') }}
+            {{ $t('sTaxFomo.title') }}
           </h2>
           <p>
-            {{ $t('sFeeFomo.text') }}
+            {{ $t('sTaxFomo.text') }}
           </p>
         </div>
 
         <div class='body2 to-orange-900 from-yellow-800 text-orange-300'>
           <h3>
-            {{ $t('sFee.forEachTransaction') }}
+            {{ $t('sTax.forEachTransaction') }}
           </h3>
 
           <p>
-            {{ $t('sFee.take') }}
+            {{ $t('sTax.take') }}
             <span v-if='$store.state.bsc.takerFee.fomo > "0"'>
               {{ $store.state.bsc.takerFee.fomo }}%
-              {{ $t('sFee.fromTaker') }}
+              {{ $t('sTax.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.fomo > "0"'>
               {{ $store.state.bsc.makerFee.fomo }}%
-              {{ $t('sFee.fromMaker') }}
+              {{ $t('sTax.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.fomo > "0"'>
               {{ $store.state.bsc.whaleFee.fomo }}%
-              {{ $t('sFee.fromWhale') }}
+              {{ $t('sTax.fromWhale') }}
             </span>
-            {{ $t('sFeeFomo.thenDeposit__') }}
-            <span v-if='timerStep.h > "0"'>{{ timerStep.h }} {{ $t('sFeeFomo.hours') }}</span>
-            <span v-if='timerStep.m > "0"'>{{ timerStep.m }} {{ $t('sFeeFomo.minutes') }}</span>
-            <span v-if='timerStep.s > "0"'>{{ timerStep.s }} {{ $t('sFeeFomo.seconds') }}</span>
-            {{ $t('sFeeFomo.ifNoOther__') }}
+            {{ $t('sTaxFomo.thenDeposit__') }}
+            <span v-if='timerStep.h > "0"'>{{ timerStep.h }} {{ $t('sTaxFomo.hours') }}</span>
+            <span v-if='timerStep.m > "0"'>{{ timerStep.m }} {{ $t('sTaxFomo.minutes') }}</span>
+            <span v-if='timerStep.s > "0"'>{{ timerStep.s }} {{ $t('sTaxFomo.seconds') }}</span>
+            {{ $t('sTaxFomo.ifNoOther__') }}
           </p>
 
           <div v-if='$store.state.bsc.supply.fomo > "0"' class='mt-5 inline-flex rounded-md shadow'>
@@ -48,9 +48,9 @@
                class='hdf-a-track bg-yellow-700 hover:bg-yellow-600 space-x-2'>
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
-                {{ $t('sFee.trackAll') }}
+                {{ $t('sTax.trackAll') }}
                 {{ $store.state.stat.fomo.out.count + $store.state.stat.fomo.in.count }}
-                {{ $t('sFeeFomo.trackFomoTransfers') }}
+                {{ $t('sTaxFomo.trackFomoTransfers') }}
               </span>
             </nuxt-link>
           </div>
@@ -60,7 +60,7 @@
       <dl v-if='$store.state.stat.fomo.out.count' class='hdf-stat lg:max-w-6xl grid grid-cols-1 lg:grid-cols-2'>
         <div>
           <dt>
-            {{ $t('sFeeFomo.statFomoPool') }}
+            {{ $t('sTaxFomo.statFomoPool') }}
           </dt>
           <dd>
             <CBN :value='$store.state.bsc.supply.fomo' :token='true' />
@@ -69,7 +69,7 @@
 
         <div>
           <dt class='order-2 mt-1 text-base leading-6 font-medium text-yellow-100'>
-            {{ $t('sFeeFomo.statFomoPrizeTransfers') }}
+            {{ $t('sTaxFomo.statFomoPrizeTransfers') }}
           </dt>
           <dd class='order-1 text-3xl font-extrabold text-white'>
             <CBN :value='$store.state.stat.fomo.out.count' />
@@ -81,10 +81,10 @@
       <!--      <div class='mt-10 md:mt-12'>-->
       <!--        <h6 class='ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>-->
       <!--          <span v-if='fomo.countdown.finished && !this.isZero(fomo.next)'>-->
-      <!--            {{ $t('sFeeFomo.prizeWinner') }}-->
+      <!--            {{ $t('sTaxFomo.prizeWinner') }}-->
       <!--          </span>-->
       <!--          <span v-else>-->
-      <!--            {{ $t('sFeeFomo.nextWinner') }}-->
+      <!--            {{ $t('sTaxFomo.nextWinner') }}-->
       <!--          </span>-->
       <!--        </h6>-->
 
@@ -92,7 +92,7 @@
       <!--          <div class='mx-auto max-w-2xl flex rounded-md shadow-sm'>-->
       <!--            <span-->
       <!--              class='inline-flex items-center px-8 rounded-l-md border border-r-0 border-orange-300 bg-orange-50 font-bold text-lg text-orange-600'>-->
-      <!--              {{ $t('sFeeFomo.address') }}-->
+      <!--              {{ $t('sTaxFomo.address') }}-->
       <!--            </span>-->
       <!--            <div-->
       <!--              class='flex-1 min-w-0 block w-full p-4 border border-orange-300 bg-white text-lg rounded-none rounded-r-md border-gray-300 truncate'>-->
@@ -100,7 +100,7 @@
       <!--                {{ fomo.next }}-->
       <!--              </span>-->
       <!--              <span v-else class='font-normal text-gray-400'>-->
-      <!--                {{ $t('sFeeFomo.nextBuyer') }} 0x...-->
+      <!--                {{ $t('sTaxFomo.nextBuyer') }} 0x...-->
       <!--              </span>-->
       <!--            </div>-->
       <!--          </div>-->
@@ -112,7 +112,7 @@
         <h6 class='mt-12 md:mt-16 ml-2 text-sm font-semibold text-orange-400 tracking-wide uppercase'>
           {{ $t('txTable.latest') }}
           {{ oTransactions.length }}
-          {{ $t('sFeeFomo.fomoPrizeHistory') }}
+          {{ $t('sTaxFomo.fomoPrizeHistory') }}
         </h6>
 
         <!-- md:hidden -->
@@ -193,7 +193,7 @@ import hdfLink from '~/utils/hdfLink'
 import fn from '~/utils/functions'
 
 export default {
-  name: 'SFeeFomo',
+  name: 'STaxFomo',
   data() {
     return {
       oCounter: 0,

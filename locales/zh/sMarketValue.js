@@ -19,7 +19,7 @@ export default {
   providedBy: '提供者',
 
   currentMarketValue_: '当前市值，',
-  ofCurrentTotalSupply: '根据当前总供应量',
+  ofTotalSupplyCap: '根据总供应量',
 
   currentTotalSupply_: '当前总供应量，',
   blackHoleIncluded: '已包含黑洞地址',

@@ -10,39 +10,39 @@
       <main>
         <div class='header1'>
           <h2 class='text-cool-gray-400'>
-            {{ $t('sFeeFund.title') }}
+            {{ $t('sTaxFund.title') }}
           </h2>
           <p>
-            {{ $t('sFeeFund.text') }}
+            {{ $t('sTaxFund.text') }}
           </p>
         </div>
 
         <div class='body2 to-cool-gray-900 from-gray-900 text-gray-400'>
           <h3>
-            {{ $t('sFee.forEachTransaction') }}
+            {{ $t('sTax.forEachTransaction') }}
           </h3>
 
           <p>
-            {{ $t('sFee.takeOnly') }}
+            {{ $t('sTax.takeOnly') }}
             <span v-if='$store.state.bsc.takerFee.fund === $store.state.bsc.makerFee.fund && $store.state.bsc.makerFee.fund === $store.state.bsc.whaleFee.fund'>
               {{ $store.state.bsc.takerFee.fund }}%
-              {{ $t('sFee.fromTakerMakerWhale') }}
+              {{ $t('sTax.fromTakerMakerWhale') }}
             </span>
             <span v-else>
               <span v-if='$store.state.bsc.takerFee.fund > "0"'>
                 {{ $store.state.bsc.takerFee.fund }}%
-                {{ $t('sFee.fromTaker') }}
+                {{ $t('sTax.fromTaker') }}
               </span>
               <span v-if='$store.state.bsc.makerFee.fund > "0"'>
                 {{ $store.state.bsc.makerFee.fund }}%
-                {{ $t('sFee.fromMaker') }}
+                {{ $t('sTax.fromMaker') }}
               </span>
               <span v-if='$store.state.bsc.whaleFee.fund > "0"'>
                 {{ $store.state.bsc.whaleFee.fund }}%
-                {{ $t('sFee.fromWhale') }}
+                {{ $t('sTax.fromWhale') }}
               </span>
             </span>
-            {{ $t('sFeeFund.thenDeposit__') }}
+            {{ $t('sTaxFund.thenDeposit__') }}
           </p>
         </div>
       </main>
@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: 'SFeeFund',
+  name: 'STaxFund',
 }
 </script>
 

@@ -1,6 +1,7 @@
 import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
 import pBuy from '~/locales/zh/pBuy'
+import pCoupon from '~/locales/zh/pCoupon'
 import pGenesis from '~/locales/zh/pGenesis'
 import pUser from '~/locales/zh/pUser'
 
@@ -11,13 +12,13 @@ import sFomo from '~/locales/zh/sFomo'
 import sFeatures from '~/locales/zh/sFeatures'
 import sMarketValue from '~/locales/zh/sMarketValue'
 import sHarvest from '~/locales/zh/sHarvest'
-import sFee from '~/locales/zh/sFee'
-import sFeeTax from '~/locales/zh/sFeeTax'
-import sFeeAirdrop from '~/locales/zh/sFeeAirdrop'
-import sFeeFomo from '~/locales/zh/sFeeFomo'
-import sFeeLiquidity from '~/locales/zh/sFeeLiquidity'
-import sFeeFund from '~/locales/zh/sFeeFund'
-import sFeeBurn from '~/locales/zh/sFeeBurn'
+import sTax from '~/locales/zh/sTax'
+import sTaxFarm from '~/locales/zh/sTaxFarm'
+import sTaxAirdrop from '~/locales/zh/sTaxAirdrop'
+import sTaxFomo from '~/locales/zh/sTaxFomo'
+import sTaxLiquidity from '~/locales/zh/sTaxLiquidity'
+import sTaxFund from '~/locales/zh/sTaxFund'
+import sTaxBurn from '~/locales/zh/sTaxBurn'
 
 import sReadyForDApps from '~/locales/zh/sReadyForDApps'
 import sUsername from '~/locales/zh/sUsername'
@@ -40,6 +41,7 @@ export default {
   global: global,
   siteNav: siteNav,
   pBuy: pBuy,
+  pCoupon: pCoupon,
   pGenesis: pGenesis,
   pUser: pUser,
 
@@ -53,13 +55,13 @@ export default {
   sFeatures: sFeatures,
   sMarketValue: sMarketValue,
   sHarvest: sHarvest,
-  sFee: sFee,
-  sFeeTax: sFeeTax,
-  sFeeAirdrop: sFeeAirdrop,
-  sFeeFomo: sFeeFomo,
-  sFeeLiquidity: sFeeLiquidity,
-  sFeeFund: sFeeFund,
-  sFeeBurn: sFeeBurn,
+  sTax: sTax,
+  sTaxFarm: sTaxFarm,
+  sTaxAirdrop: sTaxAirdrop,
+  sTaxFomo: sTaxFomo,
+  sTaxLiquidity: sTaxLiquidity,
+  sTaxFund: sTaxFund,
+  sTaxBurn: sTaxBurn,
 
   sReadyForDApps: sReadyForDApps,
   sUsername: sUsername,

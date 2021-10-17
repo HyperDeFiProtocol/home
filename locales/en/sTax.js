@@ -4,7 +4,7 @@ export default {
   desc: 'Trading fees will be taken from each transaction (Airdrop, Tax, FOMO, LP Acquisition, Fund and Burn), ' +
     'will be used for all holders and long-term growth to achieve continuous universal dividend.',
 
-  tradeFees: 'Trade Fees',
+  for: 'For',
 
   type: 'Type',
   taker: 'Taker',
@@ -12,9 +12,9 @@ export default {
   whale: 'Whale',
   robber: 'Robber',
 
-  total: 'Total',
+  total: 'Tax',
   fees: 'Fees',
-  tax: 'Tax (Farming)',
+  farm: 'Farm',
   airdrop: 'Airdrop',
   fomo: 'FOMO',
   lpAcquisition: 'LP Acquisition',

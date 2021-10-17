@@ -11,7 +11,7 @@
         </h3>
         <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
           <span v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0" && this.genesisCountdownFinished'>
-            {{ $t('pGenesis.theLastDeposit') }}
+            {{ $t('pGenesis.nowTheLastDeposit') }}
           </span>
           <span v-else>
             {{ $t('sMarketValue.genesisText') }}
@@ -87,13 +87,13 @@
         <!--  current market value  -->
         <p>
           <span class="block text-2xl font-bold text-violet-300">
-            $<CBN :value='String($store.state.bsc.marketValue.totalSupply)' :price='true' :padding='6' /> USD
+            $<CBN :value='String($store.state.bsc.marketValue.cap)' :price='true' :padding='6' /> USD
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
               {{ $t('sMarketValue.currentMarketValue_') }}
             </span>
-            {{ $t('sMarketValue.ofCurrentTotalSupply') }}
+            {{ $t('sMarketValue.ofTotalSupplyCap') }}
           </span>
         </p>
 
@@ -222,7 +222,7 @@ import moment from 'moment'
 import hdfLink from '~/utils/hdfLink'
 
 export default {
-  name: 'SMarketValue',
+  name: 'SDataBoard',
   data() {
     return {
       launchCountdownFinished: false,

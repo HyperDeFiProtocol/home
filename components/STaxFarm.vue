@@ -10,33 +10,33 @@
       <main>
         <div class='header1'>
           <h2 class='text-violet-400'>
-            {{ $t('sFeeTax.title') }}
+            {{ $t('sTaxFarm.title') }}
           </h2>
           <p>
-            {{ $t('sFeeTax.text') }}
+            {{ $t('sTaxFarm.text') }}
           </p>
         </div>
 
         <div class='body2 to-violet-900 from-violet-900 text-violet-300'>
           <h3>
-            {{ $t('sFee.forEachTransaction') }}
+            {{ $t('sTax.forEachTransaction') }}
           </h3>
 
           <p>
-            {{ $t('sFee.take') }}
+            {{ $t('sTax.take') }}
             <span v-if='$store.state.bsc.takerFee.tax > "0"'>
               {{ $store.state.bsc.takerFee.tax }}%
-              {{ $t('sFee.fromTaker') }}
+              {{ $t('sTax.fromTaker') }}
             </span>
             <span v-if='$store.state.bsc.makerFee.tax > "0"'>
               {{ $store.state.bsc.makerFee.tax }}%
-              {{ $t('sFee.fromMaker') }}
+              {{ $t('sTax.fromMaker') }}
             </span>
             <span v-if='$store.state.bsc.whaleFee.tax > "0"'>
               {{ $store.state.bsc.whaleFee.tax }}%
-              {{ $t('sFee.fromWhale') }}
+              {{ $t('sTax.fromWhale') }}
             </span>
-            {{ $t('sFeeTax.takeThen__') }}
+            {{ $t('sTaxFarm.takeThen__') }}
           </p>
 
           <div v-if='$store.state.bsc.supply.tax > "0"' class="mt-5 inline-flex rounded-md shadow">
@@ -44,7 +44,7 @@
                        class='hdf-a-track bg-violet-700 hover:bg-violet-600 space-x-2'>
               <HeroIconSolidCursorClick class="h-5 w-5" />
               <span>
-                {{ $t('sFeeTax.track__') }}
+                {{ $t('sTaxFarm.track__') }}
               </span>
             </nuxt-link>
           </div>
@@ -55,7 +55,7 @@
       <dl v-if='$store.state.bsc.supply.totalTax > "0"' class='hdf-stat xl:max-w-6xl grid grid-cols-1 xl:grid-cols-2'>
         <div>
           <dt>
-            {{ $t('sFeeTax.totalTax') }}
+            {{ $t('sTaxFarm.totalTax') }}
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.totalTax)' :token='true' />
@@ -64,7 +64,7 @@
 
 <!--        <div>-->
 <!--          <dt>-->
-<!--            {{ $t('sFeeTax.totalTaxMarketValue') }}-->
+<!--            {{ $t('sTaxFarm.totalTaxMarketValue') }}-->
 <!--          </dt>-->
 <!--          <dd>-->
 <!--            $<CBN :value='String($store.state.bsc.marketValue.totalTax)' :price='true' :padding='9' /> USD-->
@@ -73,7 +73,7 @@
 
         <div>
           <dt>
-            {{ $t('sFeeTax.taxPool') }}
+            {{ $t('sTaxFarm.taxPool') }}
           </dt>
           <dd>
             <CBN :value='String($store.state.bsc.supply.tax)' :token='true' />
@@ -99,7 +99,7 @@
 import hdfLink from '~/utils/hdfLink'
 
 export default {
-  name: 'SFeeTax',
+  name: 'STaxFarm',
   computed: {
     explorer() {
       return hdfLink

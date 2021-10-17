@@ -80,8 +80,8 @@ export default {
         totalHarvest: '0',
         totalTaxSnap: '0',
 
-        inviteUsed: '0',
-        invite: '0',
+        couponUsed: '0',
+        coupon: '0',
         visitors: '0',
 
         bnbBalance: '0',

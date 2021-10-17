@@ -3,7 +3,7 @@ export default {
   tag: '规则',
   desc: '费用将在每一笔交易中被收取（空投、税、FOMO、流动池回收、基金、销毁），用于反馈给所有持有人和长久增长，实现持续的全民分红。',
 
-  tradeFees: '交易费用',
+  for: '用于',
 
   type: '类型',
   taker: '索取者',
@@ -11,9 +11,9 @@ export default {
   whale: '鲸鱼',
   robber: '掠食者',
 
-  total: '总计',
+  total: '税率',
   fees: '费用',
-  tax: '税收矿池',
+  farm: '矿池',
   airdrop: '空投',
   fomo: 'FOMO',
   lpAcquisition: '流动池回收',
