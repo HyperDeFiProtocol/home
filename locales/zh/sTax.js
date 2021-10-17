@@ -34,7 +34,7 @@ export default {
   definitionsRobber: '阅读下方的脚本警告...',
 
   scriptWarning: '脚本警告',
-  scriptNotWelcomed__moreThan: 'HyperDeFi 生态不欢迎脚本机器人，尤其是在刚刚开始的阶段。如果有人使用脚本进行大额交易买走或卖出大于流动性的',
+  scriptNotWelcomed__moreThan: 'HyperDeFi 生态不欢迎脚本机器人，尤其是在早期阶段。如果有人使用脚本进行大额交易买走或卖出大于流动性的',
   scriptCannot__: '（这是人工无法做到的），他将被当作掠食者对待，征收高达',
   scriptOfTheFee: '的交易费用（',
   script4Tax_: '进入税收矿池，',

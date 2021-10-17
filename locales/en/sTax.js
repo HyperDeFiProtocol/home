@@ -35,7 +35,7 @@ export default {
   definitionsRobber: 'Read SCRIPTS WARNING info below...',
 
   scriptWarning: 'Script Warning',
-  scriptNotWelcomed__moreThan: 'Scripts are not welcomed in HyperDeFi ecology, especially in the very beginning phases. If someone uses scripts to make a big-trade that takes or puts',
+  scriptNotWelcomed__moreThan: 'Scripts are not welcomed in HyperDeFi ecology, especially in the early stage. If someone uses scripts to make a big-trade that takes or puts',
   scriptCannot__: ' of the PancakeSwap liquidity (which can\'t be done manually), he will be treat as a ROBBER and be charged up to ',
   scriptOfTheFee: 'of the fee (',
   script4Tax_: 'for Tax,',
