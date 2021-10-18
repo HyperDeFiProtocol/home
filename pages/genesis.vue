@@ -87,8 +87,8 @@
         </div>
 
         <!--  deposit  -->
-        <div class='hdf-timeline-item' :class='{ "doing": genesisStarted && !tradeAllowed, "done": tradeAllowed }'>
-          <HeroIconOutlineClock v-if='!genesisStarted' class='hdf-timeline-icon' />
+        <div class='hdf-timeline-item' :class='{ "doing": genesisStartedCountdownFinished && !tradeAllowed, "done": tradeAllowed }'>
+          <HeroIconOutlineClock v-if='!genesisStartedCountdownFinished' class='hdf-timeline-icon' />
           <HeroIconSolidFire v-else-if='!tradeAllowed' class='hdf-timeline-icon' />
           <HeroIconSolidBadgeCheck v-else class='hdf-timeline-icon' />
 
@@ -120,7 +120,7 @@
                 #<CBN :value='$store.state.bsc.blockNumber' />
               </p>
 
-              <div v-if='this.genesisEnded && $store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class='mt-2 md:mt-4'>
+              <div v-if='genesisEndedCountdownFinished && $store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class='mt-2 md:mt-4'>
                 <p class='font-bold text-rose-400'>
                   {{ $t('pGenesis.nowTheLastDeposit') }}
                 </p>
@@ -138,27 +138,31 @@
                 </div>
 
                 <!-- not started -->
-                <div v-if='!genesisStarted'>
+                <div v-if='!genesisStartedCountdownFinished'>
                   <dt>
                     {{ $t('pGenesis.startCountdown') }}
                   </dt>
                   <dd>
-                    <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000' :show-ds='true' />
+                    <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'
+                                :show-ds='true'
+                                v-on:finished='setGenesisStartedCountdownFinished' />
                   </dd>
                 </div>
 
                 <!-- not ended -->
-                <div v-else-if='!genesisEnded'>
+                <div v-else-if='!genesisEndedCountdownFinished'>
                   <dt>
                     {{ $t('pGenesis.endCountdown') }}
                   </dt>
                   <dd>
-                    <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000' :show-ds='true' v-on:finished='setCountdownFinished' />
+                    <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
+                                :show-ds='true'
+                                v-on:finished='setGenesisEndedCountdownFinished' />
                   </dd>
                 </div>
 
                 <!-- last deposit -->
-                <div v-else-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"'>
+                <div v-else-if='!tradeAllowed'>
                   <dt>
                     {{ $t('pGenesis.waitForTheLastDeposit') }}
                   </dt>
@@ -344,7 +348,8 @@ export default {
   name: 'Genesis',
   data() {
     return {
-      countdownFinished: false,
+      genesisStartedCountdownFinished: false,
+      genesisEndedCountdownFinished: false,
 
       amount: '',
       tokenCreationTxHash: process.env.tokenCreationTxHash,
@@ -377,16 +382,6 @@ export default {
       return process.env.tokenAddress
     },
 
-    bnTimestamp() {
-      return new BN(Math.floor(new Date().getTime()/1000.0).toString())
-    },
-
-    genesisStarted() {
-      return new BN(this.$store.state.bsc.genesis.startTimestamp).lt(this.bnTimestamp)
-    },
-    genesisEnded() {
-      return new BN(this.$store.state.bsc.genesis.endTimestamp).lt(this.bnTimestamp)
-    },
     tradeAllowed() {
       return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
     },
@@ -411,8 +406,11 @@ export default {
     },
   },
   methods: {
-    async setCountdownFinished(value) {
-      this.countdownFinished = value
+    setGenesisStartedCountdownFinished(value) {
+      this.genesisStartedCountdownFinished = value
+    },
+    setGenesisEndedCountdownFinished(value) {
+      this.genesisEndedCountdownFinished = value
     },
 
     async deposit() {

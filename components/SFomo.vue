@@ -75,8 +75,13 @@ export default {
   name: 'SFomo',
   data() {
     return {
-      countdownFinished: true
+      countdownFinished: false
     }
+  },
+  watch: {
+      '$store.state.bsc.fomo.timestamp': async function() {
+        this.countdownFinished = false
+      }
   },
   computed: {
     step() {
