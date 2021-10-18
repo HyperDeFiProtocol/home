@@ -113,18 +113,8 @@ export const state = () => ({
     next: null,
     amount: '0',
     timestamp: '0',
-    timestampStep: '0'
-
-    // countdown: {
-    //   interval: null,
-    //   finished: true,
-    //
-    //   hh: '00',
-    //   mm: '00',
-    //   ss: '00'
-    // }
+    timestampStep: '0',
   },
-
 
   takerFee: {
     tax: '0',
