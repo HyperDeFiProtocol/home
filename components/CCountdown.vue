@@ -50,15 +50,12 @@ export default {
   },
   computed: {
     showHours() {
-      if (this.h) {
-        return true
-      }
-
-      return !this.mayHideHours;
+      return this.h > 0 || !this.mayHideHours;
     }
   },
   watch: {
     timestamp() {
+      this.interval = null
       this.setCountdownInterval()
     }
   },
@@ -67,9 +64,10 @@ export default {
   },
   methods: {
     touchCountdown() {
+      this.finished = false
       const duration = moment.duration(moment(this.timestamp).diff(moment()))
 
-      if (duration.asSeconds() > 0) {
+      if (duration.asMilliseconds() > 0) {
         if (this.finished) {
           return null
         }
@@ -79,7 +77,7 @@ export default {
         this.ds = Math.floor(duration.milliseconds() / 100)
         this.s = duration.seconds()
         this.m = duration.minutes()
-        this.h = duration.hours()
+        this.h = Math.floor(duration.asHours())
         this.ss = this.s < 10 ? '0' + this.s : this.s
         this.mm = this.m < 10 ? '0' + this.m : this.m
         this.hh = this.h < 10 ? '0' + this.h : this.h

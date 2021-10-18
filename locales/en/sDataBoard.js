@@ -1,6 +1,7 @@
 export default {
-  genesisTag: 'Genesis Ongoing',
-  genesisText: 'Deposit is allowed before',
+  genesisTag: 'Genesis Deposit',
+  genesisStartText: 'Genesis Deposit is allowed after',
+  genesisEndText: 'Genesis Deposit is allowed before',
   visitGenesis: 'Visit Genesis',
 
   launchTag: 'Launch Time',

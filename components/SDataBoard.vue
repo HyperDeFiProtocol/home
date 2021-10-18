@@ -1,61 +1,77 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class="mb-12 md:mb-20 text-center">
+      <div v-if='!genesisStartedCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
-          {{ $t('sMarketValue.genesisTag') }}
+          {{ $t('sDataBoard.genesisTag') }}
         </h2>
         <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
-                      :show-ds='true' v-on:finished='setGenesisCountdownFinished' />
+          <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'
+                      :show-ds='true'
+                      v-on:finished='setGenesisStartedCountdownFinished' />
         </h3>
         <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
-          <span v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp === "0" && this.genesisCountdownFinished'>
-            {{ $t('pGenesis.nowTheLastDeposit') }}
-          </span>
-          <span v-else>
-            {{ $t('sMarketValue.genesisText') }}
-            {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
+          <span>
+            {{ $t('sDataBoard.genesisStartText') }}
+            {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
           </span>
           <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
-            {{ $t('sMarketValue.visitGenesis') }}
+            {{ $t('sDataBoard.visitGenesis') }}
           </nuxt-link>
         </p>
       </div>
 
-      <div v-else-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">
+      <div v-else-if='!genesisEndedCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
-          {{ $t('sMarketValue.launchTag') }}
+          {{ $t('sDataBoard.genesisTag') }}
         </h2>
         <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000'
-                      :show-ds='true' v-on:finished='setLaunchCountdownFinished' />
+          <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
+                      :show-ds='true'
+                      v-on:finished='setGenesisEndedCountdownFinished' />
         </h3>
         <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
-          {{ $t('sMarketValue.launchText') }}
-          {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
+          <span>
+            {{ $t('sDataBoard.genesisEndText') }}
+            {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
+          </span>
+          <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
+            {{ $t('sDataBoard.visitGenesis') }}
+          </nuxt-link>
+        </p>
+      </div>
+
+      <div v-else-if='!tradeAllowed' class="mb-12 md:mb-20 text-center">
+        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
+          {{ $t('sDataBoard.launchTag') }}
+        </h2>
+        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
+          <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000' :show-ds='true' />
+        </h3>
+        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
+          {{ $t('pGenesis.nowTheLastDeposit') }}
         </p>
       </div>
 
       <h2 class="text-sm font-semibold text-violet-300 tracking-wide uppercase">
-        {{ $t('sMarketValue.tag') }}
+        {{ $t('sDataBoard.tag') }}
       </h2>
       <p class="mt-3 text-2xl font-extrabold text-white break-all">
-        {{ $t('sMarketValue.contractAddress_') }}{{ tokenAddress }}
+        {{ $t('sDataBoard.contractAddress_') }}{{ tokenAddress }}
       </p>
 
       <p class="mt-2 text-base text-gray-400 break-all">
-        {{ $t('sMarketValue.launchTime') }}
+        {{ $t('sDataBoard.launchTime') }}
         {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
       </p>
 
       <p class="mt-2 text-base text-gray-400 break-all">
-        {{ $t('sMarketValue.tokenNameSymbol_') }}
+        {{ $t('sDataBoard.tokenNameSymbol_') }}
         <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>
-        {{ $t('sMarketValue.with') }}
+        {{ $t('sDataBoard.with') }}
         <span class='font-bold text-white'>
           {{ $store.state.bsc.metadata.tokenDecimals }}
-          {{ $t('sMarketValue.decimals') }}
+          {{ $t('sDataBoard.decimals') }}
         </span>
       </p>
 
@@ -77,9 +93,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.latestPrice_') }}
+              {{ $t('sDataBoard.latestPrice_') }}
             </span>
-            {{ $t('sMarketValue.providedBy') }}
+            {{ $t('sDataBoard.providedBy') }}
             <CPancakeTo class='font-medium text-violet-300'>PancakeSwap Finance</CPancakeTo>
           </span>
         </p>
@@ -91,9 +107,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.currentMarketValue_') }}
+              {{ $t('sDataBoard.currentMarketValue_') }}
             </span>
-            {{ $t('sMarketValue.ofTotalSupplyCap') }}
+            {{ $t('sDataBoard.ofTotalSupplyCap') }}
           </span>
         </p>
 
@@ -104,9 +120,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.currentTotalSupply_') }}
+              {{ $t('sDataBoard.currentTotalSupply_') }}
             </span>
-            {{ $t('sMarketValue.blackHoleIncluded') }}
+            {{ $t('sDataBoard.blackHoleIncluded') }}
           </span>
         </p>
 
@@ -117,7 +133,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.currentCirculating') }}
+              {{ $t('sDataBoard.currentCirculating') }}
             </span>
           </span>
         </p>
@@ -129,9 +145,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.totalSupplyCap_') }}
+              {{ $t('sDataBoard.totalSupplyCap_') }}
             </span>
-            {{ $t('sMarketValue.fixed') }}
+            {{ $t('sDataBoard.fixed') }}
           </span>
         </p>
 
@@ -143,16 +159,16 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.burned') }}
+              {{ $t('sDataBoard.burned') }}
             </span>
             <CBN :value='$store.state.bsc.supply.burned' :token='true' /> HyperDeFi
-            {{ $t('sMarketValue.held__') }}
+            {{ $t('sDataBoard.held__') }}
             <a target='_blank'
                :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
                class='hdf-a-colored'>
-              {{ $t('sMarketValue.blackHole') }}
+              {{ $t('sDataBoard.blackHole') }}
             </a>
-            {{ $t('sMarketValue.increasing_') }}
+            {{ $t('sDataBoard.increasing_') }}
           </span>
         </p>
       </div>
@@ -160,14 +176,14 @@
       <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'
            v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'>
         <p>
-          {{ $t('sMarketValue.thereIsA__') }}
+          {{ $t('sDataBoard.thereIsA__') }}
           <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi
-          {{ $t('sMarketValue.willBeMinted__') }}
+          {{ $t('sDataBoard.willBeMinted__') }}
           <CBN :value='$store.state.bsc.global.initLiquidity' :token='true' /> HyperDeFi
-          {{ $t('sMarketValue.executeByContract__') }}
+          {{ $t('sDataBoard.executeByContract__') }}
           <a class='hover:text-gray-300' target='_blank'
              :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.zero)'>
-            {{ $t('sMarketValue.clickToMintHistory') }}
+            {{ $t('sDataBoard.clickToMintHistory') }}
           </a>
         </p>
       </div>
@@ -182,9 +198,9 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sMarketValue.holders_') }}
+              {{ $t('sDataBoard.holders_') }}
             </span>
-            {{ $t('sMarketValue._holding_') }}
+            {{ $t('sDataBoard._holding_') }}
           </span>
         </p>
 
@@ -193,19 +209,19 @@
           <span class="block inline-flex items-center space-x-2 text-2xl font-bold text-violet-300">
             <HeroIconSolidFire class='inline w-6 h-6' />
             <span>
-              {{ $t('sMarketValue.checkYour') }}
+              {{ $t('sDataBoard.checkYour') }}
               <span class='text-gray-200'>
-                {{ $t('sMarketValue.harvest_') }}
+                {{ $t('sDataBoard.harvest_') }}
               </span>
             </span>
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <BtnConnectWallet class='inline-flex text-base focus:outline-none'>
               <span class="font-medium text-white">
-                {{ $t('sMarketValue.clickHere') }}
+                {{ $t('sDataBoard.clickHere') }}
               </span>
               <span class='text-violet-300'>
-                {{ $t('sMarketValue.toConnectWallet_') }}
+                {{ $t('sDataBoard.toConnectWallet_') }}
               </span>
             </BtnConnectWallet>
           </span>
@@ -220,13 +236,14 @@
 <script>
 import moment from 'moment'
 import hdfLink from '~/utils/hdfLink'
+import BN from 'bn.js'
 
 export default {
   name: 'SDataBoard',
   data() {
     return {
-      launchCountdownFinished: false,
-      genesisCountdownFinished: false,
+      genesisStartedCountdownFinished: false,
+      genesisEndedCountdownFinished: false,
     }
   },
   computed: {
@@ -239,13 +256,16 @@ export default {
     hdfLink() {
       return hdfLink
     },
+    tradeAllowed() {
+      return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
+    },
   },
   methods: {
-    setLaunchCountdownFinished(value) {
-      this.launchCountdownFinished = value
+    setGenesisStartedCountdownFinished(value) {
+      this.genesisStartedCountdownFinished = value
     },
-    setGenesisCountdownFinished(value) {
-      this.genesisCountdownFinished = value
+    setGenesisEndedCountdownFinished(value) {
+      this.genesisEndedCountdownFinished = value
     },
   }
 }

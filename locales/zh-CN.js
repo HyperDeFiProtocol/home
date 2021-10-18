@@ -10,7 +10,7 @@ import getHarvest from '~/locales/zh/btnGetHarvest'
 import sWelcome from '~/locales/zh/sWelcome'
 import sFomo from '~/locales/zh/sFomo'
 import sFeatures from '~/locales/zh/sFeatures'
-import sMarketValue from '~/locales/zh/sMarketValue'
+import sDataBoard from '~/locales/zh/sDataBoard'
 import sHarvest from '~/locales/zh/sHarvest'
 import sTax from '~/locales/zh/sTax'
 import sTaxFarm from '~/locales/zh/sTaxFarm'
@@ -53,7 +53,7 @@ export default {
   sWelcome: sWelcome,
   sFomo: sFomo,
   sFeatures: sFeatures,
-  sMarketValue: sMarketValue,
+  sDataBoard: sDataBoard,
   sHarvest: sHarvest,
   sTax: sTax,
   sTaxFarm: sTaxFarm,
