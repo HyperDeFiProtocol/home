@@ -1,15 +1,15 @@
 export default {
   title: '全民分红',
-  tag: '规则',
-  desc: '税将在每一笔交易中被收取（矿池、空投、FOMO、流动池回收、基金、销毁），用于反馈给所有持有人和长久增长，实现持续的全民分红。',
+  tag: '交易税',
+  desc: '交易税将在每一笔交易中被收取，反馈给所有持有人并促进长期增长，实现持续的全民分红（矿池、空投、FOMO、流动池回收、基金、销毁）。',
 
   for: '用于',
 
-  type: '类型',
-  taker: '索取者',
-  maker: '贡献者',
-  whale: '鲸鱼',
-  robber: '掠食者',
+  type: '交易类型',
+  taker: '索取交易',
+  maker: '贡献交易',
+  whale: '鲸鱼交易',
+  robber: '掠食者交易',
 
   total: '税率',
   fees: '费用',
@@ -25,8 +25,8 @@ export default {
   freeForWhale: '鲸鱼费用免除',
 
   definitions: '定义',
-  definitionsTaker: '向 PancakeSwap 流动性出售，或一笔普通转账的发送者',
-  definitionsMaker: '从 PancakeSwap 流动性买入',
+  definitionsTaker: '从用户钱包地址向 PancakeSwap 流动池换出 HyperDeFi，或向其它钱包地址发送一笔普通转账',
+  definitionsMaker: '从 PancakeSwap 流动池向用户钱包地址换入 HyperDeFi',
   definitionsWhaleWho__: '持有或交易大于',
   definitionsWhaleALarge__: '很大数量的 HyperDeFi',
   definitionsWhaleRemark1: '（动态数值，PancakeSwap 流动池的',

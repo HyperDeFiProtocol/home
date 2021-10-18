@@ -2,9 +2,9 @@ export default {
   title: 'Frequently Asked Questions',
   desc: 'Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec. Urna, sed a lectus elementum blandit et.',
 
-  qFee: 'How does the transaction fee work?',
-  aFee1: 'HyperDeFi has a 10%-30% transaction fee (',
-  aFee2: '); and all of it will be returned to the holders and the ecology in different ways. Please check the Trade Fee Section of the home page.',
+  qFee: 'How does the transaction tax work?',
+  aFee1: 'HyperDeFi has a 10%-30% transaction tax (',
+  aFee2: '); and all of it will be returned to the holders and the ecology in different ways. Please check the Tax - Universal Dividend Section on the home page.',
 
   fromTaker: 'from taker',
   fromMaker: 'from maker',

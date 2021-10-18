@@ -1,12 +1,12 @@
 export default {
   title: 'Universal Dividend',
-  tag: 'Rules',
-  desc: 'Tax will be taken from each transaction (Farm, Airdrop, FOMO, LP Acquisition, Fund and Burn), ' +
-    'will be used for all holders and long-term growth to achieve continuous universal dividend.',
+  tag: 'Tax',
+  desc: 'Tax will be taken from each transaction, ' +
+    'will be used for all holders and long-term growth to achieve continuous universal dividend (Farm, Airdrop, FOMO, LP Acquisition, Fund and Burn).',
 
   for: 'For',
 
-  type: 'Type',
+  type: 'Tx Type',
   taker: 'Taker',
   maker: 'Maker',
   whale: 'Whale',

@@ -2,13 +2,13 @@ export default {
   title: '常见问题',
   desc: 'Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec. Urna, sed a lectus elementum blandit et.',
 
-  qFee: '交易费用是如何运行的？',
-  aFee1: 'HyperDeFi 有 10%-30% 的交易费用（',
-  aFee2: '）；并且全部都会以不同的方式回馈给持有人和生态。请查看首页的交易费用版块。',
+  qFee: '交易税是如何运行的？',
+  aFee1: 'HyperDeFi 有 10%-30% 的交易税（',
+  aFee2: '）；并且全部都会以不同的方式回馈给持有人和生态。请查看首页的 交易税-全民分红 版块。',
 
-  fromTaker: '从索取者',
-  fromMaker: '从贡献者',
-  fromWhale: '从鲸鱼',
+  fromTaker: '从索取交易',
+  fromMaker: '从贡献交易',
+  fromWhale: '从鲸鱼交易',
 
   qBuyAndSafety: '我如何购买 HyperDeFi ？安全吗？',
   aBuyAndSafety1: 'HyperDeFi 基于 BSC 链（币安智能链），流动池锁定在 PancakeSwap，它是彻底安全的，您可以从',
