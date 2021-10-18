@@ -1,5 +1,5 @@
 <template>
-  <span class='inline-flex items-end'>
+  <span class='inline-flex items-baseline'>
     <span v-if='showHours'>
       {{ hh }}:
     </span>
