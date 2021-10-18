@@ -70,6 +70,7 @@ export default {
       }
     },
     clearDisplay() {
+      this.ds = 0
       this.s = 0
       this.m = 0
       this.h = 0
