@@ -49,9 +49,9 @@ export default {
 
   take: '征收',
   takeOnly: '只征取',
-  fromTaker: '从索取者，',
-  fromMaker: '从贡献者，',
-  fromWhale: '从鲸鱼，',
-  fromTakerMakerWhale: '从索取者、贡献者和鲸鱼，'
+  fromTaker: '从索取交易，',
+  fromMaker: '从贡献交易，',
+  fromWhale: '从鲸鱼交易，',
+  fromTakerMakerWhale: '从索取交易、贡献交易和鲸鱼交易，'
 
 }
