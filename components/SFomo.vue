@@ -79,7 +79,7 @@ export default {
     }
   },
   watch: {
-      '$store.state.bsc.fomo.timestamp': async function() {
+      '$store.state.bsc.fomo.timestamp': function() {
         this.countdownFinished = false
       }
   },
@@ -94,7 +94,7 @@ export default {
       const duration = moment.duration(this.$store.state.bsc.fomo.timestampStep * 1000)
       const s = duration.seconds()
       const m = duration.minutes()
-      const h = duration.hours()
+      const h = Math.floor(duration.asHours())
       step.ss = s < 10 ? '0' + s : s
       step.mm = m < 10 ? '0' + m : m
       step.hh = h < 10 ? '0' + h : h

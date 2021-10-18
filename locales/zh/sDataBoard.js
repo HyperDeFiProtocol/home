@@ -1,7 +1,7 @@
 export default {
-  genesisTag: '创世存入',
-  genesisStartText: '创世存入开始时间',
-  genesisEndText: '创世存入截止时间',
+  genesisTag: '联合创世',
+  genesisStartText: '开始时间：',
+  genesisEndText: '截止时间：',
 
   genesisText: '允许存入截止时间',
   visitGenesis: '进入创世纪',

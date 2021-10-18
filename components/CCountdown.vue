@@ -55,7 +55,7 @@ export default {
   },
   watch: {
     timestamp() {
-      this.interval = null
+      this.resetInterval()
       this.setCountdownInterval()
     }
   },
@@ -63,6 +63,20 @@ export default {
     this.setCountdownInterval()
   },
   methods: {
+    resetInterval() {
+      if (this.interval) {
+        clearInterval(this.interval)
+        this.interval = null
+      }
+    },
+    clearDisplay() {
+      this.s = 0
+      this.m = 0
+      this.h = 0
+      this.ss = '00'
+      this.mm = '00'
+      this.hh = '00'
+    },
     touchCountdown() {
       this.finished = false
       const duration = moment.duration(moment(this.timestamp).diff(moment()))
@@ -86,12 +100,8 @@ export default {
         clearInterval(this.interval)
         this.$emit('finished', true)
 
-        this.s = 0
-        this.m = 0
-        this.h = 0
-        this.ss = '00'
-        this.mm = '00'
-        this.hh = '00'
+        this.clearDisplay()
+        window.setTimeout(this.clearDisplay, 1000)
       }
     },
     async setCountdownInterval() {

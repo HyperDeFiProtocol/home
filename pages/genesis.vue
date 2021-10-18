@@ -416,7 +416,7 @@ export default {
     async deposit() {
 
       // genesisStarted
-      if (!this.genesisStarted) {
+      if (!this.genesisStartedCountdownFinished) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
           message: this.$t('pGenesis.notStarted'),

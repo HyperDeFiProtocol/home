@@ -49,7 +49,12 @@
           <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000' :show-ds='true' />
         </h3>
         <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
-          {{ $t('pGenesis.nowTheLastDeposit') }}
+          <span>
+            {{ $t('pGenesis.nowTheLastDeposit') }}
+          </span>
+          <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
+            {{ $t('sDataBoard.visitGenesis') }}
+          </nuxt-link>
         </p>
       </div>
 

@@ -12,6 +12,10 @@
         </template>
       </CH3>
 
+      <div class='mt-24 flex justify-center text-4xl'>
+        <CCountdown :timestamp='1634576100 * 1000' :show-ds='true' />
+      </div>
+
       <div class='mt-24 flex justify-center' v-show='true' @click='show = !show'>
         <IconPancakeSwap class='w-80 h-80' />
       </div>
