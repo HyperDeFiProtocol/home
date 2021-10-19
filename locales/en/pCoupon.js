@@ -1,6 +1,6 @@
 export default {
   tag: 'Tax Discount',
-  title: 'Coupon Code (Developing)',
+  title: 'Coupon Code',
   desc: 'Desc',
 
   couponCode: 'Coupon Code',
@@ -25,6 +25,8 @@ export default {
   used: 'Permanent 1% tax discount',
   generateACouponCode: 'Generate a Coupon Code',
   couponCodeGenerated: 'Coupon Code Generated',
+
+  Counter_: 'Number of visitors:',
 
   codeEmpty__: 'Coupon Code cannot be empty',
   codeInvalid__: 'Invalid Coupon Code',

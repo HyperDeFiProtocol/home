@@ -219,6 +219,10 @@
                    class='mt-2 share-code'
                    :value='coupon'
                    disabled />
+            <div class='mt-1 text-right'>
+              {{ $t('pCoupon.Counter_') }}
+              <CBN :value='$store.state.wallet.visitors' />
+            </div>
           </div>
 
           <div v-else>

@@ -1,6 +1,6 @@
 export default {
   tag: '税率折扣',
-  title: '折扣码（开发中）',
+  title: '折扣码',
   desc: 'Desc',
 
   couponCode: '折扣码 Coupon Code',
@@ -25,6 +25,8 @@ export default {
   used: '永久税率折扣 1%',
   generateACouponCode: '生成一个折扣码 Coupon Code',
   couponCodeGenerated: '折扣码 Coupon Code 已生成',
+
+  Counter_: '绑定计数：',
 
   codeEmpty__: '折扣码 Coupon Code 不能为空',
 }
