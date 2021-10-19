@@ -9,15 +9,22 @@
           </nuxt-link>
 
           <div class='lg:hidden'>
-            <a v-if='$store.state.wallet.account'
-               target='_blank'
-               :href='hdfLink.exploreToken4address($store.state.wallet.account)'
+            <nuxt-link v-if='$store.state.wallet.account && $store.state.wallet.username'
+                       :to='localeLocation("/user/@" + $store.state.wallet.username)'
                class='inline-flex items-center font-mono font-medium text-lg text-gray-500 space-x-2 hover:text-gray-200'>
+              <IconWhale v-if='$store.state.wallet.isWhale' class='inline h-6 w-6' />
+              <span>
+                @{{ $store.state.wallet.username }}
+              </span>
+            </nuxt-link>
+            <nuxt-link v-else-if='$store.state.wallet.account'
+                       :to='localeLocation("/address/" + $store.state.wallet.account)'
+                       class='inline-flex items-center font-mono font-medium text-lg text-gray-500 space-x-2 hover:text-gray-200'>
               <IconWhale v-if='$store.state.wallet.isWhale' class='inline h-6 w-6' />
               <span>
                 {{ $store.state.wallet.account.slice(0, 4) }}...{{ $store.state.wallet.account.slice(-4) }}
               </span>
-            </a>
+            </nuxt-link>
             <BtnConnectWallet v-else @click='connectWallet'
                class='inline-flex items-center px-4 py-1 border border-transparent text-base font-medium rounded-md text-emerald-300 bg-emerald-900 hover:bg-emerald-800 focus:outline-none' />
           </div>
