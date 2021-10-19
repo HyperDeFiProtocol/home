@@ -2,9 +2,9 @@ export default {
   title: '常见问题',
   desc: 'Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec. Urna, sed a lectus elementum blandit et.',
 
-  qFee: '交易税是如何运行的？',
-  aFee1: 'HyperDeFi 有 10%-30% 的交易税（',
-  aFee2: '）；并且全部都会以不同的方式回馈给持有人和生态。请查看首页的 交易税-全民分红 版块。',
+  qFee: '生态税是如何运行的？',
+  aFee1: 'HyperDeFi 有 10%-30% 的生态税（',
+  aFee2: '）；并且全部都会以不同的方式回馈给持有人和生态。请查看首页的 生态税-全民分红 版块。',
 
   fromTaker: '从索取交易',
   fromMaker: '从贡献交易',
