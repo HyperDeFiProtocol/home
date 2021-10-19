@@ -35,7 +35,7 @@
                 {{ tokenAddress }}
               </p>
 
-              <p class='mt-2 md:mt-4 space-x-4'>
+              <p class='mt-2 md:mt-4 max-w-sm flex flex-col space-y-2'>
                 <nuxt-link :to='localeLocation("/history/genesis")' class='a-list-deposit'>
                   <HeroIconSolidMenuAlt2 class="h-5 w-5" />
                   <span>
@@ -630,7 +630,7 @@ export default {
 }
 
 .a-list-deposit {
-  @apply inline-flex items-center px-5 py-3 border border-transparent rounded-md;
+  @apply inline-flex items-center justify-center px-5 py-3 border border-transparent rounded-md;
   @apply font-medium text-base text-white bg-orange-600 hover:bg-orange-700;
   @apply focus:outline-none;
   @apply space-x-2;
