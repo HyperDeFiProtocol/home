@@ -49,6 +49,7 @@ export default {
       await this.$nuxt.context.app.db.holder.clear()
       await this.$nuxt.context.app.db.tx.clear()
       await this.$nuxt.context.app.db.airdrop.clear()
+      await this.$nuxt.context.app.db.bonus.clear()
       await this.$nuxt.context.app.db.liquidity.clear()
       await this.$nuxt.context.app.db.transfer.clear()
       await this.$nuxt.context.app.db.genesisDeposit.clear()

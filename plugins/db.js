@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 
-const VERSION = 1.1
+const VERSION = 1.2
 
 
 export default async function({ app, store }, inject) {
@@ -15,6 +15,7 @@ export default async function({ app, store }, inject) {
 
       tx: '++id',
       airdrop: '++id, account',
+      bonus: '++id, account',
       liquidity: '++id',
       transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
 
@@ -36,6 +37,7 @@ export default async function({ app, store }, inject) {
     await app.db.holder.clear()
     await app.db.tx.clear()
     await app.db.airdrop.clear()
+    await app.db.bonus.clear()
     await app.db.liquidity.clear()
     await app.db.transfer.clear()
     await app.db.genesisDeposit.clear()

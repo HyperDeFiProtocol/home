@@ -312,8 +312,13 @@ export const mutations = {
     state.takerFee.liquidity = data.takerFees[3]
     state.takerFee.fund = data.takerFees[4]
     state.takerFee.destroy = data.takerFees[5]
-    state.takerFee.txn = data.takerFees[6]
-    state.takerFee.total = data.takerFees[7]
+    state.takerFee.total = new BN(state.takerFee.tax)
+      .add(new BN(state.takerFee.airdrop))
+      .add(new BN(state.takerFee.fomo))
+      .add(new BN(state.takerFee.liquidity))
+      .add(new BN(state.takerFee.fund))
+      .add(new BN(state.takerFee.destroy))
+    state.takerFee.txn = new BN('100').sub(new BN(state.takerFee.total))
 
     // makerFee
     state.makerFee.tax = data.makerFees[0]
@@ -322,8 +327,13 @@ export const mutations = {
     state.makerFee.liquidity = data.makerFees[3]
     state.makerFee.fund = data.makerFees[4]
     state.makerFee.destroy = data.makerFees[5]
-    state.makerFee.txn = data.makerFees[6]
-    state.makerFee.total = data.makerFees[7]
+    state.makerFee.total = new BN(state.makerFee.tax)
+      .add(new BN(state.makerFee.airdrop))
+      .add(new BN(state.makerFee.fomo))
+      .add(new BN(state.makerFee.liquidity))
+      .add(new BN(state.makerFee.fund))
+      .add(new BN(state.makerFee.destroy))
+    state.makerFee.txn = new BN('100').sub(new BN(state.makerFee.total))
 
     // whaleFee
     state.whaleFee.tax = data.whaleFees[0]
@@ -332,8 +342,14 @@ export const mutations = {
     state.whaleFee.liquidity = data.whaleFees[3]
     state.whaleFee.fund = data.whaleFees[4]
     state.whaleFee.destroy = data.whaleFees[5]
-    state.whaleFee.txn = data.whaleFees[6]
-    state.whaleFee.total = data.whaleFees[7]
+    state.whaleFee.total = new BN(state.whaleFee.tax)
+      .add(new BN(state.whaleFee.airdrop))
+      .add(new BN(state.whaleFee.fomo))
+      .add(new BN(state.whaleFee.liquidity))
+      .add(new BN(state.whaleFee.fund))
+      .add(new BN(state.whaleFee.destroy))
+    state.whaleFee.txn = new BN('100').sub(new BN(state.whaleFee.total))
+
 
     // robberFee
     state.robberFee.tax = data.robberFees[0]
@@ -342,8 +358,13 @@ export const mutations = {
     state.robberFee.liquidity = data.robberFees[3]
     state.robberFee.fund = data.robberFees[4]
     state.robberFee.destroy = data.robberFees[5]
-    state.robberFee.txn = data.robberFees[6]
-    state.robberFee.total = data.robberFees[7]
+    state.robberFee.total = new BN(state.robberFee.tax)
+      .add(new BN(state.robberFee.airdrop))
+      .add(new BN(state.robberFee.fomo))
+      .add(new BN(state.robberFee.liquidity))
+      .add(new BN(state.robberFee.fund))
+      .add(new BN(state.robberFee.destroy))
+    state.robberFee.txn = new BN('100').sub(new BN(state.robberFee.total))
 
     // specials
     state.specials.flats = data.flats

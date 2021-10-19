@@ -125,6 +125,38 @@ export default async function({ app, store }, inject) {
       })
 
       /**
+       * sync bonus
+       */
+      const syncBonus = new Promise(async function(resolve) {
+        // console.log('syncBonus:', queryOption.fromBlock, queryOption.toBlock)
+
+        const events = await app.token
+          .getPastEvents('Bonus', syncTxsOption)
+          .catch(e => {
+            console.error('>>> sync, syncBonus:', e)
+          })
+
+        if (events.length) {
+          let transactions = []
+          for (let i = 0; i < events.length; i++) {
+            transactions.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
+
+              account: events[i].returnValues.account,
+              amount: events[i].returnValues.amount
+            })
+          }
+
+          await app.db.bonus.bulkAdd(transactions).catch(e => {
+            console.error('>>> sync, syncBonus, bulkAdd:', e)
+          })
+        }
+
+        resolve(syncTxsOption)
+      })
+
+      /**
        * sync liquidity
        */
       const syncLiquidity = new Promise(async function(resolve) {
@@ -214,8 +246,9 @@ export default async function({ app, store }, inject) {
       await Promise.all([
         syncTx,
         syncAirdrop,
+        syncBonus,
         syncLiquidity,
-        syncTransfer
+        syncTransfer,
       ])
 
       syncTxsOption.fromBlock = syncTxsOption.toBlock + 1
