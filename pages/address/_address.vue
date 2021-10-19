@@ -150,17 +150,6 @@ export default {
         this.account.genesisDeposit = data.uint256s[8]
         this.account.genesisPortion = data.uint256s[9]
         this.account.genesisRedeemed = data.bools[4]
-
-        // this.account.isHolder = data.isHolder
-        // this.account.isWhale = data.isWhale
-        // this.account.isFlat = data.isFlat
-        // this.account.isSlot = data.isSlot
-        //
-        // this.account.username = data.username
-        // this.account.balance = data.balance
-        // this.account.harvest = data.harvest
-        // this.account.totalHarvest = data.totalHarvest
-        // this.account.totalTaxSnap = data.totalTaxSnap
       }
 
       this.loaded = true
