@@ -429,7 +429,7 @@ export default {
     async generate() {
       this.generating = true
 
-      if (this.$store.state.wallet.balance === '0') {
+      if (this.$store.state.wallet.balance === '0' && this.$store.state.wallet.genesisDeposit === '0') {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
           message: 'Not holding HyperDeFi'
