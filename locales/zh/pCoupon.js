@@ -1,5 +1,5 @@
 export default {
-  tag: '生态税折扣',
+  tag: '生态税',
   title: '折扣码',
   desc: 'Desc',
 
