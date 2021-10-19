@@ -10,178 +10,224 @@
       </template>
     </CH3>
 
-    <div v-if='couponUsed' class='py-12 px-4 sm:py-20 sm:px-6 lg:px-8'>
-      <h2>
-        {{ $t('pCoupon.used') }}
-      </h2>
+    <LAutoWidth class='px-4 sm:px-6 lg:px-8'>
+      <div v-if='couponUsed' class='mt-12 md:mt-24'>
+        <h2>
+          {{ $t('pCoupon.used') }}
+        </h2>
 
-      <p class='mt-6'>
-        {{ $t('pCoupon.you_veAlreadyUsed__') }}
-        <span class='ml-2 font-mono font-extrabold text-2xl text-gray-300 tracking-wider'>{{ couponUsed }}</span>
-      </p>
-      <p class='mt-3'>
-        {{ $t('pCoupon.WalletAddress') }}
-        <span class='font-mono'>{{ $store.state.wallet.account }}</span>
-        {{ $t('pCoupon.canGetA') }}
-        <span class='font-bold text-gray-300'>
-          {{ $t('pCoupon.permanent__') }}
-        </span>
-        {{ $t('pCoupon.forFutureTransactions_') }}
-      </p>
+        <p class='mt-6'>
+          {{ $t('pCoupon.you_veAlreadyUsed__') }}
+          <span class='ml-2 font-mono font-extrabold text-2xl text-gray-300 tracking-wider'>{{ couponUsed }}</span>
+        </p>
+        <p class='mt-3'>
+          {{ $t('pCoupon.WalletAddress') }}
+          <span class='font-mono'>{{ $store.state.wallet.account }}</span>
+          {{ $t('pCoupon.canGetA') }}
+          <span class='font-bold text-gray-300'>
+            {{ $t('pCoupon.permanent__') }}
+          </span>
+          {{ $t('pCoupon.forFutureTransactions_') }}
+        </p>
 
-      <div class='max-w-xl mx-auto mt-8 sm:mt-16'>
-        <table>
-          <caption class='sr-only'>
-            {{ $t('sTax.for') }}
-          </caption>
-          <thead>
-          <tr>
-            <th scope='col'>
-              {{ $t('sTax.type') }}
-            </th>
-            <th scope='col'>
-              {{ $t('pCoupon.DefaultTax') }}
-            </th>
-            <th scope='col'>
-              {{ $t('pCoupon.DiscountedTax') }}
-            </th>
-          </tr>
-          </thead>
-          <tbody class='border-t border-gray-600 divide-y divide-gray-600'>
-          <tr>
-            <td>
-              {{ $t('sTax.taker') }}
-            </td>
-            <td>
-              &nbsp;{{ $store.state.bsc.takerFee.total }}%&nbsp;
-            </td>
-            <td>
-              {{ takerFee }}%
-            </td>
-          </tr>
+        <div class='max-w-xl mx-auto mt-8 sm:mt-16'>
+          <table>
+            <caption class='sr-only'>
+              {{ $t('sTax.for') }}
+            </caption>
+            <thead>
+            <tr>
+              <th scope='col'>
+                {{ $t('sTax.type') }}
+              </th>
+              <th scope='col'>
+                {{ $t('pCoupon.DefaultTax') }}
+              </th>
+              <th scope='col'>
+                {{ $t('pCoupon.DiscountedTax') }}
+              </th>
+            </tr>
+            </thead>
+            <tbody class='border-t border-gray-600 divide-y divide-gray-600'>
+            <tr>
+              <td>
+                {{ $t('sTax.taker') }}
+              </td>
+              <td>
+                &nbsp;{{ $store.state.bsc.takerFee.total }}%&nbsp;
+              </td>
+              <td>
+                {{ takerFee }}%
+              </td>
+            </tr>
 
-          <tr>
-            <td>
-              {{ $t('sTax.maker') }}
-            </td>
-            <td>
-              &nbsp;{{ $store.state.bsc.makerFee.total }}%&nbsp;
-            </td>
-            <td>
-              {{ makerFee }}%
-            </td>
-          </tr>
+            <tr>
+              <td>
+                {{ $t('sTax.maker') }}
+              </td>
+              <td>
+                &nbsp;{{ $store.state.bsc.makerFee.total }}%&nbsp;
+              </td>
+              <td>
+                {{ makerFee }}%
+              </td>
+            </tr>
 
-          <tr>
-            <td>
-              {{ $t('sTax.whale') }}
-            </td>
-            <td>
-              &nbsp;{{ $store.state.bsc.whaleFee.total }}%&nbsp;
-            </td>
-            <td>
-              {{ whaleFee }}%
-            </td>
-          </tr>
+            <tr>
+              <td>
+                {{ $t('sTax.whale') }}
+              </td>
+              <td>
+                &nbsp;{{ $store.state.bsc.whaleFee.total }}%&nbsp;
+              </td>
+              <td>
+                {{ whaleFee }}%
+              </td>
+            </tr>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div v-else class='py-12 px-4 sm:py-20 sm:px-6 lg:px-8'>
-      <h2>
-        {{ $t('pCoupon.use') }}
-      </h2>
+      <div v-else class='mt-12 md:mt-24'>
+        <h2>
+          {{ $t('pCoupon.use') }}
+        </h2>
 
-      <p class='mt-6'>
-        {{ $t('pCoupon.IfYouHaveACoupon__') }}
-      </p>
-
+        <p class='mt-6'>
+          {{ $t('pCoupon.IfYouHaveACoupon__') }}
+        </p>
 
 
-      <div class='mt-12 mx-auto max-w-xl px-4 xl:px-0'>
-        <div class='space-y-2'>
-          <label for='input-code0'>
-            {{ $t('pCoupon.couponCode') }}
-          </label>
-          <div class='space-y-4'>
-            <div class='mt-1 grid grid-cols-6 sm:grid-cols-8 gap-2'>
-              <input id='input-code0' ref='code0'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code0' />
 
-              <input id='input-code1' ref='code1'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code1'
-                     @keyup.delete='codeFocus(0)' />
+        <div class='mt-12 mx-auto max-w-xl'>
+          <div class='space-y-2'>
+            <label for='input-code0'>
+              {{ $t('pCoupon.couponCode') }}
+            </label>
+            <div class='space-y-4'>
+              <div class='inputs'>
+                <input id='input-code0' ref='code0'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code0' />
 
-              <input id='input-code2' ref='code2'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code2'
-                     @keyup.delete='codeFocus(1)' />
+                <input id='input-code1' ref='code1'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code1'
+                       @keyup.delete='codeFocus(0)' />
 
-              <div class='block sm:hidden'></div>
-              <div class='block sm:hidden'></div>
-              <div class='block sm:hidden'></div>
-              <div class='block sm:hidden'></div>
+                <input id='input-code2' ref='code2'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code2'
+                       @keyup.delete='codeFocus(1)' />
 
-              <input id='input-code3' ref='code3'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code3'
-                     @keyup.delete='codeFocus(2)' />
+                <div class='block sm:hidden'></div>
+                <div class='block sm:hidden'></div>
+                <div class='block sm:hidden'></div>
+                <div class='block sm:hidden h-full flex items-center justify-end pr-1 font-mono font-extrabold text-4xl text-gray-500'>-</div>
 
-              <input id='input-code4' ref='code4'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code4'
-                     @keyup.delete='codeFocus(3)' />
+                <div class='hidden sm:block sm:font-mono sm:font-extrabold sm:text-4xl sm:text-gray-500'>-</div>
 
-              <input id='input-code5' ref='code5'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code5'
-                     @keyup.delete='codeFocus(4)' />
+                <input id='input-code3' ref='code3'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code3'
+                       @keyup.delete='codeFocus(2)' />
 
-              <input id='input-code6' ref='code6'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code6'
-                     @keyup.delete='codeFocus(5)' />
+                <input id='input-code4' ref='code4'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code4'
+                       @keyup.delete='codeFocus(3)' />
 
-              <input id='input-code7' ref='code7'
-                     type='text'
-                     autocomplete='off'
-                     maxlength='1'
-                     class='input-code'
-                     v-model='code7'
-                     @keyup.delete='codeFocus(6)' />
+                <input id='input-code5' ref='code5'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code5'
+                       @keyup.delete='codeFocus(4)' />
+
+                <input id='input-code6' ref='code6'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code6'
+                       @keyup.delete='codeFocus(5)' />
+
+                <input id='input-code7' ref='code7'
+                       type='text'
+                       autocomplete='off'
+                       maxlength='1'
+                       class='input-code'
+                       v-model='code7'
+                       @keyup.delete='codeFocus(6)' />
+              </div>
+
+              <div v-if='$store.state.wallet.account'>
+                <button ref='use' class='btn-coupon' @click='use'>
+                  <span>
+                    {{ $t('pCoupon.bindCouponCode') }}
+                  </span>
+                  <IconDiceHyperSpin v-show='binding' class='inline w-6 h-6' />
+                </button>
+              </div>
+              <div v-else>
+                <BtnConnectWallet class='btn-coupon' />
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
+      <div class='mt-16 sm:mt-24'>
+        <h2>
+          {{ $t('pCoupon.ShareCouponCode') }}
+        </h2>
+
+        <p class='mt-6'>
+          {{ $t('pCoupon.YouCanPromote__') }}
+        </p>
+        <p class='mt-3'>
+          {{ $t('pCoupon.StartWithHolding__') }}
+        </p>
+
+        <div class='mt-12 max-w-xl mx-auto'>
+          <div v-if='coupon'>
+            <label for='share-code'>
+              {{ $t('pCoupon.couponCode') }}
+            </label>
+            <input id='share-code' ref='share-code'
+                   type='text'
+                   autocomplete='off'
+                   maxlength='1'
+                   class='mt-2 share-code'
+                   :value='coupon'
+                   disabled />
+          </div>
+
+          <div v-else>
             <div v-if='$store.state.wallet.account'>
-              <button ref='use' class='btn-coupon' @click='use'>
+              <button class='btn-coupon' @click='generate'>
                 <span>
-                  {{ $t('pCoupon.bindCouponCode') }}
+                  {{ $t('pCoupon.generate') }}
                 </span>
-                <IconDiceHyperSpin v-show='binding' class='inline w-6 h-6' />
+                <IconDiceHyperSpin v-show='generating' class='inline w-6 h-6' />
               </button>
             </div>
             <div v-else>
@@ -190,49 +236,7 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
-      <h2>
-        {{ $t('pCoupon.ShareCouponCode') }}
-      </h2>
-
-      <p class='mt-6'>
-        {{ $t('pCoupon.YouCanPromote__') }}
-      </p>
-      <p class='mt-3'>
-        {{ $t('pCoupon.StartWithHolding__') }}
-      </p>
-
-      <div class='mt-12 max-w-xl mx-auto'>
-        <div v-if='coupon'>
-          <label for='share-code'>
-            {{ $t('pCoupon.couponCode') }}
-          </label>
-          <input id='share-code' ref='share-code'
-                 type='text'
-                 autocomplete='off'
-                 maxlength='1'
-                 class='mt-2 share-code'
-                 :value='coupon'
-                 disabled />
-        </div>
-
-        <div v-else>
-          <div v-if='$store.state.wallet.account'>
-            <button class='btn-coupon' @click='generate'>
-              <span>
-                {{ $t('pCoupon.generate') }}
-              </span>
-              <IconDiceHyperSpin v-show='generating' class='inline w-6 h-6' />
-            </button>
-          </div>
-          <div v-else>
-            <BtnConnectWallet class='btn-coupon' />
-          </div>
-        </div>
-      </div>
-    </div>
+    </LAutoWidth>
   </LAutoWidth>
 </template>
 
@@ -536,12 +540,29 @@ table {
   }
 }
 
+.inputs {
+  @apply mt-1 grid grid-cols-6 gap-2;
 
+  @screen sm {
+    @apply grid-cols-none;
+    @apply flex items-center;
+
+    // @apply sm:grid-cols-8;
+  }
+}
 
 .input-code {
   @apply block w-full border-0 rounded-md py-4 bg-gray-300;
-  @apply font-mono font-extrabold text-lg sm:text-4xl text-gray-900 text-center;
+  @apply font-mono font-extrabold text-lg text-gray-900 text-center;
   @apply placeholder-gray-200 shadow-sm;
+
+  @screen xs {
+    @apply py-5 text-5xl;
+  }
+
+  @screen sm {
+    @apply py-4 text-4xl;
+  }
 
   &:focus {
     @apply border-transparent bg-white outline-none ring-2 ring-white ring-offset-2 ring-offset-violet-600;

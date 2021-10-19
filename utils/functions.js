@@ -65,7 +65,7 @@ const dec2coupon = function(decString = '') {
     hexString = '0' + hexString
   }
 
-  return hexString
+  return hexString.slice(0, 3) + '-' + hexString.slice(-5)
 }
 
 export default {

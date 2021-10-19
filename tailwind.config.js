@@ -4,6 +4,9 @@ module.exports = {
   // mode: 'jit',
   theme: {
     extend: {
+      screens: {
+        'xs': '360px',
+      },
       colors: {
         teal: colors.teal,
         cyan: colors.cyan,
@@ -14,10 +17,10 @@ module.exports = {
         orange: colors.orange,
         violet: colors.violet,
         emerald: colors.emerald,
-        blueGray: colors.blueGray,
+        'blue-gray': colors.blueGray,
         'cool-gray': colors.coolGray,
-        trueGray: colors.trueGray,
-        warmGray: colors.warmGray,
+        'true-gray': colors.trueGray,
+        'warm-gray': colors.warmGray,
         fuchsia: colors.fuchsia,
       },
       lineHeight: {
