@@ -1,5 +1,5 @@
 export default {
-  tag: 'Tax Discount',
+  tag: 'Ecological Tax Discount',
   title: 'Coupon Code',
   desc: 'Desc',
 
