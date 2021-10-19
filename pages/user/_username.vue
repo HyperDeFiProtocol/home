@@ -117,8 +117,6 @@ export default {
             console.error('>>> P[/user/_username] getAccountByUsername:', error.message)
           })
 
-        console.log(data)
-
         if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
           this.account.username = this.indexedUsername
 
