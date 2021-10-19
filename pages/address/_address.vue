@@ -129,13 +129,13 @@ export default {
 
       if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
         this.account.address = this.checksumAddress
+        this.account.username = data.username
 
         this.account.isHolder = data.bools[0]
         this.account.isWhale = data.bools[1]
         this.account.isFlat = data.bools[2]
-        this.account.isSlot = data.bools[3]
 
-        this.account.username = data.username
+        this.account.isSlot = data.bools[3]
         this.account.balance = data.uint256s[0]
         this.account.harvest = data.uint256s[1]
 

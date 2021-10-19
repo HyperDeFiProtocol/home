@@ -119,7 +119,6 @@ export default {
 
         if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
           this.account.username = this.indexedUsername
-
           this.account.address = data.account
 
           this.account.isHolder = data.bools[0]
