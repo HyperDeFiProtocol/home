@@ -117,19 +117,32 @@ export default {
             console.error('>>> P[/user/_username] getAccountByUsername:', error.message)
           })
 
+        console.log(data)
+
         if (data.account !== this.$store.state.bsc.globalAccounts.zero) {
+          this.account.username = this.indexedUsername
+
           this.account.address = data.account
 
-          this.account.isHolder = data.isHolder
-          this.account.isWhale = data.isWhale
-          this.account.isFlat = data.isFlat
-          this.account.isSlot = data.isSlot
+          this.account.isHolder = data.bools[0]
+          this.account.isWhale = data.bools[1]
+          this.account.isFlat = data.bools[2]
+          this.account.isSlot = data.bools[3]
 
-          this.account.username = data.username
-          this.account.balance = data.balance
-          this.account.harvest = data.harvest
-          this.account.totalHarvest = data.totalHarvest
-          this.account.totalTaxSnap = data.totalTaxSnap
+          this.account.balance = data.uint256s[0]
+          this.account.harvest = data.uint256s[1]
+
+          this.account.totalHarvest = data.uint256s[2]
+          this.account.totalTaxSnap = data.uint256s[3]
+
+          this.account.couponUsed = data.uint256s[4]
+          this.account.coupon = data.uint256s[5]
+          this.account.visitors = data.uint256s[6]
+
+          this.account.bnbBalance = data.uint256s[7]
+          this.account.genesisDeposit = data.uint256s[8]
+          this.account.genesisPortion = data.uint256s[9]
+          this.account.genesisRedeemed = data.bools[4]
         }
 
         this.loaded = true
