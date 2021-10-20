@@ -663,7 +663,8 @@ table {
 }
 
 .coupon {
-  @apply w-full border-0 rounded-md py-4 bg-gray-300 shadow-sm;
+  @apply w-full border-0 rounded-md py-4 shadow-sm;
+  @apply bg-gradient-to-br from-cool-gray-400 via-cool-gray-300 to-cool-gray-400;
   @apply font-mono font-extrabold text-gray-900 text-center text-lg sm:text-4xl;
 
   letter-spacing: 0.3em;
