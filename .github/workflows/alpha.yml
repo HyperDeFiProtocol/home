@@ -43,8 +43,8 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
-      - name: Use `.env.testnet` 🛠
-        run: cp .env.testnet .env
+      - name: Use `.env.alpha` 🛠
+        run: cp .env.alpha .env
 
       - name: Nuxt generate 🚀
         run: yarn generate
