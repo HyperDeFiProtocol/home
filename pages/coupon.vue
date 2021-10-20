@@ -177,15 +177,15 @@
               </div>
 
               <div v-if='$store.state.wallet.account'>
-                <button ref='use' class='btn-coupon' @click='use'>
+                <button ref='use' class='hp-btn-lg hp-btn-violet hp-btn-center space-x-3' @click='use'>
                   <span>
                     {{ $t('pCoupon.bindCouponCode') }}
                   </span>
-                  <IconDiceHyperSpin v-show='binding' class='inline w-6 h-6' />
+                  <IconDiceHyperSpin v-show='binding' class='inline w-7 h-7' />
                 </button>
               </div>
               <div v-else>
-                <BtnConnectWallet class='btn-coupon' />
+                <BtnConnectWallet class='hp-btn-md hp-btn-violet hp-btn-center' />
               </div>
             </div>
           </div>
@@ -220,7 +220,7 @@
               <CBN :value='$store.state.wallet.visitors' />
             </div>
 
-            <button class='mt-4 btn-copy' @click='copyCoupon'>
+            <button class='mt-4 hp-btn-xl hp-btn-rose hp-btn-center space-x-3' @click='copyCoupon'>
               <HeroIconOutlineClipboardCopy class='w-7 h-7 text-rose-300' />
               <span>
                 {{ $t('pCoupon.copy__') }}
@@ -230,15 +230,15 @@
 
           <div v-else>
             <div v-if='$store.state.wallet.account'>
-              <button class='btn-coupon' @click='generate'>
+              <button class='hp-btn-lg hp-btn-emerald hp-btn-center space-x-3' @click='generate'>
                 <span>
                   {{ $t('pCoupon.generate') }}
                 </span>
-                <IconDiceHyperSpin v-show='generating' class='inline w-6 h-6' />
+                <IconDiceHyperSpin v-show='generating' class='inline w-7 h-7' />
               </button>
             </div>
             <div v-else>
-              <BtnConnectWallet class='btn-coupon' />
+              <BtnConnectWallet class='hp-btn-md hp-btn-violet hp-btn-center' />
             </div>
           </div>
         </div>
@@ -550,16 +550,7 @@ export default {
     },
 
     async copyCoupon() {
-      const rlt = await copy(this.coupon);
-      console.log('rlt:', rlt)
-      // this.$refs['share-code'].select()
-      //
-      // if (document.execCommand('copy')) {
-      //   await this.$store.dispatch('warning/SET_WARNING', {
-      //     title: this.$t('modal.info'),
-      //     message: 'Coupon Code Copied: ' + this.coupon
-      //   })
-      // }
+      await copy(this.coupon);
     },
   }
 }
@@ -668,31 +659,5 @@ table {
   @apply font-mono font-extrabold text-gray-900 text-center text-lg sm:text-4xl;
 
   letter-spacing: 0.3em;
-}
-
-.btn-coupon {
-  @apply w-full rounded-md border border-transparent shadow px-5 py-3 sm:px-10;
-  @apply inline-flex justify-center space-x-2;
-  @apply text-base font-medium text-white text-center;
-  @apply bg-violet-600 hover:bg-violet-700;
-
-  &:focus {
-    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-violet-600;
-  }
-}
-
-.btn-copy {
-  @apply w-full rounded-md border border-transparent shadow px-5 py-4 sm:px-10;
-  @apply inline-flex items-center justify-center space-x-4;
-  @apply text-xl font-medium text-rose-200 text-center;
-  @apply bg-rose-700;
-
-  &:hover {
-    @apply bg-rose-600 text-white;
-  }
-
-  &:focus {
-    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-rose-600;
-  }
 }
 </style>

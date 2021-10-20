@@ -58,6 +58,7 @@ export default {
   css: [
     '@/assets/css/common.scss',
     '@/assets/css/preset.scss',
+    '@/assets/css/dark.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

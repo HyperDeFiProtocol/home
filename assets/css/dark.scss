@@ -1,0 +1,69 @@
+.hp-btn {
+  @apply w-full rounded-md border border-transparent shadow;
+
+  &:focus {
+    @apply outline-none ring-2 ring-offset-2;
+  }
+}
+
+.hp-btn-md {
+  @apply hp-btn;
+  @apply px-3 sm:px-6 py-3;
+  @apply font-medium text-base;
+}
+
+.hp-btn-lg {
+  @apply hp-btn;
+  @apply px-4 sm:px-8 py-4;
+  @apply font-medium text-lg;
+}
+
+.hp-btn-xl {
+  @apply hp-btn;
+  @apply px-5 sm:px-10 py-5;
+  @apply font-medium text-xl;
+}
+
+.hp-btn-center {
+  @apply inline-flex items-center justify-center;
+}
+
+.hp-btn {
+  @apply px-4 sm:px-8;
+}
+
+.hp-btn-violet {
+  @apply bg-violet-700 text-violet-100;
+
+  &:hover {
+    @apply bg-violet-600 text-white;
+  }
+
+  &:focus {
+    @apply ring-white ring-offset-violet-900;
+  }
+}
+
+.hp-btn-rose {
+  @apply bg-rose-700 text-rose-100;
+
+  &:hover {
+    @apply bg-rose-600 text-white;
+  }
+
+  &:focus {
+    @apply ring-white ring-offset-rose-900;
+  }
+}
+
+.hp-btn-emerald {
+  @apply bg-emerald-700 text-emerald-100;
+
+  &:hover {
+    @apply bg-emerald-600 text-white;
+  }
+
+  &:focus {
+    @apply ring-white ring-offset-emerald-900;
+  }
+}
