@@ -63,6 +63,7 @@ export default {
 
   // launch
   launch: '交易启动',
+  launchTime_: '启动时间：',
 
   // modal
   notStarted: '创世存入尚未开始。',

@@ -329,6 +329,14 @@
             <h3 class='text-2xl'>
               {{ $t('pGenesis.launch') }}
             </h3>
+            <div class='hdf-timeline-body'>
+              <p>
+                {{ $t('pGenesis.launchTime_') }}
+              </p>
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
+                {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
+              </p>
+            </div>
           </div>
         </div>
 

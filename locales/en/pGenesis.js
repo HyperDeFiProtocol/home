@@ -65,6 +65,7 @@ export default {
 
   // launch
   launch: 'Trading launched.',
+  launchTime_: 'Launch time:',
 
   // modal
   notStarted: 'Genesis deposit is not started.',
