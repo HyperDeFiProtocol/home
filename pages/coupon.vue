@@ -198,10 +198,7 @@
         </h2>
 
         <p class='mt-6'>
-          {{ $t('pCoupon.YouCanPromote__1') }}
-          {{ $store.state.bsc.global.bonus.total }}%
-          ({{ $store.state.bsc.global.bonus.level0 }}% + {{ $store.state.bsc.global.bonus.level1 }}% + {{ $store.state.bsc.global.bonus.level2 }}%)
-          {{ $t('pCoupon.YouCanPromote__2') }}
+          {{ $t('pCoupon.YouCanPromote__') }}
         </p>
         <p class='mt-3'>
           {{ $t('pCoupon.StartWithHolding__') }}
@@ -247,14 +244,11 @@
       <div class='mt-16 sm:mt-24'>
         <h2>
           {{ $t('pCoupon.PromotionBonus') }}
+          {{ $store.state.bsc.global.bonus.total }}%
+          {{ $t('pCoupon.in3Levels') }}
         </h2>
 
         <p class='mt-6'>
-          {{ $t('pCoupon.Total') }}
-          {{ $store.state.bsc.global.bonus.total }}%
-          {{ $t('pCoupon.ofTheAirdrop__') }}
-        </p>
-        <p class='mt-3 ml-6'>
           {{ $store.state.bsc.global.bonus.level0 }}%
           {{ $t('pCoupon.fromDirect__') }}
           {{ $store.state.bsc.global.bonus.level1 }}% + {{ $store.state.bsc.global.bonus.level2 }}%
