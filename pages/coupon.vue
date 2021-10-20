@@ -51,10 +51,10 @@
                 {{ $t('sTax.taker') }}
               </td>
               <td>
-                &nbsp;{{ $store.state.bsc.takerFee.total }}%&nbsp;
+                &nbsp;{{ $store.state.bsc.takerTax.total }}%&nbsp;
               </td>
               <td>
-                {{ takerFee }}%
+                {{ takerTax }}%
               </td>
             </tr>
 
@@ -63,10 +63,10 @@
                 {{ $t('sTax.maker') }}
               </td>
               <td>
-                &nbsp;{{ $store.state.bsc.makerFee.total }}%&nbsp;
+                &nbsp;{{ $store.state.bsc.makerTax.total }}%&nbsp;
               </td>
               <td>
-                {{ makerFee }}%
+                {{ makerTax }}%
               </td>
             </tr>
 
@@ -75,10 +75,10 @@
                 {{ $t('sTax.whale') }}
               </td>
               <td>
-                &nbsp;{{ $store.state.bsc.whaleFee.total }}%&nbsp;
+                &nbsp;{{ $store.state.bsc.whaleTax.total }}%&nbsp;
               </td>
               <td>
-                {{ whaleFee }}%
+                {{ whaleTax }}%
               </td>
             </tr>
 
@@ -379,26 +379,26 @@ export default {
     }
   },
   computed: {
-    takerFee() {
+    takerTax() {
       if (this.couponUsed) {
-        return new BN(this.$store.state.bsc.takerFee.total).subn(1).toString()
+        return new BN(this.$store.state.bsc.takerTax.total).subn(1).toString()
       }
 
-      return this.$store.state.bsc.takerFee.total
+      return this.$store.state.bsc.takerTax.total
     },
-    makerFee() {
+    makerTax() {
       if (this.couponUsed) {
-        return new BN(this.$store.state.bsc.makerFee.total).subn(1).toString()
+        return new BN(this.$store.state.bsc.makerTax.total).subn(1).toString()
       }
 
-      return this.$store.state.bsc.makerFee.total
+      return this.$store.state.bsc.makerTax.total
     },
-    whaleFee() {
+    whaleTax() {
       if (this.couponUsed) {
-        return new BN(this.$store.state.bsc.whaleFee.total).subn(1).toString()
+        return new BN(this.$store.state.bsc.whaleTax.total).subn(1).toString()
       }
 
-      return this.$store.state.bsc.whaleFee.total
+      return this.$store.state.bsc.whaleTax.total
     },
     code() {
       return this.code0 + this.code1 + this.code2 + this.code3 + this.code4 + this.code5 + this.code6 + this.code7

@@ -24,16 +24,16 @@
 
           <p>
             {{ $t('sTax.take') }}
-            <span v-if='$store.state.bsc.takerFee.liquidity > "0"'>
-              {{ $store.state.bsc.takerFee.liquidity }}%
+            <span v-if='$store.state.bsc.takerTax.liquidity > "0"'>
+              {{ $store.state.bsc.takerTax.liquidity }}%
               {{ $t('sTax.fromTaker') }}
             </span>
-            <span v-if='$store.state.bsc.makerFee.liquidity > "0"'>
-              {{ $store.state.bsc.makerFee.liquidity }}%
+            <span v-if='$store.state.bsc.makerTax.liquidity > "0"'>
+              {{ $store.state.bsc.makerTax.liquidity }}%
               {{ $t('sTax.fromMaker') }}
             </span>
-            <span v-if='$store.state.bsc.whaleFee.liquidity > "0"'>
-              {{ $store.state.bsc.whaleFee.liquidity }}%
+            <span v-if='$store.state.bsc.whaleTax.liquidity > "0"'>
+              {{ $store.state.bsc.whaleTax.liquidity }}%
               {{ $t('sTax.fromWhale') }}
             </span>
             {{ $t('sTaxLiquidity.thenDeposit1__') }}

@@ -1,4 +1,5 @@
 export default {
+  harvest: 'harvest',
   taker: 'taker',
   maker: 'maker',
   whale: 'whale',
@@ -16,5 +17,5 @@ export default {
   fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',
-  tax: 'Tax Pool',
+  farm: 'Farm Pool',
 }

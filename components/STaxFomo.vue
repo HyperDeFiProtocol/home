@@ -24,16 +24,16 @@
 
           <p>
             {{ $t('sTax.take') }}
-            <span v-if='$store.state.bsc.takerFee.fomo > "0"'>
-              {{ $store.state.bsc.takerFee.fomo }}%
+            <span v-if='$store.state.bsc.takerTax.fomo > "0"'>
+              {{ $store.state.bsc.takerTax.fomo }}%
               {{ $t('sTax.fromTaker') }}
             </span>
-            <span v-if='$store.state.bsc.makerFee.fomo > "0"'>
-              {{ $store.state.bsc.makerFee.fomo }}%
+            <span v-if='$store.state.bsc.makerTax.fomo > "0"'>
+              {{ $store.state.bsc.makerTax.fomo }}%
               {{ $t('sTax.fromMaker') }}
             </span>
-            <span v-if='$store.state.bsc.whaleFee.fomo > "0"'>
-              {{ $store.state.bsc.whaleFee.fomo }}%
+            <span v-if='$store.state.bsc.whaleTax.fomo > "0"'>
+              {{ $store.state.bsc.whaleTax.fomo }}%
               {{ $t('sTax.fromWhale') }}
             </span>
             {{ $t('sTaxFomo.thenDeposit__') }}

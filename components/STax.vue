@@ -43,17 +43,17 @@
             </th>
 
             <td class='h-full py-8 px-6 align-top'>
-              <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.takerFee.total }}</span>
+              <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.takerTax.total }}</span>
               <span class='text-base font-medium text-gray-300'>%</span>
             </td>
 
             <td class='h-full py-8 px-6 align-top'>
-              <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.makerFee.total }}</span>
+              <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.makerTax.total }}</span>
               <span class='text-base font-medium text-gray-300'>%</span>
             </td>
 
             <td class='h-full py-8 px-6 align-top'>
-              <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.whaleFee.total }}</span>
+              <span class='text-4xl font-extrabold text-gray-200'>{{ $store.state.bsc.whaleTax.total }}</span>
               <span class='text-base font-medium text-gray-300'>%</span>
             </td>
           </tr>
@@ -70,24 +70,24 @@
               {{ $t('sTax.farm') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.tax > "0"'>
-                {{ $store.state.bsc.takerFee.tax }}%
+              <span v-if='$store.state.bsc.takerTax.tax > "0"'>
+                {{ $store.state.bsc.takerTax.tax }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.tax > "0"'>
-                {{ $store.state.bsc.makerFee.tax }}%
+              <span v-if='$store.state.bsc.makerTax.tax > "0"'>
+                {{ $store.state.bsc.makerTax.tax }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.tax > "0"'>
-                {{ $store.state.bsc.whaleFee.tax }}%
+              <span v-if='$store.state.bsc.whaleTax.tax > "0"'>
+                {{ $store.state.bsc.whaleTax.tax }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForWhale') }}
@@ -100,24 +100,24 @@
               {{ $t('sTax.airdrop') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.airdrop > "0"'>
-                {{ $store.state.bsc.takerFee.airdrop }}%
+              <span v-if='$store.state.bsc.takerTax.airdrop > "0"'>
+                {{ $store.state.bsc.takerTax.airdrop }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.airdrop > "0"'>
-                {{ $store.state.bsc.makerFee.airdrop }}%
+              <span v-if='$store.state.bsc.makerTax.airdrop > "0"'>
+                {{ $store.state.bsc.makerTax.airdrop }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.airdrop > "0"'>
-                {{ $store.state.bsc.whaleFee.airdrop }}%
+              <span v-if='$store.state.bsc.whaleTax.airdrop > "0"'>
+                {{ $store.state.bsc.whaleTax.airdrop }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForWhale') }}
@@ -130,24 +130,24 @@
               {{ $t('sTax.fomo') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.fomo > "0"'>
-                {{ $store.state.bsc.takerFee.fomo }}%
+              <span v-if='$store.state.bsc.takerTax.fomo > "0"'>
+                {{ $store.state.bsc.takerTax.fomo }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.fomo > "0"'>
-                {{ $store.state.bsc.makerFee.fomo }}%
+              <span v-if='$store.state.bsc.makerTax.fomo > "0"'>
+                {{ $store.state.bsc.makerTax.fomo }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.fomo > "0"'>
-                {{ $store.state.bsc.whaleFee.fomo }}%
+              <span v-if='$store.state.bsc.whaleTax.fomo > "0"'>
+                {{ $store.state.bsc.whaleTax.fomo }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForWhale') }}
@@ -161,24 +161,24 @@
               {{ $t('sTax.lpAcquisition') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.liquidity > "0"'>
-                {{ $store.state.bsc.takerFee.liquidity }}%
+              <span v-if='$store.state.bsc.takerTax.liquidity > "0"'>
+                {{ $store.state.bsc.takerTax.liquidity }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.liquidity > "0"'>
-                {{ $store.state.bsc.makerFee.liquidity }}%
+              <span v-if='$store.state.bsc.makerTax.liquidity > "0"'>
+                {{ $store.state.bsc.makerTax.liquidity }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.liquidity > "0"'>
-                {{ $store.state.bsc.whaleFee.liquidity }}%
+              <span v-if='$store.state.bsc.whaleTax.liquidity > "0"'>
+                {{ $store.state.bsc.whaleTax.liquidity }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForWhale') }}
@@ -191,24 +191,24 @@
               {{ $t('sTax.fund') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.fund > "0"'>
-                {{ $store.state.bsc.takerFee.fund }}%
+              <span v-if='$store.state.bsc.takerTax.fund > "0"'>
+                {{ $store.state.bsc.takerTax.fund }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.fund > "0"'>
-                {{ $store.state.bsc.makerFee.fund }}%
+              <span v-if='$store.state.bsc.makerTax.fund > "0"'>
+                {{ $store.state.bsc.makerTax.fund }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.fund > "0"'>
-                {{ $store.state.bsc.whaleFee.fund }}%
+              <span v-if='$store.state.bsc.whaleTax.fund > "0"'>
+                {{ $store.state.bsc.whaleTax.fund }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForWhale') }}
@@ -221,24 +221,24 @@
               {{ $t('sTax.burn') }}
             </th>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.takerFee.destroy > "0"'>
-                {{ $store.state.bsc.takerFee.destroy }}%
+              <span v-if='$store.state.bsc.takerTax.destroy > "0"'>
+                {{ $store.state.bsc.takerTax.destroy }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForTaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.makerFee.destroy > "0"'>
-                {{ $store.state.bsc.makerFee.destroy }}%
+              <span v-if='$store.state.bsc.makerTax.destroy > "0"'>
+                {{ $store.state.bsc.makerTax.destroy }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForMaker') }}
               </span>
             </td>
             <td class='td-item'>
-              <span v-if='$store.state.bsc.whaleFee.destroy > "0"'>
-                {{ $store.state.bsc.whaleFee.destroy }}%
+              <span v-if='$store.state.bsc.whaleTax.destroy > "0"'>
+                {{ $store.state.bsc.whaleTax.destroy }}%
               </span>
               <span v-else class='sr-only'>
                 {{ $t('sTax.freeForWhale') }}
@@ -333,20 +333,20 @@
             {{ $t('sTax.scriptNotWelcomed__moreThan') }}
             {{ $store.state.bsc.global.robberPercentage }}%
             {{ $t('sTax.scriptCannot__') }}
-            {{ $store.state.bsc.robberFee.total }}%
+            {{ $store.state.bsc.robberTax.total }}%
             {{ $t('sTax.scriptOfTheTax') }}
-            {{ $store.state.bsc.robberFee.tax }}%
+            {{ $store.state.bsc.robberTax.tax }}%
 
             {{ $t('sTax.script4Farm_') }}
-            {{ $store.state.bsc.robberFee.airdrop }}%
+            {{ $store.state.bsc.robberTax.airdrop }}%
             {{ $t('sTax.script4Airdrop_') }}
-            {{ $store.state.bsc.robberFee.fomo }}%
+            {{ $store.state.bsc.robberTax.fomo }}%
             {{ $t('sTax.script4FOMO_') }}
-            {{ $store.state.bsc.robberFee.liquidity }}%
+            {{ $store.state.bsc.robberTax.liquidity }}%
             {{ $t('sTax.script4LPAcquisition_') }}
-            {{ $store.state.bsc.robberFee.fund }}%
+            {{ $store.state.bsc.robberTax.fund }}%
             {{ $t('sTax.script4Fund_') }}
-            {{ $store.state.bsc.robberFee.destroy }}%
+            {{ $store.state.bsc.robberTax.destroy }}%
             {{ $t('sTax.script4Burning_') }}
           </p>
         </div>

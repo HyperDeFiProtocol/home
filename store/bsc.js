@@ -123,7 +123,7 @@ export const state = () => ({
     timestampStep: '0',
   },
 
-  takerFee: {
+  takerTax: {
     tax: '0',
     airdrop: '0',
     fomo: '0',
@@ -134,7 +134,7 @@ export const state = () => ({
     total: '0'
   },
 
-  makerFee: {
+  makerTax: {
     tax: '0',
     airdrop: '0',
     fomo: '0',
@@ -145,7 +145,7 @@ export const state = () => ({
     total: '0'
   },
 
-  whaleFee: {
+  whaleTax: {
     tax: '0',
     airdrop: '0',
     fomo: '0',
@@ -156,7 +156,7 @@ export const state = () => ({
     total: '0'
   },
 
-  robberFee: {
+  robberTax: {
     tax: '0',
     airdrop: '0',
     fomo: '0',
@@ -318,66 +318,66 @@ export const mutations = {
     state.fomo.timestampStep = data.uint256s[9]
     // state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
-    // takerFee
-    state.takerFee.tax = data.takerFees[0]
-    state.takerFee.airdrop = data.takerFees[1]
-    state.takerFee.fomo = data.takerFees[2]
-    state.takerFee.liquidity = data.takerFees[3]
-    state.takerFee.fund = data.takerFees[4]
-    state.takerFee.destroy = data.takerFees[5]
-    state.takerFee.total = new BN(state.takerFee.tax)
-      .add(new BN(state.takerFee.airdrop))
-      .add(new BN(state.takerFee.fomo))
-      .add(new BN(state.takerFee.liquidity))
-      .add(new BN(state.takerFee.fund))
-      .add(new BN(state.takerFee.destroy))
-    state.takerFee.txn = new BN('100').sub(new BN(state.takerFee.total))
+    // takerTax
+    state.takerTax.tax = data.takerTax[0]
+    state.takerTax.airdrop = data.takerTax[1]
+    state.takerTax.fomo = data.takerTax[2]
+    state.takerTax.liquidity = data.takerTax[3]
+    state.takerTax.fund = data.takerTax[4]
+    state.takerTax.destroy = data.takerTax[5]
+    state.takerTax.total = new BN(state.takerTax.tax)
+      .add(new BN(state.takerTax.airdrop))
+      .add(new BN(state.takerTax.fomo))
+      .add(new BN(state.takerTax.liquidity))
+      .add(new BN(state.takerTax.fund))
+      .add(new BN(state.takerTax.destroy))
+    state.takerTax.txn = new BN('100').sub(new BN(state.takerTax.total))
 
-    // makerFee
-    state.makerFee.tax = data.makerFees[0]
-    state.makerFee.airdrop = data.makerFees[1]
-    state.makerFee.fomo = data.makerFees[2]
-    state.makerFee.liquidity = data.makerFees[3]
-    state.makerFee.fund = data.makerFees[4]
-    state.makerFee.destroy = data.makerFees[5]
-    state.makerFee.total = new BN(state.makerFee.tax)
-      .add(new BN(state.makerFee.airdrop))
-      .add(new BN(state.makerFee.fomo))
-      .add(new BN(state.makerFee.liquidity))
-      .add(new BN(state.makerFee.fund))
-      .add(new BN(state.makerFee.destroy))
-    state.makerFee.txn = new BN('100').sub(new BN(state.makerFee.total))
+    // makerTax
+    state.makerTax.tax = data.makerTax[0]
+    state.makerTax.airdrop = data.makerTax[1]
+    state.makerTax.fomo = data.makerTax[2]
+    state.makerTax.liquidity = data.makerTax[3]
+    state.makerTax.fund = data.makerTax[4]
+    state.makerTax.destroy = data.makerTax[5]
+    state.makerTax.total = new BN(state.makerTax.tax)
+      .add(new BN(state.makerTax.airdrop))
+      .add(new BN(state.makerTax.fomo))
+      .add(new BN(state.makerTax.liquidity))
+      .add(new BN(state.makerTax.fund))
+      .add(new BN(state.makerTax.destroy))
+    state.makerTax.txn = new BN('100').sub(new BN(state.makerTax.total))
 
-    // whaleFee
-    state.whaleFee.tax = data.whaleFees[0]
-    state.whaleFee.airdrop = data.whaleFees[1]
-    state.whaleFee.fomo = data.whaleFees[2]
-    state.whaleFee.liquidity = data.whaleFees[3]
-    state.whaleFee.fund = data.whaleFees[4]
-    state.whaleFee.destroy = data.whaleFees[5]
-    state.whaleFee.total = new BN(state.whaleFee.tax)
-      .add(new BN(state.whaleFee.airdrop))
-      .add(new BN(state.whaleFee.fomo))
-      .add(new BN(state.whaleFee.liquidity))
-      .add(new BN(state.whaleFee.fund))
-      .add(new BN(state.whaleFee.destroy))
-    state.whaleFee.txn = new BN('100').sub(new BN(state.whaleFee.total))
+    // whaleTax
+    state.whaleTax.tax = data.whaleTax[0]
+    state.whaleTax.airdrop = data.whaleTax[1]
+    state.whaleTax.fomo = data.whaleTax[2]
+    state.whaleTax.liquidity = data.whaleTax[3]
+    state.whaleTax.fund = data.whaleTax[4]
+    state.whaleTax.destroy = data.whaleTax[5]
+    state.whaleTax.total = new BN(state.whaleTax.tax)
+      .add(new BN(state.whaleTax.airdrop))
+      .add(new BN(state.whaleTax.fomo))
+      .add(new BN(state.whaleTax.liquidity))
+      .add(new BN(state.whaleTax.fund))
+      .add(new BN(state.whaleTax.destroy))
+    state.whaleTax.txn = new BN('100').sub(new BN(state.whaleTax.total))
 
 
-    // robberFee
-    state.robberFee.tax = data.robberFees[0]
-    state.robberFee.airdrop = data.robberFees[1]
-    state.robberFee.fomo = data.robberFees[2]
-    state.robberFee.liquidity = data.robberFees[3]
-    state.robberFee.fund = data.robberFees[4]
-    state.robberFee.destroy = data.robberFees[5]
-    state.robberFee.total = new BN(state.robberFee.tax)
-      .add(new BN(state.robberFee.airdrop))
-      .add(new BN(state.robberFee.fomo))
-      .add(new BN(state.robberFee.liquidity))
-      .add(new BN(state.robberFee.fund))
-      .add(new BN(state.robberFee.destroy))
-    state.robberFee.txn = new BN('100').sub(new BN(state.robberFee.total))
+    // robberTax
+    state.robberTax.tax = data.robberTax[0]
+    state.robberTax.airdrop = data.robberTax[1]
+    state.robberTax.fomo = data.robberTax[2]
+    state.robberTax.liquidity = data.robberTax[3]
+    state.robberTax.fund = data.robberTax[4]
+    state.robberTax.destroy = data.robberTax[5]
+    state.robberTax.total = new BN(state.robberTax.tax)
+      .add(new BN(state.robberTax.airdrop))
+      .add(new BN(state.robberTax.fomo))
+      .add(new BN(state.robberTax.liquidity))
+      .add(new BN(state.robberTax.fund))
+      .add(new BN(state.robberTax.destroy))
+    state.robberTax.txn = new BN('100').sub(new BN(state.robberTax.total))
 
     // specials
     state.specials.flats = data.flats

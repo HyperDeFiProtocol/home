@@ -24,16 +24,16 @@
 
           <p>
             {{ $t('sTaxBurn.burn') }}
-            <span v-if='$store.state.bsc.takerFee.destroy > "0"'>
-              {{ $store.state.bsc.takerFee.destroy }}%
+            <span v-if='$store.state.bsc.takerTax.destroy > "0"'>
+              {{ $store.state.bsc.takerTax.destroy }}%
               {{ $t('sTax.fromTaker') }}
             </span>
-            <span v-if='$store.state.bsc.makerFee.destroy > "0"'>
-              {{ $store.state.bsc.makerFee.destroy }}%
+            <span v-if='$store.state.bsc.makerTax.destroy > "0"'>
+              {{ $store.state.bsc.makerTax.destroy }}%
               {{ $t('sTax.fromMaker') }}
             </span>
-            <span v-if='$store.state.bsc.whaleFee.destroy > "0"'>
-              {{ $store.state.bsc.whaleFee.destroy }}%
+            <span v-if='$store.state.bsc.whaleTax.destroy > "0"'>
+              {{ $store.state.bsc.whaleTax.destroy }}%
               {{ $t('sTax.fromWhale') }}
             </span>
             {{ $t('sTaxBurn.destroy__') }}

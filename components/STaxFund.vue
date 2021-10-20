@@ -24,21 +24,21 @@
 
           <p>
             {{ $t('sTax.takeOnly') }}
-            <span v-if='$store.state.bsc.takerFee.fund === $store.state.bsc.makerFee.fund && $store.state.bsc.makerFee.fund === $store.state.bsc.whaleFee.fund'>
-              {{ $store.state.bsc.takerFee.fund }}%
+            <span v-if='$store.state.bsc.takerTax.fund === $store.state.bsc.makerTax.fund && $store.state.bsc.makerTax.fund === $store.state.bsc.whaleTax.fund'>
+              {{ $store.state.bsc.takerTax.fund }}%
               {{ $t('sTax.fromTakerMakerWhale') }}
             </span>
             <span v-else>
-              <span v-if='$store.state.bsc.takerFee.fund > "0"'>
-                {{ $store.state.bsc.takerFee.fund }}%
+              <span v-if='$store.state.bsc.takerTax.fund > "0"'>
+                {{ $store.state.bsc.takerTax.fund }}%
                 {{ $t('sTax.fromTaker') }}
               </span>
-              <span v-if='$store.state.bsc.makerFee.fund > "0"'>
-                {{ $store.state.bsc.makerFee.fund }}%
+              <span v-if='$store.state.bsc.makerTax.fund > "0"'>
+                {{ $store.state.bsc.makerTax.fund }}%
                 {{ $t('sTax.fromMaker') }}
               </span>
-              <span v-if='$store.state.bsc.whaleFee.fund > "0"'>
-                {{ $store.state.bsc.whaleFee.fund }}%
+              <span v-if='$store.state.bsc.whaleTax.fund > "0"'>
+                {{ $store.state.bsc.whaleTax.fund }}%
                 {{ $t('sTax.fromWhale') }}
               </span>
             </span>

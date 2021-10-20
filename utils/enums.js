@@ -1,11 +1,12 @@
 export default {
   txType: {
-    FLAT: '0',
-    TAKER: '1',
-    MAKER: '2',
-    WHALE: '3',
-    ROBBER: '4',
-    GENESIS_REDEEM: '5',
+    HARVEST: '0',
+    FLAT: '1',
+    TAKER: '2',
+    MAKER: '3',
+    WHALE: '4',
+    ROBBER: '5',
+    GENESIS_REDEEM: '6',
   },
   evType: {
     MINT: '0',

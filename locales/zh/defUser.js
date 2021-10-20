@@ -1,6 +1,7 @@
 export default {
-  taker: '索取者',
-  maker: '贡献者',
+  harvest: '收矿',
+  taker: '索取',
+  maker: '贡献',
   whale: '鲸鱼',
   robber: '掠食者',
   redeem: '创世认领',
@@ -16,5 +17,5 @@ export default {
   fund: '基金',
   liquidity: 'PancakeSwap 流动池',
   buffer: '缓冲池',
-  tax: '税收矿池',
+  farm: '矿池',
 }

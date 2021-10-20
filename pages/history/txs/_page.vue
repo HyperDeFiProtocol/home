@@ -81,6 +81,7 @@
 <script>
 import explorer from '~/utils/hdfLink'
 import fn from '~/utils/functions'
+import enums from '~/utils/enums'
 
 export default {
   scrollToTop: true,
@@ -132,17 +133,19 @@ export default {
 
     txName(txType) {
       switch (txType) {
-        case '0':
+        case enums.txType.HARVEST:
+          return 'harvest'
+        case enums.txType.FLAT:
           return 'flat'
-        case '1':
+        case enums.txType.TAKER:
           return 'taker'
-        case '2':
+        case enums.txType.MAKER:
           return 'maker'
-        case '3':
+        case enums.txType.WHALE:
           return 'whale'
-        case '4':
+        case enums.txType.ROBBER:
           return 'robber'
-        case '5':
+        case enums.txType.GENESIS_REDEEM:
           return 'redeem'
         default:
           return ''

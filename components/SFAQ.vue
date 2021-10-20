@@ -13,11 +13,11 @@
             </dt>
             <dd>
               {{ $t('sFAQ.aFee1') }}
-              {{ $store.state.bsc.takerFee.total }}%
+              {{ $store.state.bsc.takerTax.total }}%
               {{ $t('sFAQ.fromTaker') }}
-              {{ $store.state.bsc.makerFee.total }}%
+              {{ $store.state.bsc.makerTax.total }}%
               {{ $t('sFAQ.fromMaker') }}
-              {{ $store.state.bsc.whaleFee.total }}%
+              {{ $store.state.bsc.whaleTax.total }}%
               {{ $t('sFAQ.fromWhale') }}
               {{ $t('sFAQ.aFee2') }}
             </dd>

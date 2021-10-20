@@ -24,16 +24,16 @@
 
           <p>
             {{ $t('sTax.take') }}
-            <span v-if='$store.state.bsc.takerFee.airdrop > "0"'>
-              {{ $store.state.bsc.takerFee.airdrop }}%
+            <span v-if='$store.state.bsc.takerTax.airdrop > "0"'>
+              {{ $store.state.bsc.takerTax.airdrop }}%
               {{ $t('sTax.fromTaker') }}
             </span>
-            <span v-if='$store.state.bsc.makerFee.airdrop > "0"'>
-              {{ $store.state.bsc.makerFee.airdrop }}%
+            <span v-if='$store.state.bsc.makerTax.airdrop > "0"'>
+              {{ $store.state.bsc.makerTax.airdrop }}%
               {{ $t('sTax.fromMaker') }}
             </span>
-            <span v-if='$store.state.bsc.whaleFee.airdrop > "0"'>
-              {{ $store.state.bsc.whaleFee.airdrop }}%
+            <span v-if='$store.state.bsc.whaleTax.airdrop > "0"'>
+              {{ $store.state.bsc.whaleTax.airdrop }}%
               {{ $t('sTax.fromWhale') }}
             </span>
             {{ $t('sTaxAirdrop.takeThen__') }}
