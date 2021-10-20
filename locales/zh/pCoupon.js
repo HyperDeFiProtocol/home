@@ -37,9 +37,9 @@ export default {
   ShareAirdrop: '分享空投收益',
 
   From: '来源',
-  _level0: '直接推广（0 阶）',
-  _level1: '间接推广（1 阶）',
-  _level2: '间接推广（2 阶）',
+  _level0: '直接推广 - 0 阶',
+  _level1: '间接推广 - 1 阶',
+  _level2: '间接推广 - 2 阶',
 
   codeEmpty__: '折扣码 Coupon Code 不能为空',
 }
