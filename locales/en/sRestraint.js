@@ -1,6 +1,6 @@
 export default {
-  title1: 'Team',
-  title2: 'Restraint',
+  title1: 'Code',
+  title2: 'is Law',
   desc: 'Long-term value is more important than immediate benefits',
 
   s1: 'No reservations, no pre-sale',

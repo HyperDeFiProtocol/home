@@ -12,11 +12,11 @@
     <STaxLiquidity />
     <STaxFund class='bg-gray-800' />
     <STaxBurn />
-    <SRestraint class='bg-gray-800' />
-    <SGlobalAccounts />
+    <SDApps class='bg-gray-800' />
+    <SCodeLaw />
+<!--    <SGlobalAccounts />-->
     <SReadyForDApps class='bg-gray-800' />
     <SUsername />
-    <SDApps />
     <SFAQ class='bg-gray-800' />
   </div>
 </template>

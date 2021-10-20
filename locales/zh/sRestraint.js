@@ -1,6 +1,6 @@
 export default {
-  title1: '团队',
-  title2: '自我约束',
+  title1: '代码',
+  title2: '即法律',
   desc: '长期价值远比眼前小利重要得多',
 
   s1: '无预留，无预挖，无预售',

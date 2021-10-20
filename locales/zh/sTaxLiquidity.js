@@ -4,8 +4,8 @@ export default {
 
   thenDeposit1__: '然后存入缓冲池，当缓冲池余额增涨超过',
   thenDeposit2__: '（PancakeSwap 流动池的',
-  thenDeposit3__: '），其中一半将会换为 BNB 并与另一半一起添加到全局流动池。',
-  newLPTokens__: 'LP Token 将会被发送到黑洞地址，没有人可以撤除全局流动池。',
+  thenDeposit3__: '），其中一半 HyperDeFi 将会换为 BNB，然后与另一半一起添加到全局流动池。',
+  newLPTokens__: 'LP Token 自动发送到黑洞地址，没有人可以撤除全局流动池。',
 
   statLiquidityMarketValue: '流动池市值',
   statLiquidity: '流动池',
