@@ -334,10 +334,10 @@
             {{ $store.state.bsc.global.robberPercentage }}%
             {{ $t('sTax.scriptCannot__') }}
             {{ $store.state.bsc.robberFee.total }}%
-            {{ $t('sTax.scriptOfTheFee') }}
+            {{ $t('sTax.scriptOfTheTax') }}
             {{ $store.state.bsc.robberFee.tax }}%
 
-            {{ $t('sTax.script4Tax_') }}
+            {{ $t('sTax.script4Farm_') }}
             {{ $store.state.bsc.robberFee.airdrop }}%
             {{ $t('sTax.script4Airdrop_') }}
             {{ $store.state.bsc.robberFee.fomo }}%

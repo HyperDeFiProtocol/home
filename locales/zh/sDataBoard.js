@@ -21,13 +21,13 @@ export default {
   latestPrice_: '最新价格，',
   providedBy: '提供者',
 
-  currentMarketValue_: '当前市值，',
+  totalMarketValue_: '总市值，',
   ofTotalSupplyCap: '根据总供应量',
 
-  currentTotalSupply_: '当前总供应量，',
+  currentSupply_: '当前供应量，',
   blackHoleIncluded: '已包含黑洞地址',
 
-  totalSupplyCap_: '总量上限，',
+  totalSupply_: '总供应量，',
   fixed: '恒定不变',
   decreasing_: '缩减中...',
 

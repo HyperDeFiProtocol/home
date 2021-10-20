@@ -101,7 +101,14 @@
               {{ $t('sDataBoard.latestPrice_') }}
             </span>
             {{ $t('sDataBoard.providedBy') }}
-            <CPancakeTo class='font-medium text-violet-300'>PancakeSwap Finance</CPancakeTo>
+            <CPancakeTo v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'
+                        class='font-medium text-violet-300'
+            >
+              PancakeSwap Finance
+            </CPancakeTo>
+            <nuxt-link v-else :to='localePath("/genesis")' class='font-medium text-violet-300'>
+              {{ $t('siteNav.genesis') }}
+            </nuxt-link>
           </span>
         </p>
 
@@ -112,7 +119,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sDataBoard.currentMarketValue_') }}
+              {{ $t('sDataBoard.totalMarketValue_') }}
             </span>
             {{ $t('sDataBoard.ofTotalSupplyCap') }}
           </span>
@@ -125,7 +132,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sDataBoard.currentTotalSupply_') }}
+              {{ $t('sDataBoard.currentSupply_') }}
             </span>
             {{ $t('sDataBoard.blackHoleIncluded') }}
           </span>
@@ -150,7 +157,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sDataBoard.totalSupplyCap_') }}
+              {{ $t('sDataBoard.totalSupply_') }}
             </span>
             {{ $t('sDataBoard.fixed') }}
           </span>
@@ -178,8 +185,7 @@
         </p>
       </div>
 
-      <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'
-           v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'>
+      <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'>
         <p>
           {{ $t('sDataBoard.thereIsA__') }}
           <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi

@@ -56,9 +56,12 @@
                 </div>
                 <p class='mt-3 text-sm text-gray-300 sm:mt-4'>
                   {{ $t('sWelcome._providedBy') }}
-                  <CPancakeTo class='hdf-a-colored'>
+                  <CPancakeTo v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"' class='hdf-a-colored'>
                     PancakeSwap Finance
                   </CPancakeTo>
+                  <nuxt-link v-else :to='localePath("/genesis")' class='hdf-a-colored'>
+                    {{ $t('siteNav.genesis') }}
+                  </nuxt-link>
                   {{ $t('sWelcome.onBlockNumber') }}
                   #<CBN :value='String($store.state.bsc.blockNumber)' />
                   {{ $t('sWelcome.of') }}

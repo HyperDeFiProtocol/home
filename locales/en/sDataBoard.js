@@ -1,7 +1,7 @@
 export default {
   genesisTag: 'Genesis Deposit',
-  genesisStartText: 'Genesis Deposit is allowed after',
-  genesisEndText: 'Genesis Deposit is allowed before',
+  genesisStartText: 'Deposit is allowed after',
+  genesisEndText: 'Deposit is allowed before',
   visitGenesis: 'Visit Genesis',
 
   launchTag: 'Launch Time',
@@ -19,13 +19,13 @@ export default {
   latestPrice_: 'Latest Price,',
   providedBy: 'provided by',
 
-  currentMarketValue_: 'Current Market Value,',
+  totalMarketValue_: 'Total Market Value,',
   ofTotalSupplyCap: 'of total supply',
 
-  currentTotalSupply_: 'Current Total Supply,',
+  currentSupply_: 'Current Supply,',
   blackHoleIncluded: 'black-hold included',
 
-  totalSupplyCap_: 'Total Supply Cap,',
+  totalSupply_: 'Total Supply,',
   fixed: 'fixed',
   decreasing_: 'decreasing...',
 
