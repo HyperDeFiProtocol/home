@@ -1,7 +1,7 @@
 export default {
   title: '共同建设 PancakeSwap 流动性',
   tag: '创世纪',
-  desc: '只接受 BNB，所有存入将 100% 用于建设 PancakeSwap 上的 HyperDeFi/BNB 初始流动池',
+  desc: '所有存入将 100% 用于建设 PancakeSwap 上的 HyperDeFi/BNB 初始流动池',
 
   deploy: '部署 HyperDeFi 主合约',
   contractAddress_: '合约地址：',

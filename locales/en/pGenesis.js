@@ -1,7 +1,7 @@
 export default {
-  title: 'Build PancakeSwap Liquidity together',
+  title: 'Co-Build PancakeSwap Liquidity',
   tag: 'Pre-sale',
-  desc: 'Accept BNB only, 100% of all deposits will be used to build the initial PancakeSwap Liquidity: HyperDeFi/BNB',
+  desc: '100% of all deposits will be used to build the initial PancakeSwap Liquidity: HyperDeFi/BNB',
 
   deploy: 'Deploy the HyperDeFi Main Contract',
   contractAddress_: 'Contract Address:',
