@@ -32,6 +32,9 @@ export const state = () => ({
     priceDecimals: null,
 
     price: '0',
+    tokenBNBPrice: '0',
+    bnbUSDTPrice: '0',
+
     holders: '0',
     usernames: '0',
 
@@ -230,7 +233,10 @@ export const mutations = {
     state.metadata.priceSymbol = data.tokenSymbols[1]
     state.metadata.priceDecimals = data.tokenDecimals[1]
 
+    state.metadata.tokenBNBPrice = data.tokenPrices[0]
+    state.metadata.bnbUSDTPrice = data.tokenPrices[1]
     state.metadata.price = data.tokenPrices[2]
+
     state.metadata.bnPrice = new BN(state.metadata.price)
     let strDiv = '1'
     for (let i = 0; i < parseInt(state.metadata.tokenDecimals); i++) {
