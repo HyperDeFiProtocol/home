@@ -28,6 +28,7 @@ export default {
   couponCodeGenerated: 'Coupon Code Generated',
 
   Counter_: 'Number of visitors:',
+  copy__: 'Copy The Coupon Code',
 
   PromotionBonus: 'Promotion Bonus',
   Total: 'Total',

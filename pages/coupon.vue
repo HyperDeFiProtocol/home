@@ -209,20 +209,23 @@
 
         <div class='mt-12 max-w-xl mx-auto'>
           <div v-if='coupon'>
-            <label for='share-code'>
+            <div>
               {{ $t('pCoupon.couponCode') }}
-            </label>
-            <input id='share-code' ref='share-code'
-                   type='text'
-                   autocomplete='off'
-                   maxlength='1'
-                   class='mt-2 share-code'
-                   :value='coupon'
-                   disabled />
+            </div>
+            <div class='mt-2 coupon'>
+              {{ coupon }}
+            </div>
             <div class='mt-1 text-right'>
               {{ $t('pCoupon.Counter_') }}
               <CBN :value='$store.state.wallet.visitors' />
             </div>
+
+            <button class='mt-4 btn-copy' @click='copyCoupon'>
+              <HeroIconOutlineClipboardCopy class='w-7 h-7 text-rose-300' />
+              <span>
+                {{ $t('pCoupon.copy__') }}
+              </span>
+            </button>
           </div>
 
           <div v-else>
@@ -311,6 +314,7 @@
 <script>
 import BN from 'bn.js'
 import fn from '~/utils/functions'
+import copy from 'clipboard-copy'
 
 export default {
   scrollToTop: true,
@@ -543,7 +547,20 @@ export default {
         title: this.$t('modal.txError') + ' #' + error.code,
         message: error.message
       })
-    }
+    },
+
+    async copyCoupon() {
+      const rlt = await copy(this.coupon);
+      console.log('rlt:', rlt)
+      // this.$refs['share-code'].select()
+      //
+      // if (document.execCommand('copy')) {
+      //   await this.$store.dispatch('warning/SET_WARNING', {
+      //     title: this.$t('modal.info'),
+      //     message: 'Coupon Code Copied: ' + this.coupon
+      //   })
+      // }
+    },
   }
 }
 </script>
@@ -645,24 +662,36 @@ table {
   }
 }
 
-.share-code {
-  @apply block w-full border-0 rounded-md py-4 bg-gray-300;
-  @apply font-mono font-extrabold text-lg sm:text-4xl text-gray-900 text-center;
-  @apply placeholder-gray-200 shadow-sm;
+.coupon {
+  @apply w-full border-0 rounded-md py-4 bg-gray-300 shadow-sm;
+  @apply font-mono font-extrabold text-gray-900 text-center text-lg sm:text-4xl;
 
   letter-spacing: 0.3em;
-
-  &:focus {
-    @apply border-transparent bg-white outline-none ring-2 ring-white ring-offset-2 ring-offset-violet-600;
-  }
 }
 
 .btn-coupon {
   @apply w-full rounded-md border border-transparent shadow px-5 py-3 sm:px-10;
-  @apply focus:outline-none;
-  @apply focus:ring-2 focus:ring-white focus:ring-offset-2;
   @apply inline-flex justify-center space-x-2;
   @apply text-base font-medium text-white text-center;
-  @apply bg-violet-600 hover:bg-violet-700 focus:ring-offset-violet-600;
+  @apply bg-violet-600 hover:bg-violet-700;
+
+  &:focus {
+    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-violet-600;
+  }
+}
+
+.btn-copy {
+  @apply w-full rounded-md border border-transparent shadow px-5 py-4 sm:px-10;
+  @apply inline-flex items-center justify-center space-x-4;
+  @apply text-xl font-medium text-rose-200 text-center;
+  @apply bg-rose-700;
+
+  &:hover {
+    @apply bg-rose-600 text-white;
+  }
+
+  &:focus {
+    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-rose-600;
+  }
 }
 </style>

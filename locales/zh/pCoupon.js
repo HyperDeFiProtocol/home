@@ -28,6 +28,7 @@ export default {
   couponCodeGenerated: '折扣码 Coupon Code 已生成',
 
   Counter_: '绑定计数：',
+  copy__: '复制折扣码 Coupon Code',
 
   PromotionBonus: '推广奖励',
   Total: '总共分享绑定者空投收益的',
