@@ -6,7 +6,7 @@ export default {
   hours: '小时',
   minutes: '分钟',
   seconds: '秒',
-  ifNoOther__: '之后，如果没有其它用户从 PancakeSwap 购买，那么最后一个购买者赢得奖池的 60%。',
+  ifNoOther__: '之后，如果没有其它用户从 PancakeSwap 购买，那么最后一个购买者赢得奖池的 60%',
 
   trackFomoTransfers: '笔 FOMO 转账',
 

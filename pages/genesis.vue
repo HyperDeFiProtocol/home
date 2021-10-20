@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <!--  mint 3%  -->
+        <!--  mint genesis  -->
         <div class='hdf-timeline-item done'>
           <HeroIconSolidBadgeCheck class='hdf-timeline-icon' />
 

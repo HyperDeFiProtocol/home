@@ -37,7 +37,7 @@
               {{ $t('sTax.fromWhale') }}
             </span>
             {{ $t('sTaxLiquidity.thenDeposit1__') }}
-            <CBN :value='$store.state.bsc.global.autoSwapAmountMin' :token='true' /> HyperDeFi
+            <CBN :value='autoSwapAmountMin' :token='true' /> HyperDeFi
             {{ $t('sTaxLiquidity.thenDeposit2__') }}
             {{ $store.state.bsc.global.autoSwapNumeratorMin }}/<CBN :value='$store.state.bsc.global.autoSwapDenominator' />
             {{ $t('sTaxLiquidity.thenDeposit3__') }}
@@ -185,6 +185,7 @@
 </template>
 
 <script>
+import BN from 'bn.js'
 import hdfLink from '~/utils/hdfLink'
 import fn from '~/utils/functions'
 
@@ -198,6 +199,16 @@ export default {
   computed: {
     explorer() {
       return hdfLink
+    },
+
+    autoSwapAmountMin() {
+      if (this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== '0') {
+        return this.$store.state.bsc.global.autoSwapAmountMin
+      } else {
+        return new BN(this.$store.state.bsc.global.initLiquidity)
+          .mul(new BN(this.$store.state.bsc.global.autoSwapNumeratorMin))
+          .div(new BN(this.$store.state.bsc.global.autoSwapDenominator))
+      }
     }
   },
   watch: {

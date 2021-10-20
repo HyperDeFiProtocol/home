@@ -6,7 +6,7 @@ export default {
   hours: 'hours,',
   minutes: 'minutes,',
   seconds: 'seconds,',
-  ifNoOther__: 'if no other user buy from PancakeSwap, the last buyer will win 60% of this prize.',
+  ifNoOther__: 'if no other user swap from PancakeSwap, the last buyer will win 60% of this prize.',
 
   trackFomoTransfers: 'FOMO transfers',
 
