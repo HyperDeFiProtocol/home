@@ -17,4 +17,5 @@ export default {
   harvestHistory: 'Harvest History',
   airdropHistory: 'Airdrop History',
   fomoHistory: 'FOMO History',
+  bonusHistory: 'Coupon Bonus History',
 }

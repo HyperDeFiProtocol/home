@@ -17,4 +17,5 @@ export default {
   harvestHistory: '收矿记录',
   airdropHistory: '空投记录',
   fomoHistory: 'FOMO 记录',
+  bonusHistory: '折扣码 Coupon Code 奖励记录',
 }

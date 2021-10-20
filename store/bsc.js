@@ -85,6 +85,13 @@ export const state = () => ({
     autoSwapDenominator: '0',
     autoSwapAmountMin: '0',
     autoSwapAmountMax: '0',
+    bonus: {
+      level0: '0',
+      level1: '0',
+      level2: '0',
+      total: '0',
+    },
+
 
     tradeAmountMax: '0',
 
@@ -286,6 +293,12 @@ export const mutations = {
     state.global.autoSwapDenominator = data.uint16s[5]
     state.global.autoSwapAmountMin = data.uint256s[5]
     state.global.autoSwapAmountMax = data.uint256s[6]
+    state.global.bonus.level0 = data.uint16s[7]
+    state.global.bonus.level1 = data.uint16s[8]
+    state.global.bonus.level2 = data.uint16s[9]
+    state.global.bonus.total = new BN(state.global.bonus.level0)
+      .add(new BN(state.global.bonus.level1))
+      .add(new BN(state.global.bonus.level2))
 
     // launch timestamp
     state.global.launchTimestamp = data.uint256s[0]

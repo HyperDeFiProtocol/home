@@ -9,7 +9,7 @@
               {{ $t('txTable.block') }}
             </th>
             <th scope='col'>
-              {{ $t('txTable.address') }}
+              {{ $t('txTable.txHash') }}
             </th>
             <th scope='col'>
               {{ $t('txTable.amount') }}
@@ -25,12 +25,12 @@
             </td>
             <td class='font-mono'>
               <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                <CAddress :value='tx.account' />
+                {{ tx.txHash.slice(0, 44) }}...
               </a>
             </td>
             <td>
-              <CBN :value='tx.amount' :price='true' :padding='6' />
-              BNB
+              <CBN :value='tx.amount' :token='true' :padding='2' />
+              HyperDeFi
             </td>
           </tr>
           </tbody>
@@ -44,12 +44,17 @@
 import hdfLink from '~/utils/hdfLink'
 
 export default {
-  name: 'CTableGenesis',
+  name: 'CTableAccountBonus',
   props: {
     transactions: {
       type: Array,
       required: true
     },
+    hash: {
+      type: Boolean,
+      default: false,
+    }
+
   },
   computed: {
     hdfLink() {

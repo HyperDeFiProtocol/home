@@ -1,8 +1,10 @@
 import BN from 'bn.js'
 import fn from '../utils/functions'
+import enums from '~/utils/enums'
 
 const FROM_BLOCK = process.env.fromBlock
 const BLOCK_STEP_RANGE = { min: 4900, max: 4999 }
+
 
 export default async function({ app, store }, inject) {
   const all = async function() {
@@ -40,13 +42,13 @@ export default async function({ app, store }, inject) {
       console.log('Synchronize blocks: #' + syncTxsOption.fromBlock + ' - ' + syncTxsOption.toBlock)
 
       /**
-       * sync txs
+       * sync TX
        */
       const syncTx = new Promise(async function(resolve) {
         // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('Tx', syncTxsOption)
+          .getPastEvents('TX', syncTxsOption)
           .catch(e => {
             console.error('>>> sync, syncTx:', e)
           })
@@ -90,68 +92,102 @@ export default async function({ app, store }, inject) {
       })
 
       /**
-       * sync airdrop
+       * sync EV
        */
-      const syncAirdrop = new Promise(async function(resolve) {
-        // console.log('syncAirdrop:', queryOption.fromBlock, queryOption.toBlock)
+      const syncEv = new Promise(async function(resolve) {
+        // console.log('syncEV:', queryOption.fromBlock, queryOption.toBlock)
 
         const events = await app.token
-          .getPastEvents('Airdrop', syncTxsOption)
+          .getPastEvents('EV', syncTxsOption)
           .catch(e => {
-            console.error('>>> sync, syncLiquidity:', e)
+            console.error('>>> sync, syncEV:', e)
           })
 
         if (events.length) {
-          let transactions = []
-          for (let i = 0; i < events.length; i++) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
+          let txnsAirdrop = []
+          let txnsBonus = []
+          let txnsFund = []
+          let txnsDestroy = []
+          let txnsGenesisDeposit = []
 
-              account: events[i].returnValues.account,
-              amount: events[i].returnValues.amount
+          for (let i = 0; i < events.length; i++) {
+            if (enums.evType.AIRDROP === events[i].returnValues.evType) {
+              txnsAirdrop.push({
+                blockNumber: events[i].blockNumber,
+                txHash: events[i].transactionHash,
+
+                account: events[i].returnValues.account,
+                amount: events[i].returnValues.amount
+              })
+            } else if (enums.evType.BONUS === events[i].returnValues.evType) {
+              txnsBonus.push({
+                blockNumber: events[i].blockNumber,
+                txHash: events[i].transactionHash,
+
+                account: events[i].returnValues.account,
+                amount: events[i].returnValues.amount
+              })
+            } else if (enums.evType.FUND === events[i].returnValues.evType) {
+              txnsFund.push({
+                blockNumber: events[i].blockNumber,
+                txHash: events[i].transactionHash,
+
+                account: events[i].returnValues.account,
+                amount: events[i].returnValues.amount
+              })
+            } else if (enums.evType.DESTROY === events[i].returnValues.evType) {
+              txnsDestroy.push({
+                blockNumber: events[i].blockNumber,
+                txHash: events[i].transactionHash,
+
+                account: events[i].returnValues.account,
+                amount: events[i].returnValues.amount
+              })
+            } else if (enums.evType.GENESIS_DEPOSIT === events[i].returnValues.evType) {
+              txnsGenesisDeposit.push({
+                blockNumber: events[i].blockNumber,
+                txHash: events[i].transactionHash,
+
+                account: events[i].returnValues.account,
+                amount: events[i].returnValues.amount
+              })
+            }
+          }
+
+          if (txnsAirdrop) {
+            await app.db.airdrop.bulkAdd(txnsAirdrop).catch(e => {
+              console.error('>>> sync, syncEV - AIRDROP, bulkAdd:', e)
             })
           }
 
-          await app.db.airdrop.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncLiquidity, bulkAdd:', e)
-          })
-        }
-
-        const transactions = await app.db.airdrop.toArray()
-        await store.dispatch('stat/SET_AIRDROPS', transactions)
-
-        resolve(syncTxsOption)
-      })
-
-      /**
-       * sync bonus
-       */
-      const syncBonus = new Promise(async function(resolve) {
-        // console.log('syncBonus:', queryOption.fromBlock, queryOption.toBlock)
-
-        const events = await app.token
-          .getPastEvents('Bonus', syncTxsOption)
-          .catch(e => {
-            console.error('>>> sync, syncBonus:', e)
-          })
-
-        if (events.length) {
-          let transactions = []
-          for (let i = 0; i < events.length; i++) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              account: events[i].returnValues.account,
-              amount: events[i].returnValues.amount
+          if (txnsBonus) {
+            await app.db.bonus.bulkAdd(txnsBonus).catch(e => {
+              console.error('>>> sync, syncEV - BONUS, bulkAdd:', e)
             })
           }
 
-          await app.db.bonus.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncBonus, bulkAdd:', e)
-          })
+          if (txnsFund) {
+            await app.db.fund.bulkAdd(txnsFund).catch(e => {
+              console.error('>>> sync, syncEV - FUND, bulkAdd:', e)
+            })
+          }
+
+          if (txnsDestroy) {
+            await app.db.destroy.bulkAdd(txnsDestroy).catch(e => {
+              console.error('>>> sync, syncEV - FUND, bulkAdd:', e)
+            })
+          }
+
+          if (txnsGenesisDeposit) {
+            await app.db.genesisDeposit.bulkAdd(txnsGenesisDeposit).catch(e => {
+              console.error('>>> sync, syncEV - GENESIS_DEPOSIT, bulkAdd:', e)
+            })
+          }
         }
+
+        // sum airdrop
+        const txnsAirdrop = await app.db.airdrop.toArray()
+        await store.dispatch('stat/SET_AIRDROPS', txnsAirdrop)
 
         resolve(syncTxsOption)
       })
@@ -245,8 +281,7 @@ export default async function({ app, store }, inject) {
        */
       await Promise.all([
         syncTx,
-        syncAirdrop,
-        syncBonus,
+        syncEv,
         syncLiquidity,
         syncTransfer,
       ])
@@ -260,7 +295,6 @@ export default async function({ app, store }, inject) {
     await store.dispatch('bsc/SET_SYNCHRONIZING_TX')
 
     return syncTxsOption
-    //
     // return range
   }
 
@@ -331,182 +365,10 @@ export default async function({ app, store }, inject) {
     await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')
   }
 
-  const genesisDeposit = async function() {
-    let syncOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
-
-    if (store.state.bsc.synchronizing.genesisDepositFrom) {
-      console.warn(
-        'Pre-sale deposit synchronizing in progress blocks: #'
-        + store.state.bsc.synchronizing.genesisDepositFrom
-        + ' - '
-        + store.state.bsc.synchronizing.genesisDepositTo
-      )
-      return
-    }
-
-    await store.dispatch('bsc/SET_SYNCHRONIZING_PD', syncOption)
-
-    await app.db.pointers.get('syncGenesisDeposit')
-      .then(pointer => {
-        if (pointer) {
-          syncOption.fromBlock = pointer.blockNumber + 1
-        }
-      })
-
-    syncOption.toBlock = syncOption.fromBlock
-
-    while (syncOption.fromBlock < store.state.bsc.blockNumber) {
-      syncOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
-      if (syncOption.toBlock > store.state.bsc.blockNumber) {
-        syncOption.toBlock = store.state.bsc.blockNumber
-      }
-
-      await store.dispatch('bsc/SET_SYNCHRONIZING_PD', syncOption)
-
-      console.log('Synchronize pre-sale deposit blocks: #' + syncOption.fromBlock + ' - ' + syncOption.toBlock)
-
-      /**
-       * sync deposit
-       */
-      const syncDeposit = new Promise(async function(resolve) {
-        // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
-
-        const events = await app.token
-          .getPastEvents('GenesisDeposit', syncOption)
-          .catch(e => {
-            console.error('>>> sync, syncGenesisDeposit:', e)
-          })
-
-        if (events.length) {
-          let transactions = []
-          for (let i = 0; i < events.length; i++) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              account: events[i].returnValues.account,
-              bnbAmount: events[i].returnValues.bnbAmount,
-            })
-          }
-
-          await app.db.genesisDeposit.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncGenesisDeposit, bulkAdd:', e)
-          })
-        }
-
-        resolve(syncOption)
-      })
-
-      /**
-       * promise all
-       */
-      await Promise.all([
-        syncDeposit,
-      ])
-
-      syncOption.fromBlock = syncOption.toBlock + 1
-      await app.db.pointers.put({ name: 'syncGenesisDeposit', blockNumber: syncOption.toBlock }).catch(e => {
-        console.error('putBlockPoint:', e)
-      })
-    }
-
-    await store.dispatch('bsc/SET_SYNCHRONIZING_PD')
-
-    return syncOption
-    //
-    // return range
-  }
-
-  // const genesisRedeem = async function() {
-  //   let syncOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
-  //
-  //   if (store.state.bsc.synchronizing.genesisRedeemFrom) {
-  //     console.warn(
-  //       'Pre-sale redeem synchronizing in progress blocks: #'
-  //       + store.state.bsc.synchronizing.genesisRedeemFrom
-  //       + ' - '
-  //       + store.state.bsc.synchronizing.genesisRedeemTo
-  //     )
-  //     return
-  //   }
-  //
-  //   await store.dispatch('bsc/SET_SYNCHRONIZING_PR', syncOption)
-  //
-  //   await app.db.pointers.get('syncGenesisRedeem')
-  //     .then(pointer => {
-  //       if (pointer) {
-  //         syncOption.fromBlock = pointer.blockNumber + 1
-  //       }
-  //     })
-  //
-  //   syncOption.toBlock = syncOption.fromBlock
-  //
-  //   while (syncOption.fromBlock < store.state.bsc.blockNumber) {
-  //     syncOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
-  //     if (syncOption.toBlock > store.state.bsc.blockNumber) {
-  //       syncOption.toBlock = store.state.bsc.blockNumber
-  //     }
-  //
-  //     await store.dispatch('bsc/SET_SYNCHRONIZING_PR', syncOption)
-  //
-  //     console.log('Synchronize pre-sale redeem blocks: #' + syncOption.fromBlock + ' - ' + syncOption.toBlock)
-  //
-  //     /**
-  //      * sync deposit
-  //      */
-  //     const syncDeposit = new Promise(async function(resolve) {
-  //       // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
-  //
-  //       const events = await app.token
-  //         .getPastEvents('GenesisDeposit', syncOption)
-  //         .catch(e => {
-  //           console.error('>>> sync, syncGenesisRedeem:', e)
-  //         })
-  //
-  //       if (events.length) {
-  //         let transactions = []
-  //         for (let i = 0; i < events.length; i++) {
-  //           transactions.push({
-  //             blockNumber: events[i].blockNumber,
-  //             txHash: events[i].transactionHash,
-  //
-  //             account: events[i].returnValues.account,
-  //             tokenAmount: events[i].returnValues.tokenAmount,
-  //           })
-  //         }
-  //
-  //         await app.db.genesisRedeem.bulkAdd(transactions).catch(e => {
-  //           console.error('>>> sync, syncGenesisRedeem, bulkAdd:', e)
-  //         })
-  //       }
-  //
-  //       resolve(syncOption)
-  //     })
-  //
-  //     /**
-  //      * promise all
-  //      */
-  //     await Promise.all([
-  //       syncDeposit,
-  //     ])
-  //
-  //     syncOption.fromBlock = syncOption.toBlock + 1
-  //     await app.db.pointers.put({ name: 'syncGenesisRedeem', blockNumber: syncOption.toBlock }).catch(e => {
-  //       console.error('putBlockPoint:', e)
-  //     })
-  //   }
-  //
-  //   await store.dispatch('bsc/SET_SYNCHRONIZING_PR')
-  //
-  //   return syncOption
-  //   //
-  //   // return range
-  // }
-
   app.sync = {
     all: all,
     holders: holders,
-    genesisDeposit: genesisDeposit,
+    // genesisDeposit: genesisDeposit,
     // genesisRedeem: genesisRedeem,
   }
 }

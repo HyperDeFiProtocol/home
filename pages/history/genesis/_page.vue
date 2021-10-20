@@ -47,22 +47,15 @@ export default {
     }
   },
   watch: {
-    '$store.state.bsc.blockNumber': async function() {
-      await this.sync()
-    },
     '$store.state.bsc.synchronizing.genesisDepositFrom': async function() {
       await fn.wait(1000)
       await this.load()
     },
   },
   async mounted() {
-    await this.sync()
     await this.load()
   },
   methods: {
-    async sync() {
-      await this.$nuxt.context.app.sync.genesisDeposit()
-    },
     async load() {
       this.transactions = await this.$nuxt.context.app.db.genesisDeposit
         .reverse()

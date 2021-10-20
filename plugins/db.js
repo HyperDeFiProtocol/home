@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 
-const VERSION = 1.2
+const VERSION = 1.3
 
 
 export default async function({ app, store }, inject) {
@@ -16,10 +16,13 @@ export default async function({ app, store }, inject) {
       tx: '++id',
       airdrop: '++id, account',
       bonus: '++id, account',
+      fund: '++id, account',
+      destroy: '++id, account',
+      genesisDeposit: '++id, account',
+
       liquidity: '++id',
       transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
 
-      genesisDeposit: '++id, account',
     })
 
   // clear IndexedDB if token address changed
@@ -36,11 +39,15 @@ export default async function({ app, store }, inject) {
     await app.db.pointers.clear()
     await app.db.holder.clear()
     await app.db.tx.clear()
+
     await app.db.airdrop.clear()
     await app.db.bonus.clear()
+    await app.db.fund.clear()
+    await app.db.destroy.clear()
+    await app.db.genesisDeposit.clear()
+
     await app.db.liquidity.clear()
     await app.db.transfer.clear()
-    await app.db.genesisDeposit.clear()
   }
 
   await app.db.pointers.put({ name: 'tokenAddress', value: process.env.tokenAddress }).catch(e => {

@@ -31,6 +31,14 @@
     </CSHeading>
 
     <CAccountFomo :account='account' class='mt-4' />
+
+    <CSHeading class='mt-12 lg:mt-24'>
+      <template>
+        {{ $t('pUser.bonusHistory') }}
+      </template>
+    </CSHeading>
+
+    <CAccountBonus :account='account' class='mt-4' />
   </div>
 </template>
 

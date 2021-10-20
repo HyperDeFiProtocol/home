@@ -31,19 +31,16 @@
         </p>
 
         <div class='max-w-xl mx-auto mt-8 sm:mt-16'>
-          <table>
-            <caption class='sr-only'>
-              {{ $t('sTax.for') }}
-            </caption>
+          <table class='tableTax'>
             <thead>
             <tr>
-              <th scope='col'>
+              <th scope='col' class='w-1/3'>
                 {{ $t('sTax.type') }}
               </th>
-              <th scope='col'>
+              <th scope='col' class='w-1/3'>
                 {{ $t('pCoupon.DefaultTax') }}
               </th>
-              <th scope='col'>
+              <th scope='col' class='w-1/3'>
                 {{ $t('pCoupon.DiscountedTax') }}
               </th>
             </tr>
@@ -201,7 +198,10 @@
         </h2>
 
         <p class='mt-6'>
-          {{ $t('pCoupon.YouCanPromote__') }}
+          {{ $t('pCoupon.YouCanPromote__1') }}
+          {{ $store.state.bsc.global.bonus.total }}%
+          ({{ $store.state.bsc.global.bonus.level0 }}% + {{ $store.state.bsc.global.bonus.level1 }}% + {{ $store.state.bsc.global.bonus.level2 }}%)
+          {{ $t('pCoupon.YouCanPromote__2') }}
         </p>
         <p class='mt-3'>
           {{ $t('pCoupon.StartWithHolding__') }}
@@ -240,6 +240,70 @@
           </div>
         </div>
       </div>
+
+      <div class='mt-16 sm:mt-24'>
+        <h2>
+          {{ $t('pCoupon.PromotionBonus') }}
+        </h2>
+
+        <p class='mt-6'>
+          {{ $t('pCoupon.Total') }}
+          {{ $store.state.bsc.global.bonus.total }}%
+          {{ $t('pCoupon.ofTheAirdrop__') }}
+        </p>
+        <p class='mt-3 ml-6'>
+          {{ $store.state.bsc.global.bonus.level0 }}%
+          {{ $t('pCoupon.fromDirect__') }}
+          {{ $store.state.bsc.global.bonus.level1 }}% + {{ $store.state.bsc.global.bonus.level2 }}%
+          {{ $t('pCoupon.fromIndirect__') }}
+        </p>
+
+        <div class='max-w-xl mx-auto mt-8 sm:mt-16'>
+          <table>
+            <thead>
+            <tr>
+              <th scope='col' class='w-3/5'>
+                {{ $t('pCoupon.From') }}
+              </th>
+              <th scope='col' class='w-2/5'>
+                {{ $t('pCoupon.ShareAirdrop') }}
+              </th>
+            </tr>
+            </thead>
+            <tbody class='border-t border-gray-600 divide-y divide-gray-600'>
+            <tr>
+              <td>
+                {{ $t('pCoupon._level0') }}
+              </td>
+              <td>
+                {{ $store.state.bsc.global.bonus.level0 }}%
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                {{ $t('pCoupon._level1') }}
+              </td>
+              <td>
+                {{ $store.state.bsc.global.bonus.level1 }}%
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                {{ $t('pCoupon._level2') }}
+              </td>
+              <td>
+                {{ $store.state.bsc.global.bonus.level2 }}%
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
     </LAutoWidth>
   </LAutoWidth>
 </template>
@@ -499,7 +563,7 @@ table {
   thead {
     tr {
       th {
-        @apply w-1/3 py-4 leading-6 font-medium text-gray-200 text-center;
+        @apply py-4 leading-6 font-medium text-gray-200 text-center;
 
         &:first-child {
           @apply bg-gray-800 text-base;
@@ -531,15 +595,23 @@ table {
         td {
           @apply bg-gray-700 font-normal;
 
-          &:nth-child(2) {
-            @apply text-lg line-through;
-          }
+          //&:nth-child(2) {
+          //  @apply text-lg;
+          //}
 
           &:last-child {
             @apply bg-violet-700 font-extrabold text-white;
           }
         }
       }
+    }
+  }
+}
+
+.tableTax {
+  tbody tr:hover td {
+    &:nth-child(2) {
+      @apply line-through;
     }
   }
 }

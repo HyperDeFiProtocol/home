@@ -16,7 +16,8 @@ export default {
   IfYouHaveACoupon__: 'If you have a Coupon Code, you can get a permanent 1% tax discount for your future transactions after you bind it.',
 
   ShareCouponCode: 'Share Coupon Code',
-  YouCanPromote__: 'You can promote HyperDeFi Protocol by sharing your Coupon Code, and share 50% of the airdrop from the visitors.',
+  YouCanPromote__1: 'You can promote HyperDeFi Protocol by sharing your Coupon Code, and share',
+  YouCanPromote__2: 'of the airdrop from the visitors.',
   StartWithHolding__: 'Start with holding HyperDeFi in your wallet.',
 
   DefaultTax: 'Default Tax',
@@ -27,6 +28,18 @@ export default {
   couponCodeGenerated: 'Coupon Code Generated',
 
   Counter_: 'Number of visitors:',
+
+  PromotionBonus: 'Promotion Bonus',
+  Total: 'Total',
+  ofTheAirdrop__: 'of airdrop from the visitors',
+  fromDirect__: 'from Direct Promotion,',
+  fromIndirect__: 'from Indirect Promotion:',
+  ShareAirdrop: 'Share Airdrop',
+
+  From: 'From',
+  _level0: 'Direct Promotion - Level 0',
+  _level1: 'Indirect Promotion - Level 1',
+  _level2: 'Indirect Promotion - Level 2',
 
   codeEmpty__: 'Coupon Code cannot be empty',
   codeInvalid__: 'Invalid Coupon Code',
