@@ -3,7 +3,8 @@ export default {
   tradeHyperDeFi: 'Trade HyperDeFi',
   welcomeTo: 'Welcome to',
   hyperDeFiProtocol: 'HyperDeFi Protocol',
-  text: 'Holding is farming! The Open-sourced HyperDeFi Protocol is community driven, fair launched. Some functions occur during each trade: Randomly Airdrop, FOMO, LP Acquisition, Fund, Burn, then share to every holders; and ready for more DApps...',
+  text: 'Universal Dividend! The Open-sourced HyperDeFi Protocol is community driven, fair launched. ' +
+    'Long-term deflation with features such as auto-farming, randomly-airdrop, LP Acquisition, and FOMO prize for continuous incentive, etc; and ready for more DApps...',
   buyOnPancakeSwap: 'Buy on PancakeSwap',
   visitGenesis: 'Visit Genesis',
   _providedBy: 'The latest price is provided by',
