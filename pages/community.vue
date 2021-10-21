@@ -25,10 +25,10 @@
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.discord()'>
-        <IconReddit class='w-20 h-20' />
+      <a target='_blank' :href='hdfLink.clubHouseRoom()'>
+        <HeroIconOutlineMicrophone class='w-20 h-20' />
         <p>
-          Reddit
+          ClubHouse
         </p>
       </a>
 
@@ -43,6 +43,13 @@
         <IconTelegram class='w-20 h-20' />
         <p>
           {{ $t('siteNav.telegramGroup') }}
+        </p>
+      </a>
+
+      <a target='_blank' :href='hdfLink.discord()'>
+        <IconReddit class='w-20 h-20' />
+        <p>
+          Reddit
         </p>
       </a>
 

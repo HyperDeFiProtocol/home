@@ -19,6 +19,7 @@ export default {
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
     telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',
     githubUsername: process.env.githubUsername || 'HyperDeFiProtocol',
+    clubHouseRoom: process.env.githubUsername || 'hyperdefi-protocol',
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
 

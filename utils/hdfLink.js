@@ -30,6 +30,10 @@ const telegram = function(username=process.env.telegramUsername) {
   return 'https://t.me/' + username
 }
 
+const clubHouseRoom = function(room=process.env.clubHouseRoom) {
+  return 'https://www.clubhouse.com/join/' + room
+}
+
 const exploreBlock = function(blockNumber) {
   return process.env.explorerBaseUrl + '/block/' + blockNumber
 }
@@ -68,6 +72,7 @@ export default {
   discord: discord,
   reddit: reddit,
   telegram: telegram,
+  clubHouseRoom: clubHouseRoom,
 
   exploreBlock: exploreBlock,
   exploreTx: exploreTx,
