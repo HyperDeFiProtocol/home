@@ -41,14 +41,16 @@
         </p>
       </div>
 
-      <div v-else-if='!tradeAllowed' class="mb-12 md:mb-20 text-center">
+      <div v-else-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sDataBoard.launchTag') }}
         </h2>
         <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000' :show-ds='true' />
+          <CCountdown :timestamp='$store.state.bsc.global.launchTimestamp * 1000'
+                      :show-ds='true'
+                      v-on:finished='setLaunchCountdownFinished' />
         </h3>
-        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
+        <p v-if='!tradeAllowed' class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
           <span>
             {{ $t('pGenesis.nowTheLastDeposit') }}
           </span>
@@ -253,6 +255,7 @@ export default {
   name: 'SDataBoard',
   data() {
     return {
+      launchCountdownFinished: false,
       genesisStartedCountdownFinished: false,
       genesisEndedCountdownFinished: false,
     }
@@ -272,6 +275,9 @@ export default {
     },
   },
   methods: {
+    setLaunchCountdownFinished(value) {
+      this.launchCountdownFinished = value
+    },
     setGenesisStartedCountdownFinished(value) {
       this.genesisStartedCountdownFinished = value
     },
