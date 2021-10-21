@@ -9,7 +9,6 @@ export default {
     GENESIS_REDEEM: '6',
   },
   evType: {
-    MINT: '0',
     AIRDROP: '1',
     BONUS: '2',
     FUND: '3',
