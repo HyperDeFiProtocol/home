@@ -85,7 +85,7 @@
 <!--        </a>-->
       </div>
       <p class="mt-8 text-center text-base text-gray-400">
-        &copy; {{ yearRange }} HyperDeFi LAB, All rights reserved.
+        &copy; {{ yearRange }} HyperCrypto Labs, All rights reserved.
       </p>
     </LAutoWidth>
   </footer>

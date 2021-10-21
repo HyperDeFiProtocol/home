@@ -15,6 +15,7 @@ export default {
 
     twitterUsername: process.env.twitterUsername || 'hyperdefiorg',
     discordInvite: process.env.discordInvite || 'X4pkxBx3bf',
+    mediumUsername: process.env.redditUsername || 'HyperDeFiProtocol',
     redditUsername: process.env.redditUsername || 'r/HyperDeFiProtocol',
     telegramUsername: process.env.telegramUsername || 'HyperDeFi',
     telegramChannel: process.env.telegramChannel || 'hyperdefiprotocol',

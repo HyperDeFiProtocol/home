@@ -32,6 +32,13 @@
         </p>
       </a>
 
+      <a target='_blank' :href='hdfLink.medium()'>
+        <IconMedium class='w-20 h-20' />
+        <p>
+          Medium
+        </p>
+      </a>
+
       <a target='_blank' :href='hdfLink.telegram(telegramChannel)'>
         <HeroIconOutlineSpeakerphone class='w-20 h-20' />
         <p>

@@ -22,6 +22,10 @@ const reddit = function() {
   return 'https://www.reddit.com/' + process.env.redditUsername
 }
 
+const medium = function(username=process.env.mediumUsername) {
+  return 'https://medium.com/@' + process.env.mediumUsername
+}
+
 const twitter = function(username=process.env.twitterUsername) {
   return 'https://twitter.com/' + username
 }
@@ -71,6 +75,7 @@ export default {
   twitter: twitter,
   discord: discord,
   reddit: reddit,
+  medium: medium,
   telegram: telegram,
   clubHouseRoom: clubHouseRoom,
 
