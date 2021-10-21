@@ -21,9 +21,6 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@master
 
-      - name: Branch - develop
-        run: git checkout develop
-
       - name: Setup node env 🏗
         uses: actions/setup-node@v2
         with:
