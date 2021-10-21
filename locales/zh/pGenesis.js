@@ -36,6 +36,7 @@ export default {
 
   bnbBalance_: '您的 BNB 余额：',
   amountToDeposit: '要存入的数量',
+  depositMax__: '最大允许存入数量（每地址）：',
 
   approve: '授权',
   approved: '已授权',

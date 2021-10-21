@@ -19,7 +19,7 @@ export default {
 
   depositAllowed: 'Deposit BNB is allowed',
   startTime_: 'Start Time:',
-  endTime_: 'End Time or total deposit cap:',
+  endTime_: 'End Time or deposit cap:',
   or: 'or',
   nowTheLastDeposit: 'Now, the last deposit is allowed; PancakeSwap Liquidity will be created once the last deposit is finished.',
 
@@ -36,6 +36,7 @@ export default {
 
   bnbBalance_: 'Your BNB balance:',
   amountToDeposit: 'Amount to deposit',
+  depositMax__: 'Maximum deposit (per wallet):',
 
   approve: 'Approve',
   approved: 'Approved',

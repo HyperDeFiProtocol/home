@@ -183,7 +183,7 @@
               </dl>
 
               <div class='my-14 md:my-20' v-if='!tradeAllowed'>
-                <div v-if='$store.state.wallet.account' class='mx-auto max-w-xl space-y-2'>
+                <div v-if='$store.state.wallet.account' class='mx-auto max-w-xl space-y-3'>
                   <div class='min-w-0 flex-1'>
                     <label for='deposit-amount'>
                       {{ $t('pGenesis.bnbBalance_') }}
@@ -198,6 +198,10 @@
                              :placeholder='$t("pGenesis.amountToDeposit")' />
                       <IconBNB class='absolute bottom-4 left-4 w-6 h-6 bg-yellow-500 rounded-full text-white' />
                       <span class='absolute bottom-4 right-4 pl-2 bg-white text-base text-gray-500'>BNB</span>
+                    </div>
+                    <div class='mt-1 text-right'>
+                      {{ $t('pGenesis.depositMax__') }}
+                      <CBN :value='$store.state.bsc.genesis.depositMax' :price='true' /> BNB
                     </div>
                   </div>
                   <div>
