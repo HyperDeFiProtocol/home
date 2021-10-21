@@ -14,16 +14,16 @@ const githubToWiki = function(repoName, path) {
   return 'https://github.com/' + process.env.githubUsername + '/' + repoName + '/wiki/' + path
 }
 
-const discord = function() {
-  return 'https://discord.gg/' + process.env.discordInvite
+const discord = function(code=process.env.discordInvite) {
+  return 'https://discord.gg/' + code
 }
 
-const reddit = function() {
-  return 'https://www.reddit.com/' + process.env.redditUsername
+const reddit = function(username=process.env.redditUsername) {
+  return 'https://www.reddit.com/' + username
 }
 
 const medium = function(username=process.env.mediumUsername) {
-  return 'https://medium.com/@' + process.env.mediumUsername
+  return 'https://medium.com/@' + username
 }
 
 const twitter = function(username=process.env.twitterUsername) {

@@ -53,7 +53,7 @@
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.discord()'>
+      <a target='_blank' :href='hdfLink.reddit()'>
         <IconReddit class='w-20 h-20' />
         <p>
           Reddit
