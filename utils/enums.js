@@ -9,9 +9,9 @@ export default {
     GENESIS_REDEEM: '6',
   },
   evType: {
-    AIRDROP: '1',
-    BONUS: '2',
-    FUND: '3',
-    GENESIS_DEPOSIT: '4',
+    AIRDROP: '0',
+    BONUS: '1',
+    FUND: '2',
+    GENESIS_DEPOSIT: '3',
   },
 }
