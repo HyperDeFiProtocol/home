@@ -4,6 +4,9 @@ export default {
   coupon: '税率折扣',
   trade: '如何交易',
   genesis: '创世纪',
+  genesisDepositHistory: '创世存入记录',
+  modes: '工作模式',
+  cache: '清除缓存',
   documentation: '在线文档',
   documentationHref: 'https://docs.hyperdefi.org/zh/',
 

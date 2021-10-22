@@ -6,22 +6,16 @@
         <div class="px-5 py-2">
           <nuxt-link :to='localePath("/history/genesis")' class="text-base text-gray-500 hover:text-gray-300">
             <span>
-              Genesis History
+              {{ $t('siteNav.genesisDepositHistory') }}
             </span>
           </nuxt-link>
         </div>
 
-        <div class="px-5 py-2">
-          <a href="javascript:void(0)" class="text-base text-gray-500 hover:text-gray-300">
-            Terms of Service
-          </a>
-        </div>
-
-        <div class="px-5 py-2">
-          <a href="javascript:void(0)" class="text-base text-gray-500 hover:text-gray-300">
-            Privacy Policy
-          </a>
-        </div>
+<!--        <div class="px-5 py-2">-->
+<!--          <a href="javascript:void(0)" class="text-base text-gray-500 hover:text-gray-300">-->
+<!--            Terms of Service-->
+<!--          </a>-->
+<!--        </div>-->
 
         <div class="px-5 py-2">
           <a href="javascript:void(0)" class="text-base text-gray-500 hover:text-gray-300">
@@ -30,8 +24,14 @@
         </div>
 
         <div class="px-5 py-2">
+          <nuxt-link :to='localePath("/modes")' class="text-base text-gray-500 hover:text-gray-300">
+            {{ $t('siteNav.modes') }}
+          </nuxt-link>
+        </div>
+
+        <div class="px-5 py-2">
           <nuxt-link :to='localePath("/cache")' class="text-base text-gray-500 hover:text-gray-300">
-            Clear Cache
+            {{ $t('siteNav.cache') }}
           </nuxt-link>
         </div>
       </nav>

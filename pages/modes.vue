@@ -2,15 +2,15 @@
   <LAutoWidth class='py-10 md:py-20'>
     <CH3>
       <span>
-        {{ $t('modes.title') }}
+        {{ $t('pModes.title') }}
       </span>
 
       <template #tag>
-        {{ $t('modes.tag') }}
+        {{ $t('pModes.tag') }}
       </template>
 
       <template #desc>
-        {{ $t('modes.desc') }}
+        {{ $t('pModes.desc') }}
       </template>
     </CH3>
 
@@ -20,23 +20,23 @@
           <thead>
           <tr>
             <th scope='col' class='w-1/4'>
-              {{ $t('modes.title') }}
+              {{ $t('pModes.title') }}
             </th>
             <th scope='col' class='w-1/4'>
-              {{ $t('modes.network') }}
+              {{ $t('pModes.network') }}
             </th>
             <th scope='col' class='w-1/2'>
-              {{ $t('modes.URL') }}
+              {{ $t('pModes.URL') }}
             </th>
           </tr>
           </thead>
           <tbody class='border-t border-gray-600 divide-y divide-gray-600'>
           <tr>
             <td>
-              {{ $t('modes.mainnet') }}
+              {{ $t('pModes.mainnet') }}
             </td>
             <td>
-              {{ $t('modes.bscMainnet') }}
+              {{ $t('pModes.bscMainnet') }}
             </td>
             <td>
               <a target='_blank' :href='hdLink.home()'>
@@ -47,10 +47,10 @@
 
           <tr>
             <td>
-              {{ $t('modes.beta') }}
+              {{ $t('pModes.beta') }}
             </td>
             <td>
-              {{ $t('modes.bscTestnet') }}
+              {{ $t('pModes.bscTestnet') }}
             </td>
             <td>
               <a target='_blank' :href='hdLink.home("testnet")'>
@@ -61,10 +61,10 @@
 
           <tr>
             <td>
-              {{ $t('modes.alpha') }}
+              {{ $t('pModes.alpha') }}
             </td>
             <td>
-              {{ $t('modes.bscTestnet') }}
+              {{ $t('pModes.bscTestnet') }}
             </td>
             <td>
               <a target='_blank' :href='hdLink.home("alpha")'>
@@ -75,10 +75,10 @@
 
           <tr>
             <td>
-              {{ $t('modes.development') }}
+              {{ $t('pModes.development') }}
             </td>
             <td>
-              {{ $t('modes.bscTestnet') }}
+              {{ $t('pModes.bscTestnet') }}
             </td>
             <td>
               <a target='_blank' href='https://localhost:3000/'>

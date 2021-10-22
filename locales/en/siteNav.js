@@ -4,9 +4,13 @@ export default {
   coupon: 'Coupon',
   trade: 'How to trade',
   genesis: 'Genesis',
+  genesisDepositHistory: 'Genesis Deposit History',
+  modes: 'Working Modes',
+  cache: 'Clear Cache',
   documentation: 'Documentation',
   documentationHref: 'https://docs.hyperdefi.org/',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
+
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
   fomoHistory: 'Fomo History',
