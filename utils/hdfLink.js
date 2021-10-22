@@ -1,3 +1,11 @@
+const home = function(mode = '') {
+  if (mode) {
+    return 'https://' + mode + '.' + process.env.baseDomain + '/'
+  }
+
+  return 'https://' + process.env.baseDomain + '/'
+}
+
 const github = function() {
   return 'https://github.com/' + process.env.githubUsername
 }
@@ -68,6 +76,8 @@ const pancakeSwapTo = function(outputCurrency = process.env.tokenAddress) {
 
 
 export default {
+  home: home,
+
   github: github,
   githubToRepo: githubToRepo,
   githubToForum: githubToForum,

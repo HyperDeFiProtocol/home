@@ -2,6 +2,7 @@ import locales from './locales/conf'
 
 export default {
   env: {
+    baseDomain: process.env.baseDomain || 'hyperdefi.org',
     baseUrl: process.env.baseUrl || 'https://hyperdefi.org',
 
     mode: process.env.mode,

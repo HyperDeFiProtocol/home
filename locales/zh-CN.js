@@ -1,3 +1,4 @@
+import modes from '~/locales/zh/modes'
 import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
 import pBuy from '~/locales/zh/pBuy'
@@ -38,6 +39,7 @@ import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 
 // zh
 export default {
+  modes: modes,
   global: global,
   siteNav: siteNav,
   pBuy: pBuy,

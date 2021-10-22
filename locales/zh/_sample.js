@@ -1,6 +1,6 @@
 export default {
-  tag: 'Tag',
-  title: 'Title',
+  tag: 'Networks',
+  title: 'Working Modes',
   desc: 'Desc',
 
   key: 'Text',

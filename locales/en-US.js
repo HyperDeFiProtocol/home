@@ -1,3 +1,4 @@
+import modes from '~/locales/en/modes'
 import global from '~/locales/en/global'
 import siteNav from '~/locales/en/siteNav'
 import pBuy from '~/locales/en/pBuy'
@@ -38,6 +39,8 @@ import modalUnsupportedChainId from '~/locales/en/modalUnsupportedChainId'
 
 // en
 export default {
+  modes: modes,
+
   global: global,
   siteNav: siteNav,
   pBuy: pBuy,
