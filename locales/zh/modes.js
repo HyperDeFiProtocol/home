@@ -6,7 +6,7 @@ export default {
   mainnet: '主网模式',
   beta: '公开测试',
   alpha: '内部测试',
-  development: '开发模式',
+  development: '本地开发模式',
 
   network: '网络',
   URL: '链接',

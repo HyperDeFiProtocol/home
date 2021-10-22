@@ -6,7 +6,7 @@ export default {
   mainnet: 'Mainnet Mode',
   beta: 'Beta Test',
   alpha: 'Alpha Test',
-  development: 'Development Mode',
+  development: 'Local Development Mode',
 
   network: 'Network',
   URL: 'URL',
