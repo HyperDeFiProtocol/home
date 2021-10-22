@@ -1,13 +1,12 @@
 <template>
   <div>
-
+    <SUsername />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dashboard',
-  middleware: ['bsc'],
+  name: 'dashboard',
 }
 </script>
 
