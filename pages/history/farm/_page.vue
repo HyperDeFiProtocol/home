@@ -12,7 +12,7 @@
       <CTableTax :transactions='transactions' class='mt-10 lg:mt-24' />
 
       <CPagination class='mt-8 lg:mt-12'
-                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/tax' />
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/farm' />
     </LAutoWidth>
   </div>
 </template>
@@ -22,7 +22,7 @@ import fn from '~/utils/functions'
 
 export default {
   scrollToTop: true,
-  name: 'HistoryTax',
+  name: 'HistoryFarm',
   data() {
     return {
       transactions: [],

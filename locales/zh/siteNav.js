@@ -14,7 +14,7 @@ export default {
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
   burnHistory: '销毁记录',
   airdropHistory: '空投记录',
-  fomoHistory: 'FOMO 记录',
+  fomoHistory: 'FOMO 奖池记录',
   fomoAccumulateHistory: 'FOMO 滚存记录',
   fomoWinnerHistory: 'FOMO 获奖记录',
   taxHarvestHistory: '税收矿池/挖矿记录',

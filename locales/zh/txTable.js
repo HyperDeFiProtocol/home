@@ -10,6 +10,7 @@ export default {
   txHash: 'Hash',
   username: '用户名',
   address: '地址',
+  addressOrHash: '地址/交易 Hash',
   amount: '数量',
   balance: '余额',
   BUSD: 'BUSD',

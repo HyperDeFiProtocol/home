@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='flex-shrink-0'>
     <g fill='currentColor'>
       <path d="M8.118,10.404l3.884,-3.883l3.886,3.887l2.259,-2.261l-6.145,-6.147l-6.144,6.145l2.26,2.259Z"/>
       <path d="M2,12.002l2.259,-2.261l2.26,2.261l-2.26,2.259l-2.259,-2.259Z"/>

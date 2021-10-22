@@ -11,11 +11,8 @@
             <th scope='col'>
               {{ $t('txTable.type') }}
             </th>
-            <th v-if='hash' scope='col'>
-              {{ $t('txTable.txHash') }}
-            </th>
-            <th v-else scope='col'>
-              {{ $t('txTable.address') }}
+            <th scope='col'>
+              {{ $t('txTable.addressOrHash') }}
             </th>
             <th scope='col'>
               {{ $t('txTable.amount') }}
@@ -35,19 +32,14 @@
             <td v-else>
               {{ $t('txTable.accumulate') }}
             </td>
-            <td v-if='hash' class='font-mono'>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                {{ tx.txHash.slice(0, 44) }}...
-              </a>
-            </td>
-            <td v-else-if='tx.fromAccount === $store.state.bsc.globalAccounts.fomo' class='font-mono text-emerald-400'>
+            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.fomo' class='font-mono text-emerald-400'>
               <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
                 <CAddress :value='tx.toAccount' />
               </a>
             </td>
             <td v-else class='font-mono'>
               <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                <CAddress :value='tx.fromAccount' />
+                {{ tx.txHash.slice(0, 44) }}...{{ tx.txHash.slice(-4) }}
               </a>
             </td>
             <td>
@@ -72,11 +64,10 @@ export default {
       type: Array,
       required: true
     },
-    hash: {
-      type: Boolean,
-      default: false,
-    }
-
+    // hash: {
+    //   type: Boolean,
+    //   default: false,
+    // }
   },
   computed: {
     hdfLink() {

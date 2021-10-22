@@ -14,7 +14,7 @@ export default {
 
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
-  fomoHistory: 'Fomo History',
+  fomoHistory: 'FOMO Prize History',
   fomoAccumulateHistory: 'FOMO Accumulate History',
   fomoWinnerHistory: 'FOMO Winner History',
   taxHarvestHistory: 'Tax/Harvest History',

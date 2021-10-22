@@ -10,6 +10,7 @@ export default {
   txHash: 'Tx Hash',
   username: 'Username',
   address: 'Address',
+  addressOrHash: 'Address/Tx Hash',
   amount: 'Amount',
   balance: 'Balance',
   BUSD: 'BUSD',

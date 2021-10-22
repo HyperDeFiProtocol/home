@@ -6,6 +6,7 @@ import pGenesis from '~/locales/en/pGenesis'
 import pUser from '~/locales/en/pUser'
 import pModes from '~/locales/en/pModes'
 import pCache from '~/locales/en/pCache'
+import pAddress from '~/locales/en/pAddress'
 
 import connectWallet from '~/locales/en/btnConnectWallet'
 import getHarvest from '~/locales/en/btnGetHarvest'
@@ -48,6 +49,7 @@ export default {
   pUser: pUser,
   pModes: pModes,
   pCache: pCache,
+  pAddress: pAddress,
 
   connectWallet: connectWallet,
   getHarvest: getHarvest,
