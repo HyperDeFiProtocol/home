@@ -2,11 +2,15 @@
   <LAutoWidth class='py-10 md:py-20'>
     <CH3>
       <span>
-        Clear Cache
+        {{ $t('pCache.title') }}
       </span>
 
       <template #tag>
-        Indexed DB
+        {{ $t('pCache.tag') }}
+      </template>
+
+      <template #desc>
+        {{ $t('pCache.desc') }}
       </template>
     </CH3>
 
@@ -14,14 +18,14 @@
       <button v-if='showRebuilding' class='btn-clear-cache animate-pulse'>
         <HeroIconSolidDatabase class='h-6 w-6 animate-bounce' />
         <span>
-          Rebuilding...
+          {{ $t('pCache.Rebuilding__') }}
         </span>
 
       </button>
       <button v-else class='btn-clear-cache' @click='clear'>
         <HeroIconSolidDatabase class='h-6 w-6' />
         <span>
-          Clear and rebuild cache
+          {{ $t('pCache.ClearAndRebuild__') }}
         </span>
       </button>
     </div>
@@ -69,7 +73,7 @@ export default {
 .btn-clear-cache {
   @apply w-full inline-flex items-center justify-center;
   @apply py-8 border border-transparent rounded-md;
-  @apply font-mono font-medium text-xl text-gray-500 bg-gray-800;
+  @apply font-medium text-xl text-gray-500 bg-gray-800;
   @apply uppercase;
   @apply space-x-4;
 

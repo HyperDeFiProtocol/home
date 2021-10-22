@@ -1,10 +1,11 @@
-import modes from '~/locales/en/modes'
 import global from '~/locales/en/global'
 import siteNav from '~/locales/en/siteNav'
 import pBuy from '~/locales/en/pBuy'
 import pCoupon from '~/locales/en/pCoupon'
 import pGenesis from '~/locales/en/pGenesis'
 import pUser from '~/locales/en/pUser'
+import pModes from '~/locales/en/pModes'
+import pCache from '~/locales/en/pCache'
 
 import connectWallet from '~/locales/en/btnConnectWallet'
 import getHarvest from '~/locales/en/btnGetHarvest'
@@ -39,14 +40,14 @@ import modalUnsupportedChainId from '~/locales/en/modalUnsupportedChainId'
 
 // en
 export default {
-  modes: modes,
-
   global: global,
   siteNav: siteNav,
   pBuy: pBuy,
   pCoupon: pCoupon,
   pGenesis: pGenesis,
   pUser: pUser,
+  pModes: pModes,
+  pCache: pCache,
 
   connectWallet: connectWallet,
   getHarvest: getHarvest,

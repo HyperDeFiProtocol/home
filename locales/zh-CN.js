@@ -1,10 +1,11 @@
-import modes from '~/locales/zh/modes'
 import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
 import pBuy from '~/locales/zh/pBuy'
 import pCoupon from '~/locales/zh/pCoupon'
 import pGenesis from '~/locales/zh/pGenesis'
 import pUser from '~/locales/zh/pUser'
+import pModes from '~/locales/zh/pModes'
+import pCache from '~/locales/zh/pCache'
 
 import connectWallet from '~/locales/zh/btnConnectWallet'
 import getHarvest from '~/locales/zh/btnGetHarvest'
@@ -39,13 +40,14 @@ import modalUnsupportedChainId from '~/locales/zh/modalUnsupportedChainId'
 
 // zh
 export default {
-  modes: modes,
   global: global,
   siteNav: siteNav,
   pBuy: pBuy,
   pCoupon: pCoupon,
   pGenesis: pGenesis,
   pUser: pUser,
+  pModes: pModes,
+  pCache: pCache,
 
   connectWallet: connectWallet,
   getHarvest: getHarvest,
