@@ -12,6 +12,7 @@ export default {
   documentationHref: 'https://docs.hyperdefi.org/',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
 
+  bufferHistory: 'Buffer Pool History',
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
   fomoHistory: 'FOMO Prize History',

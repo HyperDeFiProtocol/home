@@ -6,6 +6,7 @@ export const state = () => ({
     amount: '0'
   },
   fomo: {
+    count: 0,
     in: {
       count: 0,
       amount: '0'
@@ -38,6 +39,7 @@ export const mutations = {
   },
   SET_FOMO_IN(state, transactions) {
     state.fomo.in.count = transactions.length
+    state.fomo.count = state.fomo.in.count + state.fomo.out.count
 
     let amount = new BN('0')
     for (let i = 0; i < transactions.length; i++) {
@@ -47,6 +49,7 @@ export const mutations = {
   },
   SET_FOMO_OUT(state, transactions) {
     state.fomo.out.count = transactions.length
+    state.fomo.count = state.fomo.in.count + state.fomo.out.count
 
     let amount = new BN('0')
     for (let i = 0; i < transactions.length; i++) {
@@ -59,7 +62,7 @@ export const mutations = {
 
     let amount = new BN('0')
     for (let i = 0; i < transactions.length; i++) {
-      amount = amount.add(new BN(transactions[i].tokenAdded))
+      amount = amount.add(new BN(transactions[i].amount))
     }
     state.liquidity.amount = amount.toString()
   },

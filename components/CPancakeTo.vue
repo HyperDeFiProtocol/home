@@ -1,17 +1,17 @@
 <template>
-  <a target='_blank' :href='hdfLink.pancakeSwapTo()'>
+  <a target='_blank' :href='hpLink.pancakeSwapTo()'>
     <slot />
   </a>
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'CPancakeTo',
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     }
   }
 }

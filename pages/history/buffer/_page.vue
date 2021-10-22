@@ -2,14 +2,14 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.taxHarvestHistory') }}
+        {{ $t('siteNav.bufferHistory') }}
 
         <template #tag>
           On Chain
         </template>
       </CH3>
 
-      <CTableFarm :transactions='transactions' class='mt-10 lg:mt-24' />
+      <CTableBuffer :transactions='transactions' class='mt-10 lg:mt-24' />
 
       <CPagination class='mt-8 lg:mt-12'
                    :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/farm' />
@@ -22,7 +22,7 @@ import fn from '~/utils/functions'
 
 export default {
   scrollToTop: true,
-  name: 'HistoryFarm',
+  name: 'HistoryBuffer',
   data() {
     return {
       transactions: [],
@@ -57,21 +57,13 @@ export default {
   },
   methods: {
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.transfer
-        .where('fromAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
-        .or('toAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
+      this.transactions = await this.$nuxt.context.app.db.buffer
         .reverse()
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
 
-      this.pageRecords = await this.$nuxt.context.app.db.transfer
-        .where('fromAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
-        .or('toAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
+      this.pageRecords = await this.$nuxt.context.app.db.buffer
         .count()
     },
   },

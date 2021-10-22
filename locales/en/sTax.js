@@ -1,7 +1,7 @@
 export default {
   title: 'Universal Dividend',
   tag: 'Ecological Tax',
-  desc: 'Ecological farm will be taken from each transaction, ' +
+  desc: 'Ecological tax will be taken from each transaction, ' +
     'will be used for all holders and long-term growth to achieve continuous universal dividend (Farm, Airdrop, FOMO, LP Acquisition, Fund and Burn).',
 
   for: 'For',

@@ -49,7 +49,7 @@
               <HeroIconSolidCursorClick class='h-5 w-5' />
               <span>
                 {{ $t('sTax.trackAll') }}
-                {{ $store.state.stat.fomo.out.count + $store.state.stat.fomo.in.count }}
+                {{ $store.state.stat.fomo.count }}
                 {{ $t('sTaxFomo.trackFomoTransfers') }}
               </span>
             </nuxt-link>
@@ -189,7 +189,7 @@
 
 <script>
 import moment from 'moment'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 import fn from '~/utils/functions'
 
 export default {
@@ -216,7 +216,7 @@ export default {
 
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     },
     next() {
       if (this.isZero(this.$store.state.bsc.fomo.next)) return '0x...'

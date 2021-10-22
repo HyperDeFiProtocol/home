@@ -168,7 +168,7 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 import fn from '~/utils/functions'
 
 export default {
@@ -181,7 +181,7 @@ export default {
   },
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     }
   },
   watch: {

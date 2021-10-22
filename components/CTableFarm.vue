@@ -9,7 +9,10 @@
               {{ $t('txTable.block') }}
             </th>
             <th scope='col'>
-              {{ $t('txTable.txHash') }}
+              {{ $t('txTable.type') }}
+            </th>
+            <th scope='col'>
+              {{ $t('txTable.address') }}
             </th>
             <th scope='col'>
               {{ $t('txTable.amount') }}
@@ -23,9 +26,20 @@
                 #<CBN :value='tx.blockNumber' />
               </a>
             </td>
-            <td class='font-mono'>
+            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.tax' class='text-emerald-400'>
+              {{ $t('txTable.harvest') }}
+            </td>
+            <td v-else>
+              {{ $t('txTable.accumulate') }}
+            </td>
+            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.tax' class='font-mono text-emerald-400'>
               <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
-                {{ tx.txHash.slice(0, 44) }}...
+                <CAddress :value='tx.toAccount' />
+              </a>
+            </td>
+            <td v-else class='font-mono'>
+              <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
+                {{ tx.txHash.slice(0, 44) }}...{{ tx.txHash.slice(-4) }}
               </a>
             </td>
             <td>
@@ -44,17 +58,12 @@
 import hpLink from '~/utils/hpLink'
 
 export default {
-  name: 'CTableAccountBonus',
+  name: 'CTableFarm',
   props: {
     transactions: {
       type: Array,
       required: true
     },
-    hash: {
-      type: Boolean,
-      default: false,
-    }
-
   },
   computed: {
     hpLink() {

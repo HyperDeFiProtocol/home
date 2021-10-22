@@ -19,4 +19,7 @@ export default {
   distribute: '发放',
   winner: '获奖',
   harvest: '收矿',
+  mint: '铸币',
+  bufferAccumulate: '缓冲滚存',
+  addLiquidity: '添加流动性',
 }

@@ -20,14 +20,14 @@
                 HyperDeFi
               </h4>
               <p class='text-sm text-gray-500'>
-                <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                   #
                   <CBN :value='tx.blockNumber' />
                 </a>
               </p>
             </div>
             <p class='text-sm text-gray-500 break-all'>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
+              <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
             </p>
           </div>
         </li>
@@ -55,13 +55,13 @@
             <tbody class='divide-y divide-gray-700'>
             <tr v-for='tx in transactions'>
               <td>
-                <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                   #
                   <CBN :value='tx.blockNumber' />
                 </a>
               </td>
               <td class='font-mono'>
-                <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
+                <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
               </td>
               <td>
                 <CBN :value='tx.amount' :token='true' :padding='2' />
@@ -78,7 +78,7 @@
 
 <script>
 import Web3 from 'web3'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 const BN = Web3.utils.BN
 
@@ -93,8 +93,8 @@ export default {
     }
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     }
   },
   watch: {

@@ -24,8 +24,8 @@ export default {
   totalMarketValue_: '总市值，',
   ofTotalSupplyCap: '根据总供应量',
 
-  currentSupply_: '当前供应量，',
-  blackHoleIncluded: '已包含黑洞地址',
+  currentSupply: '当前供应量',
+  blackHoleIncluded: '（已包含黑洞地址）',
 
   totalSupply_: '总供应量，',
   fixed: '恒定不变',
@@ -36,7 +36,7 @@ export default {
   executeByContract__: '时，LP Token 进入黑洞），由合约自动执行，人工无权介入。',
   clickToMintHistory: '点此查看记录。',
 
-  burned: '已销毁，',
+  burned: '已销毁',
   held__: '由',
   blackHole: '黑洞',
   increasing_: '地址持有，并持续增加...',

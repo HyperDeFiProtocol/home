@@ -8,7 +8,7 @@
 
     <LAutoWidth v-else-if='account.username' class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
-        {{ $t('pUser.user') }}"@{{ indexedUsername }}"
+        @{{ indexedUsername }}
 
         <template #tag>
           User Dashboard

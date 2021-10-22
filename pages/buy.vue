@@ -222,7 +222,7 @@
                 </p>
 
                 <p>
-                  <CInputCopy label='PancakeSwap URL' :value='hdfLink.pancakeSwapTo()' title='pancake-href-desktop'/>
+                  <CInputCopy label='PancakeSwap URL' :value='hpLink.pancakeSwapTo()' title='pancake-href-desktop'/>
                 </p>
 
                 <p>
@@ -261,7 +261,7 @@
                   </p>
 
                   <p>
-                    <CInputCopy label='PancakeSwap URL' :value='hdfLink.pancakeSwapTo()' title='pancake-href-desktop'/>
+                    <CInputCopy label='PancakeSwap URL' :value='hpLink.pancakeSwapTo()' title='pancake-href-desktop'/>
                   </p>
 
                   <p>
@@ -270,7 +270,7 @@
 
                   <p class="mx-auto w-1/3">
                     <vue-qr class="border-gray-300 border"
-                            :text="hdfLink.pancakeSwapTo()"
+                            :text="hpLink.pancakeSwapTo()"
                             :size=640
                             :margin=32
                             colorDark="#27303f" />
@@ -360,7 +360,7 @@
 
 <script>
 import VueQr from 'vue-qr'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'buy',
@@ -374,8 +374,8 @@ export default {
     tokenAddress() {
       return process.env.tokenAddress
     },
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     }
     //
   },

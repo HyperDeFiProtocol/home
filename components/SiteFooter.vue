@@ -53,42 +53,42 @@
 <!--          <span class="sr-only">Instagram</span>-->
 <!--          <IconInstagram class="h-6 w-6" />-->
 <!--        </a>-->
-        <a target='_blank' :href='hdfLink.twitter()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.twitter()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Twitter</span>
           <IconTwitter class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.discord()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.discord()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Discord</span>
           <IconDiscord class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.medium()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.medium()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Medium</span>
           <IconMedium class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.reddit()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.reddit()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Reddit</span>
           <IconReddit class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.telegram(telegramChannel)' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.telegram(telegramChannel)' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Telegram Channel</span>
           <HeroIconOutlineSpeakerphone class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.telegram()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.telegram()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Telegram</span>
           <IconTelegram class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.clubHouseRoom()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.clubHouseRoom()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">ClubHouse</span>
           <HeroIconOutlineMicrophone class="h-6 w-6" />
         </a>
 
-        <a target='_blank' :href='hdfLink.github()' class="text-gray-400 hover:text-gray-500">
+        <a target='_blank' :href='hpLink.github()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">GitHub</span>
           <IconGithub class="h-6 w-6" />
         </a>
@@ -102,13 +102,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'SiteFooter',
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     telegramChannel() {
       return process.env.telegramChannel

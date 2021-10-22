@@ -27,11 +27,11 @@
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
               {{ $t('sFeatures.contractsVerified__') }}
-              <a target='_blank' :href='hdfLink.exploreToken()' class='hdf-a-colored'>
+              <a target='_blank' :href='hpLink.exploreToken()' class='hdf-a-colored'>
                 {{ $t('sFeatures.bscScanExplorer') }}
               </a>
               {{ $t('sFeatures._andOpenSourcedOn') }}
-              <a target='_blank' :href='hdfLink.github()' class='hdf-a-colored'>
+              <a target='_blank' :href='hpLink.github()' class='hdf-a-colored'>
                 GitHub
               </a>
             </dd>
@@ -124,13 +124,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'SFeatures',
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
 
   }

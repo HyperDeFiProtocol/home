@@ -105,15 +105,13 @@
             </div>
             <div class="mt-8">
               <h3 class="text-lg font-bold">
-                <a target='_blank'
-                   :href='explorer.exploreToken4address($store.state.bsc.globalAccounts.buffer)'
-                   class="focus:outline-none">
-                  <!-- Extend touch target to entire panel -->
+                <nuxt-link :to='localePath("/address/" + $store.state.bsc.globalAccounts.buffer.toLowerCase())'
+                           class="focus:outline-none">
                   <span class="absolute inset-0" aria-hidden="true"></span>
                   <span>
                     {{ $t('sGlobalAccounts.buffer') }}
                   </span>
-                </a>
+                </nuxt-link>
               </h3>
               <p class="p-address">
                 {{ $store.state.bsc.globalAccounts.buffer }}
@@ -183,13 +181,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'SCodeLaw',
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     },
   }
 }

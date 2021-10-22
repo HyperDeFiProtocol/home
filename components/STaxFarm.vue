@@ -96,13 +96,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'STaxFarm',
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     },
   }
 }

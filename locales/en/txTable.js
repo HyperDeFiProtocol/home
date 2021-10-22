@@ -19,4 +19,7 @@ export default {
   distribute: 'Distribute',
   winner: 'Winner',
   harvest: 'Harvest',
+  mint: 'Mint',
+  bufferAccumulate: 'Buffer Accumulate',
+  addLiquidity: 'Add Liquidity',
 }

@@ -42,8 +42,10 @@ export const state = () => ({
     gate: '0',
 
     totalSupply: '0',
+    totalSupplyRatio: '0',
     totalTax: '0',
     circulating: '0',
+    circulatingRatio: '0',
 
     liquidity: '0',
     buffer: '0',
@@ -245,19 +247,26 @@ export const mutations = {
     // supplies
     state.supply.cap = data.supplies[0]
     state.supply.gate = data.supplies[1]
+
     state.supply.totalSupply = data.supplies[2]
+    state.supply.totalSupplyRatio = new BN(state.supply.totalSupply).muln(100000).div(new BN(state.supply.cap)).toString()
+
     state.supply.totalTax = data.supplies[3]
 
     state.supply.liquidity = data.supplies[4]
+
     state.supply.buffer = data.supplies[5]
     state.supply.tax = data.supplies[6]
     state.supply.fomo = data.supplies[7]
     state.supply.burned = data.supplies[8]
-    state.supply.burnedRatio = new BN(state.supply.burned).mul(new BN('100000')).div(new BN(state.supply.cap)).toString()
+    state.supply.burnedRatio = new BN(state.supply.burned).muln(100000).div(new BN(state.supply.cap)).toString()
+
     state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
+    state.supply.circulatingRatio = new BN(state.supply.circulating).muln(100000).div(new BN(state.supply.cap)).toString()
 
     state.marketValue.cap = new BN(state.supply.cap).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.totalSupply = new BN(state.supply.totalSupply).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
+
     state.marketValue.totalTax = new BN(state.supply.totalTax).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.liquidity = new BN(state.supply.liquidity).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
     state.marketValue.buffer = new BN(state.supply.buffer).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()

@@ -34,7 +34,7 @@
 
         <template #desc>
           <div class='truncate'>
-            {{ address }}
+            {{ checksumAddress }}
           </div>
         </template>
       </CH3>
@@ -58,7 +58,7 @@
             </nuxt-link>
 
             <a target='_blank'
-               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+               :href='hpLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
                class='hp-btn-md hp-btn-emerald hp-btn-center space-x-3'>
               <HeroIconSolidCursorClick class='w-5 h-5' />
               <span>
@@ -67,7 +67,7 @@
             </a>
 
             <a target='_blank'
-               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn, $store.state.bsc.globalAccounts.pair)'
+               :href='hpLink.exploreToken4address($store.state.bsc.globalAccounts.burn, $store.state.bsc.globalAccounts.pair)'
                class='hp-btn-md hp-btn-emerald hp-btn-center space-x-3'>
               <HeroIconSolidCursorClick class='w-5 h-5' />
               <span>
@@ -88,6 +88,14 @@
               <HeroIconOutlineClock class='w-5 h-5'/>
               <span>
                 {{ $t('pAddress.trackFomo__') }}
+              </span>
+            </nuxt-link>
+          </div>
+          <div v-else-if='checksumAddress === $store.state.bsc.globalAccounts.buffer'>
+            <nuxt-link :to='localePath("/history/buffer")' class='hp-btn-md hp-btn-violet hp-btn-center space-x-3'>
+              <HeroIconOutlineServer class='w-5 h-5'/>
+              <span>
+                {{ $t('pAddress.trackBuffer__') }}
               </span>
             </nuxt-link>
           </div>
@@ -149,7 +157,7 @@
 <script>
 import Web3 from 'web3'
 import fn from '~/utils/functions'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   scrollToTop: true,
@@ -191,8 +199,8 @@ export default {
     }
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     isAddress() {
       return Web3.utils.isAddress(this.address)

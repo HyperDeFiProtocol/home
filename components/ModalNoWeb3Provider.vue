@@ -78,7 +78,7 @@ import VueQr from 'vue-qr'
 import MetaMaskOnboarding from '@metamask/onboarding'
 import {detect} from 'detect-browser'
 
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'ModalNoWeb3Provider',
@@ -98,8 +98,8 @@ export default {
         || this.browser.name.toLowerCase() === 'firefox'
         // || this.browser.name.toLowerCase() === 'edge-chromium'
     },
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     mode() {
       return process.env.mode

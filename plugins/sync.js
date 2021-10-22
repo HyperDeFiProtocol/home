@@ -186,43 +186,10 @@ export default async function({ app, store }, inject) {
         }
 
         // sum airdrop
-        const txnsAirdrop = await app.db.airdrop.toArray()
-        await store.dispatch('stat/SET_AIRDROPS', txnsAirdrop)
-
-        resolve(syncTxsOption)
-      })
-
-      /**
-       * sync liquidity
-       */
-      const syncLiquidity = new Promise(async function(resolve) {
-        // console.log('syncLiquidity:', queryOption.fromBlock, queryOption.toBlock)
-
-        const events = await app.token
-          .getPastEvents('LiquidityAdded', syncTxsOption)
-          .catch(e => {
-            console.error('>>> sync, syncLiquidity:', e)
-          })
-
-        if (events.length) {
-          let transactions = []
-          for (let i = 0; i < events.length; i++) {
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              wbnbAdded: events[i].returnValues.wbnbAdded,
-              tokenAdded: events[i].returnValues.tokenAdded
-            })
-          }
-
-          await app.db.liquidity.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncLiquidity, bulkAdd:', e)
-          })
-        }
-
-        const transactions = await app.db.liquidity.toArray()
-        await store.dispatch('stat/SET_LIQUIDITY', transactions)
+        await store.dispatch(
+          'stat/SET_AIRDROPS',
+          await app.db.airdrop.toArray()
+        )
 
         resolve(syncTxsOption)
       })
@@ -240,9 +207,10 @@ export default async function({ app, store }, inject) {
           })
 
         if (events.length) {
-          let transactions = []
+          let txnsTransfer = []
+          let txnsBuffer = []
           for (let i = 0; i < events.length; i++) {
-            transactions.push({
+            txnsTransfer.push({
               blockNumber: events[i].blockNumber,
               txHash: events[i].transactionHash,
 
@@ -252,26 +220,79 @@ export default async function({ app, store }, inject) {
             })
           }
 
-          await app.db.transfer.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncTransfer, bulkAdd:', e)
+
+          for (let i = 0; i < events.length; i++) {
+            if (
+              store.state.bsc.globalAccounts.buffer !== events[i].returnValues.from &&
+              store.state.bsc.globalAccounts.buffer !== events[i].returnValues.to
+            ) {
+              continue
+            }
+
+            if (txnsBuffer.length) {
+              let tx = txnsBuffer[txnsBuffer.length - 1]
+              if (tx.txHash === events[i].transactionHash &&
+                tx.sender === events[i].returnValues.from &&
+                tx.recipient === events[i].returnValues.to
+              ) {
+                txnsBuffer[txnsBuffer.length - 1].amount =
+                  new BN(tx.amount).add(new BN(events[i].returnValues.value)).toString()
+                continue
+              }
+            }
+
+            txnsBuffer.push({
+              blockNumber: events[i].blockNumber,
+              txHash: events[i].transactionHash,
+
+              sender: events[i].returnValues.from,
+              recipient: events[i].returnValues.to,
+
+              amount: events[i].returnValues.value
+            })
+          }
+
+          await app.db.transfer.bulkAdd(txnsTransfer).catch(e => {
+            console.error('>>> sync, syncTransfer, bulkAdd - txnsTransfer:', e)
+          })
+
+          await app.db.buffer.bulkAdd(txnsBuffer).catch(e => {
+            console.error('>>> sync, syncTransfer, bulkAdd - txnsBuffer:', e)
           })
         }
 
-        const fomoTxsIn = await app.db.transfer.where({
-          toAccount: store.state.bsc.globalAccounts.fomo
-        }).toArray()
+        await store.dispatch(
+          'stat/SET_BURN',
+          await app.db.transfer
+            .where('toAccount')
+            .equals(store.state.bsc.globalAccounts.burn)
+            .toArray()
+        )
 
-        const fomoTxsOut = await app.db.transfer.where({
-          fromAccount: store.state.bsc.globalAccounts.fomo
-        }).toArray()
+        await store.dispatch(
+          'stat/SET_LIQUIDITY',
+          await app.db.buffer
+            .where('sender')
+            .equals(store.state.bsc.globalAccounts.buffer)
+            .toArray()
+        )
 
-        const burnTxs = await app.db.transfer.where({
-          toAccount: store.state.bsc.globalAccounts.burn
-        }).toArray()
+        await store.dispatch(
+          'stat/SET_FOMO_IN',
+          await app.db.transfer
+            .where('toAccount')
+            .equals(store.state.bsc.globalAccounts.fomo)
+            .toArray()
+        )
 
-        await store.dispatch('stat/SET_FOMO_IN', fomoTxsIn)
-        await store.dispatch('stat/SET_FOMO_OUT', fomoTxsOut)
-        await store.dispatch('stat/SET_BURN', burnTxs)
+        await store.dispatch(
+          'stat/SET_FOMO_OUT',
+          await app.db.transfer
+            .where('fromAccount')
+            .equals(store.state.bsc.globalAccounts.fomo)
+            .toArray()
+        )
+
 
         resolve(syncTxsOption)
       })
@@ -282,8 +303,7 @@ export default async function({ app, store }, inject) {
       await Promise.all([
         syncTx,
         syncEv,
-        syncLiquidity,
-        syncTransfer,
+        syncTransfer
       ])
 
       syncTxsOption.fromBlock = syncTxsOption.toBlock + 1
@@ -367,7 +387,7 @@ export default async function({ app, store }, inject) {
 
   app.sync = {
     all: all,
-    holders: holders,
+    holders: holders
     // genesisDeposit: genesisDeposit,
     // genesisRedeem: genesisRedeem,
   }

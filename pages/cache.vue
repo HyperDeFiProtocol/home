@@ -59,8 +59,8 @@ export default {
       await this.$nuxt.context.app.db.destroy.clear()
       await this.$nuxt.context.app.db.genesisDeposit.clear()
 
-      await this.$nuxt.context.app.db.liquidity.clear()
       await this.$nuxt.context.app.db.transfer.clear()
+      await this.$nuxt.context.app.db.buffer.clear()
       await this.$nuxt.context.app.sync.all()
       await this.$nuxt.context.app.sync.holders()
       this.rebuilding = false

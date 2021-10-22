@@ -22,8 +22,8 @@ export default {
   totalMarketValue_: 'Total Market Value,',
   ofTotalSupplyCap: 'of total supply',
 
-  currentSupply_: 'Current Supply,',
-  blackHoleIncluded: 'black-hold included',
+  currentSupply: 'Current Supply',
+  blackHoleIncluded: '(black-hold included)',
 
   totalSupply_: 'Total Supply,',
   fixed: 'fixed',
@@ -36,7 +36,7 @@ export default {
 
 
 
-  burned: 'Burned Already,',
+  burned: 'Already burned',
   held__: 'held by',
   blackHole: 'black-hole',
   increasing_: 'address and keep increasing...',
