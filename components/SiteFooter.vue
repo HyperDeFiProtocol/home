@@ -55,6 +55,11 @@
           <IconDiscord class="h-6 w-6" />
         </a>
 
+        <a target='_blank' :href='hdfLink.medium()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Medium</span>
+          <IconMedium class="h-6 w-6" />
+        </a>
+
         <a target='_blank' :href='hdfLink.reddit()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Reddit</span>
           <IconReddit class="h-6 w-6" />
@@ -70,19 +75,15 @@
           <IconTelegram class="h-6 w-6" />
         </a>
 
-
-
-
+        <a target='_blank' :href='hdfLink.clubHouseRoom()' class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">ClubHouse</span>
+          <HeroIconOutlineMicrophone class="h-6 w-6" />
+        </a>
 
         <a target='_blank' :href='hdfLink.github()' class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">GitHub</span>
           <IconGithub class="h-6 w-6" />
         </a>
-
-<!--        <a href="javascript:void(0)" class="text-gray-400 hover:text-gray-500">-->
-<!--          <span class="sr-only">Dribble</span>-->
-<!--          <IconDribble class="h-6 w-6" />-->
-<!--        </a>-->
       </div>
       <p class="mt-8 text-center text-base text-gray-400">
         &copy; {{ yearRange }} HyperCrypto Labs, All rights reserved.

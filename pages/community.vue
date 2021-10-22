@@ -25,20 +25,12 @@
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.clubHouseRoom()'>
-        <HeroIconOutlineMicrophone class='w-20 h-20' />
-        <p>
-          ClubHouse
-        </p>
-      </a>
-
       <a target='_blank' :href='hdfLink.medium()'>
         <IconMedium class='w-20 h-20' />
         <p>
           Medium
         </p>
       </a>
-
       <a target='_blank' :href='hdfLink.telegram(telegramChannel)'>
         <HeroIconOutlineSpeakerphone class='w-20 h-20' />
         <p>
@@ -57,6 +49,13 @@
         <IconReddit class='w-20 h-20' />
         <p>
           Reddit
+        </p>
+      </a>
+
+      <a target='_blank' :href='hdfLink.clubHouseRoom()'>
+        <HeroIconOutlineMicrophone class='w-20 h-20' />
+        <p>
+          ClubHouse
         </p>
       </a>
 
