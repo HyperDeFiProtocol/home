@@ -4,6 +4,7 @@ export default {
   coupon: 'Coupon',
   trade: 'How to trade',
   genesis: 'Genesis',
+  dashboard: 'Dashboard',
   genesisDepositHistory: 'Genesis Deposit History',
   modes: 'Working Modes',
   cache: 'Clear Cache',

@@ -1,7 +1,7 @@
 export default {
   tag: '网络',
   title: '工作模式',
-  desc: '官网共有 3 个在线版本和 1 个开发版本',
+  desc: '官网共有 3 个在线版本和 1 个本地开发版本',
 
   mainnet: '主网模式',
   beta: '公开测试',
