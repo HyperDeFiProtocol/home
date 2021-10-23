@@ -1,7 +1,7 @@
 export default {
   tag: 'Network',
   title: 'Working Modes',
-  desc: 'Our official home has 3 online version，1 local development version',
+  desc: 'Our official home has 3 online version and 1 local development version',
 
   mainnet: 'Mainnet Mode',
   beta: 'Beta Test',
