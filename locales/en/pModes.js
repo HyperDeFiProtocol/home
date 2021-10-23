@@ -1,6 +1,6 @@
 export default {
-  tag: 'Tag',
-  title: 'Title',
+  tag: 'Network',
+  title: 'Working Modes',
   desc: 'Our official home has 3 online version，1 local development version',
 
   mainnet: 'Mainnet Mode',
