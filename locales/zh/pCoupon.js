@@ -41,4 +41,7 @@ export default {
   _level2: '间接推广 - 2 阶',
 
   codeEmpty__: '折扣码 Coupon Code 不能为空',
+  codeInvalid__: '无效的折扣码 Coupon Code',
+  codeVerify__: '无法验证：',
+  codeYourOwn__: '不能使用自己的：'
 }

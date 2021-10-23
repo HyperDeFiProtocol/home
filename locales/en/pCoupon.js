@@ -42,5 +42,6 @@ export default {
 
   codeEmpty__: 'Coupon Code cannot be empty',
   codeInvalid__: 'Invalid Coupon Code',
-  codeVerify__: '',
+  codeVerify__: 'Cannot verify: ',
+  codeYourOwn__: 'Cannot use your own: '
 }
