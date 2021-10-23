@@ -12,7 +12,7 @@ export default {
   documentationHref: 'https://docs.hyperdefi.org/zh/',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
 
-  bufferHistory: '缓冲池记录',
+  bufferHistory: '流动性缓冲记录',
   burnHistory: '销毁记录',
   airdropHistory: '空投记录',
   fomoHistory: 'FOMO 奖池记录',

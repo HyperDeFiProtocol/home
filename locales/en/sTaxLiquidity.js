@@ -8,6 +8,8 @@ export default {
   thenDeposit3__: 'of the PancakeSwap liquidity), half of the HyperDeFi will be swapped to BNB, then add into the liquidity with the other half.',
   newLPTokens__: 'LP Token will be sent to the black-hole address automatically, nobody can remove the global liquidity.',
 
+  trackBufferTransfers: 'LP Acquisition transfers',
+
   statLiquidityMarketValue: 'Liquidity Market Value',
   statLiquidity: 'Liquidity',
   statBuffer: 'Buffer',

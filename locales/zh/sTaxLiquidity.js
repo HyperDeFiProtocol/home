@@ -7,6 +7,8 @@ export default {
   thenDeposit3__: '），其中一半 HyperDeFi 将会换为 BNB，然后与另一半一起添加到全局流动池。',
   newLPTokens__: 'LP Token 自动发送到黑洞地址，没有人可以撤除全局流动池。',
 
+  trackBufferTransfers: '笔流动池回收转账',
+
   statLiquidityMarketValue: '流动池市值',
   statLiquidity: '流动池',
   statBuffer: '缓冲池',
