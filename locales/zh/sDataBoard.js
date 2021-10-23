@@ -1,4 +1,7 @@
 export default {
+  latestBlockNumber: '最新区块号',
+  LatestBlockNumber_: '最新区块号：',
+
   genesisTag: '联合创世',
   genesisStartText: '开始时间：',
   genesisEndText: '截止时间：',
@@ -11,6 +14,8 @@ export default {
 
   tag: 'BSC 链上实时数据',
   contractAddress_: '合约地址：',
+  genesisStartTime: '创世开始时间：',
+  genesisEndTime: '创世结束时间：',
   launchTime: '交易启动时间：',
   tokenNameSymbol_: '代币名/符号：',
   with: '有',
@@ -31,10 +36,22 @@ export default {
   fixed: '恒定不变',
   decreasing_: '缩减中...',
 
-  thereIsA__: '尚有',
-  willBeMinted__: '将经由缓冲池，被铸造并缓释用于补充 PancakeSwap 流动性（当流动性低于',
-  executeByContract__: '时，LP Token 进入黑洞），由合约自动执行，人工无权介入。',
-  clickToMintHistory: '点此查看记录。',
+  // mint
+  __mintSupplyGradually__: '总量缓释',
+  __mintWhen__: '当流动池低于创世流动性',
+  __mintDifference__: '时，差值将被缓释到缓冲池，用于补充 PancakeSwap 流动性（LP Token 进入黑洞），' +
+    '由合约自动执行，人工无权介入。',
+  __mintLatestBlockNumber__: '最新区块号',
+  __mintTheAmount__: '目前待缓释的数量为',
+  __mintWhich__: '，是',
+  __mintOfTheTotal__: '的总供应量。',
+  __mintTypeInTable__: '表格中显示的类型为',
+  __mintTypeInTable2__: '。',
+  __mintReleaseHistory__: '点此查看缓释记录',
+  __mintReleaseHistoryOnly__: '点此只查看缓释记录',
+  __mintFullBufferHistory__: '点此查看完整缓冲池记录',
+
+
 
   burned: '已销毁',
   held__: '由',

@@ -1,10 +1,8 @@
 import Web3 from 'web3'
 // import detectEthereumProvider from '@metamask/detect-provider'
 import tokenAbi from '~/utils/token.json'
+import fn from '~/utils/functions'
 
-const sleepAWhile = async function(milliseconds = 1000) {
-  await window.setTimeout('', milliseconds)
-}
 
 export default async function({ app, store }, inject) {
   const getChainId = async function(provider) {
@@ -73,11 +71,11 @@ export default async function({ app, store }, inject) {
       if (blockHeader.number > store.state.bsc.blockNumber + 5) {
         await store.dispatch('bsc/SET_BLOCK_NUMBER', blockHeader.number)
         await tokenSync()
-        await sleepAWhile()
+        await fn.wait()
         return null
       }
 
-      await sleepAWhile()
+      await fn.wait()
     })
   }
 

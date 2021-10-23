@@ -68,11 +68,6 @@
       </p>
 
       <p class="mt-2 text-base text-gray-400 break-all">
-        {{ $t('sDataBoard.launchTime') }}
-        {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
-      </p>
-
-      <p class="mt-2 text-base text-gray-400 break-all">
         {{ $t('sDataBoard.tokenNameSymbol_') }}
         <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>
         {{ $t('sDataBoard.with') }}
@@ -80,6 +75,26 @@
           {{ $store.state.bsc.metadata.tokenDecimals }}
           {{ $t('sDataBoard.decimals') }}
         </span>
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.genesisStartTime') }}
+        {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.genesisEndTime') }}
+        {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.launchTime') }}
+        {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.LatestBlockNumber_') }}
+        #<CBN :value='$store.state.bsc.blockNumber' />
       </p>
 
       <div class="mt-5 inline-flex rounded-md shadow">
@@ -191,19 +206,7 @@
         </p>
       </div>
 
-      <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'>
-        <p>
-          {{ $t('sDataBoard.thereIsA__') }}
-          <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi
-          {{ $t('sDataBoard.willBeMinted__') }}
-          <CBN :value='$store.state.bsc.global.initLiquidity' :token='true' /> HyperDeFi
-          {{ $t('sDataBoard.executeByContract__') }}
-          <a class='hdf-a-colored' target='_blank'
-             :href='hpLink.exploreToken4address($store.state.bsc.globalAccounts.zero)'>
-            {{ $t('sDataBoard.clickToMintHistory') }}
-          </a>
-        </p>
-      </div>
+      <CSupplyRelease v-if='$store.state.bsc.supply.gate !== "0"' class='mt-6' />
 
       <!--  part.2  -->
       <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2"

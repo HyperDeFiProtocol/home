@@ -7,7 +7,7 @@ export default {
   type: '类型',
   from: '从',
   to: '到',
-  txHash: 'Hash',
+  txHash: 'Tx Hash',
   username: '用户名',
   address: '地址',
   addressOrHash: '地址/交易 Hash',

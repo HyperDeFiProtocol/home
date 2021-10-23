@@ -2,7 +2,7 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.bufferHistory') }}
+        {{ $t('siteNav.supplyGraduallyReleasedHistory') }}
 
         <template #tag>
           On Chain
@@ -29,7 +29,7 @@ import fn from '~/utils/functions'
 
 export default {
   scrollToTop: true,
-  name: 'HistoryBuffer',
+  name: 'HistoryBufferMint',
   data() {
     return {
       transactions: [],
@@ -65,12 +65,16 @@ export default {
   methods: {
     async load() {
       this.transactions = await this.$nuxt.context.app.db.buffer
+        .where('sender')
+        .equals(this.$store.state.bsc.globalAccounts.zero)
         .reverse()
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
 
       this.pageRecords = await this.$nuxt.context.app.db.buffer
+        .where('sender')
+        .equals(this.$store.state.bsc.globalAccounts.zero)
         .count()
     },
   },

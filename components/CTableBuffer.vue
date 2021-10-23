@@ -12,7 +12,7 @@
               {{ $t('txTable.type') }}
             </th>
             <th scope='col'>
-              {{ $t('txTable.address') }}
+              {{ $t('txTable.txHash') }}
             </th>
             <th scope='col'>
               {{ $t('txTable.amount') }}
@@ -26,7 +26,7 @@
                 #<CBN :value='tx.blockNumber' />
               </a>
             </td>
-            <td v-if='tx.sender === $store.state.bsc.globalAccounts.zero'>
+            <td v-if='tx.sender === $store.state.bsc.globalAccounts.zero' class='text-sky-500'>
               {{ $t('txTable.mint') }}
             </td>
             <td v-else-if='tx.sender === $store.state.bsc.globalAccounts.buffer' class='text-emerald-400'>
