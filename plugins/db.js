@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 
-const VERSION = 1.3
+const VERSION = 1.5
 
 
 export default async function({ app, store }, inject) {
@@ -20,8 +20,8 @@ export default async function({ app, store }, inject) {
       destroy: '++id, account',
       genesisDeposit: '++id, account',
 
-      liquidity: '++id',
       transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
+      buffer: '++id, sender, recipient, [sender+recipient]',
 
     })
 
@@ -46,8 +46,8 @@ export default async function({ app, store }, inject) {
     await app.db.destroy.clear()
     await app.db.genesisDeposit.clear()
 
-    await app.db.liquidity.clear()
     await app.db.transfer.clear()
+    await app.db.buffer.clear()
   }
 
   await app.db.pointers.put({ name: 'tokenAddress', value: process.env.tokenAddress }).catch(e => {

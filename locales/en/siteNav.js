@@ -12,14 +12,16 @@ export default {
   documentationHref: 'https://docs.hyperdefi.org/',
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
 
+  bufferHistory: 'Buffer Pool History',
   burnHistory: 'Burn History',
   airdropHistory: 'Airdrop History',
-  fomoHistory: 'Fomo History',
+  fomoHistory: 'FOMO Prize History',
   fomoAccumulateHistory: 'FOMO Accumulate History',
   fomoWinnerHistory: 'FOMO Winner History',
   taxHarvestHistory: 'Tax/Harvest History',
   genesisHistory: 'Genesis History',
   genesisRedeemHistory: 'Genesis Redeem History',
+  supplyGraduallyReleasedHistory: 'Supply gradually released history',
 
   holders: 'Holders List',
   topAccount: 'Top Account',

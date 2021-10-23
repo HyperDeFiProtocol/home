@@ -120,7 +120,7 @@
             </div>
             <div class='mt-6 px-5'>
               <p class='text-center text-base font-medium text-gray-500'>Open-sourced on
-                <a target='_blank' :href='hdfLink.github()' class='text-violet-700 hover:text-violet-900 hover:underline'>GitHub</a>
+                <a target='_blank' :href='hpLink.github()' class='text-violet-700 hover:text-violet-900 hover:underline'>GitHub</a>
               </p>
             </div>
           </div>
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 const navigation = [
   // { name: 'Product', href: '#' },
@@ -155,8 +155,8 @@ export default {
     }
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     devMode() {
       return process.env.dev

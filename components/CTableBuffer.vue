@@ -12,7 +12,7 @@
               {{ $t('txTable.type') }}
             </th>
             <th scope='col'>
-              {{ $t('txTable.address') }}
+              {{ $t('txTable.txHash') }}
             </th>
             <th scope='col'>
               {{ $t('txTable.amount') }}
@@ -22,24 +22,22 @@
           <tbody>
           <tr v-for='tx in transactions'>
             <td>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+              <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                 #<CBN :value='tx.blockNumber' />
               </a>
             </td>
-            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.tax' class='text-emerald-400'>
-              {{ $t('txTable.harvest') }}
+            <td v-if='tx.sender === $store.state.bsc.globalAccounts.zero' class='text-sky-500'>
+              {{ $t('txTable.mint') }}
+            </td>
+            <td v-else-if='tx.sender === $store.state.bsc.globalAccounts.buffer' class='text-emerald-400'>
+              {{ $t('txTable.addLiquidity') }}
             </td>
             <td v-else>
-              {{ $t('txTable.accumulate') }}
+              {{ $t('txTable.bufferAccumulate') }}
             </td>
-            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.tax' class='font-mono text-emerald-400'>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                <CAddress :value='tx.toAccount' />
-              </a>
-            </td>
-            <td v-else class='font-mono'>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
-                <CAddress :value='tx.fromAccount' />
+            <td class='font-mono'>
+              <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
+                {{ tx.txHash.slice(0, 44) }}...{{ tx.txHash.slice(-4) }}
               </a>
             </td>
             <td>
@@ -55,10 +53,10 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
-  name: 'CTableTax',
+  name: 'CTableBuffer',
   props: {
     transactions: {
       type: Array,
@@ -66,8 +64,8 @@ export default {
     },
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
   },
 }

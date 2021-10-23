@@ -11,55 +11,55 @@
     </CH3>
 
     <div class='mt-12 md:mt-24 mx-auto max-w-3xl px-4 grid grid-cols-2 md:grid-cols-3 gap-6'>
-      <a target='_blank' :href='hdfLink.twitter()'>
+      <a target='_blank' :href='hpLink.twitter()'>
         <IconTwitter class='w-20 h-20' />
         <p>
           Twitter
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.discord()'>
+      <a target='_blank' :href='hpLink.discord()'>
         <IconDiscord class='w-20 h-20' />
         <p>
           Discord
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.medium()'>
+      <a target='_blank' :href='hpLink.medium()'>
         <IconMedium class='w-20 h-20' />
         <p>
           Medium
         </p>
       </a>
-      <a target='_blank' :href='hdfLink.telegram(telegramChannel)'>
+      <a target='_blank' :href='hpLink.telegram(telegramChannel)'>
         <HeroIconOutlineSpeakerphone class='w-20 h-20' />
         <p>
           {{ $t('siteNav.telegramChannel') }}
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.telegram()'>
+      <a target='_blank' :href='hpLink.telegram()'>
         <IconTelegram class='w-20 h-20' />
         <p>
           {{ $t('siteNav.telegramGroup') }}
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.reddit()'>
+      <a target='_blank' :href='hpLink.reddit()'>
         <IconReddit class='w-20 h-20' />
         <p>
           Reddit
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.clubHouseRoom()'>
+      <a target='_blank' :href='hpLink.clubHouseRoom()'>
         <HeroIconOutlineMicrophone class='w-20 h-20' />
         <p>
           ClubHouse
         </p>
       </a>
 
-      <a target='_blank' :href='hdfLink.githubToForum()'>
+      <a target='_blank' :href='hpLink.githubToForum()'>
         <HeroIconOutlineTemplate class='w-20 h-20' />
         <p>
           {{ $t('siteNav.githubForum') }}
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'community',
@@ -80,8 +80,8 @@ export default {
     }
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     telegramChannel() {
       return process.env.telegramChannel

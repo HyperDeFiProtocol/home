@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 318.6 318.6' xml:space='preserve'>
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 318.6 318.6' xml:space='preserve' class='flex-shrink-0'>
     <style type='text/css'>
       .st0 {
         fill: #E2761B;

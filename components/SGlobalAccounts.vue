@@ -127,13 +127,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'SGlobalAccounts',
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     },
   }
 }

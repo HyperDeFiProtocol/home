@@ -19,12 +19,12 @@
           <tbody>
           <tr v-for='tx in transactions'>
             <td>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+              <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                 #<CBN :value='tx.blockNumber' />
               </a>
             </td>
             <td class='font-mono'>
-              <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+              <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                 <CAddress :value='tx.account' />
               </a>
             </td>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'CTableGenesis',
@@ -52,8 +52,8 @@ export default {
     },
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
   },
 }

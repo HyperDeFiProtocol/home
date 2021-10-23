@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'>
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' class='flex-shrink-0'>
     <g style='transform-origin: 50% 50%; transform: rotate(0deg) scale(0.8, 0.8);'>
       <g style='transform-origin: 512px 512px; transform: rotate(0deg); animation: 1.66667s linear 0s infinite normal forwards running spin-1c9b16c3-3b0c-4d0f-8d7b-bf997165f8c8;'>
         <path fill='currentColor'

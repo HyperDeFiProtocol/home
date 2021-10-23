@@ -10,6 +10,7 @@ export default {
   txHash: 'Tx Hash',
   username: 'Username',
   address: 'Address',
+  addressOrHash: 'Address/Tx Hash',
   amount: 'Amount',
   balance: 'Balance',
   BUSD: 'BUSD',
@@ -18,4 +19,7 @@ export default {
   distribute: 'Distribute',
   winner: 'Winner',
   harvest: 'Harvest',
+  mint: 'Mint',
+  bufferAccumulate: 'Buffer Accumulate',
+  addLiquidity: 'Add Liquidity',
 }

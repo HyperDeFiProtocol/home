@@ -6,6 +6,103 @@
       </h1>
     </LAutoWidth>
 
+    <LAutoWidth v-else-if='!isAddress' class='p-24 text-gray-500'>
+      <div>
+        <HeroIconOutlineExclamation class='h-20 w-20' />
+      </div>
+
+      <div>
+        <div class='mt-10 font-bold text-4xl'>
+          {{ $t('pUser.invalidAddress') }}
+        </div>
+
+        <div class='mt-6 text-2xl break-all'>
+          "{{ $route.params.address }}" {{ $t('pUser.isNotAValidAddress') }}
+        </div>
+      </div>
+    </LAutoWidth>
+
+    <LAutoWidth v-else-if='isGlobalAccount' class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
+      <CH3>
+        <span>
+          {{ $t('pAddress.' + globalAddressKey + 'Title') }}
+        </span>
+
+        <template #tag>
+          {{ $t('pAddress.globalAddress') }}
+        </template>
+
+        <template #desc>
+          <div class='truncate'>
+            {{ checksumAddress }}
+          </div>
+        </template>
+      </CH3>
+
+      <div class='mt-12 sm:mt-24'>
+        <h2>
+          {{ $t('pAddress.' + globalAddressKey) }}
+        </h2>
+
+        <p class='mt-6'>
+          {{ $t('pAddress.' + globalAddressKey + 'Desc') }}
+        </p>
+
+        <div class='mt-8 sm:mt-14 mx-auto w-full max-w-xl'>
+          <div v-if='checksumAddress === $store.state.bsc.globalAccounts.burn' class='flex flex-col space-y-3'>
+            <nuxt-link :to='localePath("/history/burn")' class='hp-btn-md hp-btn-violet hp-btn-center space-x-3'>
+              <HeroIconOutlineBreaker class='w-5 h-5'/>
+              <span>
+                {{ $t('pAddress.trackBurn__') }}
+              </span>
+            </nuxt-link>
+
+            <a target='_blank'
+               :href='hpLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+               class='hp-btn-md hp-btn-emerald hp-btn-center space-x-3'>
+              <HeroIconSolidCursorClick class='w-5 h-5' />
+              <span>
+                {{ $t('pAddress.trackBurnOnBSCScan__') }}
+              </span>
+            </a>
+
+            <a target='_blank'
+               :href='hpLink.exploreToken4address($store.state.bsc.globalAccounts.burn, $store.state.bsc.globalAccounts.pair)'
+               class='hp-btn-md hp-btn-emerald hp-btn-center space-x-3'>
+              <HeroIconSolidCursorClick class='w-5 h-5' />
+              <span>
+                {{ $t('pAddress.trackLPToken__') }}
+              </span>
+            </a>
+          </div>
+          <div v-else-if='checksumAddress === $store.state.bsc.globalAccounts.tax'>
+            <nuxt-link :to='localePath("/history/farm")' class='hp-btn-md hp-btn-violet hp-btn-center space-x-3'>
+              <HeroIconOutlineCurrencyDollar class='w-5 h-5'/>
+              <span>
+                {{ $t('pAddress.trackFarm__') }}
+              </span>
+            </nuxt-link>
+          </div>
+          <div v-else-if='checksumAddress === $store.state.bsc.globalAccounts.fomo'>
+            <nuxt-link :to='localePath("/history/fomo")' class='hp-btn-md hp-btn-violet hp-btn-center space-x-3'>
+              <HeroIconOutlineClock class='w-5 h-5'/>
+              <span>
+                {{ $t('pAddress.trackFomo__') }}
+              </span>
+            </nuxt-link>
+          </div>
+          <div v-else-if='checksumAddress === $store.state.bsc.globalAccounts.buffer'>
+            <nuxt-link :to='localePath("/history/buffer")' class='hp-btn-md hp-btn-violet hp-btn-center space-x-3'>
+              <HeroIconOutlineServer class='w-5 h-5'/>
+              <span>
+                {{ $t('pAddress.trackBuffer__') }}
+              </span>
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+    </LAutoWidth>
+
     <LAutoWidth v-else-if='account.isHolder' class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
         <span v-if='account.username'>
@@ -34,25 +131,25 @@
         <HeroIconOutlineExclamation class='h-20 w-20' />
       </div>
 
-      <div v-if='checksumAddress'>
-        <h1 class='mt-10 font-bold text-4xl'>
+      <div>
+        <div class='mt-10 font-bold text-4xl'>
           {{ $t('pUser.notAHolder') }}
-        </h1>
+        </div>
 
-        <h2 class='mt-6 text-2xl break-all'>
-          "{{ $route.params.address }}" {{ $t('pUser.isNotAHyperDeFiHolder') }}
-        </h2>
+        <div class='mt-6 text-2xl break-all'>
+          "{{ checksumAddress }}" {{ $t('pUser.isNotAHyperDeFiHolder') }}
+        </div>
       </div>
 
-      <div v-else>
-        <h1 class='mt-10 font-bold text-4xl'>
-          {{ $t('pUser.invalidAddress') }}
-        </h1>
+<!--      <div v-else>-->
+<!--        <h1 class='mt-10 font-bold text-4xl'>-->
+<!--          {{ $t('pUser.invalidAddress') }}-->
+<!--        </h1>-->
 
-        <h2 class='mt-6 text-2xl break-all'>
-          "{{ $route.params.address }}" {{ $t('pUser.isNotAValidAddress') }}
-        </h2>
-      </div>
+<!--        <h2 class='mt-6 text-2xl break-all'>-->
+<!--          "{{ $route.params.address }}" {{ $t('pUser.isNotAValidAddress') }}-->
+<!--        </h2>-->
+<!--      </div>-->
     </LAutoWidth>
   </div>
 </template>
@@ -60,6 +157,7 @@
 <script>
 import Web3 from 'web3'
 import fn from '~/utils/functions'
+import hpLink from '~/utils/hpLink'
 
 export default {
   scrollToTop: true,
@@ -101,6 +199,9 @@ export default {
     }
   },
   computed: {
+    hpLink() {
+      return hpLink
+    },
     isAddress() {
       return Web3.utils.isAddress(this.address)
     },
@@ -111,6 +212,38 @@ export default {
 
       return null
     },
+    isGlobalAccount() {
+      const globalAccounts = [
+        this.$store.state.bsc.globalAccounts.burn,
+        this.$store.state.bsc.globalAccounts.buffer,
+        this.$store.state.bsc.globalAccounts.tax,
+        this.$store.state.bsc.globalAccounts.fomo,
+      ]
+
+      for (let i = 0; i < globalAccounts.length; i++) {
+        if (this.checksumAddress === globalAccounts[i]) {
+          return true
+        }
+      }
+
+      return false
+    },
+    globalAddressKey() {
+      if (this.isGlobalAccount) {
+        switch (this.checksumAddress) {
+          case this.$store.state.bsc.globalAccounts.burn:
+            return 'blackHole'
+          case this.$store.state.bsc.globalAccounts.buffer:
+            return 'buffer'
+          case this.$store.state.bsc.globalAccounts.tax:
+            return 'farm'
+          case this.$store.state.bsc.globalAccounts.fomo:
+            return 'fomo'
+        }
+
+        return ''
+      }
+    },
   },
   mounted: async function () {
     await fn.wait(500)
@@ -118,7 +251,8 @@ export default {
   },
   methods: {
     async sync() {
-      if (!this.isAddress) {
+      if (!this.isAddress || this.isGlobalAccount) {
+        this.loaded = true
         return
       }
 
@@ -159,5 +293,11 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+h2 {
+  @apply text-3xl font-extrabold tracking-tight sm:text-4xl;
+}
 
+p {
+  @apply text-gray-400;
+}
 </style>

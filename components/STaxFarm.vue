@@ -40,7 +40,7 @@
           </p>
 
           <div v-if='$store.state.bsc.supply.tax > "0"' class="mt-5 inline-flex rounded-md shadow">
-            <nuxt-link :to='localeLocation("/history/tax")'
+            <nuxt-link :to='localeLocation("/history/farm")'
                        class='hdf-a-track bg-violet-700 hover:bg-violet-600 space-x-2'>
               <HeroIconSolidCursorClick class="h-5 w-5" />
               <span>
@@ -96,13 +96,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'STaxFarm',
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     },
   }
 }

@@ -105,13 +105,13 @@
                     HyperDeFi
                   </h4>
                   <p>
-                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                    <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                       #<CBN :value='tx.blockNumber' />
                     </a>
                   </p>
                 </div>
 <!--                <p class='p-txs'>-->
-<!--                  <a target='_blank' :href='hdfLink.exploreTx(txs.txHash)'>{{ txs.txHash.slice(0, 20) }}...</a>-->
+<!--                  <a target='_blank' :href='hpLink.exploreTx(txs.txHash)'>{{ txs.txHash.slice(0, 20) }}...</a>-->
 <!--                </p>-->
               </div>
             </li>
@@ -139,12 +139,12 @@
                 <tbody>
                 <tr v-for='tx in transactions'>
                   <td>
-                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                    <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                       #<CBN :value='tx.blockNumber' />
                     </a>
                   </td>
                   <td class='font-mono'>
-                    <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                    <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                       {{ tx.txHash.slice(0, 36) }}...{{ tx.txHash.slice(-4) }}
                     </a>
                   </td>
@@ -164,7 +164,7 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 import fn from '~/utils/functions'
 
 export default {
@@ -176,8 +176,8 @@ export default {
     }
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     }
   },
   watch: {

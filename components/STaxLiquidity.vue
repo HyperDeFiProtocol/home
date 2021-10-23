@@ -113,7 +113,7 @@
               <div class='div-body'>
                 <div>
                   <h4>
-                    <CBN :value='tx.tokenAdded' />
+                    <CBN :value='tx.amount' />
                     HyperDeFi
                   </h4>
                   <p>
@@ -145,9 +145,6 @@
                   <th scope='col'>
                     {{ $t('txTable.txHash') }}
                   </th>
-<!--                  <th scope='col'>-->
-<!--                    {{ $t('txTable.BNB') }}-->
-<!--                  </th>-->
                   <th scope='col'>
                     {{ $t('txTable.amount') }}
                   </th>
@@ -165,12 +162,8 @@
                       {{ tx.txHash.slice(0, 36) }}...{{ tx.txHash.slice(-4) }}
                     </a>
                   </td>
-<!--                  <td>-->
-<!--                    <CBN :value='txs.busdAdded' :decimals='18' :padding='6' />-->
-<!--                    BNB-->
-<!--                  </td>-->
                   <td>
-                    <CBN :value='tx.tokenAdded' :token='true' :padding='2' />
+                    <CBN :value='tx.amount' :token='true' :padding='2' />
                     HyperDeFi
                   </td>
                 </tr>
@@ -186,7 +179,7 @@
 
 <script>
 import BN from 'bn.js'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 import fn from '~/utils/functions'
 
 export default {
@@ -198,7 +191,7 @@ export default {
   },
   computed: {
     explorer() {
-      return hdfLink
+      return hpLink
     },
 
     autoSwapAmountMin() {
@@ -222,7 +215,12 @@ export default {
   },
   methods: {
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.liquidity.reverse().limit(10).toArray()
+      this.transactions = await this.$nuxt.context.app.db.buffer
+        .where('sender')
+        .equals(this.$store.state.bsc.globalAccounts.buffer)
+        .reverse()
+        .limit(10)
+        .toArray()
     }
   }
 }

@@ -5,6 +5,6 @@ export default {
 
   blackHole: '黑洞：销毁及持有 LP Token',
   buffer: '缓冲池：没有控制者',
-  tax: '税收矿池',
+  tax: '矿池',
   fomo: 'FOMO 奖池',
 }

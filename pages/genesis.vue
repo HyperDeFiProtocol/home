@@ -43,7 +43,7 @@
                   </span>
                 </nuxt-link>
 
-                <a target='_blank' :href='hdfLink.exploreAddress(tokenAddress)' class='a-track'>
+                <a target='_blank' :href='hpLink.exploreAddress(tokenAddress)' class='a-track'>
                   <HeroIconSolidCursorClick class="h-5 w-5" />
                   <span>
                     {{ $t('global.trackWithBSCScan') }}
@@ -71,7 +71,7 @@
             <div class='hdf-timeline-body'>
               <p>
                 {{ $t('pGenesis.sameTx__') }}
-                <a target='_blank' :href='hdfLink.exploreTx(tokenCreationTxHash)' class='hover:text-white'>
+                <a target='_blank' :href='hpLink.exploreTx(tokenCreationTxHash)' class='hover:text-white'>
                   {{ $t('pGenesis.review') }}
                 </a>
               </p>
@@ -353,7 +353,7 @@
 import BigNumber from 'bignumber.js'
 import BN from 'bn.js'
 import moment from 'moment'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 
 export default {
@@ -387,8 +387,8 @@ export default {
     moment() {
       return moment
     },
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     tokenAddress() {
       return process.env.tokenAddress

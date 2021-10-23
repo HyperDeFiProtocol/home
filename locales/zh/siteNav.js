@@ -10,16 +10,18 @@ export default {
   cache: '清除缓存',
   documentation: '在线文档',
   documentationHref: 'https://docs.hyperdefi.org/zh/',
-
   forumHref: 'https://github.com/HyperDeFiProtocol/home/discussions',
+
+  bufferHistory: '缓冲池记录',
   burnHistory: '销毁记录',
   airdropHistory: '空投记录',
-  fomoHistory: 'FOMO 记录',
+  fomoHistory: 'FOMO 奖池记录',
   fomoAccumulateHistory: 'FOMO 滚存记录',
   fomoWinnerHistory: 'FOMO 获奖记录',
   taxHarvestHistory: '税收矿池/挖矿记录',
   genesisHistory: '创世记录',
   genesisRedeemHistory: '创世认领记录',
+  supplyGraduallyReleasedHistory: '供应量缓释记录',
 
   holders: '持有者列表',
   topAccount: '富豪榜',

@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import hdLink from '~/utils/hdfLink'
+import hdLink from '~/utils/hpLink'
 
 export default {
   name: 'modes',

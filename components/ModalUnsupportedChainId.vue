@@ -36,7 +36,7 @@
           </div>
           <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <a target='_blank'
-               :href='hdfLink.githubToWiki("home", "Connecting-wallet-to-Binance-Smart-Chain")'
+               :href='hpLink.githubToWiki("home", "Connecting-wallet-to-Binance-Smart-Chain")'
                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">
               {{ $t('modalUnsupportedChainId.read') }}
             </a>
@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'ModalUnsupportedChainId',
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     mode() {
       return process.env.mode

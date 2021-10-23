@@ -2,17 +2,24 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.taxHarvestHistory') }}
+        {{ $t('siteNav.supplyGraduallyReleasedHistory') }}
 
         <template #tag>
           On Chain
         </template>
+
+        <template #desc>
+          {{ $t('sDataBoard.__mintLatestBlockNumber__') }}
+          #<CBN :value='$store.state.bsc.blockNumber' />
+        </template>
       </CH3>
 
-      <CTableTax :transactions='transactions' class='mt-10 lg:mt-24' />
+      <CSupplyRelease class='mt-12 sm:mt-24' />
+
+      <CTableBuffer :transactions='transactions' class='mt-10 lg:mt-24' />
 
       <CPagination class='mt-8 lg:mt-12'
-                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/tax' />
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/farm' />
     </LAutoWidth>
   </div>
 </template>
@@ -22,7 +29,7 @@ import fn from '~/utils/functions'
 
 export default {
   scrollToTop: true,
-  name: 'HistoryTax',
+  name: 'HistoryBufferMint',
   data() {
     return {
       transactions: [],
@@ -57,21 +64,17 @@ export default {
   },
   methods: {
     async load() {
-      this.transactions = await this.$nuxt.context.app.db.transfer
-        .where('fromAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
-        .or('toAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
+      this.transactions = await this.$nuxt.context.app.db.buffer
+        .where('sender')
+        .equals(this.$store.state.bsc.globalAccounts.zero)
         .reverse()
         .offset(this.pageOffset)
         .limit(this.pageSize)
         .toArray()
 
-      this.pageRecords = await this.$nuxt.context.app.db.transfer
-        .where('fromAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
-        .or('toAccount')
-        .equals(this.$store.state.bsc.globalAccounts.tax)
+      this.pageRecords = await this.$nuxt.context.app.db.buffer
+        .where('sender')
+        .equals(this.$store.state.bsc.globalAccounts.zero)
         .count()
     },
   },
@@ -79,5 +82,11 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+h2 {
+  @apply text-3xl font-extrabold tracking-tight sm:text-4xl;
+}
 
+p {
+  @apply text-gray-400;
+}
 </style>

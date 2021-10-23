@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import explorer from '~/utils/hdfLink'
+import explorer from '~/utils/hpLink'
 import fn from '~/utils/functions'
 import enums from '~/utils/enums'
 

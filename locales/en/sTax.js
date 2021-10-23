@@ -37,7 +37,7 @@ export default {
   scriptWarning: 'Script Warning',
   scriptNotWelcomed__moreThan: 'Scripts are not welcomed in HyperDeFi ecology, especially in the early stage. If someone uses scripts to make a big-trade that swaps more than',
   scriptCannot__: ' of the PancakeSwap liquidity (which can\'t be done manually), he will be treat as a ROBBER and be charged up to ',
-  scriptOfTheTax: 'of the tax (',
+  scriptOfTheTax: 'of the farm (',
   script4Farm_: 'for Farm,',
   script4Airdrop_: 'for Airdrop,',
   script4FOMO_: 'for FOMO,',

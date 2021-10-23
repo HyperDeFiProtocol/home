@@ -104,13 +104,13 @@
                   HyperDeFi
                 </h4>
                 <p class='text-sm text-gray-500'>
-                  <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>
+                  <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
                     #<CBN :value='tx.blockNumber' />
                   </a>
                 </p>
               </div>
               <p class='text-sm text-gray-500 break-all'>
-                <a target='_blank' :href='hdfLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
+                <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>{{ tx.txHash.slice(0, 44) }}...</a>
               </p>
             </div>
           </li>
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 
 export default {
   name: 'SHarvest',
@@ -134,8 +134,8 @@ export default {
     }
   },
   computed: {
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
   },
   watch: {

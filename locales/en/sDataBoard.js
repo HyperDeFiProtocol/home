@@ -1,4 +1,7 @@
 export default {
+  latestBlockNumber: 'latest block number',
+  LatestBlockNumber_: 'Latest block number:',
+
   genesisTag: 'Genesis Deposit',
   genesisStartText: 'Deposit is allowed after',
   genesisEndText: 'Deposit is allowed before',
@@ -9,6 +12,8 @@ export default {
 
   tag: 'Realtime data on BSC chain',
   contractAddress_: 'Contract Address: ',
+  genesisStartTime: 'Genesis Start Time:',
+  genesisEndTime: 'Genesis End Time:',
   launchTime: 'Trade Launch Time:',
   tokenNameSymbol_: 'Token Name/Symbol:',
   with: 'with',
@@ -22,21 +27,30 @@ export default {
   totalMarketValue_: 'Total Market Value,',
   ofTotalSupplyCap: 'of total supply',
 
-  currentSupply_: 'Current Supply,',
-  blackHoleIncluded: 'black-hold included',
+  currentSupply: 'Current Supply',
+  blackHoleIncluded: '(black-hold included)',
 
   totalSupply_: 'Total Supply,',
   fixed: 'fixed',
   decreasing_: 'decreasing...',
 
-  thereIsA__: 'There is a amount of',
-  willBeMinted__: 'will be minted slowly and released to replenish the PancakeSwap Liquidity (LP Token goes into the black-hole) through the Buffer only when the liquidity is less than',
-  executeByContract__: ', execute by the contract automatically with no human intervention.',
-  clickToMintHistory: 'Click here to check the history.',
+  // mint
+  __mintSupplyGradually__: 'Release Total Supply gradually',
+  __mintWhen__: 'When the current liquidity goes less than the genesis liquidity',
+  __mintDifference__: ' the difference will be release to Buffer Pool (LP Token burns to the black-hole), ' +
+    'execute by the contract automatically with no human intervention.',
+  __mintLatestBlockNumber__: 'Latest block number',
+  __mintTheAmount__: 'Currently, the amount to be released is',
+  __mintWhich__: 'which is',
+  __mintOfTheTotal__: 'of the Total Supply.',
+  __mintTypeInTable__: 'The type displayed in the table is',
+  __mintTypeInTable2__: '.',
+  __mintReleaseHistory__: 'Click here to check the release history',
+  __mintReleaseHistoryOnly__: 'Click here to check the release history only',
+  __mintFullBufferHistory__: 'Click here to check full Buffer Pool History',
 
 
-
-  burned: 'Burned Already,',
+  burned: 'Already burned',
   held__: 'held by',
   blackHole: 'black-hole',
   increasing_: 'address and keep increasing...',

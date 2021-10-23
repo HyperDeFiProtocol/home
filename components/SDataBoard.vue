@@ -68,11 +68,6 @@
       </p>
 
       <p class="mt-2 text-base text-gray-400 break-all">
-        {{ $t('sDataBoard.launchTime') }}
-        {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
-      </p>
-
-      <p class="mt-2 text-base text-gray-400 break-all">
         {{ $t('sDataBoard.tokenNameSymbol_') }}
         <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>
         {{ $t('sDataBoard.with') }}
@@ -82,8 +77,28 @@
         </span>
       </p>
 
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.genesisStartTime') }}
+        {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.genesisEndTime') }}
+        {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.launchTime') }}
+        {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
+      </p>
+
+      <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.LatestBlockNumber_') }}
+        #<CBN :value='$store.state.bsc.blockNumber' />
+      </p>
+
       <div class="mt-5 inline-flex rounded-md shadow">
-        <a target='_blank' :href='hdfLink.exploreToken(tokenAddress)' class='hdf-a-track bg-violet-600 hover:bg-violet-700 space-x-2'>
+        <a target='_blank' :href='hpLink.exploreToken(tokenAddress)' class='hdf-a-track bg-violet-600 hover:bg-violet-700 space-x-2'>
           <HeroIconSolidCursorClick class="h-5 w-5" />
           <span>
             {{ $t('global.trackWithBSCScan') }}
@@ -104,7 +119,7 @@
             </span>
             {{ $t('sDataBoard.providedBy') }}
             <CPancakeTo v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'
-                        class='font-medium text-violet-300'
+                        class='hdf-a-colored'
             >
               PancakeSwap Finance
             </CPancakeTo>
@@ -127,32 +142,7 @@
           </span>
         </p>
 
-        <!--  current total supply  -->
-        <p>
-          <span class="block text-2xl font-bold text-violet-300">
-            <CBN :value='String($store.state.bsc.supply.totalSupply)' :token='true' /> HyperDeFi
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sDataBoard.currentSupply_') }}
-            </span>
-            {{ $t('sDataBoard.blackHoleIncluded') }}
-          </span>
-        </p>
-
-        <!--  circulating  -->
-        <p>
-          <span class="block text-2xl font-bold text-violet-300">
-            <CBN :value='$store.state.bsc.supply.circulating' :token='true' /> HyperDeFi
-          </span>
-          <span class="mt-1 block text-base text-gray-300">
-            <span class="font-medium text-white">
-              {{ $t('sDataBoard.currentCirculating') }}
-            </span>
-          </span>
-        </p>
-
-        <!--  total supply cap  -->
+        <!--  total supply  -->
         <p>
           <span class="block text-2xl font-bold text-violet-300">
             <CBN :value='$store.state.bsc.supply.cap' :token='true' /> HyperDeFi
@@ -178,28 +168,45 @@
             <CBN :value='$store.state.bsc.supply.burned' :token='true' /> HyperDeFi
             {{ $t('sDataBoard.held__') }}
             <a target='_blank'
-               :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
+               :href='hpLink.exploreToken4address($store.state.bsc.globalAccounts.burn)'
                class='hdf-a-colored'>
               {{ $t('sDataBoard.blackHole') }}
             </a>
             {{ $t('sDataBoard.increasing_') }}
           </span>
         </p>
-      </div>
 
-      <div class='mt-6 border-l-8 border-gray-700 py-4 px-4 leading-6 text-base text-gray-500'>
+        <!--  current supply  -->
         <p>
-          {{ $t('sDataBoard.thereIsA__') }}
-          <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi
-          {{ $t('sDataBoard.willBeMinted__') }}
-          <CBN :value='$store.state.bsc.global.initLiquidity' :token='true' /> HyperDeFi
-          {{ $t('sDataBoard.executeByContract__') }}
-          <a class='hover:text-gray-300' target='_blank'
-             :href='hdfLink.exploreToken4address($store.state.bsc.globalAccounts.zero)'>
-            {{ $t('sDataBoard.clickToMintHistory') }}
-          </a>
+          <span class="block text-2xl font-bold text-violet-300">
+            <CBN :value='$store.state.bsc.supply.totalSupplyRatio' :decimals='3' :padding='3' /> %
+            <!--            <CBN :value='String($store.state.bsc.supply.totalSupply)' :token='true' /> HyperDeFi-->
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <span class="font-medium text-white">
+              {{ $t('sDataBoard.currentSupply') }}
+            </span>
+            <CBN :value='String($store.state.bsc.supply.totalSupply)' :token='true' /> HyperDeFi
+            {{ $t('sDataBoard.blackHoleIncluded') }}
+          </span>
+        </p>
+
+        <!--  circulating  -->
+        <p>
+          <span class="block text-2xl font-bold text-violet-300">
+            <CBN :value='$store.state.bsc.supply.circulatingRatio' :decimals='3' :padding='3' /> %
+            <!--            <CBN :value='$store.state.bsc.supply.circulating' :token='true' /> HyperDeFi-->
+          </span>
+          <span class="mt-1 block text-base text-gray-300">
+            <span class="font-medium text-white">
+              {{ $t('sDataBoard.currentCirculating') }}
+            </span>
+            <CBN :value='$store.state.bsc.supply.circulating' :token='true' /> HyperDeFi
+          </span>
         </p>
       </div>
+
+      <CSupplyRelease v-if='$store.state.bsc.supply.gate !== "0"' class='mt-6' />
 
       <!--  part.2  -->
       <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2"
@@ -229,7 +236,7 @@
             </span>
           </span>
           <span class="mt-1 block text-base text-gray-300">
-            <BtnConnectWallet class='inline-flex text-base focus:outline-none'>
+            <BtnConnectWallet class='inline-flex space-x-1 text-base focus:outline-none'>
               <span class="font-medium text-white">
                 {{ $t('sDataBoard.clickHere') }}
               </span>
@@ -248,7 +255,7 @@
 
 <script>
 import moment from 'moment'
-import hdfLink from '~/utils/hdfLink'
+import hpLink from '~/utils/hpLink'
 import BN from 'bn.js'
 
 export default {
@@ -267,8 +274,8 @@ export default {
     tokenAddress() {
       return process.env.tokenAddress
     },
-    hdfLink() {
-      return hdfLink
+    hpLink() {
+      return hpLink
     },
     tradeAllowed() {
       return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
