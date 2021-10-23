@@ -450,7 +450,7 @@ export default {
       if (!respGetCoupon) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
-          message: 'Cannot verify this Coupon Code: ' + this.code
+          message: this.$t('pCoupon.codeVerify__') + this.code
         })
 
         this.binding = false
@@ -460,7 +460,17 @@ export default {
       if (!respGetCoupon.valid) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
-          message: 'Invalid Coupon Code'
+          message: this.$t('pCoupon.codeInvalid__')
+        })
+
+        this.binding = false
+        return
+      }
+
+      if (this.codeDec === this.$store.state.wallet.coupon) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.info'),
+          message: this.$t('pCoupon.codeYourOwn__') + this.code
         })
 
         this.binding = false
