@@ -6,7 +6,6 @@ export default {
   genesisStartText: '开始时间：',
   genesisEndText: '截止时间：',
 
-  genesisText: '允许存入截止时间',
   visitGenesis: '进入创世纪',
 
   launchTag: '启动时间',
@@ -47,9 +46,9 @@ export default {
   __mintOfTheTotal__: '的总供应量。',
   __mintTypeInTable__: '表格中显示的类型为',
   __mintTypeInTable2__: '。',
-  __mintReleaseHistory__: '点此查看缓释记录',
-  __mintReleaseHistoryOnly__: '点此只查看缓释记录',
-  __mintFullBufferHistory__: '点此查看完整缓冲池记录',
+  __mintReleaseHistory__: '点此查看总量缓释记录',
+  __mintReleaseHistoryOnly__: '点此只查看总量缓释记录',
+  __mintFullBufferHistory__: '点此查看完整的流动池缓冲记录',
 
 
 

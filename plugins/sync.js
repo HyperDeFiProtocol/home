@@ -270,7 +270,13 @@ export default async function({ app, store }, inject) {
         )
 
         await store.dispatch(
-          'stat/SET_LIQUIDITY',
+          'stat/SET_BUFFER',
+          await app.db.buffer
+            .toArray()
+        )
+
+        await store.dispatch(
+          'stat/SET_BUFFER_OUT',
           await app.db.buffer
             .where('sender')
             .equals(store.state.bsc.globalAccounts.buffer)

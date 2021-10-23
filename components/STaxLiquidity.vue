@@ -47,12 +47,24 @@
           <p>
             {{ $t('sTaxLiquidity.newLPTokens__') }}
           </p>
+
+          <div v-if='$store.state.stat.buffer.count > "0"' class='mt-5 inline-flex rounded-md shadow'>
+            <nuxt-link :to='localeLocation("/history/buffer")'
+                       class='hdf-a-track bg-rose-700 hover:bg-rose-600 space-x-2'>
+              <HeroIconSolidCursorClick class='h-5 w-5' />
+              <span>
+                {{ $t('sTax.trackAll') }}
+                {{ $store.state.stat.buffer.count }}
+                {{ $t('sTaxLiquidity.trackBufferTransfers') }}
+              </span>
+            </nuxt-link>
+          </div>
         </div>
       </main>
 
       <dl v-if='$store.state.bsc.supply.liquidity > "0"'
           class='hdf-stat grid grid-cols-1 xl:max-w-7xl'
-          :class='{"xl:grid-cols-3": $store.state.stat.liquidity.count, "xl:grid-cols-2": !$store.state.stat.liquidity.count}'>
+          :class='{"xl:grid-cols-3": $store.state.stat.buffer.out.count, "xl:grid-cols-2": !$store.state.stat.buffer.out.count}'>
 
 <!--        <div>-->
 <!--          <dt>-->
@@ -86,12 +98,12 @@
           </dd>
         </div>
 
-        <div v-if='$store.state.stat.liquidity.count'>
+        <div v-if='$store.state.stat.buffer.out.count'>
           <dt>
             {{ $t('sTaxLiquidity.statLiquidityAddTransfers') }}
           </dt>
           <dd>
-            <CBN :value='$store.state.stat.liquidity.count' />
+            <CBN :value='$store.state.stat.buffer.out.count' />
           </dd>
         </div>
       </dl>

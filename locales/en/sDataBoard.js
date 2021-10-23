@@ -5,6 +5,7 @@ export default {
   genesisTag: 'Genesis Deposit',
   genesisStartText: 'Deposit is allowed after',
   genesisEndText: 'Deposit is allowed before',
+
   visitGenesis: 'Visit Genesis',
 
   launchTag: 'Launch Time',
@@ -45,9 +46,9 @@ export default {
   __mintOfTheTotal__: 'of the Total Supply.',
   __mintTypeInTable__: 'The type displayed in the table is',
   __mintTypeInTable2__: '.',
-  __mintReleaseHistory__: 'Click here to check the release history',
-  __mintReleaseHistoryOnly__: 'Click here to check the release history only',
-  __mintFullBufferHistory__: 'Click here to check full Buffer Pool History',
+  __mintReleaseHistory__: 'Click here to check the supply release history',
+  __mintReleaseHistoryOnly__: 'Click here to check the supply release history only',
+  __mintFullBufferHistory__: 'Click here to check full Liquidity Buffer history',
 
 
   burned: 'Already burned',

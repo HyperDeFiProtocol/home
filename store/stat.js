@@ -16,9 +16,13 @@ export const state = () => ({
       amount: '0'
     },
   },
-  liquidity: {
+  buffer: {
     count: 0,
-    amount: '0'
+
+    out: {
+      count: 0,
+      amount: '0'
+    },
   },
   burn: {
     count: 0,
@@ -57,14 +61,17 @@ export const mutations = {
     }
     state.fomo.out.amount = amount.toString()
   },
-  SET_LIQUIDITY(state, transactions) {
-    state.liquidity.count = transactions.length
+  SET_BUFFER(state, transactions) {
+    state.buffer.count = transactions.length
+  },
+  SET_BUFFER_OUT(state, transactions) {
+    state.buffer.out.count = transactions.length
 
     let amount = new BN('0')
     for (let i = 0; i < transactions.length; i++) {
       amount = amount.add(new BN(transactions[i].amount))
     }
-    state.liquidity.amount = amount.toString()
+    state.buffer.out.amount = amount.toString()
   },
   SET_BURN(state, transactions) {
     state.burn.count = transactions.length
@@ -88,8 +95,11 @@ export const actions = {
   SET_FOMO_OUT({ commit }, transactions) {
     commit('SET_FOMO_OUT', transactions)
   },
-  SET_LIQUIDITY({ commit }, transactions) {
-    commit('SET_LIQUIDITY', transactions)
+  SET_BUFFER({ commit }, transactions) {
+    commit('SET_BUFFER', transactions)
+  },
+  SET_BUFFER_OUT({ commit }, transactions) {
+    commit('SET_BUFFER_OUT', transactions)
   },
   SET_BURN({ commit }, transactions) {
     commit('SET_BURN', transactions)
