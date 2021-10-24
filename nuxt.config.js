@@ -9,7 +9,7 @@ export default {
     tokenAddress: process.env.tokenAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
     genesisAddress: process.env.genesisAddress,
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
-    chainName: process.env.chainName || 'BSC Chain Mainnet',
+    chainName: process.env.chainName || 'BSC Chain',
     chainId: parseInt(process.env.chainId) || 56,
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
     pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance',

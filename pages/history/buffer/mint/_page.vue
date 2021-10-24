@@ -2,7 +2,7 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.supplyGraduallyReleasedHistory') }}
+        {{ $t('siteNav.supplyGraduallyDistributeHistory') }}
 
         <template #tag>
           On Chain
@@ -14,7 +14,7 @@
         </template>
       </CH3>
 
-      <CSupplyRelease class='mt-12 sm:mt-24' />
+      <CSupplyMint class='mt-12 sm:mt-24' />
 
       <CTableBuffer :transactions='transactions' class='mt-10 lg:mt-24' />
 

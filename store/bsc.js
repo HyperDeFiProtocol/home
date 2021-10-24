@@ -43,10 +43,6 @@ export const state = () => ({
 
     totalSupply: '0',
     totalSupplyRatio: '0',
-    circulating: '0',
-    circulatingRatio: '0',
-    mint: '0',
-    mintRatio: '0',
 
     totalTax: '0',
 
@@ -57,7 +53,9 @@ export const state = () => ({
     fomo: '0',
 
     burned: '0',
-    burnedRatio: '0'
+    burnedRatio: '0',
+    circulating: '0',
+    circulatingRatio: '0',
   },
 
   total: {
@@ -78,11 +76,15 @@ export const state = () => ({
 
     initLiquidity: '0',
 
+    distOfInit: '0',
+    distThreshold: '0',
+    distReady: false,
+
     whaleFractionA: '0',
     whaleFractionB: '0',
     robberPercentage: '0',
 
-    autoSwapReady: null,
+    autoSwapReady: false,
     autoSwapNumeratorMin: '0',
     autoSwapNumeratorMax: '0',
     autoSwapDenominator: '0',
@@ -254,8 +256,6 @@ export const mutations = {
 
     state.supply.totalSupply = data.supplies[2]
     state.supply.totalSupplyRatio = new BN(state.supply.totalSupply).muln(100000).div(new BN(state.supply.cap)).toString()
-    state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
-    state.supply.circulatingRatio = new BN(state.supply.circulating).muln(100000).div(new BN(state.supply.cap)).toString()
 
     state.supply.totalTax = data.supplies[3]
     state.supply.liquidity = data.supplies[4]
@@ -265,6 +265,9 @@ export const mutations = {
     state.supply.fomo = data.supplies[7]
     state.supply.burned = data.supplies[8]
     state.supply.burnedRatio = new BN(state.supply.burned).muln(100000).div(new BN(state.supply.cap)).toString()
+
+    state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
+    state.supply.circulatingRatio = new BN(state.supply.circulating).muln(100000).div(new BN(state.supply.cap)).toString()
 
 
     state.marketValue.cap = new BN(state.supply.cap).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()
@@ -288,11 +291,14 @@ export const mutations = {
     state.globalAccounts.fomo = data.accounts[6]
     state.globalAccounts.fund = data.accounts[7]
     state.globalAccounts.burn = data.accounts[8]
+
+    // // auto swap
+    // if (state.genesis.liquidityCreatedTimestamp !== '0') {
+    //   state.global.autoSwapReady = new BN(state.supply.buffer).gt(state.global.autoSwapAmountMin)
+    // }
   },
 
   async SET_GLOBAL(state, data) {
-    state.global.autoSwapReady = data.autoSwapReady
-
     // whale
     state.global.whaleFractionA = data.uint16s[0]
     state.global.whaleFractionB = data.uint16s[1]
@@ -304,11 +310,13 @@ export const mutations = {
     state.global.autoSwapNumeratorMin = data.uint16s[3]
     state.global.autoSwapNumeratorMax = data.uint16s[4]
     state.global.autoSwapDenominator = data.uint16s[5]
-    state.global.autoSwapAmountMin = data.uint256s[5]
-    state.global.autoSwapAmountMax = data.uint256s[6]
-    state.global.bonus.level0 = data.uint16s[7]
-    state.global.bonus.level1 = data.uint16s[8]
-    state.global.bonus.level2 = data.uint16s[9]
+    state.global.autoSwapAmountMin = data.uint256s[6]
+    state.global.autoSwapAmountMax = data.uint256s[7]
+
+
+    state.global.bonus.level0 = data.uint16s[8]
+    state.global.bonus.level1 = data.uint16s[9]
+    state.global.bonus.level2 = data.uint16s[10]
     state.global.bonus.total = new BN(state.global.bonus.level0)
       .add(new BN(state.global.bonus.level1))
       .add(new BN(state.global.bonus.level2))
@@ -320,15 +328,20 @@ export const mutations = {
     state.global.initLiquidity = data.uint256s[1]
 
     // thresholds
-    state.global.airdropThreshold = data.uint256s[2]
-    state.global.whaleThreshold = data.uint256s[3]
-    state.global.robberThreshold = data.uint256s[4]
+    state.global.distOfInit = data.uint16s[7]
+    state.global.distThreshold = data.uint256s[2]
+    state.global.distReady = state.genesis.liquidityCreatedTimestamp !== '0' &&
+      new BN(state.global.distThreshold).lt(state.supply.liquidity)
+
+    state.global.airdropThreshold = data.uint256s[3]
+    state.global.whaleThreshold = data.uint256s[4]
+    state.global.robberThreshold = data.uint256s[5]
 
     // fomo
     state.fomo.next = data.fomoNext
-    state.fomo.amount = data.uint256s[7]
-    state.fomo.timestamp = data.uint256s[8]
-    state.fomo.timestampStep = data.uint256s[9]
+    state.fomo.amount = data.uint256s[8]
+    state.fomo.timestamp = data.uint256s[9]
+    state.fomo.timestampStep = data.uint256s[10]
     // state.fomo.countdown.finished = state.fomo.timestamp < Math.floor(new Date().getTime() / 1000)
 
     // takerTax
@@ -397,18 +410,23 @@ export const mutations = {
     state.specials.slots = data.slots
 
     // genesis
-    state.genesis.depositMax = data.uint256s[10]
-    state.genesis.depositCap = data.uint256s[11]
-    state.genesis.startTimestamp = data.uint256s[12]
-    state.genesis.endTimestamp = data.uint256s[13]
-    state.genesis.liquidityCreatedTimestamp = data.uint256s[14]
-    state.genesis.genesisAmount = data.uint256s[15]
-    state.genesis.balance = data.uint256s[16]
-    state.genesis.fund = data.uint256s[17]
+    state.genesis.depositMax = data.uint256s[11]
+    state.genesis.depositCap = data.uint256s[12]
+    state.genesis.startTimestamp = data.uint256s[13]
+    state.genesis.endTimestamp = data.uint256s[14]
+    state.genesis.liquidityCreatedTimestamp = data.uint256s[15]
+    state.genesis.genesisAmount = data.uint256s[16]
+    state.genesis.balance = data.uint256s[17]
+    state.genesis.fund = data.uint256s[18]
 
-    state.genesis.genesisPercent = new BN(state.genesis.genesisAmount).muln(100).div(new BN(state.supply.cap))
+    state.genesis.genesisPercent = new BN(state.genesis.genesisAmount).muln(100000).div(new BN(state.supply.cap))
 
-    state.genesis.initLiquidityPercent = new BN(state.global.initLiquidity).muln(100).div(new BN(state.supply.cap))
+    state.genesis.initLiquidityPercent = new BN(state.global.initLiquidity).muln(100000).div(new BN(state.supply.cap))
+
+    // auto swap
+    if (state.genesis.liquidityCreatedTimestamp !== '0') {
+      state.global.autoSwapReady = new BN(state.supply.buffer).gt(new BN(state.global.autoSwapAmountMin))
+    }
   }
 }
 

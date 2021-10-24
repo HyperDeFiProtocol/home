@@ -25,30 +25,31 @@ export default {
   latestPrice_: 'Latest Price,',
   providedBy: 'provided by',
 
-  totalMarketValue_: 'Total Market Value,',
+  totalMarketValue: 'Total Market Value',
   ofTotalSupplyCap: 'of total supply',
 
   currentSupply: 'Current Supply',
-  blackHoleIncluded: '(black-hold included)',
+  burnedIncluded: '(burned included)',
 
   totalSupply_: 'Total Supply,',
   fixed: 'fixed',
   decreasing_: 'decreasing...',
 
   // mint
-  __mintSupplyGradually__: 'Release Total Supply gradually',
-  __mintWhen__: 'When the current liquidity goes less than the genesis liquidity',
-  __mintDifference__: ' the difference will be release to Buffer Pool (LP Token burns to the black-hole), ' +
+  __mintSupplyGradually__: 'Mint Total Supply gradually',
+  __mintWhen__: 'When the current liquidity goes less than',
+  __mintDistOfInit__: 'of the genesis liquidity',
+  __mintDifference__: ', the difference will be minted to Buffer Pool (LP Token burns to the black-hole), ' +
     'execute by the contract automatically with no human intervention.',
   __mintLatestBlockNumber__: 'Latest block number',
-  __mintTheAmount__: 'Currently, the amount to be released is',
+  __mintTheAmount__: 'Currently, the amount to be minted is',
   __mintWhich__: 'which is',
   __mintOfTheTotal__: 'of the Total Supply.',
   __mintTypeInTable__: 'The type displayed in the table is',
   __mintTypeInTable2__: '.',
-  __mintReleaseHistory__: 'Click here to check the supply release history',
-  __mintReleaseHistoryOnly__: 'Click here to check the supply release history only',
-  __mintFullBufferHistory__: 'Click here to check full Liquidity Buffer history',
+  __mintDistHistory__: 'Click here for the supply distribute history',
+  __mintDistHistoryOnly__: 'Click here for the supply distribute history only',
+  __mintFullBufferHistory__: 'Click here for full Liquidity Buffer history',
 
 
   burned: 'Already burned',

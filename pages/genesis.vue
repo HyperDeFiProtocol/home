@@ -65,7 +65,7 @@
           <div class='hdf-timeline-inner'>
             <h3>
               {{ $t('pGenesis.mint') }}
-              <CBN :value='$store.state.bsc.genesis.genesisPercent' />%
+              <CBN :value='$store.state.bsc.genesis.genesisPercent' :decimals='3' />%
               {{ $t('pGenesis.mint2__') }}
             </h3>
             <div class='hdf-timeline-body'>
@@ -238,7 +238,7 @@
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl hidden sm:block'>
               {{ $t('pGenesis.createLiquidity1') }}
-              <CBN :value='$store.state.bsc.genesis.initLiquidityPercent' />%
+              <CBN :value='$store.state.bsc.genesis.initLiquidityPercent' :decimals='3' />%
               {{ $t('pGenesis.createLiquidity2') }}<br>
               {{ $t('pGenesis.createLiquidity3') }}
             </h3>
@@ -357,6 +357,7 @@ import hpLink from '~/utils/hpLink'
 
 
 export default {
+  scrollToTop: true,
   name: 'Genesis',
   data() {
     return {
@@ -392,6 +393,10 @@ export default {
     },
     tokenAddress() {
       return process.env.tokenAddress
+    },
+
+    depositMaxReached() {
+      return this.$store.state.wallet.genesisDeposit === this.$store.state.bsc.genesis.depositMax
     },
 
     tradeAllowed() {
@@ -463,6 +468,15 @@ export default {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
           message: this.$t('pGenesis.insufficientBNBBalance'),
+        })
+
+        return
+      }
+
+      if (this.depositMaxReached) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.info'),
+          message: this.$t('pGenesis.depositMaxReached'),
         })
 
         return

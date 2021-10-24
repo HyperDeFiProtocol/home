@@ -21,7 +21,7 @@ export default {
   taxHarvestHistory: 'Tax/Harvest History',
   genesisHistory: 'Genesis History',
   genesisRedeemHistory: 'Genesis Redeem History',
-  supplyGraduallyReleasedHistory: 'Supply gradually released history',
+  supplyGraduallyDistributeHistory: 'Supply gradually distribute history',
 
   holders: 'Holders List',
   topAccount: 'Top Account',

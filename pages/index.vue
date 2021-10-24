@@ -23,6 +23,7 @@
 
 <script>
 export default {
+  scrollToTop: true,
   name: 'Index',
 }
 </script>
