@@ -21,7 +21,7 @@ export default {
   taxHarvestHistory: '税收矿池/挖矿记录',
   genesisHistory: '创世记录',
   genesisRedeemHistory: '创世认领记录',
-  supplyGraduallyReleasedHistory: '供应量缓释记录',
+  supplyGraduallyDistributeHistory: '供应量缓释记录',
 
   holders: '持有者列表',
   topAccount: '富豪榜',

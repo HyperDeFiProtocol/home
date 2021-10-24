@@ -2,7 +2,7 @@
   <div>
     <LAutoWidth class='py-10 md:py-20'>
       <CH3>
-        {{ $t('siteNav.supplyGraduallyReleasedHistory') }}
+        {{ $t('siteNav.supplyGraduallyDistributeHistory') }}
 
         <template #tag>
           On Chain

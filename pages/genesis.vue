@@ -357,6 +357,7 @@ import hpLink from '~/utils/hpLink'
 
 
 export default {
+  scrollToTop: true,
   name: 'Genesis',
   data() {
     return {
