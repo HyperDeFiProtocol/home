@@ -14,7 +14,7 @@
         </template>
       </CH3>
 
-      <CSupplyRelease class='mt-12 sm:mt-24' />
+      <CSupplyMint class='mt-12 sm:mt-24' />
 
       <CTableBuffer :transactions='transactions' class='mt-10 lg:mt-24' />
 

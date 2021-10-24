@@ -206,7 +206,7 @@
         </p>
       </div>
 
-      <CSupplyRelease v-if='$store.state.bsc.supply.gate !== "0"' class='mt-6' />
+      <CSupplyMint v-if='$store.state.bsc.supply.gate !== "0"' class='mt-6' />
 
       <!--  part.2  -->
       <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 lg:grid-cols-2"

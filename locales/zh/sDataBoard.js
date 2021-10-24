@@ -37,7 +37,8 @@ export default {
 
   // mint
   __mintSupplyGradually__: '总量缓释',
-  __mintWhen__: '当流动池低于创世流动性',
+  __mintWhen__: '当流动池低于',
+  __mintDistOfInit__: '的创世流动性',
   __mintDifference__: '时，差值将被缓释到缓冲池，用于补充 PancakeSwap 流动性（LP Token 进入黑洞），' +
     '由合约自动执行，人工无权介入。',
   __mintLatestBlockNumber__: '最新区块号',
@@ -46,8 +47,8 @@ export default {
   __mintOfTheTotal__: '的总供应量。',
   __mintTypeInTable__: '表格中显示的类型为',
   __mintTypeInTable2__: '。',
-  __mintReleaseHistory__: '点此查看总量缓释记录',
-  __mintReleaseHistoryOnly__: '点此只查看总量缓释记录',
+  __mintDistHistory__: '点此查看总量缓释记录',
+  __mintDistHistoryOnly__: '点此只查看总量缓释记录',
   __mintFullBufferHistory__: '点此查看完整的流动池缓冲记录',
 
 

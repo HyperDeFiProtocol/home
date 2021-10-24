@@ -6,7 +6,9 @@
       </p>
       <p class='mt-3'>
         {{ $t('sDataBoard.__mintWhen__') }}
-        <CBN :value='$store.state.bsc.global.initLiquidity' :token='true' /> HyperDeFi
+        {{ $store.state.bsc.global.distOfInit }}%
+        {{ $t('sDataBoard.__mintDistOfInit__') }}
+        <CBN :value='$store.state.bsc.global.distThreshold' :token='true' /> HyperDeFi
         {{ $t('sDataBoard.__mintDifference__') }}
         <span v-if='$route.path.endsWith("/buffer") || $route.path.endsWith("/buffer/mint")'>
           {{ $t('sDataBoard.__mintTypeInTable__') }}
@@ -18,14 +20,14 @@
         {{ $t('sDataBoard.__mintTheAmount__') }}
         <CBN :value='$store.state.bsc.supply.gate' :token='true' /> HyperDeFi
         {{ $t('sDataBoard.__mintWhich__') }}
-        <CBN :value='$store.state.bsc.supply.gateRatio' :decimals='3' :padding='3' /> %
+        <CBN :value='$store.state.bsc.supply.gateRatio' :decimals='3' />%
         {{ $t('sDataBoard.__mintOfTheTotal__') }}
 
         <nuxt-link v-if='$route.path.endsWith("/buffer")'
                    class='hdf-a-colored'
                    :to='localePath("/history/buffer/mint")'
         >
-          {{ $t('sDataBoard.__mintReleaseHistoryOnly__') }}
+          {{ $t('sDataBoard.__mintDistHistoryOnly__') }}
 
         </nuxt-link>
         <nuxt-link v-else-if='$route.path.endsWith("/buffer/mint")'
@@ -37,7 +39,7 @@
         <nuxt-link v-else class='hdf-a-colored'
                    :to='localePath("/history/buffer/mint")'
         >
-          {{ $t('sDataBoard.__mintReleaseHistory__') }}
+          {{ $t('sDataBoard.__mintDistHistory__') }}
         </nuxt-link>
       </p>
     </div>
@@ -46,9 +48,9 @@
 
 <script>
 export default {
-  name: 'CSupplyRelease',
+  name: 'CSupplyMint',
   computed: {
-
+    //
   },
 }
 </script>

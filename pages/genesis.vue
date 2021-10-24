@@ -65,7 +65,7 @@
           <div class='hdf-timeline-inner'>
             <h3>
               {{ $t('pGenesis.mint') }}
-              <CBN :value='$store.state.bsc.genesis.genesisPercent' />%
+              <CBN :value='$store.state.bsc.genesis.genesisPercent' :decimals='3' />%
               {{ $t('pGenesis.mint2__') }}
             </h3>
             <div class='hdf-timeline-body'>
@@ -238,7 +238,7 @@
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl hidden sm:block'>
               {{ $t('pGenesis.createLiquidity1') }}
-              <CBN :value='$store.state.bsc.genesis.initLiquidityPercent' />%
+              <CBN :value='$store.state.bsc.genesis.initLiquidityPercent' :decimals='3' />%
               {{ $t('pGenesis.createLiquidity2') }}<br>
               {{ $t('pGenesis.createLiquidity3') }}
             </h3>
