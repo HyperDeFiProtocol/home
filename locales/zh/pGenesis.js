@@ -70,6 +70,7 @@ export default {
   notStarted: '创世存入尚未开始。',
   amountEmpty: '存入数量不能为空。',
   insufficientBNBBalance: 'BNB 余额不足',
+  depositMaxReached: '已达到最大存入',
   notApproved: '未授权',
   notApproved__: '请先完成授权。',
   tooEarly: '太早了',

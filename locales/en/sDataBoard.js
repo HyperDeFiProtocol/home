@@ -25,11 +25,11 @@ export default {
   latestPrice_: 'Latest Price,',
   providedBy: 'provided by',
 
-  totalMarketValue_: 'Total Market Value,',
+  totalMarketValue: 'Total Market Value',
   ofTotalSupplyCap: 'of total supply',
 
   currentSupply: 'Current Supply',
-  blackHoleIncluded: '(black-hold included)',
+  burnedIncluded: '(burned included)',
 
   totalSupply_: 'Total Supply,',
   fixed: 'fixed',

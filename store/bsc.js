@@ -254,8 +254,6 @@ export const mutations = {
 
     state.supply.totalSupply = data.supplies[2]
     state.supply.totalSupplyRatio = new BN(state.supply.totalSupply).muln(100000).div(new BN(state.supply.cap)).toString()
-    state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
-    state.supply.circulatingRatio = new BN(state.supply.circulating).muln(100000).div(new BN(state.supply.cap)).toString()
 
     state.supply.totalTax = data.supplies[3]
     state.supply.liquidity = data.supplies[4]
@@ -265,6 +263,9 @@ export const mutations = {
     state.supply.fomo = data.supplies[7]
     state.supply.burned = data.supplies[8]
     state.supply.burnedRatio = new BN(state.supply.burned).muln(100000).div(new BN(state.supply.cap)).toString()
+
+    state.supply.circulating = new BN(state.supply.totalSupply).sub(new BN(state.supply.burned)).toString()
+    state.supply.circulatingRatio = new BN(state.supply.circulating).muln(100000).div(new BN(state.supply.cap)).toString()
 
 
     state.marketValue.cap = new BN(state.supply.cap).mul(state.metadata.bnPrice).div(state.metadata.bnDiv).toString()

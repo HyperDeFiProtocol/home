@@ -136,7 +136,7 @@
           </span>
           <span class="mt-1 block text-base text-gray-300">
             <span class="font-medium text-white">
-              {{ $t('sDataBoard.totalMarketValue_') }}
+              {{ $t('sDataBoard.totalMarketValue') }}
             </span>
             {{ $t('sDataBoard.ofTotalSupplyCap') }}
           </span>
@@ -187,7 +187,7 @@
               {{ $t('sDataBoard.currentSupply') }}
             </span>
             <CBN :value='String($store.state.bsc.supply.totalSupply)' :token='true' /> HyperDeFi
-            {{ $t('sDataBoard.blackHoleIncluded') }}
+            {{ $t('sDataBoard.burnedIncluded') }}
           </span>
         </p>
 

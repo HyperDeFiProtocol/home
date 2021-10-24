@@ -72,6 +72,7 @@ export default {
   notStarted: 'Genesis deposit is not started.',
   amountEmpty: 'Deposit amount cannot be empty.',
   insufficientBNBBalance: 'In sufficient BNB balance',
+  depositMaxReached: 'Deposit Max Reached',
   notApproved: 'Not Approved',
   notApproved__: 'Please finish the approval first.',
   tooEarly: 'Too Early',

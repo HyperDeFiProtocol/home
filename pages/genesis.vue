@@ -394,6 +394,10 @@ export default {
       return process.env.tokenAddress
     },
 
+    depositMaxReached() {
+      return this.$store.state.wallet.genesisDeposit === this.$store.state.bsc.genesis.depositMax
+    },
+
     tradeAllowed() {
       return this.$store.state.bsc.genesis.liquidityCreatedTimestamp !== "0"
     },
@@ -463,6 +467,15 @@ export default {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
           message: this.$t('pGenesis.insufficientBNBBalance'),
+        })
+
+        return
+      }
+
+      if (this.depositMaxReached) {
+        await this.$store.dispatch('warning/SET_WARNING', {
+          title: this.$t('modal.info'),
+          message: this.$t('pGenesis.depositMaxReached'),
         })
 
         return

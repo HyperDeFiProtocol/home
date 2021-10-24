@@ -3,8 +3,8 @@ export default {
   LatestBlockNumber_: '最新区块号：',
 
   genesisTag: '联合创世',
-  genesisStartText: '开始时间：',
-  genesisEndText: '截止时间：',
+  genesisStartText: '开始时间',
+  genesisEndText: '截止时间',
 
   visitGenesis: '进入创世纪',
 
@@ -25,11 +25,11 @@ export default {
   latestPrice_: '最新价格，',
   providedBy: '提供者',
 
-  totalMarketValue_: '总市值，',
+  totalMarketValue: '总市值',
   ofTotalSupplyCap: '根据总供应量',
 
   currentSupply: '当前供应量',
-  blackHoleIncluded: '（已包含黑洞地址）',
+  burnedIncluded: '（包含已销毁）',
 
   totalSupply_: '总供应量，',
   fixed: '恒定不变',
