@@ -350,7 +350,7 @@ export default async function({ app, store }, inject) {
       syncHoldersOption.fromId = new BN(syncHoldersOption.fromId).addn(1).toString()
     }
 
-    while (syncHoldersOption.fromId < new BN(store.state.bsc.metadata.holders).subn(1).toString()) {
+    while (new BN(syncHoldersOption.fromId).lt(new BN(store.state.bsc.metadata.holders).subn(1))) {
       await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID', syncHoldersOption.fromId)
 
       console.log('Synchronize holders: #' + syncHoldersOption.fromId)
