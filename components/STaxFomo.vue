@@ -135,8 +135,8 @@
                   </p>
                 </div>
                 <p class='p-tx'>
-                  <a target='_blank' :href='explorer.exploreToken4address(tx.toAccount)'>
-                    {{ tx.toAccount.slice(0, 8) }}...{{ tx.toAccount.slice(-4) }}
+                  <a target='_blank' :href='explorer.exploreToken4address(tx.recipient)'>
+                    {{ tx.recipient.slice(0, 8) }}...{{ tx.recipient.slice(-4) }}
                   </a>
                 </p>
               </div>
@@ -170,7 +170,7 @@
                     </a>
                   </td>
                   <td class='font-mono'>
-                    <a target='_blank' :href='explorer.exploreToken4address(tx.toAccount)'>{{ tx.toAccount }}</a>
+                    <a target='_blank' :href='explorer.exploreToken4address(tx.recipient)'>{{ tx.recipient }}</a>
                   </td>
                   <td>
                     <CBN :value='tx.amount' :token='true' :padding='2' />
@@ -247,7 +247,7 @@ export default {
       this.timerStep.h = timerStep.hours()
 
       this.oTransactions = await this.$nuxt.context.app.db.transfer.where({
-        fromAccount: this.$store.state.bsc.globalAccounts.fomo
+        sender: this.$store.state.bsc.globalAccounts.fomo
       }).reverse().limit(10).toArray()
 
       //   this.iMarketValue = iAmount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()

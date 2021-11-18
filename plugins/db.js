@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 
-const VERSION = 1.5
+const VERSION = 1.6
 
 
 export default async function({ app, store }, inject) {
@@ -17,12 +17,10 @@ export default async function({ app, store }, inject) {
       airdrop: '++id, account',
       bonus: '++id, account',
       fund: '++id, account',
-      destroy: '++id, account',
       genesisDeposit: '++id, account',
 
-      transfer: '++id, fromAccount, toAccount, [fromAccount+toAccount]',
+      transfer: '++id, sender, recipient, [sender+recipient]',
       buffer: '++id, sender, recipient, [sender+recipient]',
-
     })
 
   // clear IndexedDB if token address changed
@@ -43,7 +41,6 @@ export default async function({ app, store }, inject) {
     await app.db.airdrop.clear()
     await app.db.bonus.clear()
     await app.db.fund.clear()
-    await app.db.destroy.clear()
     await app.db.genesisDeposit.clear()
 
     await app.db.transfer.clear()

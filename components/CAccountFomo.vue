@@ -36,8 +36,8 @@ export default {
     async load() {
       this.transactions = await this.$nuxt.context.app.db.transfer
         .where({
-          fromAccount: this.$store.state.bsc.globalAccounts.fomo,
-          toAccount: this.account.address
+          sender: this.$store.state.bsc.globalAccounts.fomo,
+          recipient: this.account.address
         })
         .reverse()
         .toArray()

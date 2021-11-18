@@ -192,7 +192,7 @@ export default {
   methods: {
     async load() {
       this.transactions = await this.$nuxt.context.app.db.transfer.where({
-        toAccount: this.$store.state.bsc.globalAccounts.burn
+        recipient: this.$store.state.bsc.globalAccounts.burn
       }).reverse().limit(10).toArray()
 
       //   this.marketValue = amount.mul(this.$store.state.bsc.metadata.bnPrice).div(this.$store.state.bsc.metadata.bnDiv).toString()

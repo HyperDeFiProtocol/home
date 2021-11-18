@@ -156,8 +156,8 @@ export default {
   methods: {
     async load() {
       this.transactions = await this.$nuxt.context.app.db.transfer.where({
-        fromAccount: this.$store.state.bsc.globalAccounts.tax,
-        toAccount: this.$store.state.wallet.account,
+        sender: this.$store.state.bsc.globalAccounts.tax,
+        recipient: this.$store.state.wallet.account,
       }).reverse().limit(10).toArray()
     }
   },

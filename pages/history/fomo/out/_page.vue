@@ -58,7 +58,7 @@ export default {
   methods: {
     async load() {
       this.transactions = await this.$nuxt.context.app.db.transfer
-        .where('fromAccount')
+        .where('sender')
         .equals(this.$store.state.bsc.globalAccounts.fomo)
         .reverse()
         .offset(this.pageOffset)
@@ -66,7 +66,7 @@ export default {
         .toArray()
 
       this.pageRecords = await this.$nuxt.context.app.db.transfer
-        .where('fromAccount')
+        .where('sender')
         .equals(this.$store.state.bsc.globalAccounts.fomo)
         .count()
     },

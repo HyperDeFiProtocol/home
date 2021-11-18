@@ -26,15 +26,15 @@
                 #<CBN :value='tx.blockNumber' />
               </a>
             </td>
-            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.fomo' class='text-emerald-400'>
+            <td v-if='tx.sender === $store.state.bsc.globalAccounts.fomo' class='text-emerald-400'>
               {{ $t('txTable.winner') }}
             </td>
             <td v-else>
               {{ $t('txTable.accumulate') }}
             </td>
-            <td v-if='tx.fromAccount === $store.state.bsc.globalAccounts.fomo' class='font-mono text-emerald-400'>
+            <td v-if='tx.sender === $store.state.bsc.globalAccounts.fomo' class='font-mono text-emerald-400'>
               <a target='_blank' :href='hpLink.exploreTx(tx.txHash)'>
-                <CAddress :value='tx.toAccount' />
+                <CAddress :value='tx.recipient' />
               </a>
             </td>
             <td v-else class='font-mono'>
