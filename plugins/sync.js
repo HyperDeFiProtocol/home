@@ -171,13 +171,6 @@ export default async function({ app, store }, inject) {
           case 'Fund':
             fund.push(ev2Tx(event))
             break
-          case 'Burn':
-            destroy.push({
-              blockNumber: event.blockNumber,
-              txHash: event.transactionHash,
-              amount: event.returnValues.amount,
-            })
-            break
           case 'GenesisDeposit':
             genesisDeposit.push(ev2Tx(event))
             break

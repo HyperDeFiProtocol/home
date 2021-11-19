@@ -91,7 +91,6 @@ const main = async function() {
   let airdrops = []
   let bonus = []
   let funds = []
-  let destroy = []
   let genesisDeposits = []
   while (JSBI.LT(BN(fromBlock), BN(blockNumber))) {
     const eventsResp = await fetchAllEvents(fromBlock, STEP)
@@ -172,13 +171,6 @@ const main = async function() {
         case 'Fund':
           funds.push(ev2Tx(event))
           break
-        case 'Burn':
-          destroy.push({
-            blockNumber: event.blockNumber,
-            txHash: event.transactionHash,
-            amount: event.returnValues.amount,
-          })
-          break
         case 'GenesisDeposit':
           genesisDeposits.push(ev2Tx(event))
           break
@@ -203,7 +195,6 @@ const main = async function() {
   console.log(`airdrops: ${airdrops.length}`)
   console.log(`bonus: ${bonus.length}`)
   console.log(`funds: ${funds.length}`)
-  console.log(`destroy: ${destroy.length}`)
   console.log(`genesisDeposits: ${genesisDeposits.length}`)
 
   metadata = await TOKEN.methods.getMetadata().call()
