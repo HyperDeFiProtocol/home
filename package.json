@@ -18,7 +18,7 @@
     "core-js": "^3.19.1",
     "crypto-js": "^4.1.1",
     "detect-browser": "^5.2.1",
-    "dexie": "^3.0.3",
+    "dexie": "^3.2.0",
     "dotenv": "^10.0.0",
     "jsbi": "^4.1.0",
     "moment": "^2.29.1",
