@@ -485,12 +485,10 @@ export default {
       this.pendingDeposit = true
 
       // submit
-      await this.$nuxt.context.app.token.methods
+      await this.$nuxt.context.app.ido.methods
         .deposit()
         .send({from: this.$store.state.wallet.account, value: this.amountStr})
-        // .on('transactionHash', this.onDepositTransactionHash)
         .on('receipt', this.onDepositReceipt)
-        // .on('confirmation', this.onDepositConfirmation)
         .on('error', this.onDepositError)
         .catch(this.onDepositError)
     },

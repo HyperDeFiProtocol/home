@@ -1,5 +1,5 @@
 <template>
-  <div v-if='pages > 1 && number > size * (number - 1)' class='c-pagination'>
+  <div v-if='pages > 1' class='c-pagination'>
     <div class='flex items-center justify-start'>
       <nuxt-link v-if='pathToPrevious' :to=localeLocation(pathToPrevious)>
         Previous Page
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import JSBI from 'jsbi'
+const BN = JSBI.BigInt
+
 export default {
   name: 'CPagination',
   props: {

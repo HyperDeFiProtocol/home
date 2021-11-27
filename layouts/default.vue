@@ -40,7 +40,7 @@ export default {
       this.$store.dispatch('nav/HIDE_ALL')
     },
     async sync() {
-      await this.$nuxt.context.app.sync.all()
+      await this.$nuxt.context.app.sync.events()
       await this.$nuxt.context.app.sync.holders()
     }
   }

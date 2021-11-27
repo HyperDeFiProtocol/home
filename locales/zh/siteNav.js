@@ -3,7 +3,7 @@ export default {
   howToBuy: '如何购买',
   coupon: '税率折扣',
   trade: '如何交易',
-  genesis: '创世纪',
+  genesis: '创世 IDO',
   dashboard: '数据面板',
   genesisDepositHistory: '创世存入记录',
   modes: '工作模式',

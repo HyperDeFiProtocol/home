@@ -1,188 +1,217 @@
-import BN from 'bn.js'
+// import BN from 'bn.js'
+import JSBI from 'jsbi'
 import fn from '../utils/functions'
 import enums from '~/utils/enums'
 
-const FROM_BLOCK = process.env.fromBlock
+const BN = JSBI.BigInt
+const FROM_BLOCK = JSBI.subtract(BN(process.env.fromBlock), BN(1)).toString()
 const BLOCK_STEP_RANGE = { min: 4900, max: 4999 }
+const STEP = 5000
 
+
+const cut = function(n) {
+  const a = 8
+  const b = 10
+
+  return JSBI.divide(JSBI.multiply(BN(n), BN(a)), BN(b)).toString()
+}
+
+const ev2Tx = function(event) {
+  return {
+    blockNumber: event.blockNumber,
+    txHash: event.transactionHash,
+
+    account: event.returnValues.account,
+    amount: event.returnValues.amount
+  }
+}
 
 export default async function({ app, store }, inject) {
-  const all = async function() {
-    let syncTxsOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+  let syncTxsOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+
+  // step up
+  const stepUp = async function(step) {
+    const toBlock = JSBI.add(BN(syncTxsOption.fromBlock), BN(step)).toString()
+
+    if (JSBI.GT(BN(toBlock), BN(store.state.bsc.blockNumber))) {
+      return store.state.bsc.blockNumber
+    }
+
+    return toBlock
+  }
+
+  // func: fetch all events
+  const fetchAllEvents = async function(step) {
+
+    syncTxsOption.fromBlock = JSBI.add(BN(syncTxsOption.fromBlock), BN(1)).toString()
+    syncTxsOption.toBlock = await stepUp(step)
+
+    console.log(`#${syncTxsOption.fromBlock} >>> #${syncTxsOption.toBlock}/#${store.state.bsc.blockNumber}`)
+    await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
+
+    let exception = false
+    const events = await app.token
+      .getPastEvents('allEvents', syncTxsOption)
+      .catch(e => {
+        exception = true
+      })
+
+    if (exception) {
+      step = cut(step)
+      return await fetchAllEvents(step)
+    }
+
+    return events
+  }
+
+
+  const events = async function() {
+    syncTxsOption = {
+      fromBlock: FROM_BLOCK,
+      toBlock: FROM_BLOCK
+    }
 
     if (store.state.bsc.synchronizing.fromBlock) {
-      console.warn(
-        'Txs synchronizing in progress blocks: #'
-        + store.state.bsc.synchronizing.fromBlock
-        + ' - '
-        + store.state.bsc.synchronizing.toBlock
-      )
+      console.warn(`Synchronizing in progress blocks: #${store.state.bsc.synchronizing.fromBlock} - #${store.state.bsc.synchronizing.toBlock}`)
       return
     }
 
-    await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
+    // await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
 
     await app.db.pointers.get('sync')
       .then(pointer => {
         if (pointer) {
-          syncTxsOption.fromBlock = pointer.blockNumber + 1
+          syncTxsOption.fromBlock = pointer.blockNumber
         }
       })
 
-    syncTxsOption.toBlock = syncTxsOption.fromBlock
-
     while (syncTxsOption.fromBlock < store.state.bsc.blockNumber) {
-      syncTxsOption.toBlock += fn.randomInt(BLOCK_STEP_RANGE)
-      if (syncTxsOption.toBlock > store.state.bsc.blockNumber) {
-        syncTxsOption.toBlock = store.state.bsc.blockNumber
-      }
+      let tx = []
+      let transfer = []
+      let buffer = []
+      let airdrop = []
+      let bonus = []
+      let fund = []
+      let genesisDeposit = []
 
-      await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
+      const events = await fetchAllEvents(STEP)
 
-      console.log('Synchronize blocks: #' + syncTxsOption.fromBlock + ' - ' + syncTxsOption.toBlock)
+      for (const event of events) {
+        switch (event.event) {
+          case 'Transfer':
+            transfer.push({
+              blockNumber: event.blockNumber,
+              txHash: event.transactionHash,
+              sender: event.returnValues.from,
+              recipient: event.returnValues.to,
+              amount: event.returnValues.value
+            })
 
-      /**
-       * sync TX
-       */
-      const syncTx = new Promise(async function(resolve) {
-        // console.log('syncTx:', queryOption.fromBlock, queryOption.toBlock)
+            if (
+              event.returnValues.from === store.state.bsc.globalAccounts.buffer
+              ||
+              event.returnValues.to === store.state.bsc.globalAccounts.buffer
+            ) {
+              if (buffer.length) {
+                const key = buffer.length - 1
+                if (
+                  buffer[key].txHash === event.transactionHash
+                  &&
+                  buffer[key].sender === event.returnValues.from
+                  &&
+                  buffer[key].recipient === event.returnValues.to
+                ) {
+                  buffer[key].amount = JSBI.add(BN(buffer[key].amount), BN(event.returnValues.value)).toString()
+                  break
+                }
 
-        const events = await app.token
-          .getPastEvents('TX', syncTxsOption)
-          .catch(e => {
-            console.error('>>> sync, syncTx:', e)
-          })
-
-        if (events.length) {
-          let transactions = []
-          for (let i = 0; i < events.length; i++) {
-            if (transactions.length) {
-              let tx = transactions[transactions.length - 1]
-              if (tx.txHash === events[i].transactionHash &&
-                tx.txType === events[i].returnValues.txType &&
-                tx.sender === events[i].returnValues.sender &&
-                tx.recipient === events[i].returnValues.recipient
+                buffer.push({
+                  blockNumber: event.blockNumber,
+                  txHash: event.transactionHash,
+                  sender: event.returnValues.from,
+                  recipient: event.returnValues.to,
+                  amount: event.returnValues.value
+                })
+              }
+            }
+            break
+          case 'TX':
+            if (tx.length) {
+              const key = tx.length - 1
+              if (
+                tx[key].txHash === event.transactionHash &&
+                tx[key].txType === event.returnValues.txType &&
+                tx[key].sender === event.returnValues.sender &&
+                tx[key].recipient === event.returnValues.recipient
               ) {
-                transactions[transactions.length - 1].amount =
-                  new BN(tx.amount).add(new BN(events[i].returnValues.amount)).toString()
-                transactions[transactions.length - 1].txAmount =
-                  new BN(tx.txAmount).add(new BN(events[i].returnValues.txAmount)).toString()
-                continue
+                tx[key].amount = JSBI.add(BN(tx[key].amount), BN(event.returnValues.amount)).toString()
+                tx[key].txAmount = JSBI.add(BN(tx[key].txAmount), BN(event.returnValues.txAmount)).toString()
+                break
               }
             }
 
-            transactions.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
+            tx.push({
+              blockNumber: event.blockNumber,
 
-              txType: events[i].returnValues.txType,
-              sender: events[i].returnValues.sender,
-              recipient: events[i].returnValues.recipient,
-              amount: events[i].returnValues.amount,
-              txAmount: events[i].returnValues.txAmount
+              txHash: event.transactionHash,
+              txType: event.returnValues.txType,
+              sender: event.returnValues.sender,
+              recipient: event.returnValues.recipient,
+
+              amount: event.returnValues.amount,
+              txAmount: event.returnValues.txAmount
             })
-          }
+            break
+          case 'Airdrop':
+            airdrop.push(ev2Tx(event))
+            break
+          case 'Bonus':
+            bonus.push(ev2Tx(event))
+            break
+          case 'Fund':
+            fund.push(ev2Tx(event))
+            break
+          case 'GenesisDeposit':
+            genesisDeposit.push(ev2Tx(event))
+            break
+          // case 'SlotRegistered':
+          //   break
+          // case 'UsernameSet':
+          //   break
+          // case 'CouponVisitor':
+          //   break
+        }
+      }
 
-          await app.db.tx.bulkAdd(transactions).catch(e => {
-            console.error('>>> sync, syncTx, bulkAdd:', e)
+      if (events.length) {
+        if (tx) {
+          await app.db.tx.bulkAdd(tx).catch(e => {
+            console.error('>>> sync events: bulkAdd tx:', e)
           })
         }
 
-        resolve(syncTxsOption)
-      })
-
-      /**
-       * sync EV
-       */
-      const syncEv = new Promise(async function(resolve) {
-        // console.log('syncEV:', queryOption.fromBlock, queryOption.toBlock)
-
-        const events = await app.token
-          .getPastEvents('EV', syncTxsOption)
-          .catch(e => {
-            console.error('>>> sync, syncEV:', e)
+        if (airdrop) {
+          await app.db.airdrop.bulkAdd(airdrop).catch(e => {
+            console.error('>>> sync events: bulkAdd airdrop:', e)
           })
+        }
 
-        if (events.length) {
-          let txnsAirdrop = []
-          let txnsBonus = []
-          let txnsFund = []
-          let txnsDestroy = []
-          let txnsGenesisDeposit = []
+        if (bonus) {
+          await app.db.bonus.bulkAdd(bonus).catch(e => {
+            console.error('>>> sync events: bulkAdd bonus:', e)
+          })
+        }
 
-          for (let i = 0; i < events.length; i++) {
-            if (enums.evType.AIRDROP === events[i].returnValues.evType) {
-              txnsAirdrop.push({
-                blockNumber: events[i].blockNumber,
-                txHash: events[i].transactionHash,
+        if (fund) {
+          await app.db.fund.bulkAdd(fund).catch(e => {
+            console.error('>>> sync events: bulkAdd fund:', e)
+          })
+        }
 
-                account: events[i].returnValues.account,
-                amount: events[i].returnValues.amount
-              })
-            } else if (enums.evType.BONUS === events[i].returnValues.evType) {
-              txnsBonus.push({
-                blockNumber: events[i].blockNumber,
-                txHash: events[i].transactionHash,
-
-                account: events[i].returnValues.account,
-                amount: events[i].returnValues.amount
-              })
-            } else if (enums.evType.FUND === events[i].returnValues.evType) {
-              txnsFund.push({
-                blockNumber: events[i].blockNumber,
-                txHash: events[i].transactionHash,
-
-                account: events[i].returnValues.account,
-                amount: events[i].returnValues.amount
-              })
-            } else if (enums.evType.DESTROY === events[i].returnValues.evType) {
-              txnsDestroy.push({
-                blockNumber: events[i].blockNumber,
-                txHash: events[i].transactionHash,
-
-                account: events[i].returnValues.account,
-                amount: events[i].returnValues.amount
-              })
-            } else if (enums.evType.GENESIS_DEPOSIT === events[i].returnValues.evType) {
-              txnsGenesisDeposit.push({
-                blockNumber: events[i].blockNumber,
-                txHash: events[i].transactionHash,
-
-                account: events[i].returnValues.account,
-                amount: events[i].returnValues.amount
-              })
-            }
-          }
-
-          if (txnsAirdrop) {
-            await app.db.airdrop.bulkAdd(txnsAirdrop).catch(e => {
-              console.error('>>> sync, syncEV - AIRDROP, bulkAdd:', e)
-            })
-          }
-
-          if (txnsBonus) {
-            await app.db.bonus.bulkAdd(txnsBonus).catch(e => {
-              console.error('>>> sync, syncEV - BONUS, bulkAdd:', e)
-            })
-          }
-
-          if (txnsFund) {
-            await app.db.fund.bulkAdd(txnsFund).catch(e => {
-              console.error('>>> sync, syncEV - FUND, bulkAdd:', e)
-            })
-          }
-
-          if (txnsDestroy) {
-            await app.db.destroy.bulkAdd(txnsDestroy).catch(e => {
-              console.error('>>> sync, syncEV - FUND, bulkAdd:', e)
-            })
-          }
-
-          if (txnsGenesisDeposit) {
-            await app.db.genesisDeposit.bulkAdd(txnsGenesisDeposit).catch(e => {
-              console.error('>>> sync, syncEV - GENESIS_DEPOSIT, bulkAdd:', e)
-            })
-          }
+        if (genesisDeposit) {
+          await app.db.genesisDeposit.bulkAdd(genesisDeposit).catch(e => {
+            console.error('>>> sync events: bulkAdd genesisDeposit:', e)
+          })
         }
 
         // sum airdrop
@@ -191,128 +220,59 @@ export default async function({ app, store }, inject) {
           await app.db.airdrop.toArray()
         )
 
-        resolve(syncTxsOption)
-      })
 
-      /**
-       * sync transfer
-       */
-      const syncTransfer = new Promise(async function(resolve) {
-        // console.log('syncTransfer:', queryOption.fromBlock, queryOption.toBlock)
-
-        const events = await app.token
-          .getPastEvents('Transfer', syncTxsOption)
-          .catch(e => {
-            console.error('>>> sync, syncTransfer:', e)
+        if (transfer) {
+          await app.db.transfer.bulkAdd(transfer).catch(e => {
+            console.error('>>> sync events: bulkAdd transfer:', e)
           })
 
-        if (events.length) {
-          let txnsTransfer = []
-          let txnsBuffer = []
-          for (let i = 0; i < events.length; i++) {
-            txnsTransfer.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
+          await store.dispatch(
+            'stat/SET_BURN',
+            await app.db.transfer
+              .where('recipient')
+              .equals(store.state.bsc.globalAccounts.burn)
+              .toArray()
+          )
 
-              fromAccount: events[i].returnValues.from,
-              toAccount: events[i].returnValues.to,
-              amount: events[i].returnValues.value
-            })
-          }
+          await store.dispatch(
+            'stat/SET_FOMO_IN',
+            await app.db.transfer
+              .where('recipient')
+              .equals(store.state.bsc.globalAccounts.fomo)
+              .toArray()
+          )
 
-
-          for (let i = 0; i < events.length; i++) {
-            if (
-              store.state.bsc.globalAccounts.buffer !== events[i].returnValues.from &&
-              store.state.bsc.globalAccounts.buffer !== events[i].returnValues.to
-            ) {
-              continue
-            }
-
-            if (txnsBuffer.length) {
-              let tx = txnsBuffer[txnsBuffer.length - 1]
-              if (tx.txHash === events[i].transactionHash &&
-                tx.sender === events[i].returnValues.from &&
-                tx.recipient === events[i].returnValues.to
-              ) {
-                txnsBuffer[txnsBuffer.length - 1].amount =
-                  new BN(tx.amount).add(new BN(events[i].returnValues.value)).toString()
-                continue
-              }
-            }
-
-            txnsBuffer.push({
-              blockNumber: events[i].blockNumber,
-              txHash: events[i].transactionHash,
-
-              sender: events[i].returnValues.from,
-              recipient: events[i].returnValues.to,
-
-              amount: events[i].returnValues.value
-            })
-          }
-
-          await app.db.transfer.bulkAdd(txnsTransfer).catch(e => {
-            console.error('>>> sync, syncTransfer, bulkAdd - txnsTransfer:', e)
-          })
-
-          await app.db.buffer.bulkAdd(txnsBuffer).catch(e => {
-            console.error('>>> sync, syncTransfer, bulkAdd - txnsBuffer:', e)
-          })
+          await store.dispatch(
+            'stat/SET_FOMO_OUT',
+            await app.db.transfer
+              .where('sender')
+              .equals(store.state.bsc.globalAccounts.fomo)
+              .toArray()
+          )
         }
 
-        await store.dispatch(
-          'stat/SET_BURN',
-          await app.db.transfer
-            .where('toAccount')
-            .equals(store.state.bsc.globalAccounts.burn)
-            .toArray()
-        )
+        if (buffer) {
+          await app.db.buffer.bulkAdd(buffer).catch(e => {
+            console.error('>>> sync events: bulkAdd buffer:', e)
+          })
 
-        await store.dispatch(
-          'stat/SET_BUFFER',
-          await app.db.buffer
-            .toArray()
-        )
+          await store.dispatch(
+            'stat/SET_BUFFER',
+            await app.db.buffer
+              .toArray()
+          )
 
-        await store.dispatch(
-          'stat/SET_BUFFER_OUT',
-          await app.db.buffer
-            .where('sender')
-            .equals(store.state.bsc.globalAccounts.buffer)
-            .toArray()
-        )
+          await store.dispatch(
+            'stat/SET_BUFFER_OUT',
+            await app.db.buffer
+              .where('sender')
+              .equals(store.state.bsc.globalAccounts.buffer)
+              .toArray()
+          )
+        }
+      }
 
-        await store.dispatch(
-          'stat/SET_FOMO_IN',
-          await app.db.transfer
-            .where('toAccount')
-            .equals(store.state.bsc.globalAccounts.fomo)
-            .toArray()
-        )
-
-        await store.dispatch(
-          'stat/SET_FOMO_OUT',
-          await app.db.transfer
-            .where('fromAccount')
-            .equals(store.state.bsc.globalAccounts.fomo)
-            .toArray()
-        )
-
-
-        resolve(syncTxsOption)
-      })
-
-      /**
-       * promise all
-       */
-      await Promise.all([
-        syncTx,
-        syncEv,
-        syncTransfer
-      ])
-
-      syncTxsOption.fromBlock = syncTxsOption.toBlock + 1
+      syncTxsOption.fromBlock = syncTxsOption.toBlock
       await app.db.pointers.put({ name: 'sync', blockNumber: syncTxsOption.toBlock }).catch(e => {
         console.error('putBlockPoint:', e)
       })
@@ -347,10 +307,10 @@ export default async function({ app, store }, inject) {
 
     syncHoldersOption.toId = syncHoldersOption.fromId
     if (syncHoldersOption.fromId > '0') {
-      syncHoldersOption.fromId = new BN(syncHoldersOption.fromId).addn(1).toString()
+      syncHoldersOption.fromId = JSBI.add(BN(syncHoldersOption.fromId), BN(1)).toString()
     }
 
-    while (new BN(syncHoldersOption.fromId).lt(new BN(store.state.bsc.metadata.holders).subn(1))) {
+    while (JSBI.LT(BN(syncHoldersOption.fromId), JSBI.subtract(BN(store.state.bsc.metadata.holders), BN(1)))) {
       await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID', syncHoldersOption.fromId)
 
       console.log('Synchronize holders: #' + syncHoldersOption.fromId)
@@ -375,7 +335,7 @@ export default async function({ app, store }, inject) {
         }
       }
 
-      syncHoldersOption.fromId = new BN(syncHoldersOption.toId).addn(1).toString()
+      syncHoldersOption.fromId = JSBI.add(BN(syncHoldersOption.toId), BN(1)).toString()
 
       await app.db.holder.bulkAdd(holders).catch(e => {
         console.error('>>> sync, syncHolders, bulkAdd:', e)
@@ -392,7 +352,7 @@ export default async function({ app, store }, inject) {
   }
 
   app.sync = {
-    all: all,
+    events: events,
     holders: holders
     // genesisDeposit: genesisDeposit,
     // genesisRedeem: genesisRedeem,

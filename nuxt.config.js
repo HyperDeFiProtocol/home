@@ -7,6 +7,7 @@ export default {
 
     mode: process.env.mode,
     tokenAddress: process.env.tokenAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
+    idoAddress: process.env.idoAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
     genesisAddress: process.env.genesisAddress,
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
     chainName: process.env.chainName || 'BSC Chain',
@@ -24,6 +25,7 @@ export default {
     clubHouseRoom: process.env.githubUsername || 'hyperdefi-protocol',
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
+    idoCreationTxHash: process.env.idoCreationTxHash || '0x1234567890',
 
     fromBlock: parseInt(process.env.fromBlock) || 0,
   },

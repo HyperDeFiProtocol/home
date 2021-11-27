@@ -18,13 +18,15 @@
     "core-js": "^3.19.1",
     "crypto-js": "^4.1.1",
     "detect-browser": "^5.2.1",
-    "dexie": "^3.0.3",
+    "dexie": "^3.2.0",
+    "dotenv": "^10.0.0",
+    "jsbi": "^4.1.0",
     "moment": "^2.29.1",
     "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.28.1",
     "vue-fragment": "^1.5.2",
     "vue-qr": "^3.2.2",
-    "web3": "^1.6.0"
+    "web3": "^1.6.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
@@ -37,7 +39,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "glob-parent": "^6.0.2",
     "node-sass": "^6.0.1",
-    "postcss": "^8.3.11",
+    "postcss": "^8.4.1",
     "prettier": "^2.4.1",
     "sass-loader": "^10.1.1",
     "tailwindcss": "^2.2.19"

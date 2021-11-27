@@ -3,7 +3,7 @@ export default {
   howToBuy: 'How to buy',
   coupon: 'Coupon',
   trade: 'How to trade',
-  genesis: 'Genesis',
+  genesis: 'Genesis IDO',
   dashboard: 'Dashboard',
   genesisDepositHistory: 'Genesis Deposit History',
   modes: 'Working Modes',

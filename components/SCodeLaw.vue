@@ -174,8 +174,6 @@
 
         </div>
       </div>
-
-
     </LAutoWidth>
   </div>
 </template>

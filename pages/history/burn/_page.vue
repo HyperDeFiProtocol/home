@@ -59,7 +59,7 @@ export default {
     async load() {
       this.transactions = await this.$nuxt.context.app.db.transfer
         .where({
-          toAccount: this.$store.state.bsc.globalAccounts.burn
+          recipient: this.$store.state.bsc.globalAccounts.burn
         })
         .reverse()
         .offset(this.pageOffset)
@@ -68,7 +68,7 @@ export default {
 
       this.pageRecords = await this.$nuxt.context.app.db.transfer
         .where({
-          toAccount: this.$store.state.bsc.globalAccounts.burn
+          recipient: this.$store.state.bsc.globalAccounts.burn
         })
         .count()
     },

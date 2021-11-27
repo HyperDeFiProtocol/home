@@ -1,12 +1,12 @@
 export default {
   txType: {
-    HARVEST: '0',
-    FLAT: '1',
-    TAKER: '2',
-    MAKER: '3',
-    WHALE: '4',
-    ROBBER: '5',
-    GENESIS_REDEEM: '6',
+    MINT: '0',
+    HARVEST: '1',
+    FLAT: '2',
+    TAKER: '3',
+    MAKER: '4',
+    WHALE: '5',
+    ROBBER: '6',
   },
   evType: {
     AIRDROP: '0',

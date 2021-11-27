@@ -51,7 +51,7 @@ export default {
 
     // console.log('this.$nuxt.context.app.p1:', this.$nuxt.context.app.p1)
 
-    // const result = await this.$nuxt.context.app.sync.all()
+    // const result = await this.$nuxt.context.app.sync.events()
 
 
     // console.log('result:', result)
