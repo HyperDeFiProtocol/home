@@ -26,6 +26,10 @@ export const state = () => ({
     priceSymbol: null,
     priceDecimals: null,
 
+    wbnbName: null,
+    wbnbSymbol: null,
+    wbnbDecimals: null,
+
     price: '0',
     tokenBNBPrice: '0',
     bnbUSDTPrice: '0',
@@ -75,10 +79,12 @@ export const state = () => ({
     // },
 
     initLiquidity: '0',
+    distAmount: '0',
 
-    distOfInit: '0',
-    distThreshold: '0',
-    distReady: false,
+    // TODO
+    // distOfInit: '0',
+    // distThreshold: '0',
+    // distReady: false,
 
     whaleFractionA: '0',
     whaleFractionB: '0',
@@ -113,12 +119,14 @@ export const state = () => ({
     USDT: null,
     pair: null,
     buffer: null,
+    ido: null,
 
     tax: null,
-    airdrop: null,
     fomo: null,
     fund: null,
-    burn: null
+    burn: null,
+
+    airdrop: null,
   },
 
   fomo: {
@@ -235,8 +243,12 @@ export const mutations = {
     state.metadata.priceSymbol = data.tokenSymbols[1]
     state.metadata.priceDecimals = data.tokenDecimals[1]
 
-    state.metadata.tokenBNBPrice = data.tokenPrices[0]
-    state.metadata.bnbUSDTPrice = data.tokenPrices[1]
+    state.metadata.wbnbName = data.tokenNames[2]
+    state.metadata.wbnbSymbol = data.tokenSymbols[2]
+    state.metadata.wbnbDecimals = data.tokenDecimals[2]
+
+    state.metadata.bnbUSDTPrice = data.tokenPrices[0]
+    state.metadata.tokenBNBPrice = data.tokenPrices[1]
     state.metadata.price = data.tokenPrices[2]
 
     state.metadata.bnPrice = new BN(state.metadata.price)
@@ -283,14 +295,15 @@ export const mutations = {
     // accounts
     state.globalAccounts.pancake = data.accounts[0]
     state.globalAccounts.WBNB = data.accounts[1]
-    state.globalAccounts.BUSD = data.accounts[2]
+    state.globalAccounts.USDT = data.accounts[2]
     state.globalAccounts.pair = data.accounts[3]
     state.globalAccounts.buffer = data.accounts[4]
+    state.globalAccounts.ido = data.accounts[5]
 
-    state.globalAccounts.tax = data.accounts[5]
-    state.globalAccounts.fomo = data.accounts[6]
-    state.globalAccounts.fund = data.accounts[7]
-    state.globalAccounts.burn = data.accounts[8]
+    state.globalAccounts.tax = data.accounts[6]
+    state.globalAccounts.fomo = data.accounts[7]
+    state.globalAccounts.fund = data.accounts[8]
+    state.globalAccounts.burn = data.accounts[9]
 
     // // auto swap
     // if (state.genesis.liquidityCreatedTimestamp !== '0') {
@@ -310,13 +323,11 @@ export const mutations = {
     state.global.autoSwapNumeratorMin = data.uint16s[3]
     state.global.autoSwapNumeratorMax = data.uint16s[4]
     state.global.autoSwapDenominator = data.uint16s[5]
-    state.global.autoSwapAmountMin = data.uint256s[6]
-    state.global.autoSwapAmountMax = data.uint256s[7]
 
-
-    state.global.bonus.level0 = data.uint16s[8]
-    state.global.bonus.level1 = data.uint16s[9]
-    state.global.bonus.level2 = data.uint16s[10]
+    // coupon bonus
+    state.global.bonus.level0 = data.uint16s[7]
+    state.global.bonus.level1 = data.uint16s[8]
+    state.global.bonus.level2 = data.uint16s[9]
     state.global.bonus.total = new BN(state.global.bonus.level0)
       .add(new BN(state.global.bonus.level1))
       .add(new BN(state.global.bonus.level2))
@@ -326,16 +337,25 @@ export const mutations = {
 
     // liquidity amount
     state.global.initLiquidity = data.uint256s[1]
+    state.global.distAmount = data.uint256s[2]
 
     // thresholds
-    state.global.distOfInit = data.uint16s[7]
-    state.global.distThreshold = data.uint256s[2]
-    state.global.distReady = state.genesis.liquidityCreatedTimestamp !== '0' &&
-      new BN(state.global.distThreshold).lt(state.supply.liquidity)
-
     state.global.airdropThreshold = data.uint256s[3]
     state.global.whaleThreshold = data.uint256s[4]
     state.global.robberThreshold = data.uint256s[5]
+
+    // auto swap amount min & max
+    state.global.autoSwapAmountMin = data.uint256s[6]
+    state.global.autoSwapAmountMax = data.uint256s[7]
+
+
+    // TODO
+    // state.global.distOfInit = data.uint16s[7]
+    // state.global.distThreshold = data.uint256s[2]
+    // state.global.distReady = state.genesis.liquidityCreatedTimestamp !== '0' &&
+    //   new BN(state.global.distThreshold).lt(state.supply.liquidity)
+
+
 
     // fomo
     state.fomo.next = data.fomoNext
@@ -414,8 +434,8 @@ export const mutations = {
     state.genesis.depositCap = data.uint256s[12]
     state.genesis.startTimestamp = data.uint256s[13]
     state.genesis.endTimestamp = data.uint256s[14]
-    state.genesis.liquidityCreatedTimestamp = data.uint256s[15]
-    state.genesis.genesisAmount = data.uint256s[16]
+    state.genesis.genesisAmount = data.uint256s[15]  // todo
+    state.genesis.liquidityCreatedTimestamp = data.uint256s[16]  // todo
     state.genesis.balance = data.uint256s[17]
     state.genesis.fund = data.uint256s[18]
 

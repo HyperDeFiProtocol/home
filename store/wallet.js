@@ -37,12 +37,13 @@ export const mutations = {
     state.account = account ? Web3.utils.toChecksumAddress(account) : null
   },
   async SET_ACCOUNT_DATA(state, data) {
+    state.username = data.username
+
     state.isHolder = data.bools[0]
     state.isWhale = data.bools[1]
     state.isFlat = data.bools[2]
     state.isSlot = data.bools[3]
 
-    state.username = data.username
     state.balance = data.uint256s[0]
     state.harvest = data.uint256s[1]
 
@@ -54,6 +55,7 @@ export const mutations = {
     state.visitors = data.uint256s[6]
 
     state.bnbBalance = data.uint256s[7]
+
     state.genesisDeposit = data.uint256s[8]
     state.genesisPortion = data.uint256s[9]
     state.genesisRedeemed = data.bools[4]

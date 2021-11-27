@@ -41,7 +41,10 @@
                     #<CBN :value='tx.blockNumber' />
                   </a>
                 </td>
-                <td class='type capitalize'>
+                <td v-if='tx.sender === $store.state.bsc.globalAccounts.zero' class='type capitalize'>
+                  {{ $t('txTable.mint') }}
+                </td>
+                <td v-else class='type capitalize'>
                   {{ $t('user.' + txName(tx.txType)) }}
                 </td>
                 <td class='sender' :class='markClass(tx, "sender")'>
@@ -73,7 +76,6 @@
 
       <CPagination class='mt-8 lg:mt-12'
                    :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/txs' />
-
     </LAutoWidth>
   </div>
 </template>
@@ -154,10 +156,6 @@ export default {
     markClass(tx, account) {
       switch (account) {
         case 'sender':
-          // if (txs.recipient === this.$store.state.bsc.globalAccounts.pair) {
-          //   return 'mark'
-          // }
-
           return tx.sender !== this.$store.state.bsc.globalAccounts.pair ? 'mark' : null
         case 'recipient':
           if (tx.sender !== this.$store.state.bsc.globalAccounts.pair) {
@@ -221,6 +219,10 @@ tbody {
 
     td {
       @apply px-3 py-4 whitespace-nowrap text-sm;
+
+      &.sender, &.recipient {
+        @apply font-mono;
+      }
     }
 
     td:not(:last-child) {
@@ -230,6 +232,8 @@ tbody {
     td:last-child {
       @apply text-right text-gray-200;
     }
+
+
 
     .amount-ori {
       @apply hidden inline;

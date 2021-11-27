@@ -1,6 +1,7 @@
 import Web3 from 'web3'
 // import detectEthereumProvider from '@metamask/detect-provider'
 import tokenAbi from '~/utils/token.json'
+import idoAbi from '~/utils/ido.json'
 import fn from '~/utils/functions'
 
 
@@ -61,8 +62,13 @@ export default async function({ app, store }, inject) {
     app.web3 = web3
 
     const Contract = web3.eth.Contract
+
     app.token = new Contract(
       tokenAbi, process.env.tokenAddress
+    )
+
+    app.ido = new Contract(
+      idoAbi, process.env.idoAddress
     )
   }
 
@@ -82,7 +88,7 @@ export default async function({ app, store }, inject) {
   const tokenSync = async function() {
     await app.token.methods.getMetadata().call()
       .then(async function(data) {
-        // console.log('>>> token.getMetadata:', data)
+        console.log('>>> token.getMetadata:', data)
         await store.dispatch('bsc/SET_METADATA', data)
       })
       .catch(error => {
