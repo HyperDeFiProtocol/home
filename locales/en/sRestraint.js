@@ -3,7 +3,7 @@ export default {
   title2: 'is Law',
   desc: 'Long-term value is more important than immediate benefits',
 
-  s1: 'No reservations, no pre-sale',
+  s1: 'No pre-mine, no pre-sale, no VC, no reservations',
   s1__: 'The team has no initial set-aside, fair participation, and will grow along with the HyperDeFi ecology.',
 
   s2: 'Cannot remove the liquidity',

@@ -7,7 +7,7 @@ export default {
   communityDriven__: 'Decentralized, based on a broad consensus of holders',
 
   fairLaunch: 'Fair launch',
-  fairLaunch__: 'No genesis, no reservations for anybody, burned 50% after deployed',
+  fairLaunch__: 'There was no pre-mine, no pre-sale, no VC, and no reservations for anybody, burned 50% when deployed',
 
   bscEcology: 'BSC/PancakeSwap Ecology',
   bscEcology__: 'More faster, more cheaper than the ETH Chain',

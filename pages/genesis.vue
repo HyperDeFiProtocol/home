@@ -28,11 +28,19 @@
             </h3>
             <div class='hdf-timeline-body'>
               <p>
-                {{ $t('pGenesis.contractAddress_') }}
+                {{ $t('pGenesis.mainContractAddress_') }}
               </p>
 
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 break-all'>
                 {{ tokenAddress }}
+              </p>
+
+              <p class='mt-2'>
+                {{ $t('pGenesis.idoContractAddress_') }}
+              </p>
+
+              <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 break-all'>
+                {{ idoAddress }}
               </p>
 
               <p class='mt-2 md:mt-4 max-w-sm flex flex-col space-y-2'>
@@ -393,6 +401,9 @@ export default {
     },
     tokenAddress() {
       return process.env.tokenAddress
+    },
+    idoAddress() {
+      return process.env.idoAddress
     },
 
     depositMaxReached() {

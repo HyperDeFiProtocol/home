@@ -6,10 +6,10 @@
       </p>
       <p class='mt-3'>
         {{ $t('sDataBoard.__mintWhen__') }}
-        {{ $store.state.bsc.global.distOfInit }}%
-        {{ $t('sDataBoard.__mintDistOfInit__') }}
-        <CBN :value='$store.state.bsc.global.distThreshold' :token='true' /> HyperDeFi
-        {{ $t('sDataBoard.__mintDifference__') }}
+<!--        {{ $store.state.bsc.global.distOfInit }}%-->
+<!--        {{ $t('sDataBoard.__mintDistOfInit__') }}-->
+<!--        <CBN :value='$store.state.bsc.global.distThreshold' :token='true' /> HyperDeFi-->
+<!--        {{ $t('sDataBoard.__mintDifference__') }}-->
         <span v-if='$route.path.endsWith("/buffer") || $route.path.endsWith("/buffer/mint")'>
           {{ $t('sDataBoard.__mintTypeInTable__') }}
           <span class='text-sky-500'>
