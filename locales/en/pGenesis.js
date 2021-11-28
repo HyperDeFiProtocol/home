@@ -3,15 +3,16 @@ export default {
   tag: 'Pre-sale',
   desc: '100% of all deposits will be used to build the initial PancakeSwap Liquidity: HyperDeFi/BNB',
 
-  deploy: 'Deploy the HyperDeFi Main Contract',
-  contractAddress_: 'Contract Address:',
+  deploy: 'Deploy the HyperDeFi Main Contract and IDO Contract',
+  mainContractAddress_: 'Main Contract Address:',
+  idoContractAddress_: 'IDO Contract Address:',
 
   depositWarning: 'Do not send BUSD directly to the contract address nor from an exchange, otherwise you will lost the fund.',
 
   listAllDeposit: 'List all Genesis Deposit',
 
   mint: 'Mint',
-  mint2__: 'of the HyperDeFi Total Supply Cap to the Contract Address, for Genesis Distribution',
+  mint2__: 'of the Total Supply Cap to IDO Contract Address, for Genesis IDO Distribution',
   sameTx__: 'It is the same transaction as the HyperDeFi main contract creation.',
   review: 'Click to review.',
   amount_: 'Amount:',
@@ -46,11 +47,11 @@ export default {
 
   // add liquidity
   createLiquidity1: 'Mint',
-  createLiquidity2: 'of the HyperDeFi Total Supply Cap,',
+  createLiquidity2: 'of the Total Supply Cap,',
   createLiquidity3: 'create the initial PancakeSwap Liquidity with all the deposited BNB above.',
   liquidityCreatedAt: 'The initial PancakeSwap Liquidity has been created at:',
 
-  createLi1__: 'The team don\'t have the right to take the deposited BNB of Genesis.',
+  createLi1__: 'The team don\'t have the right to take the deposited BNB of Genesis IDO.',
   createLi2__: 'All processes are executed automatically by the contract, with no human intervention.',
 
   // redeem

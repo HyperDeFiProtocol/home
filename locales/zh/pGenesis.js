@@ -3,15 +3,16 @@ export default {
   tag: '创世纪',
   desc: '所有存入将 100% 用于建设 PancakeSwap 上的 HyperDeFi/BNB 初始流动池',
 
-  deploy: '部署 HyperDeFi 主合约',
-  contractAddress_: '合约地址：',
+  deploy: '部署 HyperDeFi 主合约与 IDO 合约',
+  mainContractAddress_: '主合约地址：',
+  idoContractAddress_: 'IDO 合约地址：',
 
   depositWarning: '不要直接发送 BUSD 到合约地址，也不要从交易所提币到合约地址，否则您会失去那些资金。',
 
   listAllDeposit: '查看所有创世存入',
 
-  mint: '铸币 HyperDeFi 总量上限的',
-  mint2__: '存入合约地址，用于创世分配',
+  mint: '铸币总量上限的',
+  mint2__: '存入 IDO 合约地址，用于创世分配',
   sameTx__: '与 HyperDeFi 主合约创建是同一笔交易。',
   review: '点此回顾。',
   amount_: '数量：',
@@ -45,12 +46,12 @@ export default {
   genesisFinished: '创世完毕',
 
   // add liquidity
-  createLiquidity1: '铸币 HyperDeFi 总量上限的',
+  createLiquidity1: '铸币总量上限的',
   createLiquidity2: '，',
   createLiquidity3: '并与以上所有存入的 BNB 一并创建 PancakeSwap 初始流动池。',
   liquidityCreatedAt: 'PancakeSwap 初始流动池已创建于：',
 
-  createLi1__: '团队无权占有创世存入的 BNB',
+  createLi1__: '团队无权占有创世 IDO 存入的 BNB',
   createLi2__: '所有流程由合约自动执行，人工无法介入',
 
   // redeem

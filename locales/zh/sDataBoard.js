@@ -13,8 +13,8 @@ export default {
 
   tag: 'BSC 链上实时数据',
   contractAddress_: '合约地址：',
-  genesisStartTime: '创世开始时间：',
-  genesisEndTime: '创世结束时间：',
+  genesisStartTime: '创世 IDO 开始时间：',
+  genesisEndTime: '创世 IDO 结束时间：',
   launchTime: '交易启动时间：',
   tokenNameSymbol_: '代币名/符号：',
   with: '有',
@@ -36,11 +36,9 @@ export default {
   decreasing_: '缩减中...',
 
   // mint
-  __mintSupplyGradually__: '总量缓释',
-  __mintWhen__: '当流动池低于',
-  __mintDistOfInit__: '的创世流动性',
-  __mintDifference__: '时，差值将被缓释到缓冲池，用于补充 PancakeSwap 流动性（LP Token 进入黑洞），' +
-    '由合约自动执行，人工无权介入。',
+  __mintSupplyGradually__: '48% 总量缓释',
+  __mintWhen__: '在价格上涨过程中缓释到缓冲池，用于补充 PancakeSwap 流动性（LP Token 进入黑洞），' +
+    '在 1,024 倍时释放完毕。由合约自动执行，人工无权介入。',
   __mintLatestBlockNumber__: '最新区块号',
   __mintTheAmount__: '目前待缓释的数量为',
   __mintWhich__: '，是',

@@ -7,7 +7,7 @@ export default {
   communityDriven__: '去中心化，基于持有者的广泛共识',
 
   fairLaunch: '公平启动',
-  fairLaunch__: '无预售，无预留，无预挖，部署后 50% 已销毁',
+  fairLaunch__: '无预挖，无预售，无投资机构，无预留，部署时 50% 已销毁',
 
   bscEcology: '基于 BSC/PancakeSwap 生态',
   bscEcology__: '比 ETH 链更快速、费用更便宜',

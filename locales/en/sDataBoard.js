@@ -13,8 +13,8 @@ export default {
 
   tag: 'Realtime data on BSC chain',
   contractAddress_: 'Contract Address: ',
-  genesisStartTime: 'Genesis Start Time:',
-  genesisEndTime: 'Genesis End Time:',
+  genesisStartTime: 'Genesis IDO Start Time:',
+  genesisEndTime: 'Genesis IDO End Time:',
   launchTime: 'Trade Launch Time:',
   tokenNameSymbol_: 'Token Name/Symbol:',
   with: 'with',
@@ -36,10 +36,10 @@ export default {
   decreasing_: 'decreasing...',
 
   // mint
-  __mintSupplyGradually__: 'Mint Total Supply gradually',
-  __mintWhen__: 'When the current liquidity goes less than',
-  __mintDistOfInit__: 'of the genesis liquidity',
-  __mintDifference__: ', the difference will be minted to Buffer Pool (LP Token burns to the black-hole), ' +
+  __mintSupplyGradually__: 'Mint 48% of the Total Supply gradually',
+  __mintWhen__: 'Gradually mint into the buffer pool as the price rises, ' +
+    'used to supplement PancakeSwap liquidity (LP Token burns to the black-hole), ' +
+    'finish when the price hits x1,024, ' +
     'execute by the contract automatically with no human intervention.',
   __mintLatestBlockNumber__: 'Latest block number',
   __mintTheAmount__: 'Currently, the amount to be minted is',

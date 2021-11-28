@@ -1,6 +1,6 @@
 export default {
   title: '销毁',
-  text: '全局，保持 HyperDeFi 长期通缩。',
+  text: '全局，保持 HyperDeFi 永远通缩。',
 
   burn: '销毁',
   destroy__: '永久销毁到黑洞地址。',

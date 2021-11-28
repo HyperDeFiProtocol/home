@@ -1,6 +1,6 @@
 export default {
   title: 'Burn',
-  text: 'Globally, keep making HyperDeFi deflationary in the long term.',
+  text: 'Globally, keep making HyperDeFi deflationary FOREVER!',
 
   burn: 'Burn',
   destroy__: 'destroy them forever, to black-hole address.',
