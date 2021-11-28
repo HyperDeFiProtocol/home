@@ -1,12 +1,14 @@
 name: Testnet
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
 #  release:
 #    types:
 #      - created
+
 
 jobs:
   ci:
