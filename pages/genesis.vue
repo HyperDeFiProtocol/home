@@ -554,7 +554,7 @@ export default {
 
       this.pendingRedeem = true
 
-      await this.$nuxt.context.app.token.methods.genesisRedeem()
+      await this.$nuxt.context.app.ido.methods.redeem()
         .send({'from': this.$store.state.wallet.account})
         // .on('transactionHash', this.onRedeemTransactionHash)
         .on('receipt', this.onRedeemReceipt)
