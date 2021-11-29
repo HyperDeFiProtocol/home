@@ -44,6 +44,15 @@
                 <td v-if='tx.sender === $store.state.bsc.globalAccounts.zero' class='type capitalize'>
                   {{ $t('txTable.mint') }}
                 </td>
+                <td v-else-if='tx.sender === $store.state.bsc.globalAccounts.ido' class='type capitalize'>
+                  {{ $t('txTable.redeem') }}
+                </td>
+                <td v-else-if='tx.sender === $store.state.bsc.globalAccounts.buffer && tx.recipient === $store.state.bsc.globalAccounts.pair' class='type capitalize'>
+                  {{ $t('txTable.addLiquidity') }}
+                </td>
+                <td v-else-if='tx.sender === tokenAddress && tx.recipient === $store.state.bsc.globalAccounts.pair' class='type capitalize'>
+                  {{ $t('txTable.createLiquidity') }}
+                </td>
                 <td v-else class='type capitalize'>
                   {{ $t('user.' + txName(tx.txType)) }}
                 </td>
@@ -97,6 +106,9 @@ export default {
     }
   },
   computed: {
+    tokenAddress() {
+      return process.env.tokenAddress
+    },
     explorer() {
       return explorer
     },
@@ -147,8 +159,8 @@ export default {
           return 'whale'
         case enums.txType.ROBBER:
           return 'robber'
-        case enums.txType.GENESIS_REDEEM:
-          return 'redeem'
+        // case enums.txType.GENESIS_REDEEM:
+        //   return 'redeem'
         default:
           return ''
       }

@@ -21,5 +21,7 @@ export default {
   harvest: 'Harvest',
   mint: 'Mint',
   bufferAccumulate: 'Buffer Accumulate',
+  createLiquidity: 'Create Liquidity',
   addLiquidity: 'Add Liquidity',
+  redeem: 'Redeem',
 }

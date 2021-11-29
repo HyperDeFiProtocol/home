@@ -88,7 +88,7 @@ export default async function({ app, store }, inject) {
   const tokenSync = async function() {
     await app.token.methods.getMetadata().call()
       .then(async function(data) {
-        console.log('>>> token.getMetadata:', data)
+        // console.log('>>> token.getMetadata:', data)
         await store.dispatch('bsc/SET_METADATA', data)
       })
       .catch(error => {

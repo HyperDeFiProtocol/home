@@ -17,5 +17,6 @@ export default {
   fund: 'Fund',
   liquidity: 'PancakeSwap Liquidity',
   buffer: 'Buffer',
+  ido: 'Genesis IDO Contract',
   farm: 'Farm Pool',
 }
