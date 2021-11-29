@@ -26,12 +26,14 @@ export default {
           return 'liquidity'
         case this.$store.state.bsc.globalAccounts.buffer:
           return 'buffer'
+        case this.$store.state.bsc.globalAccounts.ido:
+          return 'ido'
         case this.$store.state.bsc.globalAccounts.genesis:
           return 'genesis'
         // case this.$store.state.bsc.globalAccounts.fund:
         //   return 'fund'
-        // case this.$store.state.bsc.globalAccounts.zero:
-        //   return 'zero'
+        case this.$store.state.bsc.globalAccounts.zero:
+          return 'zero'
         case this.$store.state.bsc.globalAccounts.burn:
           return 'burn'
         case this.$store.state.bsc.globalAccounts.airdrop:
@@ -51,6 +53,8 @@ export default {
         this.displayText = this.$t('user.' + text)
         return
       }
+
+
 
       const holder = await this.$nuxt.context.app.db.holder.where('address').equals(this.value).first()
 

@@ -21,5 +21,7 @@ export default {
   harvest: '收矿',
   mint: '铸币',
   bufferAccumulate: '缓冲滚存',
+  createLiquidity: '创建流动池',
   addLiquidity: '添加流动性',
+  redeem: '创世认领',
 }

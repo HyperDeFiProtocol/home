@@ -64,6 +64,13 @@ export default async function({ app, store }, inject) {
     return events
   }
 
+  // func: fetch IDO events
+  const fetchIDOEvents = async function() {
+    return await app.ido
+      .getPastEvents('Deposit', syncTxsOption)
+      .catch(console.error)
+  }
+
 
   const events = async function() {
     syncTxsOption = {
@@ -92,9 +99,11 @@ export default async function({ app, store }, inject) {
       let airdrop = []
       let bonus = []
       let fund = []
-      let genesisDeposit = []
+
 
       const events = await fetchAllEvents(STEP)
+
+
 
       for (const event of events) {
         switch (event.event) {
@@ -171,9 +180,6 @@ export default async function({ app, store }, inject) {
           case 'Fund':
             fund.push(ev2Tx(event))
             break
-          case 'GenesisDeposit':
-            genesisDeposit.push(ev2Tx(event))
-            break
           // case 'SlotRegistered':
           //   break
           // case 'UsernameSet':
@@ -205,12 +211,6 @@ export default async function({ app, store }, inject) {
         if (fund) {
           await app.db.fund.bulkAdd(fund).catch(e => {
             console.error('>>> sync events: bulkAdd fund:', e)
-          })
-        }
-
-        if (genesisDeposit) {
-          await app.db.genesisDeposit.bulkAdd(genesisDeposit).catch(e => {
-            console.error('>>> sync events: bulkAdd genesisDeposit:', e)
           })
         }
 
@@ -270,6 +270,18 @@ export default async function({ app, store }, inject) {
               .toArray()
           )
         }
+      }
+
+      let genesisDeposit = []
+      const idoEvents = await fetchIDOEvents()
+      for (const event of idoEvents) {
+        genesisDeposit.push(ev2Tx(event))
+      }
+
+      if (genesisDeposit) {
+        await app.db.genesisDeposit.bulkAdd(genesisDeposit).catch(e => {
+          console.error('>>> sync events: bulkAdd deposit:', e)
+        })
       }
 
       syncTxsOption.fromBlock = syncTxsOption.toBlock

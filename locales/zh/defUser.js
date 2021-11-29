@@ -17,5 +17,6 @@ export default {
   fund: '基金',
   liquidity: 'PancakeSwap 流动池',
   buffer: '缓冲池',
+  ido: '创世 IDO 合约',
   farm: '矿池',
 }
