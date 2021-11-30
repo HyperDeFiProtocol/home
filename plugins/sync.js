@@ -103,8 +103,6 @@ export default async function({ app, store }, inject) {
 
       const events = await fetchAllEvents(STEP)
 
-
-
       for (const event of events) {
         switch (event.event) {
           case 'Transfer':
@@ -133,15 +131,15 @@ export default async function({ app, store }, inject) {
                   buffer[key].amount = JSBI.add(BN(buffer[key].amount), BN(event.returnValues.value)).toString()
                   break
                 }
-
-                buffer.push({
-                  blockNumber: event.blockNumber,
-                  txHash: event.transactionHash,
-                  sender: event.returnValues.from,
-                  recipient: event.returnValues.to,
-                  amount: event.returnValues.value
-                })
               }
+
+              buffer.push({
+                blockNumber: event.blockNumber,
+                txHash: event.transactionHash,
+                sender: event.returnValues.from,
+                recipient: event.returnValues.to,
+                amount: event.returnValues.value
+              })
             }
             break
           case 'TX':
