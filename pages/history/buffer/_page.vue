@@ -19,7 +19,7 @@
       <CTableBuffer :transactions='transactions' class='mt-10 lg:mt-24' />
 
       <CPagination class='mt-8 lg:mt-12'
-                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/farm' />
+                   :records='pageRecords' :size='pageSize' :number='pageNumber' path='/history/buffer' />
     </LAutoWidth>
   </div>
 </template>

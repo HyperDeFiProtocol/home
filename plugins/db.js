@@ -34,6 +34,9 @@ export default async function({ app, store }, inject) {
 
   if (process.env.tokenAddress !== tokenAddress) {
     console.warn('>>> Contract Address Changed...')
+    console.log('process.env.tokenAddress:', process.env.tokenAddress)
+    console.log('tokenAddress:', tokenAddress)
+
     await app.db.pointers.clear()
     await app.db.holder.clear()
     await app.db.tx.clear()
