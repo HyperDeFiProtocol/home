@@ -35,7 +35,7 @@
                 {{ tokenAddress }}
               </p>
 
-              <p class='mt-2'>
+              <p class='mt-2 md:mt-4'>
                 {{ $t('pGenesis.idoContractAddress_') }}
               </p>
 
@@ -51,7 +51,7 @@
                   </span>
                 </nuxt-link>
 
-                <a target='_blank' :href='hpLink.exploreAddress(tokenAddress)' class='a-track'>
+                <a target='_blank' :href='hpLink.exploreToken(tokenAddress)' class='a-track'>
                   <HeroIconSolidCursorClick class="h-5 w-5" />
                   <span>
                     {{ $t('global.trackWithBSCScan') }}

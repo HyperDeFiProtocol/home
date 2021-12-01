@@ -1,7 +1,7 @@
 export default {
   title: 'Co-Build PancakeSwap Liquidity',
   tag: 'Pre-sale',
-  desc: '100% of all deposits will be used to build the initial PancakeSwap Liquidity: HyperDeFi/BNB',
+  desc: '100% of all deposits will be used to build the initial PancakeSwap Liquidity: WBNB/HyperDeFi',
 
   deploy: 'Deploy the HyperDeFi Main Contract and IDO Contract',
   mainContractAddress_: 'Main Contract Address:',
