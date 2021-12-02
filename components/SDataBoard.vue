@@ -15,7 +15,7 @@
             {{ $t('sDataBoard.genesisStartText') }}
             {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
           </span>
-          <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
+          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>
             {{ $t('sDataBoard.visitGenesis') }}
           </nuxt-link>
         </p>
@@ -35,7 +35,7 @@
             {{ $t('sDataBoard.genesisEndText') }}
             {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
           </span>
-          <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
+          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>
             {{ $t('sDataBoard.visitGenesis') }}
           </nuxt-link>
         </p>
@@ -54,7 +54,7 @@
           <span>
             {{ $t('pIDO.nowTheLastDeposit') }}
           </span>
-          <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
+          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>
             {{ $t('sDataBoard.visitGenesis') }}
           </nuxt-link>
         </p>
@@ -123,7 +123,7 @@
             >
               PancakeSwap Finance
             </CPancakeTo>
-            <nuxt-link v-else :to='localePath("/genesis")' class='font-medium text-violet-300'>
+            <nuxt-link v-else :to='localePath("/ido")' class='font-medium text-violet-300'>
               {{ $t('siteNav.genesis') }}
             </nuxt-link>
           </span>
