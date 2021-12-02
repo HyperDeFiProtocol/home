@@ -49,7 +49,7 @@
                         {{ $t('sWelcome.buyOnPancakeSwap') }}
                       </span>
                     </CPancakeTo>
-                    <nuxt-link v-else :to='localePath("/genesis")' class='w-full inline-flex justify-center space-x-2 py-3 px-10 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
+                    <nuxt-link v-else :to='localePath("/ido")' class='w-full inline-flex justify-center space-x-2 py-3 px-10 rounded-md shadow bg-violet-600 text-white font-medium hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-300 focus:ring-offset-gray-900'>
                       {{ $t('sWelcome.visitGenesis') }}
                     </nuxt-link>
                   </div>
@@ -59,7 +59,7 @@
                   <CPancakeTo v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"' class='hdf-a-colored'>
                     PancakeSwap Finance
                   </CPancakeTo>
-                  <nuxt-link v-else :to='localePath("/genesis")' class='hdf-a-colored'>
+                  <nuxt-link v-else :to='localePath("/ido")' class='hdf-a-colored'>
                     {{ $t('siteNav.genesis') }}
                   </nuxt-link>
                   {{ $t('sWelcome.onBlockNumber') }}
