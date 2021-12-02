@@ -52,7 +52,7 @@
         </h3>
         <p v-if='!tradeAllowed' class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
           <span>
-            {{ $t('pGenesis.nowTheLastDeposit') }}
+            {{ $t('pIDO.nowTheLastDeposit') }}
           </span>
           <nuxt-link :to='localePath("/genesis")' class='hdf-a-colored'>
             {{ $t('sDataBoard.visitGenesis') }}

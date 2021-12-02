@@ -2,7 +2,7 @@ import global from '~/locales/en/global'
 import siteNav from '~/locales/en/siteNav'
 import pBuy from '~/locales/en/pBuy'
 import pCoupon from '~/locales/en/pCoupon'
-import pGenesis from '~/locales/en/pGenesis'
+import pIDO from '~/locales/en/pIDO'
 import pUser from '~/locales/en/pUser'
 import pModes from '~/locales/en/pModes'
 import pCache from '~/locales/en/pCache'
@@ -45,7 +45,7 @@ export default {
   siteNav: siteNav,
   pBuy: pBuy,
   pCoupon: pCoupon,
-  pGenesis: pGenesis,
+  pIDO: pIDO,
   pUser: pUser,
   pModes: pModes,
   pCache: pCache,

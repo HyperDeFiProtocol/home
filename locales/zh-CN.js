@@ -2,7 +2,7 @@ import global from '~/locales/zh/global'
 import siteNav from '~/locales/zh/siteNav'
 import pBuy from '~/locales/zh/pBuy'
 import pCoupon from '~/locales/zh/pCoupon'
-import pGenesis from '~/locales/zh/pGenesis'
+import pIDO from '~/locales/zh/pIDO'
 import pUser from '~/locales/zh/pUser'
 import pModes from '~/locales/zh/pModes'
 import pCache from '~/locales/zh/pCache'
@@ -45,7 +45,7 @@ export default {
   siteNav: siteNav,
   pBuy: pBuy,
   pCoupon: pCoupon,
-  pGenesis: pGenesis,
+  pIDO: pIDO,
   pUser: pUser,
   pModes: pModes,
   pCache: pCache,

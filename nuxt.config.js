@@ -25,7 +25,6 @@ export default {
     clubHouseRoom: process.env.githubUsername || 'hyperdefi-protocol',
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
-    idoCreationTxHash: process.env.idoCreationTxHash || '0x1234567890',
 
     fromBlock: parseInt(process.env.fromBlock) || 0,
   },
