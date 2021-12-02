@@ -3,7 +3,7 @@
     <LAutoWidth class='py-16 px-4 sm:py-24 sm:px-6 lg:px-8'>
       <CH3>
         <span>
-          {{ $t('pGenesis.title') }}
+          {{ $t('pIDO.title') }}
         </span>
 
         <template #tag>
@@ -11,7 +11,7 @@
         </template>
 
         <template #desc>
-          {{ $t('pGenesis.desc') }}
+          {{ $t('pIDO.desc') }}
         </template>
       </CH3>
 
@@ -24,11 +24,11 @@
 
           <div class='hdf-timeline-inner'>
             <h3>
-              {{ $t('pGenesis.deploy') }}
+              {{ $t('pIDO.deploy') }}
             </h3>
             <div class='hdf-timeline-body'>
               <p>
-                {{ $t('pGenesis.mainContractAddress_') }}
+                {{ $t('pIDO.mainContractAddress_') }}
               </p>
 
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 break-all'>
@@ -36,7 +36,7 @@
               </p>
 
               <p class='mt-2 md:mt-4'>
-                {{ $t('pGenesis.idoContractAddress_') }}
+                {{ $t('pIDO.idoContractAddress_') }}
               </p>
 
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200 break-all'>
@@ -47,7 +47,7 @@
                 <nuxt-link :to='localeLocation("/history/genesis")' class='a-list-deposit'>
                   <HeroIconSolidMenuAlt2 class="h-5 w-5" />
                   <span>
-                    {{ $t('pGenesis.listAllDeposit') }}
+                    {{ $t('pIDO.listAllDeposit') }}
                   </span>
                 </nuxt-link>
 
@@ -60,7 +60,7 @@
               </p>
 
               <!--              <p class='mt-12 py-6 px-4 md:px-8 border-l-8 border-amber-600 bg-amber-100 rounded-r-xl leading-relaxed text-base lg:text-lg text-amber-700'>-->
-              <!--                {{ $t('pGenesis.depositWarning') }}-->
+              <!--                {{ $t('pIDO.depositWarning') }}-->
               <!--              </p>-->
             </div>
           </div>
@@ -72,20 +72,20 @@
 
           <div class='hdf-timeline-inner'>
             <h3>
-              {{ $t('pGenesis.mint') }}
+              {{ $t('pIDO.mint') }}
               <CBN :value='$store.state.bsc.genesis.genesisPercent' :decimals='3' />%
-              {{ $t('pGenesis.mint2__') }}
+              {{ $t('pIDO.mint2__') }}
             </h3>
             <div class='hdf-timeline-body'>
               <p>
-                {{ $t('pGenesis.sameTx__') }}
+                {{ $t('pIDO.sameTx__') }}
                 <a target='_blank' :href='hpLink.exploreTx(tokenCreationTxHash)' class='hover:text-white'>
-                  {{ $t('pGenesis.review') }}
+                  {{ $t('pIDO.review') }}
                 </a>
               </p>
 
               <p class='mt-2 md:mt-4'>
-                {{ $t('pGenesis.amount_') }}
+                {{ $t('pIDO.amount_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 <CBN :value='$store.state.bsc.genesis.genesisAmount' :token='true' /> HyperDeFi
@@ -102,22 +102,22 @@
 
           <div class='hdf-timeline-inner'>
             <h3>
-              {{ $t('pGenesis.depositAllowed') }}
+              {{ $t('pIDO.depositAllowed') }}
             </h3>
             <div class='hdf-timeline-body'>
               <p>
-                {{ $t('pGenesis.startTime_') }}
+                {{ $t('pIDO.startTime_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
               </p>
 
               <p class='mt-2 md:mt-4'>
-                {{ $t('pGenesis.endTime_') }}
+                {{ $t('pIDO.endTime_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
-                {{ $t('pGenesis.or') }}
+                {{ $t('pIDO.or') }}
                 <CBN :value='$store.state.bsc.genesis.depositCap' :price='true' /> BNB
               </p>
 
@@ -130,7 +130,7 @@
 
               <div v-if='genesisEndedCountdownFinished && $store.state.bsc.genesis.liquidityCreatedTimestamp === "0"' class='mt-2 md:mt-4'>
                 <p class='font-bold text-rose-400'>
-                  {{ $t('pGenesis.nowTheLastDeposit') }}
+                  {{ $t('pIDO.nowTheLastDeposit') }}
                 </p>
               </div>
 
@@ -138,7 +138,7 @@
               <dl class='hdf-stat lg:max-w-full grid grid-cols-1 lg:grid-cols-2'>
                 <div>
                   <dt>
-                    {{ $t('pGenesis.depositedBNBAmount') }}
+                    {{ $t('pIDO.depositedBNBAmount') }}
                   </dt>
                   <dd>
                     <CBN :value='$store.state.bsc.genesis.fund' :decimals='18' :padding='6' />
@@ -148,7 +148,7 @@
                 <!-- not started -->
                 <div v-if='!genesisStartedCountdownFinished'>
                   <dt>
-                    {{ $t('pGenesis.startCountdown') }}
+                    {{ $t('pIDO.startCountdown') }}
                   </dt>
                   <dd>
                     <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'
@@ -160,7 +160,7 @@
                 <!-- not ended -->
                 <div v-else-if='!genesisEndedCountdownFinished'>
                   <dt>
-                    {{ $t('pGenesis.endCountdown') }}
+                    {{ $t('pIDO.endCountdown') }}
                   </dt>
                   <dd>
                     <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
@@ -172,20 +172,20 @@
                 <!-- last deposit -->
                 <div v-else-if='!tradeAllowed'>
                   <dt>
-                    {{ $t('pGenesis.waitForTheLastDeposit') }}
+                    {{ $t('pIDO.waitForTheLastDeposit') }}
                   </dt>
                   <dd>
-                    {{ $t('pGenesis.closing') }}
+                    {{ $t('pIDO.closing') }}
                   </dd>
                 </div>
 
                 <!-- finished -->
                 <div v-else>
                   <dt>
-                    {{ $t('pGenesis.initialLiquidityCreated') }}
+                    {{ $t('pIDO.initialLiquidityCreated') }}
                   </dt>
                   <dd>
-                    {{ $t('pGenesis.finished') }}
+                    {{ $t('pIDO.finished') }}
                   </dd>
                 </div>
               </dl>
@@ -194,7 +194,7 @@
                 <div v-if='$store.state.wallet.account' class='mx-auto max-w-xl space-y-3'>
                   <div class='min-w-0 flex-1'>
                     <label for='deposit-amount'>
-                      {{ $t('pGenesis.bnbBalance_') }}
+                      {{ $t('pIDO.bnbBalance_') }}
                       <CBN class='font-semibold' :value='$store.state.wallet.bnbBalance' :decimals='18' :padding='6' />
                     </label>
                     <div class='mt-1 relative'>
@@ -203,12 +203,12 @@
                              autocomplete='off'
                              class='block w-full border-0 rounded-md pl-14 pr-10 py-4 font-mono text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-violet-600'
                              v-model='amount'
-                             :placeholder='$t("pGenesis.amountToDeposit")' />
+                             :placeholder='$t("pIDO.amountToDeposit")' />
                       <IconBNB class='absolute bottom-4 left-4 w-6 h-6 bg-yellow-500 rounded-full text-white' />
                       <span class='absolute bottom-4 right-4 pl-2 bg-white text-base text-gray-500'>BNB</span>
                     </div>
                     <div class='mt-1 text-right'>
-                      {{ $t('pGenesis.depositMax__') }}
+                      {{ $t('pIDO.depositMax__') }}
                       <CBN :value='$store.state.bsc.genesis.depositMax' :price='true' /> BNB
                     </div>
                   </div>
@@ -217,10 +217,10 @@
                             :class='{"bg-violet-600 hover:bg-violet-700 focus:ring-offset-violet-600": !insufficientBNB, "bg-rose-600 hover:bg-rose-700 focus:ring-offset-rose-600": insufficientBNB}'
                             @click='deposit'>
                       <span v-if='insufficientBNB'>
-                        {{ $t('pGenesis.insufficientBNBBalance') }}
+                        {{ $t('pIDO.insufficientBNBBalance') }}
                       </span>
                       <span v-else>
-                        {{ $t('pGenesis.deposit') }}
+                        {{ $t('pIDO.deposit') }}
                       </span>
                       <IconDiceHyperSpin v-show='pendingDeposit' class='inline w-6 h-6' />
                     </button>
@@ -229,7 +229,7 @@
                 <div v-else class='flex justify-center'>
                   <BtnConnectWallet class='connectWallet'>
                     <span>
-                      {{ $t('pGenesis.connectWalletToDeposit') }}
+                      {{ $t('pIDO.connectWalletToDeposit') }}
                     </span>
                   </BtnConnectWallet>
                 </div>
@@ -245,19 +245,19 @@
 
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl hidden sm:block'>
-              {{ $t('pGenesis.createLiquidity1') }}
+              {{ $t('pIDO.createLiquidity1') }}
               <CBN :value='$store.state.bsc.genesis.initLiquidityPercent' :decimals='3' />%
-              {{ $t('pGenesis.createLiquidity2') }}<br>
-              {{ $t('pGenesis.createLiquidity3') }}
+              {{ $t('pIDO.createLiquidity2') }}<br>
+              {{ $t('pIDO.createLiquidity3') }}
             </h3>
             <h3 class='text-2xl sm:hidden'>
-              {{ $t('pGenesis.createLiquidity1') }}{{ $t('pGenesis.createLiquidity2') }}
+              {{ $t('pIDO.createLiquidity1') }}{{ $t('pIDO.createLiquidity2') }}
             </h3>
 
             <div class='hdf-timeline-body'>
               <div v-if='$store.state.bsc.genesis.liquidityCreatedTimestamp > "0"'>
                 <p>
-                  {{ $t('pGenesis.liquidityCreatedAt') }}
+                  {{ $t('pIDO.liquidityCreatedAt') }}
                 </p>
                 <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                   {{ moment($store.state.bsc.genesis.liquidityCreatedTimestamp * 1000) }}
@@ -266,10 +266,10 @@
 
               <ul>
                 <li>
-                  {{ $t('pGenesis.createLi1__') }}
+                  {{ $t('pIDO.createLi1__') }}
                 </li>
                 <li>
-                  {{ $t('pGenesis.createLi2__') }}
+                  {{ $t('pIDO.createLi2__') }}
                 </li>
               </ul>
             </div>
@@ -285,21 +285,21 @@
 
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl'>
-              {{ $t('pGenesis.redeemTitle') }}
+              {{ $t('pIDO.redeemTitle') }}
             </h3>
 
             <div class='hdf-timeline-body' v-if='$store.state.wallet.account'>
               <div v-if='$store.state.wallet.genesisPortion > "0"'>
                 <p>
-                  {{ $t('pGenesis.yourPortion') }}
+                  {{ $t('pIDO.yourPortion') }}
                 </p>
                 <p class='mt-2 text-lg md:text-xl text-gray-200'>
                   <CBN :value='$store.state.wallet.genesisPortion' :token='true' :padding='2' /> HyperDeFi
                   <span v-if='redeemable'>
-                    {{ $t('pGenesis.notRedeemed') }}
+                    {{ $t('pIDO.notRedeemed') }}
                   </span>
                   <span v-else>
-                    {{ $t('pGenesis.redeemed') }}
+                    {{ $t('pIDO.redeemed') }}
                   </span>
                 </p>
 
@@ -307,7 +307,7 @@
                      v-if='redeemable'>
                   <button class='btn-add btn-redeem' @click='redeem'>
                     <span>
-                      {{ $t('pGenesis.redeem') }}
+                      {{ $t('pIDO.redeem') }}
                     </span>
                     <CBN :value='$store.state.wallet.genesisPortion' :token='true' :padding='2' />
                     <span>
@@ -318,14 +318,14 @@
                 </div>
               </div>
               <p v-else class='text-rose-400'>
-                {{ $t('pGenesis.noPortion') }}
+                {{ $t('pIDO.noPortion') }}
               </p>
             </div>
             <div class='hdf-timeline-body' v-else>
               <div class='my-6 md:my-10 mx-auto max-w-md flex justify-center'>
                 <BtnConnectWallet class='connectWallet'>
                   <span>
-                    {{ $t('pGenesis.connectWalletToCheck') }}
+                    {{ $t('pIDO.connectWalletToCheck') }}
                   </span>
                 </BtnConnectWallet>
               </div>
@@ -339,11 +339,11 @@
           <HeroIconOutlineClock v-else class='hdf-timeline-icon' />
           <div class='hdf-timeline-inner'>
             <h3 class='text-2xl'>
-              {{ $t('pGenesis.launch') }}
+              {{ $t('pIDO.launch') }}
             </h3>
             <div class='hdf-timeline-body'>
               <p>
-                {{ $t('pGenesis.launchTime_') }}
+                {{ $t('pIDO.launchTime_') }}
               </p>
               <p class='mt-2 font-mono text-lg md:text-xl text-gray-200'>
                 {{ moment($store.state.bsc.global.launchTimestamp * 1000) }}
@@ -447,7 +447,7 @@ export default {
       if (!this.genesisStartedCountdownFinished) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
-          message: this.$t('pGenesis.notStarted'),
+          message: this.$t('pIDO.notStarted'),
         })
 
         return
@@ -468,7 +468,7 @@ export default {
       if (!this.amount) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
-          message: this.$t('pGenesis.amountEmpty'),
+          message: this.$t('pIDO.amountEmpty'),
         })
 
         return
@@ -478,7 +478,7 @@ export default {
       if (this.insufficientBNB) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
-          message: this.$t('pGenesis.insufficientBNBBalance'),
+          message: this.$t('pIDO.insufficientBNBBalance'),
         })
 
         return
@@ -487,7 +487,7 @@ export default {
       if (this.depositMaxReached) {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.info'),
-          message: this.$t('pGenesis.depositMaxReached'),
+          message: this.$t('pIDO.depositMaxReached'),
         })
 
         return
@@ -546,8 +546,8 @@ export default {
       // redeeming check
       if (!this.redeeming) {
         await this.$store.dispatch('warning/SET_WARNING', {
-          title: this.$t('pGenesis.tooEarly'),
-          message: this.$t('pGenesis.redeemNotAllowedBefore__'),
+          title: this.$t('pIDO.tooEarly'),
+          message: this.$t('pIDO.redeemNotAllowedBefore__'),
         })
 
         return
@@ -557,7 +557,7 @@ export default {
       if (this.$store.state.wallet.genesisPortion === '0') {
         await this.$store.dispatch('warning/SET_WARNING', {
           title: this.$t('modal.error'),
-          message: this.$t('pGenesis.noPortion'),
+          message: this.$t('pIDO.noPortion'),
         })
 
         return

@@ -48,6 +48,8 @@ export default {
   },
   methods: {
     async clear() {
+      console.log('clear')
+
       this.rebuilding = true
       await this.$nuxt.context.app.db.pointers.clear()
       await this.$nuxt.context.app.db.holder.clear()

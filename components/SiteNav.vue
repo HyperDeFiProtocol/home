@@ -140,7 +140,7 @@ const navigation = [
   { name: 'howToBuy', href: '/buy' },
   { name: 'coupon', href: '/coupon' },
   { name: 'txExplorer', href: '/history/txs' },
-  { name: 'genesis', href: '/genesis' },
+  { name: 'genesis', href: '/ido' },
   { name: 'topAccount', href: '/holders' },
   { name: 'community', href: '/community' },
 ]
