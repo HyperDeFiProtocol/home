@@ -85,7 +85,7 @@ export default {
   },
   watch: {
     username() {
-      this.username = this.username.trim().replace(/[^A-Za-z0-9]/g, '')
+      this.username = this.username.trim().replace(/[^A-Za-z0-9]/g, '').toLowerCase()
     }
   },
 }
