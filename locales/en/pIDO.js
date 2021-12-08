@@ -1,6 +1,6 @@
 export default {
   title: 'Co-Build PancakeSwap Liquidity',
-  tag: 'Pre-sale',
+  tag: 'Genesis IDO',
   desc: '100% of all deposits will be used to build the initial PancakeSwap Liquidity: WBNB/HyperDeFi',
 
   deploy: 'Deploy the HyperDeFi Main Contract and IDO Contract',
@@ -78,7 +78,7 @@ export default {
   notApproved__: 'Please finish the approval first.',
   tooEarly: 'Too Early',
   redeemNotAllowedBefore__: 'You can redeem after the PancakeSwap Liquidity is created.',
-  noPortion: 'You haven\'t participated in the Genesis.' ,
+  noPortion: 'You haven\'t participated in the Genesis IDO.' ,
 
   key: '',
 }
