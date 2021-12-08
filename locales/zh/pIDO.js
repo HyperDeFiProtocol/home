@@ -76,7 +76,7 @@ export default {
   notApproved__: '请先完成授权。',
   tooEarly: '太早了',
   redeemNotAllowedBefore__: '在 PancakeSwap 流动池建立后才能认领份额。',
-  noPortion: '您没有参加预售。' ,
+  noPortion: '您没有参加创世 IDO。' ,
 
   key: '',
 }

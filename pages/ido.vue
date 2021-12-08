@@ -497,7 +497,7 @@ export default {
 
       // submit
       await this.$nuxt.context.app.ido.methods
-        .deposit()
+        .depositBNB()
         .send({from: this.$store.state.wallet.account, value: this.amountStr})
         .on('receipt', this.onDepositReceipt)
         .on('error', this.onDepositError)

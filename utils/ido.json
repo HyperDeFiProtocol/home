@@ -24,12 +24,8 @@
     "type": "event"
   },
   {
-    "stateMutability": "payable",
-    "type": "fallback"
-  },
-  {
     "inputs": [],
-    "name": "deposit",
+    "name": "depositBNB",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -161,9 +157,5 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "stateMutability": "payable",
-    "type": "receive"
   }
 ]
