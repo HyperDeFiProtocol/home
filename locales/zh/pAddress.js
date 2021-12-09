@@ -24,7 +24,7 @@ export default {
   trackBurn__: '跟踪所有销毁记录',
   trackLPToken__: '跟踪所有 LP Token 记录在 BSC Scan 浏览器',
   trackBurnOnBSCScan__: '跟踪所有销毁记录在 BSC Scan 浏览器',
-  trackFarm__: '跟踪所有挖矿/收扩记录',
+  trackFarm__: '跟踪所有挖矿/收矿记录',
   trackFomo__: '跟踪所有 FOMO 奖池记录',
 
   onBSCScan: '在 BSC Scan 浏览器',

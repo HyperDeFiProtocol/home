@@ -1,12 +1,10 @@
-// import BN from 'bn.js'
 import JSBI from 'jsbi'
 import fn from '../utils/functions'
-import enums from '~/utils/enums'
 
 const BN = JSBI.BigInt
-const FROM_BLOCK = JSBI.subtract(BN(process.env.fromBlock), BN(1)).toString()
-const BLOCK_STEP_RANGE = { min: 4900, max: 4999 }
+const FROM_BLOCK = process.env.fromBlock
 const STEP = 5000
+const INTERVAL = 200
 
 
 const cut = function(n) {
@@ -15,6 +13,7 @@ const cut = function(n) {
 
   return JSBI.divide(JSBI.multiply(BN(n), BN(a)), BN(b)).toString()
 }
+
 
 const ev2Tx = function(event) {
   return {
@@ -26,8 +25,16 @@ const ev2Tx = function(event) {
   }
 }
 
+
 export default async function({ app, store }, inject) {
   let syncTxsOption = { fromBlock: FROM_BLOCK, toBlock: FROM_BLOCK }
+  let step = STEP
+  let interval = 0
+
+  const increaseInterval = async function() {
+    interval += INTERVAL
+  }
+
 
   // step up
   const stepUp = async function(step) {
@@ -41,34 +48,70 @@ export default async function({ app, store }, inject) {
   }
 
   // func: fetch all events
-  const fetchAllEvents = async function(step) {
-
-    syncTxsOption.fromBlock = JSBI.add(BN(syncTxsOption.fromBlock), BN(1)).toString()
-    syncTxsOption.toBlock = await stepUp(step)
-
-    console.log(`#${syncTxsOption.fromBlock} >>> #${syncTxsOption.toBlock}/#${store.state.bsc.blockNumber}`)
-    await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
-
-    let exception = false
+  const fetchAllEvents = async function() {
+    let err = null
     const events = await app.token
       .getPastEvents('allEvents', syncTxsOption)
       .catch(e => {
-        exception = true
+        err = e
+        console.error('>>> sync, fetchAllEvents', e)
       })
 
-    if (exception) {
-      step = cut(step)
+    if (err) {
+      if (err.code === -32000) {
+        //  || !err.code ?
+        step = cut(step)
+        return await fetchAllEvents(step)
+      }
+
+      console.log('wait: fetchAllEvents')
+      await increaseInterval()
+      await fn.wait(interval)
       return await fetchAllEvents(step)
     }
 
+    interval = 0
     return events
   }
 
   // func: fetch IDO events
   const fetchIDOEvents = async function() {
-    return await app.ido
+    let err = null
+    const events = await app.ido
       .getPastEvents('Deposit', syncTxsOption)
-      .catch(console.error)
+      .catch(e => {
+        err = e
+        console.error('>>> sync, fetchIDOEvents', e)
+      })
+
+    if (err) {
+      console.log('wait: fetchIDOEvents')
+      await increaseInterval()
+      await fn.wait(interval)
+      return await fetchIDOEvents()
+    }
+
+    interval = 0
+    return events
+  }
+
+  const fetchHolders = async function() {
+    let err = null
+    const data = await app.token.methods.getHolders(fromId).call()
+      .catch(e => {
+        err = e
+        console.error('>>> sync, syncHolders:', e)
+      })
+
+    if (err) {
+      console.log('wait: fetchHolders')
+      await increaseInterval()
+      await fn.wait(interval)
+      return await fetchHolders()
+    }
+
+    interval = 0
+    return data
   }
 
 
@@ -83,16 +126,13 @@ export default async function({ app, store }, inject) {
       return
     }
 
-    // await store.dispatch('bsc/SET_SYNCHRONIZING_TX', syncTxsOption)
+    await app.db.pointers.get('sync').then(pointer => {
+      if (pointer) {
+        syncTxsOption.fromBlock = pointer.blockNumber
+      }
+    })
 
-    await app.db.pointers.get('sync')
-      .then(pointer => {
-        if (pointer) {
-          syncTxsOption.fromBlock = pointer.blockNumber
-        }
-      })
-
-    while (syncTxsOption.fromBlock < store.state.bsc.blockNumber) {
+    while (JSBI.LT(BN(syncTxsOption.fromBlock), BN(store.state.bsc.blockNumber))) {
       let tx = []
       let transfer = []
       let buffer = []
@@ -100,8 +140,11 @@ export default async function({ app, store }, inject) {
       let bonus = []
       let fund = []
 
+      syncTxsOption.fromBlock = JSBI.add(BN(syncTxsOption.fromBlock), BN(1)).toString()
+      syncTxsOption.toBlock = await stepUp(step)
+      await store.dispatch('bsc/SET_SYNCHRONIZING_EV', syncTxsOption)
 
-      const events = await fetchAllEvents(STEP)
+      const events = await fetchAllEvents()
 
       for (const event of events) {
         switch (event.event) {
@@ -286,9 +329,13 @@ export default async function({ app, store }, inject) {
       await app.db.pointers.put({ name: 'sync', blockNumber: syncTxsOption.toBlock }).catch(e => {
         console.error('putBlockPoint:', e)
       })
+
+      // break
     }
 
-    await store.dispatch('bsc/SET_SYNCHRONIZING_TX')
+    await store.dispatch('bsc/SET_SYNCHRONIZING_EV')
+
+    await fn.wait(INTERVAL)
 
     return syncTxsOption
     // return range
@@ -299,21 +346,17 @@ export default async function({ app, store }, inject) {
     let syncHoldersOption = { fromId: '0', toId: '0' }
 
     if (store.state.bsc.synchronizing.fromHolderId !== null) {
-      console.warn(
-        'Holders synchronizing in progress from id: #'
-        + store.state.bsc.synchronizing.fromHolderId
-      )
+      console.warn(`Holders synchronizing in progress from id: #${store.state.bsc.synchronizing.fromHolderId}`)
       return
     }
 
     await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID', syncHoldersOption.fromId)
 
-    await app.db.pointers.get('holder')
-      .then(point => {
-        if (point) {
-          syncHoldersOption.fromId = point.id
-        }
-      })
+    await app.db.pointers.get('holder').then(point => {
+      if (point && point.id) {
+        syncHoldersOption.fromId = point.id
+      }
+    })
 
     syncHoldersOption.toId = syncHoldersOption.fromId
     if (syncHoldersOption.fromId > '0') {
@@ -323,12 +366,9 @@ export default async function({ app, store }, inject) {
     while (JSBI.LT(BN(syncHoldersOption.fromId), JSBI.subtract(BN(store.state.bsc.metadata.holders), BN(1)))) {
       await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID', syncHoldersOption.fromId)
 
-      console.log('Synchronize holders: #' + syncHoldersOption.fromId)
+      console.log(`Synchronize holders: #${syncHoldersOption.fromId}`)
 
-      const data = await app.token.methods.getHolders(syncHoldersOption.fromId).call()
-        .catch(e => {
-          console.error('>>> sync, syncHolders:', e)
-        })
+      const data = await fetchHolders(syncHoldersOption.fromId)
 
       let holders = []
       for (let i = 0; i < data.ids.length; i++) {
@@ -356,6 +396,8 @@ export default async function({ app, store }, inject) {
       await app.db.pointers.put({ name: 'holder', id: syncHoldersOption.toId }).catch(e => {
         console.error('putHolderIdPoint:', e)
       })
+
+      await fn.wait(INTERVAL)
     }
 
     await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')

@@ -16,7 +16,8 @@ export default {
   genesisStartTime: 'Genesis IDO Start Time:',
   genesisEndTime: 'Genesis IDO End Time:',
   launchTime: 'Trade Launch Time:',
-  tokenNameSymbol_: 'Token Name/Symbol:',
+  tokenNameName_: 'Token name:',
+  tokenNameSymbol_: 'and symbol as',
   with: 'with',
   decimals: 'decimals',
 
