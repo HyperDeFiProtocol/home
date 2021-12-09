@@ -11,7 +11,7 @@ export default {
     genesisAddress: process.env.genesisAddress,
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
     chainName: process.env.chainName || 'BSC Chain',
-    chainId: parseInt(process.env.chainId) || 56,
+    chainId: process.env.chainId || '56',
     explorerBaseUrl: process.env.explorerBaseUrl || 'https://bscscan.com',
     pancakeBaseUrl: process.env.pancakeBaseUrl || 'https://pancakeswap.finance',
 
@@ -26,7 +26,7 @@ export default {
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
 
-    fromBlock: parseInt(process.env.fromBlock) || 0,
+    fromBlock: process.env.fromBlock || '0',
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

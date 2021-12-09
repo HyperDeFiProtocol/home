@@ -1,9 +1,11 @@
 import BN from 'bn.js'
+import JSBI from 'jsbi'
 
 export const state = () => ({
   synchronizing: {
     fromBlock: 0,
     toBlock: 0,
+    step: 0,
 
     fromHolderId: null,
 
@@ -12,6 +14,7 @@ export const state = () => ({
 
     genesisRedeemFrom: 0,
     genesisRedeemTo: 0,
+    wait: 0,
   },
 
   blockNumber: 0,
@@ -213,12 +216,14 @@ export const state = () => ({
 
 
 export const mutations = {
-  async SET_SYNCHRONIZING_TX(state, synchronizing) {
+  async SET_SYNCHRONIZING_EV(state, synchronizing) {
     state.synchronizing.fromBlock = synchronizing.fromBlock
     state.synchronizing.toBlock = synchronizing.toBlock
+
+    console.log(`#${state.synchronizing.fromBlock} >>> #${state.synchronizing.toBlock}/#${state.blockNumber}`)
   },
-  async SET_SYNCHRONIZING_FROM_HOLDER_ID(state, fromHolderId) {
-    state.synchronizing.fromHolderId = fromHolderId
+  async SET_SYNCHRONIZING_FROM_HOLDER_ID(state, value) {
+    state.synchronizing.fromHolderId = value
   },
   async SET_SYNCHRONIZING_PD(state, syncOption) {
     state.synchronizing.genesisDepositFrom = syncOption.fromBlock
@@ -227,6 +232,18 @@ export const mutations = {
   async SET_SYNCHRONIZING_PR(state, syncOption) {
     state.synchronizing.genesisRedeemFrom = syncOption.fromBlock
     state.synchronizing.genesisRedeemTo = syncOption.toBlock
+  },
+  async CUT_STEP(state) {
+    const a = 8
+    const b = 10
+
+    state.synchronizing.step = JSBI.divide(JSBI.multiply(JSBI.BigInt(state.synchronizing.step), JSBI.BigInt(a)), JSBI.BigInt(b)).toString()
+  },
+  async RESET_STEP(state) {
+    state.synchronizing.step = 5000
+  },
+  async SET_WAIT(state, value) {
+    state.synchronizing.wait = value
   },
   async SET_BLOCK_NUMBER(state, blockNumber) {
     state.blockNumber = blockNumber
@@ -452,17 +469,26 @@ export const mutations = {
 
 
 export const actions = {
-  async SET_SYNCHRONIZING_TX({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
-    await commit('SET_SYNCHRONIZING_TX', syncTxsOption)
+  async SET_SYNCHRONIZING_EV({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
+    await commit('SET_SYNCHRONIZING_EV', syncTxsOption)
   },
-  async SET_SYNCHRONIZING_FROM_HOLDER_ID({ commit }, fromHolderId= null) {
-    await commit('SET_SYNCHRONIZING_FROM_HOLDER_ID', fromHolderId)
+  async SET_SYNCHRONIZING_FROM_HOLDER_ID({ commit }, value = null) {
+    await commit('SET_SYNCHRONIZING_FROM_HOLDER_ID', value)
   },
   async SET_SYNCHRONIZING_PD({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
     await commit('SET_SYNCHRONIZING_PD', syncTxsOption)
   },
   async SET_SYNCHRONIZING_PR({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
     await commit('SET_SYNCHRONIZING_PR', syncTxsOption)
+  },
+  async CUT_STEP({ commit }) {
+    await commit('CUT_STEP')
+  },
+  async RESET_STEP({ commit }) {
+    await commit('RESET_STEP')
+  },
+  async SET_WAIT({ commit }, value) {
+    await commit('SET_WAIT', value)
   },
   async SET_BLOCK_NUMBER({ commit }, blockNumber) {
     await commit('SET_BLOCK_NUMBER', blockNumber)

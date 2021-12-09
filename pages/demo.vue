@@ -12,6 +12,10 @@
         </template>
       </CH3>
 
+      <div class='mt-24 flex justify-center text-xl'>
+        {{ $store.state.bsc.synchronizing }}
+      </div>
+
       <div class='mt-24 flex justify-center text-4xl'>
         <CCountdown :timestamp='1634576100 * 1000' :show-ds='true' />
       </div>
@@ -41,9 +45,6 @@ export default {
     }
   },
   mounted: async function() {
-    await this.$nuxt.context.app.sync.genesisDeposit()
-
-    console.log(this.$store.state.bsc.metadata)
 
     // console.log('>>> window.BinanceChain:', window.BinanceChain)
 

@@ -21,7 +21,7 @@ export default async function({ app, store }, inject) {
         method: 'wallet_switchEthereumChain',
         params: [
           {
-            chainId: Web3.utils.numberToHex(process.env.chainId).toString()
+            chainId: Web3.utils.numberToHex(parseInt(process.env.chainId)).toString()
           }
         ]
       })
@@ -41,7 +41,7 @@ export default async function({ app, store }, inject) {
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: Web3.utils.numberToHex(process.env.chainId).toString(),
+            chainId: Web3.utils.numberToHex(parseInt(process.env.chainId)).toString(),
             chainName: process.env.chainName,
             rpcUrls: [process.env.web3RpcUrl],
             nativeCurrency: {
@@ -131,6 +131,7 @@ export default async function({ app, store }, inject) {
       console.error('>>> Plugin[web3] tryConnect ~ getChainId:', error.message)
       return false
     })
+    chainId = chainId.toString()
 
     if (process.env.chainId !== chainId) {
       await setWeb3(new Web3(process.env.web3RpcUrl))
@@ -156,6 +157,7 @@ export default async function({ app, store }, inject) {
 
     // get chain id
     let chainId = await getChainId(provider)
+    chainId = chainId.toString()
 
     // try switch or add network
     if (process.env.chainId !== chainId && provider.isMetaMask) {
@@ -165,6 +167,7 @@ export default async function({ app, store }, inject) {
 
     // re-get chain id
     chainId = await getChainId(provider)
+    chainId = chainId.toString()
 
     // verify chain id, if incorrect, roll back to preset
     if (process.env.chainId !== chainId) {

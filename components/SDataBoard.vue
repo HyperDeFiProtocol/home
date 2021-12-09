@@ -68,6 +68,8 @@
       </p>
 
       <p class="mt-2 text-base text-gray-400 break-all">
+        {{ $t('sDataBoard.tokenNameName_') }}
+        <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenName }}</span>
         {{ $t('sDataBoard.tokenNameSymbol_') }}
         <span class='font-bold text-white'>{{ $store.state.bsc.metadata.tokenSymbol }}</span>
         {{ $t('sDataBoard.with') }}

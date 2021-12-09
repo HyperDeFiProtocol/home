@@ -16,8 +16,9 @@ export default {
   genesisStartTime: '创世 IDO 开始时间：',
   genesisEndTime: '创世 IDO 结束时间：',
   launchTime: '交易启动时间：',
-  tokenNameSymbol_: '代币名/符号：',
-  with: '有',
+  tokenNameName_: '代币名称:',
+  tokenNameSymbol_: '符号',
+  with: '精度',
   decimals: '位小数',
 
   trackWith__: '使用 BSC 浏览器追踪',
