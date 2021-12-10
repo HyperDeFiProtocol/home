@@ -95,7 +95,7 @@ export default async function({ app, store }, inject) {
     return events
   }
 
-  const fetchHolders = async function() {
+  const fetchHolders = async function(fromId) {
     let err = null
     const data = await app.token.methods.getHolders(fromId).call()
       .catch(e => {

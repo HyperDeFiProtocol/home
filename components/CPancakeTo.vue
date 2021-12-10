@@ -1,5 +1,5 @@
 <template>
-  <a :href='hpLink.pancakeSwapTo()'>
+  <a target='_blank' :href='hpLink.pancakeSwapTo()'>
     <slot />
   </a>
 </template>

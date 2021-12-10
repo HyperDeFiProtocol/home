@@ -145,42 +145,43 @@
                   </dd>
                 </div>
 
-                <!-- not started -->
-                <div v-if='!genesisStartedCountdownFinished'>
-                  <dt>
-                    {{ $t('pIDO.startCountdown') }}
-                  </dt>
-                  <dd>
-                    <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'
-                                :show-ds='true'
-                                v-on:finished='setGenesisStartedCountdownFinished' />
-                  </dd>
-                </div>
+<!--                &lt;!&ndash; not started &ndash;&gt;-->
+<!--                <div v-if='!genesisStartedCountdownFinished'>-->
+<!--                  <dt>-->
+<!--                    {{ $t('pIDO.startCountdown') }}-->
+<!--                  </dt>-->
+<!--                  <dd>-->
+<!--                    <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'-->
+<!--                                :show-ds='true'-->
+<!--                                v-on:finished='setGenesisStartedCountdownFinished' />-->
+<!--                  </dd>-->
+<!--                </div>-->
 
-                <!-- not ended -->
-                <div v-else-if='!genesisEndedCountdownFinished'>
-                  <dt>
-                    {{ $t('pIDO.endCountdown') }}
-                  </dt>
-                  <dd>
-                    <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
-                                :show-ds='true'
-                                v-on:finished='setGenesisEndedCountdownFinished' />
-                  </dd>
-                </div>
+<!--                &lt;!&ndash; not ended &ndash;&gt;-->
+<!--                <div v-else-if='!genesisEndedCountdownFinished'>-->
+<!--                  <dt>-->
+<!--                    {{ $t('pIDO.endCountdown') }}-->
+<!--                  </dt>-->
+<!--                  <dd>-->
+<!--                    <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'-->
+<!--                                :show-ds='true'-->
+<!--                                v-on:finished='setGenesisEndedCountdownFinished' />-->
+<!--                  </dd>-->
+<!--                </div>-->
 
-                <!-- last deposit -->
-                <div v-else-if='!tradeAllowed'>
-                  <dt>
-                    {{ $t('pIDO.waitForTheLastDeposit') }}
-                  </dt>
-                  <dd>
-                    {{ $t('pIDO.closing') }}
-                  </dd>
-                </div>
+<!--                &lt;!&ndash; last deposit &ndash;&gt;-->
+<!--                <div v-else-if='!tradeAllowed'>-->
+<!--                  <dt>-->
+<!--                    {{ $t('pIDO.waitForTheLastDeposit') }}-->
+<!--                  </dt>-->
+<!--                  <dd>-->
+<!--                    {{ $t('pIDO.closing') }}-->
+<!--                  </dd>-->
+<!--                </div>-->
 
                 <!-- finished -->
-                <div v-else>
+<!--                <div v-else>-->
+                <div>
                   <dt>
                     {{ $t('pIDO.initialLiquidityCreated') }}
                   </dt>

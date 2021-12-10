@@ -6,8 +6,8 @@ export default {
     baseUrl: process.env.baseUrl || 'https://hyperdefi.org',
 
     mode: process.env.mode,
-    tokenAddress: process.env.tokenAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
-    idoAddress: process.env.idoAddress || '0x999999996F5955d004e152eD8aad718d63beB6FA',
+    tokenAddress: process.env.tokenAddress || '0x99999999f678F56beF0Da5EB96F4c1300Cf8D69a',
+    idoAddress: process.env.idoAddress || '0x00000000E00A2E5B43460D40BcdF82E6e054CD3D',
     genesisAddress: process.env.genesisAddress,
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
     chainName: process.env.chainName || 'BSC Chain',
