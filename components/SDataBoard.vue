@@ -1,47 +1,48 @@
 <template>
   <div>
     <LAutoWidth class='relative py-12 pt-24 px-4 sm:px-8' :class='{"sm:py-24": !$store.state.wallet.account}'>
-      <div v-if='!genesisStartedCountdownFinished' class="mb-12 md:mb-20 text-center">
-        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
-          {{ $t('sDataBoard.genesisTag') }}
-        </h2>
-        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'
-                      :show-ds='true'
-                      v-on:finished='setGenesisStartedCountdownFinished' />
-        </h3>
-        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
-          <span>
-            {{ $t('sDataBoard.genesisStartText') }}
-            {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}
-          </span>
-          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>
-            {{ $t('sDataBoard.visitGenesis') }}
-          </nuxt-link>
-        </p>
-      </div>
+<!--      <div v-if='!genesisStartedCountdownFinished' class="mb-12 md:mb-20 text-center">-->
+<!--        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">-->
+<!--          {{ $t('sDataBoard.genesisTag') }}-->
+<!--        </h2>-->
+<!--        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">-->
+<!--          <CCountdown :timestamp='$store.state.bsc.genesis.startTimestamp * 1000'-->
+<!--                      :show-ds='true'-->
+<!--                      v-on:finished='setGenesisStartedCountdownFinished' />-->
+<!--        </h3>-->
+<!--        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">-->
+<!--          <span>-->
+<!--            {{ $t('sDataBoard.genesisStartText') }}-->
+<!--            {{ moment($store.state.bsc.genesis.startTimestamp * 1000) }}-->
+<!--          </span>-->
+<!--          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>-->
+<!--            {{ $t('sDataBoard.visitGenesis') }}-->
+<!--          </nuxt-link>-->
+<!--        </p>-->
+<!--      </div>-->
 
-      <div v-else-if='!genesisEndedCountdownFinished' class="mb-12 md:mb-20 text-center">
-        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
-          {{ $t('sDataBoard.genesisTag') }}
-        </h2>
-        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">
-          <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'
-                      :show-ds='true'
-                      v-on:finished='setGenesisEndedCountdownFinished' />
-        </h3>
-        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">
-          <span>
-            {{ $t('sDataBoard.genesisEndText') }}
-            {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}
-          </span>
-          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>
-            {{ $t('sDataBoard.visitGenesis') }}
-          </nuxt-link>
-        </p>
-      </div>
+<!--      <div v-else-if='!genesisEndedCountdownFinished' class="mb-12 md:mb-20 text-center">-->
+<!--        <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">-->
+<!--          {{ $t('sDataBoard.genesisTag') }}-->
+<!--        </h2>-->
+<!--        <h3 class="mt-2 text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl text-gray-200">-->
+<!--          <CCountdown :timestamp='$store.state.bsc.genesis.endTimestamp * 1000'-->
+<!--                      :show-ds='true'-->
+<!--                      v-on:finished='setGenesisEndedCountdownFinished' />-->
+<!--        </h3>-->
+<!--        <p class="mt-4 max-w-3xl text-xl text-gray-500 lg:mx-auto">-->
+<!--          <span>-->
+<!--            {{ $t('sDataBoard.genesisEndText') }}-->
+<!--            {{ moment($store.state.bsc.genesis.endTimestamp * 1000) }}-->
+<!--          </span>-->
+<!--          <nuxt-link :to='localePath("/ido")' class='hdf-a-colored'>-->
+<!--            {{ $t('sDataBoard.visitGenesis') }}-->
+<!--          </nuxt-link>-->
+<!--        </p>-->
+<!--      </div>-->
 
-      <div v-else-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">
+<!--      <div v-else-if='!launchCountdownFinished' class="mb-12 md:mb-20 text-center">-->
+      <div class="mb-12 md:mb-20 text-center">
         <h2 class="text-base text-violet-300 font-semibold tracking-wide uppercase">
           {{ $t('sDataBoard.launchTag') }}
         </h2>
