@@ -63,7 +63,7 @@ export default {
       await this.$nuxt.context.app.db.transfer.clear()
       await this.$nuxt.context.app.db.buffer.clear()
       await this.$nuxt.context.app.sync.events()
-      await this.$nuxt.context.app.sync.holders()
+      // await this.$nuxt.context.app.sync.holders()
       this.rebuilding = false
     }
   }

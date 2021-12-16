@@ -51,6 +51,9 @@
                      class='font-medium text-white hover:text-gray-300'>
             {{ $t('siteNav.' + item.name) }}
           </nuxt-link>
+          <a target='_blank' :href='hpLink.exploreTokenHolders()' class='font-medium text-white hover:text-gray-300'>
+            {{ $t('siteNav.topAccount') }}
+          </a>
 <!--          <a target='_blank' :href='$t("siteNav.documentationHref")' class='font-medium text-white hover:text-gray-300'>-->
 <!--            {{ $t('siteNav.documentation') }}-->
 <!--          </a>-->
@@ -109,6 +112,9 @@
                          class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
                 {{ $t('siteNav.' + item.name) }}
               </nuxt-link>
+              <a target='_blank' :href='hpLink.exploreTokenHolders()' class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>
+                {{ $t('siteNav.topAccount') }}
+              </a>
 <!--              <a target='_blank' :href='$t("siteNav.documentationHref")'-->
 <!--                 class='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'>-->
 <!--                {{ $t('siteNav.documentation') }}-->
@@ -141,8 +147,8 @@ const navigation = [
   { name: 'coupon', href: '/coupon' },
   { name: 'txExplorer', href: '/history/txs' },
   { name: 'genesis', href: '/ido' },
-  { name: 'topAccount', href: '/holders' },
   { name: 'community', href: '/community' },
+  // { name: 'topAccount', href: '/holders' },
 ]
 
 

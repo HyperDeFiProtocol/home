@@ -222,6 +222,13 @@ export const mutations = {
 
     console.log(`#${state.synchronizing.fromBlock} >>> #${state.synchronizing.toBlock}/#${state.blockNumber}`)
   },
+  async SET_SYNCHRONIZING_EV_FROM(state, fromBlock) {
+    state.synchronizing.fromBlock = fromBlock
+  },
+  async SET_SYNCHRONIZING_EV_TO(state, toBlock) {
+    state.synchronizing.toBlock = toBlock
+  },
+
   async SET_SYNCHRONIZING_FROM_HOLDER_ID(state, value) {
     state.synchronizing.fromHolderId = value
   },
@@ -472,6 +479,13 @@ export const actions = {
   async SET_SYNCHRONIZING_EV({ commit }, syncTxsOption = { fromBlock: 0, toBlock: 0 }) {
     await commit('SET_SYNCHRONIZING_EV', syncTxsOption)
   },
+  async SET_SYNCHRONIZING_EV_FROM({ commit }, fromBlock = 0) {
+    await commit('SET_SYNCHRONIZING_EV_FROM', fromBlock)
+  },
+  async SET_SYNCHRONIZING_EV_TO({ commit }, toBlock = 0) {
+    await commit('SET_SYNCHRONIZING_EV_TO', toBlock)
+  },
+
   async SET_SYNCHRONIZING_FROM_HOLDER_ID({ commit }, value = null) {
     await commit('SET_SYNCHRONIZING_FROM_HOLDER_ID', value)
   },
