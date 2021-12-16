@@ -92,7 +92,9 @@ export default async function({ app, store }, inject) {
     }
 
     interval = 0
-    return events
+    if (events)  return events
+
+    return []
   }
 
   const fetchHolders = async function(fromId) {
@@ -111,11 +113,15 @@ export default async function({ app, store }, inject) {
     }
 
     interval = 0
-    return data
+    if (data) return data
+    return []
   }
 
 
   const events = async function() {
+    console.warn('sync.events')
+    return null
+
     syncTxsOption = {
       fromBlock: FROM_BLOCK,
       toBlock: FROM_BLOCK
@@ -343,6 +349,9 @@ export default async function({ app, store }, inject) {
 
 
   const holders = async function() {
+    console.warn('sync.holders')
+    return null
+
     let syncHoldersOption = { fromId: '0', toId: '0' }
 
     if (store.state.bsc.synchronizing.fromHolderId !== null) {
