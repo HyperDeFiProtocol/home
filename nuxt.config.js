@@ -26,7 +26,8 @@ export default {
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
 
-    fromBlock: process.env.fromBlock || '0',
+    fromBlock: process.env.fromBlock || '13290846',
+    idoToBlock: process.env.idoToBlock || '13356840',
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

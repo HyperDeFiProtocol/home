@@ -108,7 +108,7 @@ export default {
     async refresh() {
       await this.$nuxt.context.app.db.pointers.delete('holder')
       await this.$nuxt.context.app.db.holder.clear()
-      await this.$nuxt.context.app.sync.holders()
+      // await this.$nuxt.context.app.sync.holders()
     },
   }
 }
