@@ -55,14 +55,13 @@ export default {
   createLi2__: 'All processes are executed automatically by the contract, with no human intervention.',
 
   // redeem
-  redeemTitle: 'Users who participated in the Genesis Deposit, redeem their share proportionally of HyperDeFi.',
+  redeemTitle: 'Users who participated in the Genesis Deposit, claim their share proportionally of HyperDeFi.',
   yourPortion: 'Your portion:',
-  notRedeemed: '(Not Redeemed)',
-  redeemed: '(Redeemed)',
+  notRedeemed: '(Not Claimed)',
+  redeemed: '(Claimed)',
 
   connectWalletToCheck: 'Connect wallet to check my proportion.',
-  redeem: 'Redeem',
-
+  redeem: 'Claim',
 
 
   // launch
