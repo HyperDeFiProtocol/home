@@ -8,7 +8,6 @@ export default {
     mode: process.env.mode,
     tokenAddress: process.env.tokenAddress || '0x99999999f678F56beF0Da5EB96F4c1300Cf8D69a',
     idoAddress: process.env.idoAddress || '0x00000000E00A2E5B43460D40BcdF82E6e054CD3D',
-    genesisAddress: process.env.genesisAddress,
     web3RpcUrl: process.env.web3RpcUrl || 'https://bsc-dataseed.binance.org/',
     chainName: process.env.chainName || 'BSC Chain',
     chainId: process.env.chainId || '56',
@@ -26,7 +25,7 @@ export default {
 
     tokenCreationTxHash: process.env.tokenCreationTxHash || '0x1234567890',
 
-    fromBlock: process.env.fromBlock || '13290846',
+    fromBlock: process.env.fromBlock || '13290000',
     idoToBlock: process.env.idoToBlock || '13356840',
   },
 
