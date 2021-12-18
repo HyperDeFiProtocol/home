@@ -3,6 +3,8 @@ const JSBI = require('jsbi')
 const BN = JSBI.BigInt
 const Web3 = require('web3')
 const TOKEN_ABI = require('./utils/token.json')
+const IDO_ABI = require('./utils/ido.json')
+const fn = require('~/utils/functions')
 dotenv.config()
 
 const EV_FROM_BLOCK = process.env.fromBlock
@@ -10,6 +12,7 @@ const IDO_TO_BLOCK = process.env.idoToBlock
 
 const PROVIDER = new Web3(process.env.web3RpcUrl)
 const TOKEN = new PROVIDER.eth.Contract(TOKEN_ABI, process.env.tokenAddress)
+const IDO = new PROVIDER.eth.Contract(IDO_ABI, process.env.idoAddress)
 
 const STEP = 5000
 const INTERVAL = 200
@@ -102,7 +105,6 @@ const getBlockNumber = async function() {
 //
 const stepUp = async function() {
   range.to = JSBI.add(BN(range.from), BN(step)).toString()
-
   if (JSBI.GT(BN(range.to), BN(blockNumber))) {
     range.to = BN(blockNumber).toString()
   }
@@ -136,7 +138,30 @@ const fetchAllEvents = async function() {
 }
 
 
+const fetchIDOEvents = async function() {
+  console.log(`fetchIDOEvents: #${range.from} - #${range.to}/#${blockNumber}`)
 
+  let exception = false
+  const events = await IDO
+    .getPastEvents('Deposit', {
+      fromBlock: range.from,
+      toBlock: range.to
+    })
+    .catch(e => {
+      exception = true
+      console.error('[fetchIDOEvents]', e)
+    })
+
+  if (exception) {
+    await increaseInterval()
+    console.log(`wait: fetchIDOEvents after ${interval}ms`)
+    await fn.wait(interval)
+    return await fetchIDOEvents()
+  }
+
+  interval = 0
+  return events
+}
 
 
 const main = async function() {
@@ -165,12 +190,8 @@ const main = async function() {
   let funds = []
   let genesisDeposits = []
   while (JSBI.LT(BN(range.from), BN(blockNumber))) {
-    range.from += 1
-
-    console.log(range)
-    console.log(step)
+    range.from = JSBI.add(BN(range.from), BN(1)).toString()
     await stepUp(step)
-    console.log(range)
 
     const events = await fetchAllEvents(step)
 
