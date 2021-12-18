@@ -1,10 +1,10 @@
+const fs = require('fs')
 const dotenv = require('dotenv')
 const JSBI = require('jsbi')
 const BN = JSBI.BigInt
 const Web3 = require('web3')
 const TOKEN_ABI = require('./utils/token.json')
 const IDO_ABI = require('./utils/ido.json')
-const fn = require('~/utils/functions')
 dotenv.config()
 
 const EV_FROM_BLOCK = process.env.fromBlock
@@ -26,6 +26,38 @@ let range = {
 }
 let step = STEP
 
+const readFromJson = async function (path) {
+  try {
+    return JSON.parse(fs.readFileSync(path, 'utf-8'))
+  } catch (err) {
+    console.error(err)
+    return []
+  }
+}
+
+const syncRange = async function (rows) {
+  try {
+    if (rows.length) {
+      const row = rows.slice(-1)[0]
+
+      if (JSBI.GT(BN(row['blockNumber']), BN(range.from))) {
+        range.from = BN(row['blockNumber']).toString()
+        range.to = range.from
+      }
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+const writeToJson = async function (path, data) {
+  try {
+    fs.writeFileSync(path, JSON.stringify(data))
+  } catch (err) {
+    console.error(err)
+    await writeToJson(path, data)
+  }
+}
 
 // wait...
 const wait = function(timeout = 1000) {
@@ -76,7 +108,7 @@ const getMetadata = async function() {
     await increaseInterval()
     console.log(`wait: getMetadata after ${interval}ms`)
     await wait(interval)
-    return await getBuffer()
+    return await getMetadata()
   }
 
   interval = 0
@@ -133,6 +165,7 @@ const fetchAllEvents = async function() {
     return await fetchAllEvents()
   }
 
+  step = STEP
   interval = 0
   return events
 }
@@ -155,7 +188,7 @@ const fetchIDOEvents = async function() {
   if (exception) {
     await increaseInterval()
     console.log(`wait: fetchIDOEvents after ${interval}ms`)
-    await fn.wait(interval)
+    await wait(interval)
     return await fetchIDOEvents()
   }
 
@@ -171,6 +204,23 @@ const main = async function() {
   BUFFER = metadata.accounts[4]
   HOLDERS = metadata.holders
 
+  let txs = await readFromJson('./static/db/txs.json')
+  let transfers = await readFromJson('./static/db/transfers.json')
+  let buffers = await readFromJson('./static/db/buffers.json')
+  let airdrops = await readFromJson('./static/db/airdrops.json')
+  let bonus = await readFromJson('./static/db/bonus.json')
+  let funds = await readFromJson('./static/db/funds.json')
+  let genesisDeposits = await readFromJson('./static/db/genesisDeposits.json')
+
+  // await syncRange(txs)
+  // await syncRange(transfers)
+  // await syncRange(buffers)
+  // await syncRange(airdrops)
+  // await syncRange(bonus)
+  // await syncRange(funds)
+  // await syncRange(genesisDeposits)
+
+  // return null
 
   // from block
   // let fromBlock = JSBI.subtract(BN(EV_FROM_BLOCK), BN(1)).toString()
@@ -182,13 +232,7 @@ const main = async function() {
   // return null
 
   // collections
-  let txs = []
-  let transfers = []
-  let buffers = []
-  let airdrops = []
-  let bonus = []
-  let funds = []
-  let genesisDeposits = []
+
   while (JSBI.LT(BN(range.from), BN(blockNumber))) {
     range.from = JSBI.add(BN(range.from), BN(1)).toString()
     await stepUp(step)
@@ -270,9 +314,6 @@ const main = async function() {
         case 'Fund':
           funds.push(ev2Tx(event))
           break
-        case 'GenesisDeposit':
-          genesisDeposits.push(ev2Tx(event))
-          break
         // case 'SlotRegistered':
         //   break
         // case 'UsernameSet':
@@ -280,25 +321,40 @@ const main = async function() {
         // case 'CouponVisitor':
         //   break
       }
+
+
+    }
+
+    if (JSBI.LT(BN(range.from), BN(process.env.idoToBlock))) {
+      const idoEvents = await fetchIDOEvents()
+      for (const event of idoEvents) {
+        genesisDeposits.push(ev2Tx(event))
+      }
     }
 
     range.from = range.to
-
-    blockNumber = await getBlockNumber()
+    await wait(INTERVAL)
   }
 
-  // for (const transfer of transfers) {
-  //   // console.log(`transfer: ${transfer.sender} => ${transfer.recipient}: ${transfer.amount}`)
-  // }
 
   console.log(`txs: ${txs.length}`)
   console.log(`transfers: ${transfers.length}`)
   console.log(`airdrops: ${airdrops.length}`)
   console.log(`bonus: ${bonus.length}`)
   console.log(`funds: ${funds.length}`)
-  console.log(`genesisDeposits: ${genesisDeposits.length}`)
+  console.log(`genesisDeposit: ${genesisDeposits.length}`)
 
   console.log(HOLDERS)
+
+  // console.log(`txs: ${txs.length}`)
+  await writeToJson('./static/db/txs.json', txs)
+  await writeToJson('./static/db/transfers.json', transfers)
+  await writeToJson('./static/db/buffers.json', buffers)
+  await writeToJson('./static/db/airdrops.json', airdrops)
+  await writeToJson('./static/db/bonus.json', bonus)
+  await writeToJson('./static/db/funds.json', funds)
+  await writeToJson('./static/db/genesisDeposits.json', genesisDeposits)
+
 
   // let holders = []
   // while (JSBI.LT(BN(holders.length), JSBI.subtract(BN(metadata.holders), BN(1)))) {

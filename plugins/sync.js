@@ -76,6 +76,7 @@ export default async function({ app, store }, inject) {
       return await fetchAllEvents(step)
     }
 
+    step = STEP
     interval = 0
     if (events) return events
 
@@ -361,12 +362,11 @@ export default async function({ app, store }, inject) {
         .catch(e => {
           console.error('putBlockPoint:', e)
         })
+
+      await fn.wait(INTERVAL)
     }
 
     await store.dispatch('bsc/SET_SYNCHRONIZING_EV')
-
-    await fn.wait(INTERVAL)
-
     return null
   }
 
