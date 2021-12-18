@@ -71,7 +71,7 @@ const exploreToken4address = function(address, token = process.env.tokenAddress)
 }
 
 const pancakeSwapTo = function(outputCurrency = process.env.tokenAddress) {
-  return process.env.pancakeBaseUrl + '/#/swap?outputCurrency=' + outputCurrency
+  return process.env.pancakeBaseUrl + '/swap?outputCurrency=' + outputCurrency
 }
 
 

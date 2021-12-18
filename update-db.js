@@ -1,30 +1,43 @@
+const dotenv = require('dotenv')
 const JSBI = require('jsbi')
 const BN = JSBI.BigInt
 const Web3 = require('web3')
 const TOKEN_ABI = require('./utils/token.json')
-const TOKEN_ADDRESS = '0xCBA6e270969B1390C89eB6a18594cDBA6EB52A28'
-const FROM_BLOCK = '14229705'
+dotenv.config()
 
-const PROVIDER = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/')
-const TOKEN = new PROVIDER.eth.Contract(TOKEN_ABI, TOKEN_ADDRESS)
+const EV_FROM_BLOCK = process.env.fromBlock
+const IDO_TO_BLOCK = process.env.idoToBlock
 
-let blockNumber
+const PROVIDER = new Web3(process.env.web3RpcUrl)
+const TOKEN = new PROVIDER.eth.Contract(TOKEN_ABI, process.env.tokenAddress)
+
 const STEP = 5000
+const INTERVAL = 200
 let BUFFER
+let HOLDERS
+let blockNumber
+let interval = 0
+let range = {
+  from: process.env.fromBlock,
+  to: process.env.fromBlock
+}
+let step = STEP
 
-const getBlockNumber = async function() {
-  let exception = false
-  const blockNumber = await PROVIDER.eth.getBlockNumber().catch(e => {
-    exception = true
+
+// wait...
+const wait = function(timeout = 1000) {
+  return new Promise((resolve, reject) => {
+    if (timeout > 0) {
+      setTimeout(() => {
+        resolve(timeout)
+      }, timeout)
+    } else {
+      reject('Invalid `timeout`')
+    }
   })
-
-  if (exception) {
-    return await getBlockNumber()
-  }
-
-  return blockNumber
 }
 
+// cut step
 const cut = function(n) {
   const a = 8
   const b = 10
@@ -32,39 +45,7 @@ const cut = function(n) {
   return JSBI.divide(JSBI.multiply(BN(n), BN(a)), BN(b)).toString()
 }
 
-const stepUp = async function(fromBlock, step) {
-  const toBlock = JSBI.add(BN(fromBlock), BN(step)).toString()
-
-  if (JSBI.GT(BN(toBlock), BN(blockNumber))) {
-    return blockNumber
-  }
-
-  return toBlock
-}
-
-const fetchAllEvents = async function(fromBlock, step) {
-  fromBlock = JSBI.add(BN(fromBlock), BN(1)).toString()
-  const toBlock = await stepUp(fromBlock, step)
-
-  console.log(`#${fromBlock} >>> #${toBlock} ::: #${blockNumber}`)
-
-  let exception = false
-  const events = await TOKEN
-    .getPastEvents('allEvents', {
-      fromBlock: fromBlock,
-      toBlock: toBlock
-    }).catch(e => {
-      exception = true
-    })
-
-  if (exception) {
-    step = cut(step)
-    return await fetchAllEvents(fromBlock, step)
-  }
-
-  return [events, toBlock]
-}
-
+// event 2 tx
 const ev2Tx = function (event) {
   return {
     blockNumber: event.blockNumber,
@@ -75,14 +56,105 @@ const ev2Tx = function (event) {
   }
 }
 
+// interval +
+const increaseInterval = async function() {
+  interval += INTERVAL
+}
+
+// get metadata
+const getMetadata = async function() {
+  let exception = false
+  const metadata = await TOKEN.methods.getMetadata().call().catch(e => {
+    exception = true
+    console.error('[getMetadata]', e)
+  })
+
+  if (exception) {
+    await increaseInterval()
+    console.log(`wait: getMetadata after ${interval}ms`)
+    await wait(interval)
+    return await getBuffer()
+  }
+
+  interval = 0
+  return metadata
+}
+
+// get block number
+const getBlockNumber = async function() {
+  let exception = false
+  const blockNumber = await PROVIDER.eth.getBlockNumber().catch(e => {
+    exception = true
+    console.error('[getBlockNumber]', e)
+  })
+
+  if (exception) {
+    await increaseInterval()
+    console.log(`wait: getBlockNumber after ${interval}ms`)
+    await wait(interval)
+    return await getBlockNumber()
+  }
+
+  interval = 0
+  return blockNumber
+}
+
+//
+const stepUp = async function() {
+  range.to = JSBI.add(BN(range.from), BN(step)).toString()
+
+  if (JSBI.GT(BN(range.to), BN(blockNumber))) {
+    range.to = BN(blockNumber).toString()
+  }
+}
+
+const fetchAllEvents = async function() {
+  console.log(`fetchAllEvents: #${range.from} - #${range.to}/#${blockNumber}`)
+
+  let exception = false
+  const events = await TOKEN
+    .getPastEvents('allEvents', {
+      fromBlock: range.from,
+      toBlock: range.to
+    }).catch(e => {
+      exception = true
+      console.error('[fetchAllEvents]', e)
+    })
+
+  if (exception) {
+    step = cut(step)
+    await stepUp()
+
+    await increaseInterval()
+    console.log(`wait: fetchAllEvents after ${interval}ms`)
+    await wait(interval)
+    return await fetchAllEvents()
+  }
+
+  interval = 0
+  return events
+}
+
+
+
+
+
 const main = async function() {
-  // metadata: buffer
-  let metadata = await TOKEN.methods.getMetadata().call()
+  blockNumber = await getBlockNumber()
+
+  const metadata = await getMetadata()
   BUFFER = metadata.accounts[4]
+  HOLDERS = metadata.holders
+
 
   // from block
-  let fromBlock = JSBI.subtract(BN(FROM_BLOCK), BN(1)).toString()
-  blockNumber = await getBlockNumber()
+  // let fromBlock = JSBI.subtract(BN(EV_FROM_BLOCK), BN(1)).toString()
+
+  console.log('blockNumber:', blockNumber)
+  console.log('BUFFER:', BUFFER)
+  console.log('HOLDERS:', HOLDERS)
+
+  // return null
 
   // collections
   let txs = []
@@ -92,11 +164,17 @@ const main = async function() {
   let bonus = []
   let funds = []
   let genesisDeposits = []
-  while (JSBI.LT(BN(fromBlock), BN(blockNumber))) {
-    const eventsResp = await fetchAllEvents(fromBlock, STEP)
-    fromBlock = eventsResp[1]
+  while (JSBI.LT(BN(range.from), BN(blockNumber))) {
+    range.from += 1
 
-    for (const event of eventsResp[0]) {
+    console.log(range)
+    console.log(step)
+    await stepUp(step)
+    console.log(range)
+
+    const events = await fetchAllEvents(step)
+
+    for (const event of events) {
       console.log(event.blockNumber, event.event)
 
       switch (event.event) {
@@ -183,6 +261,8 @@ const main = async function() {
       }
     }
 
+    range.from = range.to
+
     blockNumber = await getBlockNumber()
   }
 
@@ -197,32 +277,30 @@ const main = async function() {
   console.log(`funds: ${funds.length}`)
   console.log(`genesisDeposits: ${genesisDeposits.length}`)
 
-  metadata = await TOKEN.methods.getMetadata().call()
+  console.log(HOLDERS)
 
-  console.log(metadata.holders)
-
-  let holders = []
-  while (JSBI.LT(BN(holders.length), JSBI.subtract(BN(metadata.holders), BN(1)))) {
-    console.log(`Holders: #${holders.length}`)
-    const holdersResp = await TOKEN.methods.getHolders(holders.length).call()
-      .catch(e => {
-        console.error('>>> sync, syncHolders:', e)
-      })
-
-    for (let i = 0; i < holdersResp.ids.length; i++) {
-      if (holdersResp.holders[i] !== '0x0000000000000000000000000000000000000000') {
-        holders.push({
-          id: holdersResp.ids[i],
-          address: holdersResp.holders[i],
-          username: holdersResp.usernames[i],
-          balance: holdersResp.balances[i],
-          isWhale: holdersResp.isWhales[i],
-        })
-      }
-    }
-  }
-
-  console.log(holders.length)
+  // let holders = []
+  // while (JSBI.LT(BN(holders.length), JSBI.subtract(BN(metadata.holders), BN(1)))) {
+  //   console.log(`Holders: #${holders.length}`)
+  //   const holdersResp = await TOKEN.methods.getHolders(holders.length).call()
+  //     .catch(e => {
+  //       console.error('>>> sync, syncHolders:', e)
+  //     })
+  //
+  //   for (let i = 0; i < holdersResp.ids.length; i++) {
+  //     if (holdersResp.holders[i] !== '0x0000000000000000000000000000000000000000') {
+  //       holders.push({
+  //         id: holdersResp.ids[i],
+  //         address: holdersResp.holders[i],
+  //         username: holdersResp.usernames[i],
+  //         balance: holdersResp.balances[i],
+  //         isWhale: holdersResp.isWhales[i],
+  //       })
+  //     }
+  //   }
+  // }
+  //
+  // console.log(holders.length)
 }
 
 main().then()
