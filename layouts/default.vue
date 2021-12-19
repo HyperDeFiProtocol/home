@@ -23,13 +23,14 @@ html {
 export default {
   scrollToTop: true,
   mounted: async function() {
-    await this.sync()
+    // await this.sync()
+    await this.$nuxt.context.app.sync.stat()
   },
-  watch: {
-    '$store.state.bsc.blockNumber': async function() {
-      await this.sync()
-    }
-  },
+  // watch: {
+  //   '$store.state.bsc.blockNumber': async function() {
+  //     await this.sync()
+  //   }
+  // },
   computed: {
     notProductionMode() {
       return process.env.mode !== 'production'

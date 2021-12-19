@@ -2,8 +2,7 @@ import JSBI from 'jsbi'
 import fn from '../utils/functions'
 
 const BN = JSBI.BigInt
-const FROM_BLOCK = process.env.fromBlock
-const STEP = 2500
+const STEP = 4000
 const INTERVAL = 200
 
 
@@ -27,6 +26,8 @@ const ev2Tx = function(event) {
 
 
 export default async function({ app, store }, inject) {
+  const FROM_BLOCK = await app.latestBlockNumber()
+
   let step = STEP
   let interval = 0
 
@@ -433,7 +434,52 @@ export default async function({ app, store }, inject) {
     await store.dispatch('bsc/SET_SYNCHRONIZING_FROM_HOLDER_ID')
   }
 
+  const stat = async function () {
+    await store.dispatch(
+      'stat/SET_BUFFER',
+      await app.db.buffer.toArray()
+    )
+
+    await store.dispatch(
+      'stat/SET_BUFFER_OUT',
+      await app.db.buffer
+        .where('sender')
+        .equals(store.state.bsc.globalAccounts.buffer)
+        .toArray()
+    )
+
+    await store.dispatch(
+      'stat/SET_AIRDROPS',
+      await app.db.airdrop.toArray()
+    )
+
+    await store.dispatch(
+      'stat/SET_BURN',
+      await app.db.transfer
+        .where('recipient')
+        .equals(store.state.bsc.globalAccounts.burn)
+        .toArray()
+    )
+
+    await store.dispatch(
+      'stat/SET_FOMO_IN',
+      await app.db.transfer
+        .where('recipient')
+        .equals(store.state.bsc.globalAccounts.fomo)
+        .toArray()
+    )
+
+    await store.dispatch(
+      'stat/SET_FOMO_OUT',
+      await app.db.transfer
+        .where('sender')
+        .equals(store.state.bsc.globalAccounts.fomo)
+        .toArray()
+    )
+  }
+
   app.sync = {
+    stat: stat,
     events: events,
     holders: holders
     // genesisDeposit: genesisDeposit,
