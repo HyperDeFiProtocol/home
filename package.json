@@ -12,6 +12,7 @@
     "@metamask/detect-provider": "^1.2.0",
     "@metamask/onboarding": "^1.0.1",
     "@nuxtjs/pwa": "^3.3.5",
+    "axios": "^0.24.0",
     "bignumber.js": "^9.0.2",
     "bn.js": "^5.2.0",
     "clipboard-copy": "^4.0.1",
