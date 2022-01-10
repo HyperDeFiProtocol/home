@@ -54,7 +54,7 @@ jobs:
         run: echo "alpha.hyperdefi.org" > ./dist/CNAME
 
       - name: Deploy 🚀🚀🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.8
+        uses: JamesIves/github-pages-deploy-action@4.2.1
         with:
           token: ${{ secrets.CI_TOKEN }}
           repository-name: HyperDeFiProtocol/alpha
