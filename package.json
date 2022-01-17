@@ -16,7 +16,7 @@
     "bignumber.js": "^9.0.2",
     "bn.js": "^5.2.0",
     "clipboard-copy": "^4.0.1",
-    "core-js": "^3.20.0",
+    "core-js": "^3.20.3",
     "crypto-js": "^4.1.1",
     "detect-browser": "^5.3.0",
     "dexie": "^3.2.0",
