@@ -54,7 +54,7 @@ jobs:
         run: echo "hyperdefi.org" > ./dist/CNAME
 
       - name: Deploy 🚀🚀🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
           commit-message: "@${{ github.sha }}"
           branch: gh-pages
